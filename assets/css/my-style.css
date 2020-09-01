@@ -1,0 +1,21 @@
+.card > div:nth-child(1) > div:nth-child(2) > span:nth-child(1) {
+    font-size: 66px;
+    line-height: 108px;
+    /* margin-left: 50px;
+    margin-bottom: 50px; */
+   }
+   .home-widget .card-stretch.gutter-b {
+   
+    height: calc(100% - 70px) !important;
+    }
+
+       .home-widget .card-stretch.gutter-b {
+   
+    height: calc(100% - 60px) !important;
+
+    /* padding-bottom: 25px; */
+    }
+    .home-widget .card-body  .font-weight-bold{
+
+        height: 40% !important;
+    }

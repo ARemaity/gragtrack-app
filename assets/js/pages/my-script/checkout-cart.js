@@ -1,13 +1,13 @@
 "use strict";
 // Class definition
 
-var KTDatatableHtmlTableDemo = function() {
+var KTDatatableHtmlTableCart = function() {
     // Private functions
 
     // demo initializer
-    var demo = function() {
+    var checkout_cart = function() {
 
-		var datatable = $('#kt_datatable').KTDatatable({
+		var datatable = $('#kt_datatable_checkout_cart').KTDatatable({
 			data: {
 				saveState: {cookie: false},
 			},
@@ -110,11 +110,11 @@ var KTDatatableHtmlTableDemo = function() {
         // Public functions
         init: function() {
             // init dmeo
-            demo();
+            checkout_cart();
         },
     };
 }();
 
 jQuery(document).ready(function() {
-	KTDatatableHtmlTableDemo.init();
+	KTDatatableHtmlTableCart.init();
 });

@@ -3,7 +3,7 @@
 			
 			<?php 
 
-			require('include/header2.php');
+			require('include/header.php');
 			
 			?>
 			<!--end::Header-->
@@ -804,4 +804,4 @@
 	
 
 
-<?php  require("include/footer2.php"); ?>
+<?php  require("include/footer.php"); ?>

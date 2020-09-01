@@ -5,7 +5,6 @@ require_once 'base.php';
 require_once DIR_INC.'DB_Manage.php';
 require_once DIR_INC.'functions.php';
 $db = new DB_Manage();
-$get_token="";
 $shopify=$_GET;
 $shop_name=$shopify['shop'];
 
@@ -15,7 +14,12 @@ if(!$check_exist){
     header("Location:install.php?shop=".$shopify['shop']);
     
 }else{
-    $token_code=$db->get_shop_token($shopify['shop'])['token_code'];
+
+ session_start();
+
+    $token_code=$db->get_shop_token($shop_name)['token_code'];
+    $_SESSION['shop_name']=$shop_name;
+    $_SESSION['token_code']=$token_code;
  
 }
 

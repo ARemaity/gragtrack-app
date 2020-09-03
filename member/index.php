@@ -1,3 +1,12 @@
+
+
+<?php
+
+
+require_once '../base.php';
+require_once Root_DIR_API.'API_Order.php';
+$api_order = new API_Order();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <!--begin::Head-->
@@ -2062,7 +2071,7 @@
                                 data-original-title="UC4"
                                 style="margin-left: 10px;"></i></a>
                             <div class="font-weight-bold text-white font-size-sm">
-                                <span class="font-size-h2 mr-2">532</span></div>
+                                <span class="font-size-h2 mr-2"><?=$api_order->get_order_count('any')?></span></div>
                             <div class="progress progress-xs mt-7 bg-white-o-90" style="margin-bottom: 10px;">
                                 <div class="progress-bar bg-white" role="progressbar" style="width: 52%;"
                                     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -2088,7 +2097,7 @@
                                 data-original-title="UC5"
                                 style="margin-left: 10px;"></i></a>
                             <div class="font-weight-bold text-muted font-size-sm">
-                                <span class="text-dark-75 font-size-h2 font-weight-bolder mr-2">276</span></div>
+                                <span class="text-dark-75 font-size-h2 font-weight-bolder mr-2"><?=$api_order->get_checkout_count('open')?></span></div>
                             <div class="progress progress-xs mt-7 bg-success-o-60" style="margin-bottom: 10px;">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 90%;"
                                     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>

@@ -1,17 +1,23 @@
 <?php 
 
-session_start();
+
 
 class API_Config{
      
-     
+    private $tk;
+    private $store;
 
+        
 
 
     // constructor
     function __construct() {    
         
-  
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $this->tk=$_SESSION['token_code'];
+        $this->store=$_SESSION['shop_name'];
     }
 
     // destructor
@@ -23,12 +29,12 @@ class API_Config{
      
 
  public function get_token_code(){
-return $_SESSION['token_code'];
+ return $this->tk;
 
  }
 
  public function get_shop_url(){
-    return $_SESSION['token_code'];
+    return $this->store;
 }
  
 }

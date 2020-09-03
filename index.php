@@ -20,6 +20,7 @@ if(!$check_exist){
     $token_code=$db->get_shop_token($shop_name)['token_code'];
     $_SESSION['shop_name']=$shop_name;
     $_SESSION['token_code']=$token_code;
+    header("Location: ".DIR_ROOT."member/index.php");
  
 }
 

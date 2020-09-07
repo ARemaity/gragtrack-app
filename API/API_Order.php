@@ -59,11 +59,16 @@ return $count;
 
  public function get_checkout_count($status){
 
-  $api_url=" /admin/api/2020-07/checkouts/count.json";
+  $api_url="/admin/api/2020-07/checkouts/count.json";
   $counts=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
 
   $counts=json_decode($counts['response']);
-return print_r($counts);
+  foreach ($counts as $count) {
+ 
+return $count;
+ 
+
+  }
 
 
 

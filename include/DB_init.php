@@ -4,7 +4,7 @@
 
 class DB_init{
      
-     
+     private $new_order;
     private $conn;
     private $store_prp;
     // constructor
@@ -14,8 +14,9 @@ class DB_init{
             // connect to DB 
             $db = new DB_Connect();
             $this->conn = $db->connect();
-        $new_order=new API_Order();
-       $this->store_prp =  $new_order->get_store_prp();
+            // api order 
+        $this->new_order=new API_Order();
+      
   
     }
 
@@ -80,10 +81,10 @@ return TRUE;
         }
     } 
 
-    public function insert_into_account(){
-        $shop= $this->store_prp;
+    public function get_store_prp(){
+        
+    $get_store_prp= $this->new_order->get_store_prp();
 
-         return $shop;
 
 
 

@@ -74,12 +74,11 @@ return $count;
  
      
 public function get_store_prp(){
-
+$store_arr=array();
   $api_url="/admin/api/2020-07/shop.json";
   $counts=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
   $store_prp=json_decode($counts['response'],true);
-  $return_value=implode(",",$store_prp);
-  return print_r($return_value);
+  return $store_prp['shop'];
 
 
 }

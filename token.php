@@ -1,10 +1,14 @@
 <?php
 
+
+
 require_once 'base.php';
 //Get Reports class
 require_once DIR_INC.'DB_init.php';
+require_once DIR_INC.'API_Order.php';
 require_once DIR_INC.'functions.php';
 $db = new DB_init();
+
 
 // Get our helper functions
 
@@ -47,19 +51,26 @@ if (hash_equals($hmac, $computed_hmac)) {
 	$access_token = $result['access_token'];
 
 $insert_shop=$db->insert_into_access_token($params['shop'],$access_token);
-
+//echo $insert_shop;
 if($insert_shop!=0&&$insert_shop>0){
 
 	if (session_status() == PHP_SESSION_NONE) {
 		session_start();
 	}
-	if(!isset($_SESSION['AID'])){
+	
 		$_SESSION['AID']=$insert_shop;
-	}
-
-
-	header("Location:https://" . $params['shop'] . "/admin/apps/grag_app");
-	exit();
+		$_SESSION['token_code']=$access_token;
+		$new_api = new API_Order();
+		$insert_to_store_prp=$db->insert_store_prp($new_api->get_store_prp());
+		echo $insert_to_store_prp;
+	  
+	// if ($insert_to_store_prp) {
+	// echo "will done ";
+	// }else{
+	// 	echo "there is an error";
+	// }
+	// header("Location:https://" . $params['shop'] . "/admin/apps/grag_app");
+	// exit();
 }
 else{
 	echo "<<There is Problem in Inserting Data>>";

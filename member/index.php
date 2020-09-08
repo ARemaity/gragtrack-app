@@ -24,9 +24,7 @@ $conf_init=new DB_init();
 
 
 ?>
-
 <!-- UC5 :: part 1  -->
-<?=$conf_init->get_store_prp()?>
 
 
 

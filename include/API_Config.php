@@ -2,7 +2,7 @@
 
 
 
-class API_Config{
+class API_Config  {
      
     private $tk;
     private $store;
@@ -18,6 +18,7 @@ class API_Config{
         $this->store=$_SESSION['shop_name'];
     
     }
+
 
     // destructor
     function __destruct() {
@@ -35,9 +36,18 @@ class API_Config{
  public function get_shop_url(){
     return $this->store;
 }
-public function get_access_ID(){
-    return $this->AID;
+
+
+public function set_shop($shops){
+    $this->shop=$shops;
+
 }
+
+public function set_token($tks){
+    $this->tk=$tks;
+
+}
+
 }
 
 

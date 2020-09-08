@@ -81,11 +81,53 @@ return TRUE;
         }
     } 
 
-    public function get_store_prp(){
-        
+
+    
+    /**
+     * get_access_ID
+     *
+     * @param  mixed $shop_url
+     * @return void
+     */
+    public function get_access_ID($shop_url) {
+        $stmt = $this->conn->prepare("SELECT  `AID` FROM access_token WHERE `shop_url`='$shop_url' ");
+        if ($stmt->execute()) {			
+            $aid = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+			return $aid; 
+        } else {
+            return NULL;
+        }
+    } 
+    public function insert_store_prp(){
     $get_store_prp= $this->new_order->get_store_prp();
-
-
+$shop=array();
+$stmt = $this->conn->prepare("INSERT INTO `store_prp`(`FK_AID`, `shop_id`, `shop_name`, `shop_city`, `shop_domain`, `shop_address`, `shop_country`, `shop_source`, `shop_created_at`, `shop_plan_name`, `shop_setup_required`, `shop_timezone`, `owner_email`, `owner_phone`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?");
+$stmt->bind_param("iiiiiiiiiiiiii",
+$_SESSION['AID'],
+$get_store_prp['id'],
+$get_store_prp['name'],
+$get_store_prp['city'],
+$get_store_prp['domain'],
+$get_store_prp['address1'],
+$get_store_prp['country'],
+$get_store_prp['source'],
+$get_store_prp['shop_id'],
+$get_store_prp['created_at'],
+$get_store_prp['plan_name'],
+$get_store_prp['setup_required'],
+$get_store_prp['iana_timezone'],
+$get_store_prp['email'],
+$get_store_prp['phone']
+);
+$result = $stmt->execute();
+$stmt->close();
+// check for successful store
+if ($result) {
+    return true;
+} else {
+    return false;
+}
 
 
 

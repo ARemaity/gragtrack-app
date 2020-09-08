@@ -2,6 +2,7 @@
 class DB_Connect {
     private $conn;
     private $conn1;
+    
     // Connecting to database
     public function connect() {
         require_once 'Config.php';    

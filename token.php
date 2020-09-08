@@ -48,12 +48,15 @@ if (hash_equals($hmac, $computed_hmac)) {
 
 $insert_shop=$db->insert_into_access_token($params['shop'],$access_token);
 
-if($insert_shop!=0){
+if($insert_shop!=0&&$insert_shop>0){
 
 	if (session_status() == PHP_SESSION_NONE) {
 		session_start();
 	}
-	$_SESSION['AID']=$insert_shop;
+	if(!isset($_SESSION['AID'])){
+		$_SESSION['AID']=$insert_shop;
+	}
+
 
 	header("Location:https://" . $params['shop'] . "/admin/apps/grag_app");
 	exit();

@@ -6,8 +6,6 @@ class API_Config{
      
     private $tk;
     private $store;
-    private $AID;
-    private $SID;   
 
 
     // constructor
@@ -18,7 +16,7 @@ class API_Config{
         }
         $this->tk=$_SESSION['token_code'];
         $this->store=$_SESSION['shop_name'];
-        $this->AID=$_SESSION['AID'];
+    
     }
 
     // destructor

@@ -10,7 +10,8 @@ $shop_name=$shopify['shop'];
 
 $check_exist=$db->check_if_store_exsit($shopify['shop']);
 if(!$check_exist){
-
+    // get aid and insert it to session 
+    $get_aid=$db->get_access_ID($shopify['shop']);
     header("Location:install.php?shop=".$shopify['shop']);
     
 }else{

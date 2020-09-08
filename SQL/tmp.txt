@@ -1,0 +1,9 @@
+127.0.0.1/gragtrack_account/		https://localhost/phpmyadmin/tbl_structure.php?db=gragtrack_account&table=account
+Your SQL query has been executed successfully.
+
+show create table account
+
+
+
+account	CREATE TABLE `account` (
+  `fk_SID` int(30) NOT NU...	

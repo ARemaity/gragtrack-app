@@ -21,6 +21,7 @@ if(!$check_exist){
     session_start();
 }
     $token_code=$db->get_shop_token($shop_name)['token_code'];
+    // save shop name & token 
     $_SESSION['shop_name']=$shop_name;
     $_SESSION['token_code']=$token_code;
     header("Location: ".DIR_ROOT."member/index.php");

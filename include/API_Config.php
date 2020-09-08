@@ -6,8 +6,8 @@ class API_Config{
      
     private $tk;
     private $store;
-
-        
+    private $AID;
+    private $SID;   
 
 
     // constructor
@@ -18,6 +18,7 @@ class API_Config{
         }
         $this->tk=$_SESSION['token_code'];
         $this->store=$_SESSION['shop_name'];
+        $this->AID=$_SESSION['AID'];
     }
 
     // destructor
@@ -36,7 +37,9 @@ class API_Config{
  public function get_shop_url(){
     return $this->store;
 }
- 
+public function get_access_ID(){
+    return $this->AID;
+}
 }
 
 

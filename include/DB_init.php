@@ -14,7 +14,7 @@ class DB_init{
             // connect to DB 
             $db = new DB_Connect();
             $this->conn = $db->connect();
-      $new_order=new API_Order();
+        $new_order=new API_Order();
        $this->store_prp =  $new_order->get_store_prp();
   
     }
@@ -83,7 +83,7 @@ return TRUE;
     public function insert_into_account(){
         $shop= $this->store_prp;
 
-return $shop;
+         return $shop;
 
 
 

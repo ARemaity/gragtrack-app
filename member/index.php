@@ -2,7 +2,7 @@
 
 
 require_once '../base.php';
-require_once Root_DIR_API.'API_Order.php';
+require_once '../'.DIR_INC.'API_Order.php';
 $api_order = new API_Order();
 ?>
 

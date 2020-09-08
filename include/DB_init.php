@@ -2,18 +2,20 @@
 
 //America/New_York
 
-class DB_Manage{
+class DB_init{
      
      
     private $conn;
- 
-
+    private $store_prp;
     // constructor
     function __construct() {
-        require_once 'DB_Connect.php';
-        // connecting to database
-        $db = new DB_Connect();
-        $this->conn = $db->connect();
+        require_once 'DB_Connect.php';   
+        require_once 'API_Order.php';
+            // connect to DB 
+            $db = new DB_Connect();
+            $this->conn = $db->connect();
+      $new_order=new API_Order();
+       $this->store_prp =  $new_order->get_store_prp();
   
     }
 
@@ -33,12 +35,13 @@ class DB_Manage{
                                    
         $stmt = $this->conn->prepare("INSERT INTO `access_token`(`AID`, `shop_url`, `token_code`, `access_time`) VALUES (NULL,'$shop_url','$token_code',NULL)");
         $result = $stmt->execute();
+        $last_id=$stmt->insert_id;
         $stmt->close();
     // check for successful store
     if ($result) {
-        return true;
+        return $last_id;
     } else {
-        return false;
+        return $last_id;
     }
 }
 
@@ -76,6 +79,18 @@ return TRUE;
             return NULL;
         }
     } 
+
+    public function insert_into_account(){
+        $shop= $this->store_prp;
+
+return $shop;
+
+
+
+
+    }
+
+
  
 }
 

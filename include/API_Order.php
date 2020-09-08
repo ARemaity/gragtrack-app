@@ -13,11 +13,9 @@ private $shop_url;
 private $new_api;
     // constructor
     function __construct() {    
-        require_once '../base.php';
-        require_once '../'.DIR_INC.'functions.php';
+        require_once 'functions.php';
         require_once 'API_Config.php';
 
-        session_start();
         $this->new_api = new API_Config();
         $this->token_code =  $this->new_api->get_token_code();
         $this->shop_url = $this->new_api->get_shop_url();
@@ -74,7 +72,19 @@ return $count;
 
 }
  
+     
+public function get_store_prp(){
+
+  $api_url="/admin/api/2020-07/shop.json";
+  $counts=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
+
+  $store_prp=json_decode($counts['response'],true);
+  $return_value=implode(",",$store_prp);
+
+  return $return_value;
+
+
 }
 
-
+}
 ?>

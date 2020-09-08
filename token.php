@@ -2,9 +2,9 @@
 
 require_once 'base.php';
 //Get Reports class
-require_once DIR_INC.'DB_Manage.php';
+require_once DIR_INC.'DB_init.php';
 require_once DIR_INC.'functions.php';
-$db = new DB_Manage();
+$db = new DB_init();
 
 // Get our helper functions
 
@@ -47,7 +47,13 @@ if (hash_equals($hmac, $computed_hmac)) {
 	$access_token = $result['access_token'];
 
 $insert_shop=$db->insert_into_access_token($params['shop'],$access_token);
-if($insert_shop){
+
+if($insert_shop!=0){
+
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
+	$_SESSION['AID']=$insert_shop;
 
 	header("Location:https://" . $params['shop'] . "/admin/apps/grag_app");
 	exit();

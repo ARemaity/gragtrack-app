@@ -54,3 +54,66 @@ if (!is_null($query) && in_array($method, array('GET', 	'DELETE'))) $url = $url 
 		return array('headers' => $headers, 'response' => $response[1]);
 
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	aid=$_SESSION['AID'];
+$id=$get_store_prp['id'];
+$name=$get_store_prp['name'];
+$city=$get_store_prp['city'];
+$domain=$get_store_prp['domain'];
+$address1=$get_store_prp['address1'];
+$country=$get_store_prp['country'];
+$source=$get_store_prp['source'];
+$created_at=$get_store_prp['created_at'];
+$plan_name=$get_store_prp['plan_name'];
+$setup_required=$get_store_prp['setup_required'];
+$iana_timezone=$get_store_prp['iana_timezone'];
+$email=$get_store_prp['email'];
+$phone=$get_store_prp['phone'];
+$stmt = $this->conn->prepare("INSERT INTO `store_prp`(`FK_AID`, `shop_id`, `shop_name`, `shop_city`, `shop_domain`, `shop_address`, `shop_country`, `shop_source`, `shop_created_at`, `shop_plan_name`, `shop_setup_required`, `shop_timezone`, `owner_email`, `owner_phone`) VALUES ('$aid','$id','$name','$city','$domain','$address1','$country','$source','$created_at','$plan_name','$setup_required','$iana_timezone','$email','$phone')");
+
+$result = $stmt->execute();
+$stmt->close();
+
+if ($result) {
+      
+    return  'true';
+
+} else {
+  
+
+    return 'false';
+}

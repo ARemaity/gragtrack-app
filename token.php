@@ -62,15 +62,30 @@ if($insert_shop!=0&&$insert_shop>0){
 		$_SESSION['token_code']=$access_token;
 		$new_api = new API_Order();
 		$insert_to_store_prp=$db->insert_store_prp($new_api->get_store_prp());
-		echo $insert_to_store_prp;
+		
 	  
-	// if ($insert_to_store_prp) {
-	// echo "will done ";
-	// }else{
-	// 	echo "there is an error";
-	// }
-	// header("Location:https://" . $params['shop'] . "/admin/apps/grag_app");
-	// exit();
+	if ($insert_to_store_prp) {
+
+
+ $update_setup=$db->update_setup(1,$_SESSION['AID']);
+if($update_setup){
+$_SESSION['fromtk']=1;
+	header("Location:https://" . $params['shop'] . "/admin/apps/grag_app/");
+	exit();
+}else{
+
+	//header("Location:".DIR_ROOT."error.php");
+	echo "error:token.php:78";
+		exit();
+}
+		
+	
+	}else{
+		//header("Location:".DIR_ROOT."error.php");
+		echo "error:token.php:85";
+		exit();
+	}
+
 }
 else{
 	echo "<<There is Problem in Inserting Data>>";

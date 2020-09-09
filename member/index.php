@@ -11,7 +11,7 @@ $conf_init=new DB_init();
 <!-- UC4 ::part 1 -->
 <?php
 
-//'UC4 ::part 1 OUTPUT((('.$api_order->get_order_count('any').')))'
+echo 'UC4 ::part 1 OUTPUT((('.$api_order->get_order_count('any').')))'
 
 
 ?>
@@ -20,7 +20,7 @@ $conf_init=new DB_init();
 <?php
 
 
-//'UC5 ::part 1 OUTPUT((('.$api_order->get_checkout_count('open').')))'
+echo 'UC5 ::part 1 OUTPUT((('.$api_order->get_checkout_count('open').')))'
 
 
 ?>

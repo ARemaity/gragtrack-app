@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if(isset($_SESSION['AID'])):
-            echo "AID ".$_SESSION['AID'];
+    
     require_once 'base.php';
     require_once DIR_INC.'DB_init.php';
     $db = new DB_init();

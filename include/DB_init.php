@@ -111,7 +111,7 @@ class DB_init{
         if ($stmt->execute()) {			
             $plan = $stmt->get_result()->fetch_assoc();
             $stmt->close();
-			return var_export($plan); 
+			return $plan; 
         } else {
             return NULL;
         }

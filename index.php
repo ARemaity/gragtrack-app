@@ -32,12 +32,10 @@ if(!$check_exist){
 
     $token_code=$db->get_shop_token($shopify['shop'])['token_code'];
     $get_aid=$db->get_access_ID($shopify['shop'])['AID'];
-    echo $get_aid;
-
     $_SESSION['AID']=$get_aid;
     $_SESSION['token_code']=$token_code;
     $get_setup=$db->get_setup($_SESSION['AID'])['setup_level'];
-  echo  $get_setup;
+
     
 /*
 

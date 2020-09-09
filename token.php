@@ -63,7 +63,6 @@ if($insert_shop!=0&&$insert_shop>0){
 		$new_api = new API_Order();
 		$insert_to_store_prp=$db->insert_store_prp($new_api->get_store_prp());
 		
-	  
 	if ($insert_to_store_prp) {
 
 

@@ -10,8 +10,8 @@ if(isset($_SESSION['AID'])):
     require_once DIR_INC.'DB_init.php';
     $db = new DB_init();
     $bool='False';
-    $plan_name=$db->get_shop_plan($_SESSION['AID']);
-    echo $plan_name;
+    $plan_name=$db->get_shop_plan($_SESSION['AID'])['plan'];
+
 		if($plan_name=='unlimited'|| $plan_name=='enterprise'){
             $bool='TRUE';
         }

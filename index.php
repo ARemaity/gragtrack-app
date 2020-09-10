@@ -35,10 +35,11 @@ if(!$check_exist){
     $_SESSION['AID']=$get_aid;
     $_SESSION['token_code']=$token_code;
     $get_setup=$db->get_setup($_SESSION['AID'])['setup_level'];
-
-    
+    // header("Location:".DIR_ROOT."webhook/create_webhook.php");
+   // header("Location:".DIR_ROOT."webhook/list_webhook.php");
+   // header("Location:".DIR_ROOT."webhook/delete_webhook.php");
 /*
-
+// HACK:
 if setup level 1  store_prp   is inserted go to init(welcome+pricing)
 
 if setup level 2 store_prp/account tbl   is inserted go to index dashboard

@@ -1669,7 +1669,8 @@
 </div>
 <!--end::Card-->
 					</div>
-		<!--end::Container-->
+        <!--end::Container-->
+        <!-- HACK: this  -->
 	</div>
 <!--end::Entry-->
 				</div>

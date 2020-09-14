@@ -1,1 +1,319 @@
-{"id":2709420638368,"email":"","closed_at":null,"created_at":"2020-09-10T07:16:24-04:00","updated_at":"2020-09-10T07:16:25-04:00","number":19,"note":"","token":"2c53a0adae35720e5759d134988bd8ec","gateway":"manual","test":false,"total_price":"374.00","subtotal_price":"340.00","total_weight":0,"total_tax":"34.00","taxes_included":false,"currency":"LBP","financial_status":"paid","confirmed":true,"total_discounts":"0.00","total_line_items_price":"340.00","cart_token":null,"buyer_accepts_marketing":false,"name":"#1019","referring_site":null,"landing_site":null,"cancelled_at":null,"cancel_reason":null,"total_price_usd":"0.25","checkout_token":null,"reference":null,"user_id":62087135392,"location_id":53401092256,"source_identifier":null,"source_url":null,"processed_at":"2020-09-10T07:16:24-04:00","device_id":null,"phone":null,"customer_locale":null,"app_id":1354745,"browser_ip":null,"landing_site_ref":null,"order_number":1019,"discount_applications":[],"discount_codes":[],"note_attributes":[],"payment_gateway_names":["manual"],"processing_method":"manual","checkout_id":null,"source_name":"shopify_draft_order","fulfillment_status":null,"tax_lines":[{"price":"34.00","rate":0.1,"title":"VAT","price_set":{"shop_money":{"amount":"34.00","currency_code":"LBP"},"presentment_money":{"amount":"34.00","currency_code":"LBP"}}}],"tags":"","contact_email":null,"order_status_url":"https:\/\/gragapp-8.myshopify.com\/46985248928\/orders\/2c53a0adae35720e5759d134988bd8ec\/authenticate?key=0c006a783f1798bb3c7eeea322751183","presentment_currency":"LBP","total_line_items_price_set":{"shop_money":{"amount":"340.00","currency_code":"LBP"},"presentment_money":{"amount":"340.00","currency_code":"LBP"}},"total_discounts_set":{"shop_money":{"amount":"0.00","currency_code":"LBP"},"presentment_money":{"amount":"0.00","currency_code":"LBP"}},"total_shipping_price_set":{"shop_money":{"amount":"0.00","currency_code":"LBP"},"presentment_money":{"amount":"0.00","currency_code":"LBP"}},"subtotal_price_set":{"shop_money":{"amount":"340.00","currency_code":"LBP"},"presentment_money":{"amount":"340.00","currency_code":"LBP"}},"total_price_set":{"shop_money":{"amount":"374.00","currency_code":"LBP"},"presentment_money":{"amount":"374.00","currency_code":"LBP"}},"total_tax_set":{"shop_money":{"amount":"34.00","currency_code":"LBP"},"presentment_money":{"amount":"34.00","currency_code":"LBP"}},"line_items":[{"id":5951823282336,"variant_id":35887130280096,"title":"ADIDAS | SUPERSTAR 80S","quantity":1,"sku":"AD-01-white-5","variant_title":"5 \/ white","vendor":"ADIDAS","fulfillment_service":"manual","product_id":5549315850400,"requires_shipping":true,"taxable":true,"gift_card":false,"name":"ADIDAS | SUPERSTAR 80S - 5 \/ white","variant_inventory_management":"shopify","properties":[],"product_exists":true,"fulfillable_quantity":1,"grams":0,"price":"170.00","total_discount":"0.00","fulfillment_status":null,"price_set":{"shop_money":{"amount":"170.00","currency_code":"LBP"},"presentment_money":{"amount":"170.00","currency_code":"LBP"}},"total_discount_set":{"shop_money":{"amount":"0.00","currency_code":"LBP"},"presentment_money":{"amount":"0.00","currency_code":"LBP"}},"discount_allocations":[],"duties":[],"admin_graphql_api_id":"gid:\/\/shopify\/LineItem\/5951823282336","tax_lines":[{"title":"VAT","price":"17.00","rate":0.1,"price_set":{"shop_money":{"amount":"17.00","currency_code":"LBP"},"presentment_money":{"amount":"17.00","currency_code":"LBP"}}}]},{"id":5951823315104,"variant_id":35887130312864,"title":"ADIDAS | SUPERSTAR 80S","quantity":1,"sku":"AD-01-white-6","variant_title":"6 \/ white","vendor":"ADIDAS","fulfillment_service":"manual","product_id":5549315850400,"requires_shipping":true,"taxable":true,"gift_card":false,"name":"ADIDAS | SUPERSTAR 80S - 6 \/ white","variant_inventory_management":"shopify","properties":[],"product_exists":true,"fulfillable_quantity":1,"grams":0,"price":"170.00","total_discount":"0.00","fulfillment_status":null,"price_set":{"shop_money":{"amount":"170.00","currency_code":"LBP"},"presentment_money":{"amount":"170.00","currency_code":"LBP"}},"total_discount_set":{"shop_money":{"amount":"0.00","currency_code":"LBP"},"presentment_money":{"amount":"0.00","currency_code":"LBP"}},"discount_allocations":[],"duties":[],"admin_graphql_api_id":"gid:\/\/shopify\/LineItem\/5951823315104","tax_lines":[{"title":"VAT","price":"17.00","rate":0.1,"price_set":{"shop_money":{"amount":"17.00","currency_code":"LBP"},"presentment_money":{"amount":"17.00","currency_code":"LBP"}}}]}],"fulfillments":[],"refunds":[],"total_tip_received":"0.0","original_total_duties_set":null,"current_total_duties_set":null,"admin_graphql_api_id":"gid:\/\/shopify\/Order\/2709420638368","shipping_lines":[]}
+{
+    "id": 2723088629920,
+    "email": "",
+    "closed_at": null,
+    "created_at": "2020-09-14T06:19:06-04:00",
+    "updated_at": "2020-09-14T06:19:06-04:00",
+    "number": 22,
+    "note": "",
+    "token": "adae1b5eb5283f5ba14cdc1ab9b74622",
+    "gateway": "manual",
+    "test": false,
+    "total_price": "726.00",
+    "subtotal_price": "660.00",
+    "total_weight": 0,
+    "total_tax": "66.00",
+    "taxes_included": false,
+    "currency": "LBP",
+    "financial_status": "paid",
+    "confirmed": true,
+    "total_discounts": "0.00",
+    "total_line_items_price": "660.00",
+    "cart_token": null,
+    "buyer_accepts_marketing": false,
+    "name": "#1022",
+    "referring_site": null,
+    "landing_site": null,
+    "cancelled_at": null,
+    "cancel_reason": null,
+    "total_price_usd": "0.48",
+    "checkout_token": null,
+    "reference": null,
+    "user_id": 62087135392,
+    "location_id": 53401092256,
+    "source_identifier": null,
+    "source_url": null,
+    "processed_at": "2020-09-14T06:19:06-04:00",
+    "device_id": null,
+    "phone": null,
+    "customer_locale": null,
+    "app_id": 1354745,
+    "browser_ip": null,
+    "landing_site_ref": null,
+    "order_number": 1022,
+    "discount_applications": [],
+    "discount_codes": [],
+    "note_attributes": [],
+    "payment_gateway_names": ["manual"],
+    "processing_method": "manual",
+    "checkout_id": null,
+    "source_name": "shopify_draft_order",
+    "fulfillment_status": null,
+    "tax_lines": [{
+        "price": "66.00",
+        "rate": 0.1,
+        "title": "VAT",
+        "price_set": {
+            "shop_money": {
+                "amount": "66.00",
+                "currency_code": "LBP"
+            },
+            "presentment_money": {
+                "amount": "66.00",
+                "currency_code": "LBP"
+            }
+        }
+    }],
+    "tags": "",
+    "contact_email": null,
+    "order_status_url": "https:\/\/gragapp-8.myshopify.com\/46985248928\/orders\/adae1b5eb5283f5ba14cdc1ab9b74622\/authenticate?key=1132909e0c4a85cb943a7082695fed5b",
+    "presentment_currency": "LBP",
+    "total_line_items_price_set": {
+        "shop_money": {
+            "amount": "660.00",
+            "currency_code": "LBP"
+        },
+        "presentment_money": {
+            "amount": "660.00",
+            "currency_code": "LBP"
+        }
+    },
+    "total_discounts_set": {
+        "shop_money": {
+            "amount": "0.00",
+            "currency_code": "LBP"
+        },
+        "presentment_money": {
+            "amount": "0.00",
+            "currency_code": "LBP"
+        }
+    },
+    "total_shipping_price_set": {
+        "shop_money": {
+            "amount": "0.00",
+            "currency_code": "LBP"
+        },
+        "presentment_money": {
+            "amount": "0.00",
+            "currency_code": "LBP"
+        }
+    },
+    "subtotal_price_set": {
+        "shop_money": {
+            "amount": "660.00",
+            "currency_code": "LBP"
+        },
+        "presentment_money": {
+            "amount": "660.00",
+            "currency_code": "LBP"
+        }
+    },
+    "total_price_set": {
+        "shop_money": {
+            "amount": "726.00",
+            "currency_code": "LBP"
+        },
+        "presentment_money": {
+            "amount": "726.00",
+            "currency_code": "LBP"
+        }
+    },
+    "total_tax_set": {
+        "shop_money": {
+            "amount": "66.00",
+            "currency_code": "LBP"
+        },
+        "presentment_money": {
+            "amount": "66.00",
+            "currency_code": "LBP"
+        }
+    },
+    "line_items": [{
+        "id": 5975168843936,
+        "variant_id": 35887127232672,
+        "title": "ASICS TIGER | GEL-LYTE V '30 YEARS OF GEL' PACK",
+        "quantity": 1,
+        "sku": "AsTi-01-black-14",
+        "variant_title": "14 \/ black",
+        "vendor": "ASICS TIGER",
+        "fulfillment_service": "manual",
+        "product_id": 5549314932896,
+        "requires_shipping": true,
+        "taxable": true,
+        "gift_card": false,
+        "name": "ASICS TIGER | GEL-LYTE V '30 YEARS OF GEL' PACK - 14 \/ black",
+        "variant_inventory_management": "shopify",
+        "properties": [],
+        "product_exists": true,
+        "fulfillable_quantity": 1,
+        "grams": 0,
+        "price": "220.00",
+        "total_discount": "0.00",
+        "fulfillment_status": null,
+        "price_set": {
+            "shop_money": {
+                "amount": "220.00",
+                "currency_code": "LBP"
+            },
+            "presentment_money": {
+                "amount": "220.00",
+                "currency_code": "LBP"
+            }
+        },
+        "total_discount_set": {
+            "shop_money": {
+                "amount": "0.00",
+                "currency_code": "LBP"
+            },
+            "presentment_money": {
+                "amount": "0.00",
+                "currency_code": "LBP"
+            }
+        },
+        "discount_allocations": [],
+        "duties": [],
+        "admin_graphql_api_id": "gid:\/\/shopify\/LineItem\/5975168843936",
+        "tax_lines": [{
+            "title": "VAT",
+            "price": "22.00",
+            "rate": 0.1,
+            "price_set": {
+                "shop_money": {
+                    "amount": "22.00",
+                    "currency_code": "LBP"
+                },
+                "presentment_money": {
+                    "amount": "22.00",
+                    "currency_code": "LBP"
+                }
+            }
+        }]
+    }, {
+        "id": 5975168876704,
+        "variant_id": 35887127167136,
+        "title": "ASICS TIGER | GEL-LYTE V '30 YEARS OF GEL' PACK",
+        "quantity": 1,
+        "sku": "AsTi-01-black-4",
+        "variant_title": "4 \/ black",
+        "vendor": "ASICS TIGER",
+        "fulfillment_service": "manual",
+        "product_id": 5549314932896,
+        "requires_shipping": true,
+        "taxable": true,
+        "gift_card": false,
+        "name": "ASICS TIGER | GEL-LYTE V '30 YEARS OF GEL' PACK - 4 \/ black",
+        "variant_inventory_management": "shopify",
+        "properties": [],
+        "product_exists": true,
+        "fulfillable_quantity": 1,
+        "grams": 0,
+        "price": "220.00",
+        "total_discount": "0.00",
+        "fulfillment_status": null,
+        "price_set": {
+            "shop_money": {
+                "amount": "220.00",
+                "currency_code": "LBP"
+            },
+            "presentment_money": {
+                "amount": "220.00",
+                "currency_code": "LBP"
+            }
+        },
+        "total_discount_set": {
+            "shop_money": {
+                "amount": "0.00",
+                "currency_code": "LBP"
+            },
+            "presentment_money": {
+                "amount": "0.00",
+                "currency_code": "LBP"
+            }
+        },
+        "discount_allocations": [],
+        "duties": [],
+        "admin_graphql_api_id": "gid:\/\/shopify\/LineItem\/5975168876704",
+        "tax_lines": [{
+            "title": "VAT",
+            "price": "22.00",
+            "rate": 0.1,
+            "price_set": {
+                "shop_money": {
+                    "amount": "22.00",
+                    "currency_code": "LBP"
+                },
+                "presentment_money": {
+                    "amount": "22.00",
+                    "currency_code": "LBP"
+                }
+            }
+        }]
+    }, {
+        "id": 5975168909472,
+        "variant_id": 35887127199904,
+        "title": "ASICS TIGER | GEL-LYTE V '30 YEARS OF GEL' PACK",
+        "quantity": 1,
+        "sku": "AsTi-01-black-8",
+        "variant_title": "8 \/ black",
+        "vendor": "ASICS TIGER",
+        "fulfillment_service": "manual",
+        "product_id": 5549314932896,
+        "requires_shipping": true,
+        "taxable": true,
+        "gift_card": false,
+        "name": "ASICS TIGER | GEL-LYTE V '30 YEARS OF GEL' PACK - 8 \/ black",
+        "variant_inventory_management": "shopify",
+        "properties": [],
+        "product_exists": true,
+        "fulfillable_quantity": 1,
+        "grams": 0,
+        "price": "220.00",
+        "total_discount": "0.00",
+        "fulfillment_status": null,
+        "price_set": {
+            "shop_money": {
+                "amount": "220.00",
+                "currency_code": "LBP"
+            },
+            "presentment_money": {
+                "amount": "220.00",
+                "currency_code": "LBP"
+            }
+        },
+        "total_discount_set": {
+            "shop_money": {
+                "amount": "0.00",
+                "currency_code": "LBP"
+            },
+            "presentment_money": {
+                "amount": "0.00",
+                "currency_code": "LBP"
+            }
+        },
+        "discount_allocations": [],
+        "duties": [],
+        "admin_graphql_api_id": "gid:\/\/shopify\/LineItem\/5975168909472",
+        "tax_lines": [{
+            "title": "VAT",
+            "price": "22.00",
+            "rate": 0.1,
+            "price_set": {
+                "shop_money": {
+                    "amount": "22.00",
+                    "currency_code": "LBP"
+                },
+                "presentment_money": {
+                    "amount": "22.00",
+                    "currency_code": "LBP"
+                }
+            }
+        }]
+    }],
+    "fulfillments": [],
+    "refunds": [],
+    "total_tip_received": "0.0",
+    "original_total_duties_set": null,
+    "current_total_duties_set": null,
+    "admin_graphql_api_id": "gid:\/\/shopify\/Order\/2723088629920",
+    "shipping_lines": []
+}

@@ -10,15 +10,14 @@ class API_Order{
 
 private $token_code;
 private $shop_url;
-private $new_api;
+
     // constructor
     function __construct() {    
         require_once 'functions.php';
         require_once 'API_Config.php';
-
-        $this->new_api = new API_Config();
-        $this->token_code =  $this->new_api->get_token_code();
-        $this->shop_url = $this->new_api->get_shop_url();
+        $new_api = new API_Config();
+        $this->token_code =  $new_api->get_token_code();
+        $this->shop_url = $new_api->get_shop_url();
        
       }
     
@@ -83,5 +82,10 @@ public function get_store_prp(){
 
 }
 
+public function get_access_tk(){
+
+ return $this->token_code;
+
+}
 }
 ?>

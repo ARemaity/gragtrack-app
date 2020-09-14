@@ -10,12 +10,15 @@ class API_Config  {
 
     // constructor
     function __construct() {    
-        
+        require_once 'DB_manage.php';
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        $this->tk=$_SESSION['token_code'];
+        
         $this->store=$_SESSION['shop_name'];
+        // HACK: to make on call to get tk , its init in constructor and get by getter fcn 
+        $new_manage = new DB_manage($this->store);
+        $this->tk =  $new_manage->get_shop_token();
     
     }
 

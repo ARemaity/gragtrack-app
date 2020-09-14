@@ -5,7 +5,8 @@ define('SHOPIFY_APP_SECRET', "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");
 $hmac_header = $_SERVER['HTTP_X_SHOPIFY_HMAC_SHA256'];
 $data = file_get_contents('php://input');
 $verified = verify_webhook($data, $hmac_header);
-error_log('Webhook verified: '.var_export($verified, true) ,3, "result.txt");
+
+if($verified=='true'){
 
 // Load variables
 $webhook_content = NULL;
@@ -22,6 +23,13 @@ $webhook_content = json_decode($webhook_content, TRUE);
 $fp = fopen('result.json', 'w');
 fwrite($fp, json_encode($webhook_content));
 fclose($fp);
+
+
+}else{
+
+  error_log('Webhook verified: '.var_export($verified, true) ,3, "result.txt");
+}
+
 
 function verify_webhook($data, $hmac_header)
 {

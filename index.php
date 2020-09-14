@@ -15,8 +15,9 @@ if($_SESSION['fromtk']==1){
 }
 
 }
-require_once DIR_INC.'DB_init.php';
 require_once DIR_INC.'functions.php';
+require_once DIR_INC.'DB_init.php';
+
 $db = new DB_init();
 $shopify=$_GET;
  // save shop name to session
@@ -30,13 +31,18 @@ if(!$check_exist){
     
 }else{
 
-    $token_code=$db->get_shop_token($shopify['shop'])['token_code'];
+
     $get_aid=$db->get_access_ID($shopify['shop'])['AID'];
     $_SESSION['AID']=$get_aid;
-    $_SESSION['token_code']=$token_code;
     $get_setup=$db->get_setup($_SESSION['AID'])['setup_level'];
+    require_once DIR_INC.'WH_CRUD.php';
+    $new_wh=new WH_CRUD();
+    // echo $new_wh->List_wh();
+    // echo $new_wh->update_single_wh('924884533408','https://b4fe218a0965.ngrok.io/gragtrack2/webhook/receive.php');
+
+
     // header("Location:".DIR_ROOT."webhook/create_webhook.php");
-   // header("Location:".DIR_ROOT."webhook/list_webhook.php");
+//    header("Location:".DIR_ROOT."webhook/list_webhook.php");
    // header("Location:".DIR_ROOT."webhook/delete_webhook.php");
 /*
 // HACK:
@@ -46,16 +52,16 @@ if setup level 2 store_prp/account tbl   is inserted go to index dashboard
 
 */
 
-if($get_setup==1){
-    header("Location:".DIR_ROOT."init.php");
-}elseif($get_setup==2){
-    header("Location:".DIR_ROOT."member/");
+// if($get_setup==1){
+//     header("Location:".DIR_ROOT."init.php");
+// }elseif($get_setup==2){
+//     header("Location:".DIR_ROOT."member/");
 
 
-}else{
-    //header("Location:".DIR_ROOT."error.php");
-echo "error:index.php:61";
-}
+// }else{
+//     //header("Location:".DIR_ROOT."error.php");
+// echo "error:index.php:61   ".$_SESSION['AID'];
+// }
    
  
 }

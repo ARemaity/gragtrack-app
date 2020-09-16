@@ -6,13 +6,20 @@ class DB_init{
      private $new_order;
     private $conn;
     private $store_prp;
+    private $aid;
     // constructor
     function __construct() {
+
+
         require_once 'DB_Connect.php';   
-            // connect to DB 
          $db = new DB_Connect();
          $this->conn = $db->connect();
-             // api order 
+         // in case session is not activated start it 
+       if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+       }
+       $this->aid=$_SESSION['AID'];
+             
       
       
   
@@ -32,7 +39,7 @@ class DB_init{
      * */
     public function insert_into_access_token($shop_url,$token_code) {
                                    
-        $stmt = $this->conn->prepare("INSERT INTO `access_token`(`AID`, `shop_url`, `token_code`, `access_time`) VALUES (NULL,'$shop_url','$token_code',NULL)");
+        $stmt = $this->conn->prepare("INSERT INTO `access_token`(`AID`, `shop_url`, `token_code`, `install_time`) VALUES (NULL,'$shop_url','$token_code',NULL)");
         $result = $stmt->execute();
         $last_id=$stmt->insert_id;
         $stmt->close();
@@ -50,7 +57,7 @@ class DB_init{
      * check if shop exist 
      * */
     public function check_if_store_exsit($shop_url) {
-                                   
+     // check in case , they installed 
         $stmt = $this->conn->prepare("SELECT * FROM `access_token` WHERE shop_url='$shop_url'");
       
         $result = $stmt->execute();
@@ -65,8 +72,12 @@ class DB_init{
    
        
 }
-   /**
+  
+    /**
      * Get tokn code of speceific shop from access_token tbl
+     *
+     * @param  string  $shop_url
+     * @return array ['token_code']
      */
     public function get_shop_token($shop_url) {
         $stmt = $this->conn->prepare("SELECT  `token_code` FROM access_token WHERE `shop_url`='$shop_url' ");
@@ -84,8 +95,8 @@ class DB_init{
     /**
      * get_access_ID
      *
-     * @param  mixed $shop_url
-     * @return int 
+     * @param  string  $shop_url
+     * @return array  array['AID']
      */
     public function get_access_ID($shop_url) {
         $stmt = $this->conn->prepare("SELECT  `AID` FROM access_token WHERE `shop_url`='$shop_url' ");
@@ -99,12 +110,13 @@ class DB_init{
     } 
 
 
-    
+     
+  
     /**
      * get_shop_plan
      *
-     * @param  mixed $aid
-     * @return string
+     * @param  int  $aid
+     * @return array array['plan']
      */
     public function get_shop_plan($aid) {
         $stmt = $this->conn->prepare("SELECT  `shop_plan_name` as plan  FROM store_prp WHERE `FK_AID`='$aid' ");
@@ -122,13 +134,13 @@ class DB_init{
      * insert_store_prp
      * comment:get store_prp from api store and insert it to store_prp tbl 
      *
-     * @param  mixed $get_store_prp<array>
+     * @param  array $get_store_prp
      * @return boolean
      */
     public function insert_store_prp($get_store_prp){
 $stmt = $this->conn->prepare("INSERT INTO `store_prp`(`FK_AID`, `shop_id`, `shop_name`, `shop_city`, `shop_domain`, `shop_address`, `shop_country`, `shop_source`, `shop_created_at`, `shop_plan_name`, `shop_setup_required`, `shop_timezone`, `owner_email`, `owner_phone`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 $stmt->bind_param("iissssssssisss",
-$_SESSION['AID'],
+$this->aid,
 $get_store_prp['id'],
 $get_store_prp['name'],
 $get_store_prp['city'],
@@ -162,6 +174,21 @@ if ($result) {
     }
 
     
+
+    public function get_shop_timezone(){
+
+
+        $stmt = $this->conn->prepare("SELECT  `shop_timezone` as timezone  FROM store_prp WHERE `FK_AID`='$this->aid' ");
+        if ($stmt->execute()) {			
+            $tmz = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+			return $tmz; 
+        } else {
+            return NULL;
+        }
+
+
+    }
     /**
      * update_setup 
      * @param int $id
@@ -173,13 +200,9 @@ if ($result) {
      * 
      * @return boolean
      */
-    public function update_setup($id,$aid) {
-       
-       
-        $stmt = $this->conn->prepare("UPDATE access_token  SET `setup_level`=? WHERE `AID` =  ?");
-
-
-$stmt->bind_param("ii",$id,$aid);
+    public function update_setup($id) {
+$stmt = $this->conn->prepare("UPDATE access_token  SET `setup_level`=? WHERE `AID` =  ?");
+$stmt->bind_param("ii",$id,$this->aid);
 $result = $stmt->execute();
 $stmt->close();
 // check for successful store
@@ -210,6 +233,61 @@ return false;
         }
     } 
 
+    
+    /**
+     * insert into account tbl 
+     * cost must be checked before processing this fcn
+     * if cost if 0 continue else my be redirected to insert in transaction page and tbl 
+     *
+     * @param  int $plan
+     * @param  int $iscap
+     * @param  int $created_date
+     * @param  int $expired_date
+     *  
+     * @return bool
+     */
+    public function insert_into_account($plan,$iscap,$created_date,$expired_date){
+// by default 
+        $st=1;
+        $stmt = $this->conn->prepare("INSERT INTO `account`(`fk_AID`, `fk_PID`, `created_at`, `expired_date`, `is_capable`) VALUES (?,?,?,?,?)");
+        $stmt->bind_param("iissi",$this->aid,$plan,$created_date,$expired_date,$iscap);
+        $result = $stmt->execute();
+        $stmt->close();
+        
+                if ($result) {
+              
+                    return  true;
+        
+               } else {
+          
+        
+                      return false;
+              }
+                
+         }
+            
+            /**
+             * get_plan_att
+             *
+             * @param  int $pid PID of plan tbl 
+             * @return array of plan attr
+             */
+            public function get_plan_att($pid){
+                
+                $stmt = $this->conn->prepare("SELECT `cost`,`duration` FROM `plan` WHERE PID = ?");
+                $stmt->bind_param("i",$pid);
+                if ($stmt->execute()) {			
+                    $plan_cost = $stmt->get_result()->fetch_assoc();
+                    $stmt->close();
+                    return $plan_cost; 
+                } else {
+                    return NULL;
+                }
+
+            }
+
+            
+        
 
  
 }

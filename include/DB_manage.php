@@ -1,9 +1,11 @@
 <?php 
 
 // this class can be access after verifying that the shop exsit in access_token table otherwise the init of the constructor will corrupt 
+
+// HACK: this class provide tk for API_config // WH_CRUD
 class DB_manage{
      
-     private $new_order;
+    private $new_order;
     private $conn;
     private $store_prp;
     private $tk;

@@ -66,7 +66,7 @@ if($insert_shop!=0&&$insert_shop>0){
 	if ($insert_to_store_prp) {
 
 
- $update_setup=$db->update_setup(1,$_SESSION['AID']);
+ $update_setup=$db->update_setup(1);
 if($update_setup){
 $_SESSION['fromtk']=1;
 	header("Location:https://" . $params['shop'] . "/admin/apps/grag_app/");

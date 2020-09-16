@@ -1,6 +1,8 @@
 
 
 <?php
+
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -10,10 +12,13 @@ if(isset($_SESSION['AID'])):
     require_once DIR_INC.'DB_init.php';
     $db = new DB_init();
     $bool='False';
+    $booln=False;
     $plan_name=$db->get_shop_plan($_SESSION['AID'])['plan'];
 
 		if($plan_name=='unlimited'|| $plan_name=='enterprise'){
             $bool='TRUE';
+            $booln=TRUE;
+            
         }
            
        
@@ -50,7 +55,7 @@ if(isset($_SESSION['AID'])):
 
     <!--begin::Body-->
     <body  id="kt_body" style="background-color: #000"  class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading"  >
-
+        
     	<!--begin::Main-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Error-->
@@ -85,6 +90,10 @@ if(isset($_SESSION['AID'])):
         </div>
     </div>
     <div class="card-body">
+
+    <div id="plan_form_loader" class="alert alert-success" role="alert" style="display:none;">
+            <div class="alert-text"><div class="spinner spinner-primary spinner-lg mr-15"></div></div>
+        </div>
         <div class="row my-10">
             <!--begin: Pricing-->
             <div class="col-md-4 col-xxl-4 border-right-0 border-right-md border-bottom border-bottom-xxl-0">
@@ -109,9 +118,30 @@ if(isset($_SESSION['AID'])):
                         <span>sed do eiusmod</span>
                         <span>magna siad enim aliqua</span>
                     </p>
+                    <form method="post" action="action/ini/plan_regs.php" id="plan_regs">
+                    <?php  
+                    // tp:
+                    ?>
+                   <input type="hidden" name="tp" value="1">
+              <?php
+
+if($booln){
+
+// if capable or not 
+// isc:iscable
+    echo '<input type="hidden" name="isc" value="1">';
+}else{
+
+    echo '<input type="hidden" name="isc" value="0">';
+
+}
+
+?>
+      
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary text-uppercase font-weight-bolder px-15 py-3">Purchase</button>
+                        <button type="submit" name="submit" class="btn btn-primary text-uppercase font-weight-bolder px-15 py-3">Purchase</button>
                     </div>
+    </form>
                 </div>
             </div>
             <!--end: Pricing-->
@@ -247,7 +277,8 @@ if(isset($_SESSION['AID'])):
     	<!--begin::Global Theme Bundle(used by all pages)-->
     	    	   <script src="assets/plugins/global/plugins.bundle.js?v=7.0.6"></script>
 		    	   <script src="assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6"></script>
-		    	   <script src="assets/js/scripts.bundle.js?v=7.0.6"></script>
+                   <script src="assets/js/scripts.bundle.js?v=7.0.6"></script>
+                   <script src="assets/js/pages/my-script/ini/init-script.js"></script>
 				<!--end::Global Theme Bundle-->
 
 

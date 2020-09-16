@@ -39,8 +39,6 @@ if(!$check_exist){
     $new_wh=new WH_CRUD();
     // echo $new_wh->List_wh();
     // echo $new_wh->update_single_wh('924884533408','https://b4fe218a0965.ngrok.io/gragtrack2/webhook/receive.php');
-
-
     // header("Location:".DIR_ROOT."webhook/create_webhook.php");
 //    header("Location:".DIR_ROOT."webhook/list_webhook.php");
    // header("Location:".DIR_ROOT."webhook/delete_webhook.php");
@@ -52,16 +50,16 @@ if setup level 2 store_prp/account tbl   is inserted go to index dashboard
 
 */
 
-// if($get_setup==1){
-//     header("Location:".DIR_ROOT."init.php");
-// }elseif($get_setup==2){
-//     header("Location:".DIR_ROOT."member/");
+if($get_setup==1){
+    header("Location:".DIR_ROOT."init.php");
+}elseif($get_setup==2){
+    header("Location:".DIR_ROOT."member/");
 
 
-// }else{
-//     //header("Location:".DIR_ROOT."error.php");
-// echo "error:index.php:61   ".$_SESSION['AID'];
-// }
+}else{
+    //header("Location:".DIR_ROOT."error.php");
+echo "error:index.php:61   ".$_SESSION['AID'];
+}
    
  
 }

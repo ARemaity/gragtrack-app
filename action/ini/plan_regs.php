@@ -27,6 +27,11 @@ $insert=$db->insert_into_account($plan,$iscapable,$current,$expired);
     $insert_st=1;
 // update setup in 
   if($db->update_setup(2)){
+
+    if (session_status() == PHP_SESSION_NONE) {
+      session_start();
+  }
+    $_SESSION['fromplan']=1;
     $setup_st=1;
     $link=DIR_ROOT;
     echo $insert_st.":".$setup_st;

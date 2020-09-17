@@ -13,11 +13,15 @@ private $shop_url;
 
     // constructor
     function __construct() {    
-        require_once 'functions.php';
-        require_once 'API_Config.php';
-        $new_api = new API_Config();
-        $this->token_code =  $new_api->get_token_code();
-        $this->shop_url = $new_api->get_shop_url();
+      require_once 'functions.php';
+      require_once 'DB_manage.php';
+      if (session_status() == PHP_SESSION_NONE) {
+          session_start();
+      }
+      $this->shop_url=$_SESSION['shop_name'];
+      // HACK: to make on call to get tk , its init in constructor and get by getter fcn 
+      $new_manage = new DB_manage($this->shop_url);
+      $this->token_code =  $new_manage->get_shop_token();
        
       }
     
@@ -82,10 +86,5 @@ public function get_store_prp(){
 
 }
 
-public function get_access_tk(){
-
- return $this->token_code;
-
-}
 }
 ?>

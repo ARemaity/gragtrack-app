@@ -18,7 +18,7 @@ class DB_init{
        if (session_status() == PHP_SESSION_NONE) {
         session_start();
        }
-       $this->aid=$_SESSION['AID'];
+      
              
       
       
@@ -91,6 +91,25 @@ class DB_init{
     } 
 
 
+    /**
+     * Get tokn code of speceific shop from access_token tbl
+     *
+     * @param  string  $shop_url
+     * @return array ['token_code']
+     */
+    public function get_shop_status($shop_url) {
+        $stmt = $this->conn->prepare("SELECT  `isactive` FROM access_token WHERE `shop_url`=? ");
+        $stmt->bind_param("s",$shop_url);
+        if ($stmt->execute()) {			
+            $st = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+			return $st; 
+        } else {
+            return NULL;
+        }
+    } 
+
+
     
     /**
      * get_access_ID
@@ -140,7 +159,7 @@ class DB_init{
     public function insert_store_prp($get_store_prp){
 $stmt = $this->conn->prepare("INSERT INTO `store_prp`(`FK_AID`, `shop_id`, `shop_name`, `shop_city`, `shop_domain`, `shop_address`, `shop_country`, `shop_source`, `shop_created_at`, `shop_plan_name`, `shop_setup_required`, `shop_timezone`, `owner_email`, `owner_phone`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 $stmt->bind_param("iissssssssisss",
-$this->aid,
+$_SESSION["AID"],
 $get_store_prp['id'],
 $get_store_prp['name'],
 $get_store_prp['city'],
@@ -176,9 +195,9 @@ if ($result) {
     
 
     public function get_shop_timezone(){
+       $aid= $_SESSION["AID"];
 
-
-        $stmt = $this->conn->prepare("SELECT  `shop_timezone` as timezone  FROM store_prp WHERE `FK_AID`='$this->aid' ");
+        $stmt = $this->conn->prepare("SELECT  `shop_timezone` as timezone  FROM store_prp WHERE `FK_AID`='$aid' ");
         if ($stmt->execute()) {			
             $tmz = $stmt->get_result()->fetch_assoc();
             $stmt->close();
@@ -202,7 +221,7 @@ if ($result) {
      */
     public function update_setup($id) {
 $stmt = $this->conn->prepare("UPDATE access_token  SET `setup_level`=? WHERE `AID` =  ?");
-$stmt->bind_param("ii",$id,$this->aid);
+$stmt->bind_param("ii",$id,$_SESSION["AID"]);
 $result = $stmt->execute();
 $stmt->close();
 // check for successful store
@@ -250,7 +269,7 @@ return false;
 // by default 
         $st=1;
         $stmt = $this->conn->prepare("INSERT INTO `account`(`fk_AID`, `fk_PID`, `created_at`, `expired_date`, `is_capable`) VALUES (?,?,?,?,?)");
-        $stmt->bind_param("iissi",$this->aid,$plan,$created_date,$expired_date,$iscap);
+        $stmt->bind_param("iissi",$_SESSION["AID"],$plan,$created_date,$expired_date,$iscap);
         $result = $stmt->execute();
         $stmt->close();
         
@@ -285,6 +304,9 @@ return false;
                 }
 
             }
+
+
+
 
             
         

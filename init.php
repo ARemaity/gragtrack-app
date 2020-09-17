@@ -3,8 +3,22 @@
 <?php
 
 
+require_once 'base.php';
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
+}
+
+if(isset($_SESSION['fromplan'])&&$_SESSION['fromplan']==1){
+
+  
+
+  $_SESSION['fromplan']=0;
+  unset($_SESSION['fromplan']);
+  header("Location:".DIR_ROOT);
+  exit();
+
+
 }
 if(isset($_SESSION['AID'])):
     
@@ -278,7 +292,13 @@ if($booln){
     	    	   <script src="assets/plugins/global/plugins.bundle.js?v=7.0.6"></script>
 		    	   <script src="assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6"></script>
                    <script src="assets/js/scripts.bundle.js?v=7.0.6"></script>
-                   <script src="assets/js/pages/my-script/ini/init-script.js"></script>
+
+             
+                   <script src="assets/js/pages/my-script/ini/jquery_cookie.js" type="text/javascript"></script>
+<script>
+  $.cookie('shop_name', '<?= $_SESSION['shop_name']?>');
+</script>
+                   <script src="assets/js/pages/my-script/ini/init-script.js" type="text/javascript" ></script>
 				<!--end::Global Theme Bundle-->
 
 

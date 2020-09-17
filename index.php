@@ -7,32 +7,45 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 // TODO: in future we must get the the shop url and get data based on it 
 
-if(isset($_SESSION['fromtk'])){
-if($_SESSION['fromtk']==1){
+
+if(isset($_SESSION['fromtk'])&&$_SESSION['fromtk']==1){
+    $_SESSION['fromtk']=0;
     session_unset($_SESSION['fromtk']);
     header("Location:".DIR_ROOT."init.php");
+exit();
+
 
 }
 
-}
 require_once DIR_INC.'functions.php';
 require_once DIR_INC.'DB_init.php';
 
 $db = new DB_init();
-$shopify=$_GET;
+
  // save shop name to session
-$_SESSION['shop_name']=$shopify['shop'];
+$_SESSION['shop_name']=$_GET['shop'];
    
-$check_exist=$db->check_if_store_exsit($shopify['shop']);
+$check_exist=$db->check_if_store_exsit($_GET['shop']);
 
 if(!$check_exist){
     
-    header("Location:install.php?shop=".$shopify['shop']);
+    header("Location:install.php?shop=".$_GET['shop']);
     
 }else{
 
+    $isactive=$db->get_shop_status($_SESSION['shop_name']);
 
-    $get_aid=$db->get_access_ID($shopify['shop'])['AID'];
+    if($isactive==0){
+
+    //    TODO: redirect to return_page
+
+
+    }else{
+
+  
+
+
+    $get_aid=$db->get_access_ID($_GET['shop'])['AID'];
     $_SESSION['AID']=$get_aid;
     $get_setup=$db->get_setup($_SESSION['AID'])['setup_level'];
     require_once DIR_INC.'WH_CRUD.php';
@@ -54,6 +67,11 @@ if($get_setup==1){
     header("Location:".DIR_ROOT."init.php");
 }elseif($get_setup==2){
     header("Location:".DIR_ROOT."member/");
+// TODO :check is capable : 0 to memeber 1 | to advance
+
+
+
+
 
 
 }else{
@@ -64,5 +82,5 @@ echo "error:index.php:61   ".$_SESSION['AID'];
  
 }
 
-
+}
 ?>

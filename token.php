@@ -59,7 +59,6 @@ if($insert_shop!=0&&$insert_shop>0){
 	}
 	
 		$_SESSION['AID']=$insert_shop;
-		$_SESSION['token_code']=$access_token;
 		$new_api = new API_Order();
 		$insert_to_store_prp=$db->insert_store_prp($new_api->get_store_prp());
 		

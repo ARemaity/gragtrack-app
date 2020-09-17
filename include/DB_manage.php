@@ -2,7 +2,7 @@
 
 // this class can be access after verifying that the shop exsit in access_token table otherwise the init of the constructor will corrupt 
 
-// HACK: this class provide tk for API_config // WH_CRUD
+// HACK: this class provide tk for API_Order // WH_CRUD
 class DB_manage{
      
     private $new_order;
@@ -40,23 +40,7 @@ class DB_manage{
     } 
 
 
-    
-    /**
-     * get_access_ID
-     *
-     * @param  mixed $shop_url
-     * @return int 
-     */
-    public function get_access_ID($shop_url) {
-        $stmt = $this->conn->prepare("SELECT  `AID` FROM access_token WHERE `shop_url`='$shop_url' ");
-        if ($stmt->execute()) {			
-            $aid = $stmt->get_result()->fetch_assoc();
-            $stmt->close();
-			return $aid; 
-        } else {
-            return NULL;
-        }
-    } 
+   
 
 
     

@@ -23,9 +23,16 @@ $( document ).ready(function() {
 
 			if(account_st==1&&setup_st==1){
 
-				// window.location.replace("https://" + shop_name +"/admin/apps/grag_app/");
+				$.ajax({
+					url: 'webhook/app_uninstalled.php',
+					type: 'post',
+					data: {register:1},
+					success: function(response){
+						console.log(response);
+					}
+				});
 
-				window.top.location.href="https://" + shop_name +"/admin/apps/grag_app/";
+				// window.top.location.href="https://" + shop_name +"/admin/apps/grag_app/";
 			}else{
 
 

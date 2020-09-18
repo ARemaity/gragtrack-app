@@ -9,17 +9,15 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-if(isset($_SESSION['fromplan'])&&$_SESSION['fromplan']==1){
+// if($_SESSION['fromplan']==1){
 
-  
-
-  $_SESSION['fromplan']=0;
-  unset($_SESSION['fromplan']);
-  header("Location:".DIR_ROOT);
-  exit();
+//    $_SESSION = array(); 
+//     session_destroy();
+//   header("Location:".DIR_ROOT);
+//   exit();
 
 
-}
+// }
 if(isset($_SESSION['AID'])):
     
     require_once 'base.php';
@@ -28,7 +26,6 @@ if(isset($_SESSION['AID'])):
     $bool='False';
     $booln=False;
     $plan_name=$db->get_shop_plan($_SESSION['AID'])['plan'];
-
 		if($plan_name=='unlimited'|| $plan_name=='enterprise'){
             $bool='TRUE';
             $booln=TRUE;

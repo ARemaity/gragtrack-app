@@ -8,9 +8,9 @@ if (session_status() == PHP_SESSION_NONE) {
 // TODO: in future we must get the the shop url and get data based on it 
 
 
-if(isset($_SESSION['fromtk'])&&$_SESSION['fromtk']==1){
-    $_SESSION['fromtk']=0;
-    session_unset($_SESSION['fromtk']);
+if($_SESSION['fromtk']==1){
+    $_SESSION = array(); 
+    session_destroy();
     header("Location:".DIR_ROOT."init.php");
 exit();
 
@@ -33,7 +33,7 @@ if(!$check_exist){
     
 }else{
 
-    $isactive=$db->get_shop_status($_SESSION['shop_name']);
+    $isactive=$db->get_shop_status($_GET['shop']);
 
     if($isactive==0){
 
@@ -42,19 +42,10 @@ if(!$check_exist){
 
     }else{
 
-  
-
-
     $get_aid=$db->get_access_ID($_GET['shop'])['AID'];
     $_SESSION['AID']=$get_aid;
     $get_setup=$db->get_setup($_SESSION['AID'])['setup_level'];
-    require_once DIR_INC.'WH_CRUD.php';
-    $new_wh=new WH_CRUD();
-    // echo $new_wh->List_wh();
-    // echo $new_wh->update_single_wh('924884533408','https://b4fe218a0965.ngrok.io/gragtrack2/webhook/receive.php');
-    // header("Location:".DIR_ROOT."webhook/create_webhook.php");
-//    header("Location:".DIR_ROOT."webhook/list_webhook.php");
-   // header("Location:".DIR_ROOT."webhook/delete_webhook.php");
+ 
 /*
 // HACK:
 if setup level 1  store_prp   is inserted go to init(welcome+pricing)

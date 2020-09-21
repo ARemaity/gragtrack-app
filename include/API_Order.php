@@ -14,13 +14,13 @@ private $shop_url;
     // constructor
     function __construct() {    
       require_once 'functions.php';
-      require_once 'DB_manage.php';
+      require_once 'DB_token.php';
       if (session_status() == PHP_SESSION_NONE) {
           session_start();
       }
       $this->shop_url=$_SESSION['shop_name'];
       // HACK: to make on call to get tk , its init in constructor and get by getter fcn 
-      $new_manage = new DB_manage($this->shop_url);
+      $new_manage = new DB_token($this->shop_url);
       $this->token_code =  $new_manage->get_shop_token();
        
       }

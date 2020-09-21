@@ -5,7 +5,7 @@
 // HACK: this class provide tk for API_Order // WH_CRUD
 
 // TODO: change name to token class
-class DB_manage{
+class DB_token{
      
     private $new_order;
     private $conn;

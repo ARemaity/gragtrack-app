@@ -7,14 +7,13 @@ private $private_tk;
 private $store;
 function __construct() {
   require_once 'functions.php';
-  require_once 'DB_manage.php';
+  require_once 'DB_token.php';
   if (session_status() == PHP_SESSION_NONE) {
       session_start();
   }
   $this->store=$_SESSION['shop_name'];
-  $new_manage = new DB_manage($this->store);
+  $new_manage = new DB_token($this->store);
   $this->shared_tk='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';
- 
    $this->private_tk =  $new_manage->get_shop_token();
 
 }

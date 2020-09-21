@@ -5,7 +5,6 @@ require_once '../../'.'base.php';
 require_once  '../../'.DIR_INC.'DB_init.php';
 $insert_st=0;
 $setup_st=0;
-
 $plan=$_POST['tp'];
 $iscapable=$_POST['isc'];
 $db = new DB_init();

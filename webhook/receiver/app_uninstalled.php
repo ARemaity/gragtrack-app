@@ -1,7 +1,12 @@
 <?php
 
-require "verify.php";
+require_once "verify.php";
 
+require(dirname(__FILE__,3)."/base.php");
+require dirname(__FILE__,3)."/".DIR_INC."DB_init.php";
+
+
+$init=new DB_init();
 
 if($verified=='true'){
 
@@ -17,6 +22,13 @@ fclose($webhook);
 
 // Decode Shopify POST
 $webhook_content = json_decode($webhook_content, TRUE);
+$get_aid=$init->get_access_ID($webhook_content['domain']);
+$disable=$init->disable_status($get_aid['AID']);
+if($disable){
+
+  // TODO: send email return 
+  
+}
 $fp = fopen('app_uninstalled.json', 'w');
 fwrite($fp, json_encode($webhook_content));
 fclose($fp);

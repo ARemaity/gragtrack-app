@@ -26,11 +26,6 @@ function __destruct() {
 }
 
 
-
-
-
-
-
 /**
  * List_wh for specific shop
  *
@@ -41,24 +36,23 @@ public function List_wh(){
 
   $counts=shopify_call($this->private_tk, $this->store,'/admin/api/2020-07/webhooks.json',array(),'GET',array());
 
-  $counts=json_decode($counts['response']);
+  $counts=json_decode($counts['response'],true);
   
- return  $counts;
-
-
-}
-public function Verify_wh(){
-
-
+ return  $counts['webhooks'];
 
 
 }
 
 
-public function delete_wh(){
+public function delete_wh($id){
 
 
 
+  $delete=shopify_call($this->private_tk, $this->store,'/admin/api/2020-07/webhooks/'.$id.'.json',array(),'DELETE',array());
+
+  $delete=json_decode($delete['response'],true);
+  
+ return  $delete;
     
 }
 
@@ -106,7 +100,7 @@ public function get_single_wh($id){
 
   $single=shopify_call($this->private_tk, $this->store,'/admin/api/2020-07/webhooks/'.$id.'.json',array(),'GET',array());
 
-  $single=json_decode($single['response']);
+  $single=json_decode($single['response'],true);
   
  return  var_export($single);
     
@@ -129,9 +123,9 @@ public function update_single_wh($id,$address){
 
   $order_create_webhook = shopify_call($this->private_tk, $this->store, "/admin/api/2020-07/webhooks/".$id.".json", $webhook_data, 'PUT',$query);
 
-  $order_create_webhook=json_decode($order_create_webhook['response']);
+  $order_create_webhook=json_decode($order_create_webhook['response'],true);
   
- return $order_create_webhook;
+ return $order_create_webhook['webhook'];
     
 }
 

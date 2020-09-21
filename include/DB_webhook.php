@@ -38,9 +38,9 @@ public function update_weebhook(){
 public function create_weebhook($response_arr){
                                    
   
-$created = date('Y-m-d H:i:s', strtotime($response_arr['created_at']));
-$updated = date('Y-m-d H:i:s', strtotime($response_arr['updated_at']));
-$stmt = $this->conn->prepare("INSERT INTO `webhook`( `fk_AID`, `id`, `topic`, `created_at`, `update_at`) VALUES (?,?,?,?,?");
+$created = date('Y-m-d', strtotime($response_arr['created_at']));
+$updated = date('Y-m-d', strtotime($response_arr['updated_at']));
+$stmt = $this->conn->prepare("INSERT INTO `webhook`( `fk_AID`, `id`, `topic`, `created_at`, `update_at`) VALUES (?,?,?,?,?) ");
 $stmt->bind_param("iisss",
 $this->aid,
 $response_arr['id'],

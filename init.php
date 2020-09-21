@@ -9,15 +9,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// if($_SESSION['fromplan']==1){
-
-//    $_SESSION = array(); 
-//     session_destroy();
-//   header("Location:".DIR_ROOT);
-//   exit();
-
-
-// }
 if(isset($_SESSION['AID'])):
     
     require_once 'base.php';

@@ -3,6 +3,8 @@
 // this class can be access after verifying that the shop exsit in access_token table otherwise the init of the constructor will corrupt 
 
 // HACK: this class provide tk for API_Order // WH_CRUD
+
+// TODO: change name to token class
 class DB_manage{
      
     private $new_order;

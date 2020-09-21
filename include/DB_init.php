@@ -90,6 +90,17 @@ class DB_init{
         }
     } 
 
+    public function update_shop_token($shop_url,$token) {
+        $stmt = $this->conn->prepare("UPDATE access_token  SET `token_code`=?  WHERE `shop_url` =  ?");
+        $stmt->bind_param("ss",$token,$shop_url);
+        $result = $stmt->execute();
+        $stmt->close();
+        if ($result) {
+        return true;
+        } else {
+        return false;
+        }
+        }
 
     /**
      * Get tokn code of speceific shop from access_token tbl
@@ -148,7 +159,30 @@ class DB_init{
         }
     }    
     
-    
+    public function disable_status($store_aid) {
+        $stmt = $this->conn->prepare("UPDATE access_token  SET `isactive`='0' WHERE `AID` =  ?");
+        $stmt->bind_param("i",$store_aid);
+        $result = $stmt->execute();
+        $stmt->close();
+        if ($result) {
+        return true;
+        } else {
+        return false;
+        }
+        }
+
+
+        public function enable_status($shop_url) {
+            $stmt = $this->conn->prepare("UPDATE access_token  SET `isactive`='1' WHERE `shop_url` =  ?");
+            $stmt->bind_param("s",$shop_url);
+            $result = $stmt->execute();
+            $stmt->close();
+            if ($result) {
+            return true;
+            } else {
+            return false;
+            }
+            }
     /**
      * insert_store_prp
      * comment:get store_prp from api store and insert it to store_prp tbl 
@@ -267,7 +301,7 @@ return false;
      */
     public function insert_into_account($plan,$iscap,$created_date,$expired_date){
 // by default 
-        $st=1;
+    
         $stmt = $this->conn->prepare("INSERT INTO `account`(`fk_AID`, `fk_PID`, `created_at`, `expired_date`, `is_capable`) VALUES (?,?,?,?,?)");
         $stmt->bind_param("iissi",$_SESSION["AID"],$plan,$created_date,$expired_date,$iscap);
         $result = $stmt->execute();

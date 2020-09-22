@@ -412,9 +412,10 @@ return false;
  */
 public function get_difference($start,$end){
 
+    $start_date=new DateTime($start);
+    $end_date=new DateTime($end);
+    $interval = date_diff($start_date, $end_date); 
 
-    $interval = date_diff($start, $end); 
-  
     // printing result in days format 
     return $interval->format('%R%a'); 
 }
@@ -424,7 +425,7 @@ public function insert__login_log($aid,$ip,$country){
 
  
 $stmt = $this->conn->prepare("INSERT INTO `login_log`( `fk_AID`, `ip_address`, `country`) VALUES (?,?,?)");
-$stmt->bind_param("iis",
+$stmt->bind_param("iss",
 $aid,
 $ip,
 $country

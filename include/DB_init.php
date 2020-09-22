@@ -327,7 +327,7 @@ return false;
              */
             public function get_plan_att($pid){
                 
-                $stmt = $this->conn->prepare("SELECT `cost`,`duration` FROM `plan` WHERE PID = ?");
+                $stmt = $this->conn->prepare("SELECT `cost`,`duration`,`type` FROM `plan` WHERE PID = ?");
                 $stmt->bind_param("i",$pid);
                 if ($stmt->execute()) {			
                     $plan_cost = $stmt->get_result()->fetch_assoc();
@@ -338,15 +338,113 @@ return false;
                 }
 
             }
+    /**
+             * get_plan_att
+             *
+             * @param  int $pid PID of plan tbl 
+             * @return array of plan attr
+             */
+            public function get_account_att($aid){
+                
+                $stmt = $this->conn->prepare("SELECT * FROM `account` WHERE fk_AID = ?");
+                $stmt->bind_param("i",$aid);
+                if ($stmt->execute()) {			
+                    $account = $stmt->get_result()->fetch_assoc();
+                    $stmt->close();
+                    return $account; 
+                } else {
+                    return NULL;
+                }
 
+            }
+/**
+             * get_plan_shop_type
+             *
+             * @param  int $aid FK_AID of account tbl 
+             * @return array of plan attr
+             */
+            public function get_shop_plan_type($aid){
+                
+                $stmt = $this->conn->prepare("SELECT `type` FROM `plan` LEFT JOIN account ON account.fk_PID=plan.PID AND account.fk_AID = ? ");
+                $stmt->bind_param("i",$aid);
+                if ($stmt->execute()) {			
+                    $plan_cost = $stmt->get_result()->fetch_assoc();
+                    $stmt->close();
+                    return $plan_cost; 
+                } else {
+                    return NULL;
+                }
 
-
+            }
 
             
-        
+
+
+          
+          /**
+           * getIPAddress
+           *
+           * @return mixed $ip
+           */
+          public   function getIPAddress() {  
+                //whether ip is from the share internet  
+                 if(!empty($_SERVER['HTTP_CLIENT_IP'])) {  
+                            $ip = $_SERVER['HTTP_CLIENT_IP'];  
+                    }  
+                //whether ip is from the proxy  
+                elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {  
+                            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];  
+                 }  
+            //whether ip is from the remote address  
+                else{  
+                         $ip = $_SERVER['REMOTE_ADDR'];  
+                 }  
+                 return $ip;  
+            }  
+
+
+/**
+ * get_difference between 2 date
+ *
+ * @param  int $start
+ * @param  int $end
+ * @return int $day
+ */
+public function get_difference($start,$end){
+
+
+    $interval = date_diff($start, $end); 
+  
+    // printing result in days format 
+    return $interval->format('%R%a'); 
+}
+            
+ 
+public function insert__login_log($aid,$ip,$country){
 
  
+$stmt = $this->conn->prepare("INSERT INTO `login_log`( `fk_AID`, `ip_address`, `country`) VALUES (?,?,?)");
+$stmt->bind_param("iis",
+$aid,
+$ip,
+$country
+);
+
+$result = $stmt->execute();
+$stmt->close();
+
+if ($result) {
+      
+    return  true;
+
+} else {
+  
+
+    return false;
 }
 
+
+}
+}
 
 ?>

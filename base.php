@@ -5,10 +5,9 @@ define("DIR_INC", "include/");
 define("DIR_ADMIN", "admin/");
 define("DIR_USER", "member/");
 define("DIR_API", "API/");
-define("Root_DIR_API", "../API/");
 define("APP_Name", "grag_app");
 define("Parents","../");
-define("Grand_Parents"," /../");
+define("Grand_Parents"," ../../");
 define("parent_Grand_Parents","../../../");
 
 ?>

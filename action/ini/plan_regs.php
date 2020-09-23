@@ -1,8 +1,19 @@
 <?php
+   if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+@ob_end_clean();
+if(isset($_SESSION['submited'])&&$_SESSION['submitted']==1){
+
+  exit();
+}else{
+
+  $_SESSION['submited']=1;
 //Get base class
-require_once '../../'.'base.php';
+require_once (dirname(__FILE__,3)).'/base.php';
 //Get Reports class
-require_once  '../../'.DIR_INC.'DB_init.php';
+require_once  (dirname(__FILE__,3)).'/'.DIR_INC.'DB_init.php';
 $insert_st=0;
 $setup_st=0;
 $plan=$_POST['tp'];
@@ -27,12 +38,9 @@ $insert=$db->insert_into_account($plan,$iscapable,$current,$expired);
 // update setup in 
   if($db->update_setup(2)){
 
-    if (session_status() == PHP_SESSION_NONE) {
-      session_start();
-  }
-    $_SESSION['fromplan']=1;
+ 
     $setup_st=1;
-    $link=DIR_ROOT;
+  
     echo $insert_st.":".$setup_st;
   }else{
 
@@ -54,5 +62,5 @@ echo $insert_st.":".$setup_st;
     // redirect to trasn by js file 
 }
 
-exit();
-?>
+}
+

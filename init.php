@@ -84,7 +84,7 @@ if(isset($_SESSION['AID'])):
 
 
 <!--begin::Card-->
-<div class="card card-custom">
+<div class="card card-custom"id="kt_blockui_card">
     <div class="card-header">
         <div class="card-title">
             <span class="card-icon"><i class="flaticon2-box-1 text-success"></i></span>
@@ -96,6 +96,7 @@ if(isset($_SESSION['AID'])):
     <div id="plan_form_loader" class="alert alert-success" role="alert" style="display:none;">
             <div class="alert-text"><div class="spinner spinner-primary spinner-lg mr-15"></div></div>
         </div>
+     
         <div class="row my-10">
             <!--begin: Pricing-->
             <div class="col-md-4 col-xxl-4 border-right-0 border-right-md border-bottom border-bottom-xxl-0">
@@ -124,7 +125,7 @@ if(isset($_SESSION['AID'])):
                     <?php  
                     // tp:
                     ?>
-                   <input type="hidden" name="tp" value="1">
+                   <input id="submit_btn" type="hidden" name="tp" value="1">
               <?php
 
 if($booln){
@@ -286,10 +287,12 @@ if($booln){
 <script>
   $.cookie('shop_name', '<?= $_SESSION['shop_name']?>');
 </script>
-                   <script src="assets/js/pages/my-script/ini/init-script.js" type="text/javascript" ></script>
+                   
 				<!--end::Global Theme Bundle-->
 
+                <script src="assets/js/pages/features/miscellaneous/blockui.js?v=7.0.6"></script>
 
+                <script src="assets/js/pages/my-script/ini/init-script.js" type="text/javascript" ></script>
             </body>
     <!--end::Body-->
 </html>

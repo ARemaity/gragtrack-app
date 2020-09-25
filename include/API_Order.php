@@ -38,7 +38,7 @@ private $shop_url;
   * get_order_count
   *
   * @param  mixed $financial_status
-  * @return $counts
+  * @return  array $counts
   */
  public function get_order_count($financial_status ){
 
@@ -57,13 +57,19 @@ return $count;
 
  }
 
-
+ 
+ /**
+  * get_checkout_count
+  *
+  * @param  string $status
+  * @return array $count
+  */
  public function get_checkout_count($status){
 
   $api_url="/admin/api/2020-07/checkouts/count.json";
   $counts=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
 
-  $counts=json_decode($counts['response']);
+  $counts=json_decode($counts['response'],true);
   foreach ($counts as $count) {
  
 return $count;
@@ -75,7 +81,27 @@ return $count;
 
 }
  
-     
+ 
+
+
+  public function get_all_order($status){
+
+    $api_url="/admin/api/2020-07/orders.json?status=".$status;
+    $orders=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
+  
+    $orders=json_decode($orders['response'],true);
+ 
+    return $orders['orders'];
+  
+  
+  
+  }
+
+/**
+ * get_store_prp
+ *
+ * @return array store_prp
+ */
 public function get_store_prp(){
 
   $api_url="/admin/api/2020-07/shop.json";

@@ -1,11 +1,12 @@
 "use strict";
 // Class definition
 
-var KTBlockUIDemo = (function () {
+var init_page = function () {
   // card blocking
   var register = function () {
-    $("#plan_regs").on("submit", function (event) {
-      event.preventDefault();
+    $("#plan_regs").bind('submit', function(event) {
+	  event.preventDefault();
+	  event.stopImmediatePropagation();
       var post_url = $(this).attr("action");
       var form_data = $(this).serialize();
       $("#submit_btn").attr("disabled", true);
@@ -26,12 +27,54 @@ var KTBlockUIDemo = (function () {
             type: "post",
             data: { register: 1 },
             success: function (response) {
-              console.log(response);
-              KTApp.unblock("#kt_blockui_card");
+              response = response.replace(/\s/g, '');
+              let res=parseInt(response);
+              if (isNaN(res)) {
+                console.log('error');
+              }else{
+                if(res==1){
+              $.ajax({
+                url: "action/ini/init_order.php",
+                type: "post",
+                data: { init: 1 },
+                success: function (response) {
+                  response = response.replace(/\s/g, '');
+                  let res=parseInt(response);
+                  if (isNaN(res)) {
+                    console.log('error');
+                  }else{
+                    if(res==1){
+                      KTApp.unblock("#kt_blockui_card");
+                          window.top.location.href="https://" + shop_name +"/admin/apps/grag_app/";
+                     }else{
+
+                      console.log('error');
+                     }
+                  }
+                
+      
+                },
+              });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             }
+            }            
             },
           });
 
-          // window.top.location.href="https://" + shop_name +"/admin/apps/grag_app/";
+         
         } else {
           console.log("there is problem " + account_st + " " + setup_st);
         }
@@ -45,10 +88,10 @@ var KTBlockUIDemo = (function () {
       register();
     },
   };
-})();
+}();
 
 jQuery(document).ready(function () {
-  KTBlockUIDemo.init();
+	init_page.init();
 });
 
 

@@ -4,12 +4,6 @@
 }
 
 @ob_end_clean();
-if(isset($_SESSION['submited'])&&$_SESSION['submitted']==1){
-
-  exit();
-}else{
-
-  $_SESSION['submited']=1;
 //Get base class
 require_once (dirname(__FILE__,3)).'/base.php';
 //Get Reports class
@@ -27,29 +21,17 @@ $current=$date->format('Y-m-d H:i:s');
 $duration=$Get_plan_att['duration'];
 $expired=date('Y-m-d H:i:s', strtotime($current. ' + '.$duration.' days'));
 if($Get_plan_att['cost']<=0){
-
-
 $insert=$db->insert_into_account($plan,$iscapable,$current,$expired);
     // thus trasnaction by default is zero no need to redirect to payment order 
-
-
   if($insert){
     $insert_st=1;
 // update setup in 
   if($db->update_setup(2)){
-
- 
     $setup_st=1;
-  
     echo $insert_st.":".$setup_st;
   }else{
-
     echo $insert_st.":".$setup_st;
   }
-
-
-
-
 }else{
 // inserted failed/maybe its exist return false for the foreign key constraint
 echo $insert_st.":".$setup_st;
@@ -57,10 +39,8 @@ echo $insert_st.":".$setup_st;
 
 }else{
 
-
-
     // redirect to trasn by js file 
 }
 
-}
+
 

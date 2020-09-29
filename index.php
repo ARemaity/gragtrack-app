@@ -61,6 +61,10 @@ if(!$check_exist){
     // header("Location:webhook/show_all.php");
     // header("Location:webhook/delete_single.php?id=931096199328");
     //  header("Location:action/ini/init_order.php");
+    //  header("Location:action/m/index/get_order_month.php");
+    //  header("Location:action/m/index/get_order_day.php");
+    //   header("Location:action/m/index/get_order_q.php");
+    //   header("Location:action/m/index/get_top_pr.php");
 /*
 // HACK:
 if setup level 1  store_prp   is inserted go to init(welcome+pricing)

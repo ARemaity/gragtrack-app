@@ -1,10 +1,9 @@
 <?php
 
 @ob_end_clean();
-if(isset($_POST['init'])){
+
 //Get base class
 require_once (dirname(__FILE__,3)).'/base.php';
-//Get Reports class
 require_once  (dirname(__FILE__,3)).'/'.DIR_INC.'API_Order.php';
 require_once  (dirname(__FILE__,3)).'/'.DIR_INC.'SP_Order.php';
 require_once  (dirname(__FILE__,3)).'/'.DIR_INC.'SP_Product.php';
@@ -55,7 +54,8 @@ foreach ($get_order as $order){
    
 $line=$order['line_items'];
 foreach($line as $product){
-$pid=$product['id'];
+$pid=$product['product_id'];
+$name=$product["title"];
 $qty=$product['quantity'];
 if($sproduct->init_check($pid)){
 
@@ -74,7 +74,7 @@ if($sproduct->init_check($pid)){
 }else{
 
 
-    if($sproduct->init_insert_product($pid,$qty)){
+    if($sproduct->init_insert_product($name,$pid,$qty)){
         
     }else{
     
@@ -107,4 +107,3 @@ echo "1";
     echo "0";
 }
 
-}

@@ -28,11 +28,12 @@ class SP_Product{
 
 
     // init : get aid from session where for webhook must inserted in the args 
-    public function init_insert_product($pid,$count){
+    public function init_insert_product($name,$pid,$count){
 
-        $stmt = $this->conn->prepare("INSERT INTO `sp_product`(`fk_AID`, `product_id`, `count`) VALUES (?,?,?)");
-        $stmt->bind_param("iii",
+        $stmt = $this->conn->prepare("INSERT INTO `sp_product`(`fk_AID`, `product_name`,`product_id`, `count`) VALUES (?,?,?,?)");
+        $stmt->bind_param("isii",
         $this->aid,
+        $name,
         $pid,
         $count
         );
@@ -104,6 +105,20 @@ class SP_Product{
         return true;
         } else {
         return false;
+        }
+        }
+
+
+        public function get_top_five(){
+            $stmt = $this->conn->prepare("SELECT product_name,count from sp_product where fk_AID = ? GROUP BY sp_product.count DESC limit 5");
+            $stmt->bind_param("i",$this->aid);
+        if ($stmt->execute()) {			
+            $prs = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+        
+            return $prs; 
+        } else {
+            return NULL;
         }
         }
 

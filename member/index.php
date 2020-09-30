@@ -2149,9 +2149,15 @@ $api_order = new API_Order();
                             <!--begin::Toolbar-->
                             <div class="card-toolbar">
                                 <ul class="nav nav-pills nav-pills-sm nav-dark-75" role="tablist">
-                                    <li class="nav-item">
+                                <li class="nav-item">
                                         <a class="nav-link py-2 px-4 active" data-toggle="tab"
                                             href="#kt_charts_widget_2_chart_tab_1">
+                                            <span class="nav-text font-size-sm">Day</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link py-2 px-4" data-toggle="tab"
+                                            href="#kt_charts_widget_2_chart_tab_3">
                                             <span class="nav-text font-size-sm">Month</span>
                                         </a>
                                     </li>
@@ -2161,12 +2167,7 @@ $api_order = new API_Order();
                                             <span class="nav-text font-size-sm">Quarter</span>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link py-2 px-4" data-toggle="tab"
-                                            href="#kt_charts_widget_2_chart_tab_3">
-                                            <span class="nav-text font-size-sm">Day</span>
-                                        </a>
-                                    </li>
+                                   
                                 </ul>
                             </div>
                             <!--end::Toolbar-->
@@ -2175,18 +2176,20 @@ $api_order = new API_Order();
                         <!--begin::Body-->
                         <div class="card-body" style="position: relative;">
                             <div class="tab-content">
-                                <div class="tab-pane fade show active" id="kt_charts_widget_2_chart_tab_1"
-                                    role="tabpanel" aria-labelledby="kt_charts_widget_2_chart_tab_1">
+                            <div class="tab-pane fade show active" id="kt_charts_widget_2_chart_tab_1" role="tabpanel"
+                                    aria-labelledby="kt_charts_widget_2_chart_tab_1">
+                                    <div id="kt_charts_day_order" style="min-height: 365px;"> </div>
+                                </div>
+                                <div class="tab-pane fade " id="kt_charts_widget_2_chart_tab_3"
+                                    role="tabpanel" aria-labelledby="kt_charts_widget_2_chart_tab_3">
                                     <div id="kt_charts_month_order" style="min-height: 365px;"> </div>
                                 </div>
+                             
                                 <div class="tab-pane fade" id="kt_charts_widget_2_chart_tab_2" role="tabpanel"
                                     aria-labelledby="kt_charts_widget_2_chart_tab_2">
                                     <div id="kt_charts_week_order" style="min-height: 365px;"> </div>
                                 </div>
-                                <div class="tab-pane fade" id="kt_charts_widget_2_chart_tab_3" role="tabpanel"
-                                    aria-labelledby="kt_charts_widget_2_chart_tab_3">
-                                    <div id="kt_charts_day_order" style="min-height: 365px;"> </div>
-                                </div>
+                               
                             </div>
                             <!--begin::Chart-->
 
@@ -2306,7 +2309,7 @@ $api_order = new API_Order();
                         <div class="card-header border-0 pt-6 mb-2">
                             <h3 class="card-title align-items-start flex-column">
                                 <span class="card-label font-weight-bold font-size-h4 text-dark-75 mb-3">Latest
-                                    Sales <i class="fa fa-info-circle " data-html="true" data-toggle="tooltip" data-placement="right"
+                                    Orders <i class="fa fa-info-circle " data-html="true" data-toggle="tooltip" data-placement="right"
                                     title=""
                                     data-original-title="UC10"
                                     style="margin-left: 10px;"></i></span>
@@ -2326,13 +2329,13 @@ $api_order = new API_Order();
                                             <!--begin::Icon-->
                                             <td class="text-left align-left pb-6">
 
-                                                <div class="font-size-lg font-weight-bolder text-dark-75">Product Name
+                                                <div class="font-size-lg font-weight-bolder text-dark-75">Customer Name
                                                 </div>
                                             </td>
 
                                             <td class="text-right align-middle pb-6">
 
-                                                <div class="font-size-lg font-weight-bolder text-dark-75">Item</div>
+                                                <div class="font-size-lg font-weight-bolder text-dark-75">#Item</div>
                                             </td>
                                             <td class="text-right align-middle pb-6">
 
@@ -2347,39 +2350,16 @@ $api_order = new API_Order();
                                             <!--end::Icon-->
                                             <!--begin::Content-->
                                             <td class="align-middle pb-6">
-                                                <div class="font-size-lg font-weight-bolder text-dark-75 mb-1">Special
-                                                    Meal</div>
-                                                <div class="font-weight-bold text-muted">Quona Rice</div>
+                                                <div class="font-size-lg font-weight-bolder text-dark-75 mb-1">---------</div>
+                                                <div class="font-weight-bold text-muted">---------</div>
                                             </td>
                                             <td class="font-weight-bold text-muted align-middle text-right pb-6">
 
-                                                <span class="text-success font-size-h5 font-weight-bolder ml-1">5</span>
+                                                <span class="text-success font-size-h5 font-weight-bolder ml-1">--</span>
                                             </td>
                                             <td class="text-right align-middle pb-6">
 
-                                                <div class="font-size-lg font-weight-bolder text-dark-75">$600.00</div>
-                                            </td>
-                                            <!--end::Content-->
-                                        </tr>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
-                                        <tr>
-
-                                            <!--end::Icon-->
-                                            <!--begin::Content-->
-                                            <td class="align-middle pb-6">
-                                                <div class="font-size-lg font-weight-bolder text-dark-75 mb-1">Orange
-                                                    Wholesale</div>
-                                                <div class="font-weight-bold text-muted">Blue Orange</div>
-                                            </td>
-                                            <td class="font-weight-bold text-muted align-middle text-right pb-6">
-
-                                                <span
-                                                    class="text-success font-size-h5 font-weight-bolder ml-1">200</span>
-                                            </td>
-                                            <td class="text-right align-middle pb-6">
-
-                                                <div class="font-size-lg font-weight-bolder text-dark-75">$6400.00</div>
+                                                <div class="font-size-lg font-weight-bolder text-dark-75">----</div>
                                             </td>
                                             <!--end::Content-->
                                         </tr>
@@ -2387,22 +2367,79 @@ $api_order = new API_Order();
                                         <!--begin::Item-->
                                         <tr>
                                             <!--begin::Icon-->
-                                            <!--end::Symbol-->
-                                            </td>
+
                                             <!--end::Icon-->
                                             <!--begin::Content-->
-                                            <td class="align-middle">
-                                                <div class="font-size-lg font-weight-bolder text-dark-75 mb-1">Avocado
-                                                    Box</div>
-                                                <div class="font-weight-bold text-muted">vegtable</div>
+                                            <td class="align-middle pb-6">
+                                                <div class="font-size-lg font-weight-bolder text-dark-75 mb-1">---------</div>
+                                                <div class="font-weight-bold text-muted">---------</div>
                                             </td>
-                                            <td class="font-weight-bold text-muted align-middle text-right">
+                                            <td class="font-weight-bold text-muted align-middle text-right pb-6">
 
-                                                <span class="text-success font-size-h5 font-weight-bolder ml-1">2</span>
+                                                <span class="text-success font-size-h5 font-weight-bolder ml-1">--</span>
                                             </td>
-                                            <td class="text-right align-middle">
+                                            <td class="text-right align-middle pb-6">
 
-                                                <div class="font-size-lg font-weight-bolder text-dark-75">$8.00</div>
+                                                <div class="font-size-lg font-weight-bolder text-dark-75">----</div>
+                                            </td>
+                                            <!--end::Content-->
+                                        </tr>
+                                        <!--end::Item-->
+                                        <!--begin::Item-->
+                                        <tr>
+                                            <!--begin::Icon-->
+
+                                            <!--end::Icon-->
+                                            <!--begin::Content-->
+                                            <td class="align-middle pb-6">
+                                                <div class="font-size-lg font-weight-bolder text-dark-75 mb-1">---------</div>
+                                                <div class="font-weight-bold text-muted">---------</div>
+                                            </td>
+                                            <td class="font-weight-bold text-muted align-middle text-right pb-6">
+
+                                                <span class="text-success font-size-h5 font-weight-bolder ml-1">--</span>
+                                            </td>
+                                            <td class="text-right align-middle pb-6">
+
+                                                <div class="font-size-lg font-weight-bolder text-dark-75">----</div>
+                                            </td>
+                                            <!--end::Content-->
+                                        </tr>
+                                        <tr>
+                                            <!--begin::Icon-->
+
+                                            <!--end::Icon-->
+                                            <!--begin::Content-->
+                                            <td class="align-middle pb-6">
+                                                <div class="font-size-lg font-weight-bolder text-dark-75 mb-1">---------</div>
+                                                <div class="font-weight-bold text-muted">---------</div>
+                                            </td>
+                                            <td class="font-weight-bold text-muted align-middle text-right pb-6">
+
+                                                <span class="text-success font-size-h5 font-weight-bolder ml-1">--</span>
+                                            </td>
+                                            <td class="text-right align-middle pb-6">
+
+                                                <div class="font-size-lg font-weight-bolder text-dark-75">----</div>
+                                            </td>
+                                            <!--end::Content-->
+                                        </tr>
+                                        <tr>
+                                            <!--begin::Icon-->
+
+                                            <!--end::Icon-->
+                                            <!--begin::Content-->
+                                            <td class="align-middle pb-6">
+                                                <div class="font-size-lg font-weight-bolder text-dark-75 mb-1">---------</div>
+                                                <div class="font-weight-bold text-muted">---------</div>
+                                            </td>
+                                            <td class="font-weight-bold text-muted align-middle text-right pb-6">
+
+                                                <span class="text-success font-size-h5 font-weight-bolder ml-1">--</span>
+                                            </td>
+                                            <td class="text-right align-middle pb-6">
+
+                                                <div class="font-size-lg font-weight-bolder text-dark-75">----</div>
                                             </td>
                                             <!--end::Content-->
                                         </tr>
@@ -4697,48 +4734,14 @@ $pr_names=$pr_names."]";
 		var chart = new ApexCharts(document.querySelector(apexChart), options);
 		chart.render();
     }
-    // location in shopify_sales
-    var _shopify_chart_source = function () {
-		const apexChart = "#chart_source";
-        var options = {
-            series: [44, 55, 67, 83],
-            chart: {
-            height: 350,
-            type: 'radialBar',
-          },
-          plotOptions: {
-            radialBar: {
-              dataLabels: {
-                name: {
-                  fontSize: '22px',
-                },
-                value: {
-                  fontSize: '16px',
-                },
-                total: {
-                  show: true,
-                  label: 'Total',
-                  formatter: function (w) {
-                    // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                    return 249
-                  }
-                }
-              }
-            }
-          },
-          labels: ['Facebook', 'Twitter', 'Instagram', 'Organic'],
-          };
-  
-          var chart = new ApexCharts(document.querySelector(apexChart), options);
-          chart.render();
+   
 
-	}
 	// Private functions
 return {
     // public functions
     init: function () {
         _donut_product();
-        _shopify_chart_source();
+ 
     }
 };
 }();

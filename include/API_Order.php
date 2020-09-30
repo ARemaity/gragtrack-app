@@ -97,6 +97,18 @@ return $count;
   
   }
 
+  
+  public function get_single_order($order_id){
+
+    $api_url="/admin/api/2020-07/orders/".$order_id.".json?fields=customer,aa,line_items,aa";
+    $orders=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
+    $orders=json_decode($orders['response'],true);
+    return $orders['order'];
+  
+  
+  
+  }
+
 /**
  * get_store_prp
  *

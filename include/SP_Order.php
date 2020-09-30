@@ -122,6 +122,22 @@ return $last8;
 
 
 
+public function get_latest_order($latest_number){
+
+
+    $stmt = $this->conn->prepare("SELECT order_id,total_amount,status from sp_order WHERE fk_AID=?    ORDER BY created_at DESC LIMIT ?");
+    $stmt->bind_param("ii",$this->aid,$latest_number);
+if ($stmt->execute()) {			
+    $orders = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+
+    return $orders; 
+} else {
+    return NULL;
+}
+
+}
+
 
 
 public function get_all_month(){
@@ -160,20 +176,9 @@ public function get_all_days(){
      return  $dayNames;
 }
 
-public function get_all_q(){
+ 
 
-    $dayNames = array(
-        'q1'=>0,
-        'q2'=>0, 
-        'q3'=>0, 
-        'q4'=>0
-       
-     );
 
-     return  $dayNames;
-}
-  
-  
 }
 
 ?>

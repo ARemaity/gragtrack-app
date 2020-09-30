@@ -2304,7 +2304,7 @@ $api_order = new API_Order();
                 </div>
                 <div class="col-xl-4">
                     <!--begin::List Widget 20-->
-                    <div class="card card-custom card-stretch gutter-b">
+                    <div class="card card-custom card-stretch gutter-b" id="kt_blockui_card">
                         <!--begin::Header-->
                         <div class="card-header border-0 pt-6 mb-2">
                             <h3 class="card-title align-items-start flex-column">
@@ -2322,7 +2322,7 @@ $api_order = new API_Order();
                         <div class="card-body pt-2">
                             <!--begin::Table-->
                             <div class="table-responsive">
-                                <table class="table table-borderless mb-0">
+                                <table id="latest_order" class="table table-borderless mb-0">
                                     <tbody>
                                         <!--begin::Item-->
                                         <tr>
@@ -2344,105 +2344,8 @@ $api_order = new API_Order();
 
                                             <!--end::Content-->
                                         </tr>
-                                        <tr>
-                                            <!--begin::Icon-->
-
-                                            <!--end::Icon-->
-                                            <!--begin::Content-->
-                                            <td class="align-middle pb-6">
-                                                <div class="font-size-lg font-weight-bolder text-dark-75 mb-1">---------</div>
-                                                <div class="font-weight-bold text-muted">---------</div>
-                                            </td>
-                                            <td class="font-weight-bold text-muted align-middle text-right pb-6">
-
-                                                <span class="text-success font-size-h5 font-weight-bolder ml-1">--</span>
-                                            </td>
-                                            <td class="text-right align-middle pb-6">
-
-                                                <div class="font-size-lg font-weight-bolder text-dark-75">----</div>
-                                            </td>
-                                            <!--end::Content-->
-                                        </tr>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
-                                        <tr>
-                                            <!--begin::Icon-->
-
-                                            <!--end::Icon-->
-                                            <!--begin::Content-->
-                                            <td class="align-middle pb-6">
-                                                <div class="font-size-lg font-weight-bolder text-dark-75 mb-1">---------</div>
-                                                <div class="font-weight-bold text-muted">---------</div>
-                                            </td>
-                                            <td class="font-weight-bold text-muted align-middle text-right pb-6">
-
-                                                <span class="text-success font-size-h5 font-weight-bolder ml-1">--</span>
-                                            </td>
-                                            <td class="text-right align-middle pb-6">
-
-                                                <div class="font-size-lg font-weight-bolder text-dark-75">----</div>
-                                            </td>
-                                            <!--end::Content-->
-                                        </tr>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
-                                        <tr>
-                                            <!--begin::Icon-->
-
-                                            <!--end::Icon-->
-                                            <!--begin::Content-->
-                                            <td class="align-middle pb-6">
-                                                <div class="font-size-lg font-weight-bolder text-dark-75 mb-1">---------</div>
-                                                <div class="font-weight-bold text-muted">---------</div>
-                                            </td>
-                                            <td class="font-weight-bold text-muted align-middle text-right pb-6">
-
-                                                <span class="text-success font-size-h5 font-weight-bolder ml-1">--</span>
-                                            </td>
-                                            <td class="text-right align-middle pb-6">
-
-                                                <div class="font-size-lg font-weight-bolder text-dark-75">----</div>
-                                            </td>
-                                            <!--end::Content-->
-                                        </tr>
-                                        <tr>
-                                            <!--begin::Icon-->
-
-                                            <!--end::Icon-->
-                                            <!--begin::Content-->
-                                            <td class="align-middle pb-6">
-                                                <div class="font-size-lg font-weight-bolder text-dark-75 mb-1">---------</div>
-                                                <div class="font-weight-bold text-muted">---------</div>
-                                            </td>
-                                            <td class="font-weight-bold text-muted align-middle text-right pb-6">
-
-                                                <span class="text-success font-size-h5 font-weight-bolder ml-1">--</span>
-                                            </td>
-                                            <td class="text-right align-middle pb-6">
-
-                                                <div class="font-size-lg font-weight-bolder text-dark-75">----</div>
-                                            </td>
-                                            <!--end::Content-->
-                                        </tr>
-                                        <tr>
-                                            <!--begin::Icon-->
-
-                                            <!--end::Icon-->
-                                            <!--begin::Content-->
-                                            <td class="align-middle pb-6">
-                                                <div class="font-size-lg font-weight-bolder text-dark-75 mb-1">---------</div>
-                                                <div class="font-weight-bold text-muted">---------</div>
-                                            </td>
-                                            <td class="font-weight-bold text-muted align-middle text-right pb-6">
-
-                                                <span class="text-success font-size-h5 font-weight-bolder ml-1">--</span>
-                                            </td>
-                                            <td class="text-right align-middle pb-6">
-
-                                                <div class="font-size-lg font-weight-bolder text-dark-75">----</div>
-                                            </td>
-                                            <!--end::Content-->
-                                        </tr>
+                                        
+                                       
                                         <!--end::Item-->
                                     </tbody>
                                 </table>
@@ -3689,7 +3592,7 @@ $api_order = new API_Order();
 <!--end::Page Vendors-->
 
 <!-- begin:custom js  -->
-<!-- <script src="../assets/js/pages/my-script/my-script.js"></script> -->
+<script src="../assets/js/pages/my-script/m_index.js"></script>
 
 <script src="../assets/js/pages/features/charts/live-user.js"></script>
 

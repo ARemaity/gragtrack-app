@@ -68,7 +68,7 @@ echo 'empty';
         'counter'=>$counter,
         'cid'=>$cid,
         'fname'=>$fname,
-        'lname'=>$cid,
+        'lname'=>$lname,
         'cn'=>$ccountry,
         'nbitem'=>$order_num,
         'total'=>$order['total_amount']
@@ -91,7 +91,7 @@ echo 'empty';
 
 
     header('Content-Type: application/json');
-    die(print_r(json_encode($order_array)));
+    echo json_encode($order_array);
 
 
 

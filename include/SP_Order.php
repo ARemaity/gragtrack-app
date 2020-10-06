@@ -24,33 +24,100 @@ class SP_Order{
     function __destruct() {
         
     }
+    
+    /**
+     * insert_order:insert order to order tbl with status and return last id inserted
+     * @param  array $order_array
+     * @param  int $status
+     * @return int last id 
+     */
+public function insert_order($order_array,$status){
+        $has_refund=0;
+        $istest=0;
+        $include_tax=0;
+        $total_ship=0;
 
-    public function insert_order($order_array,$status){
+if(!empty($order_array['refunds'])){
+    $has_refund=1;
 
+
+}
+if($order_array['taxes_included']=='true'){
+    $include_tax=1;
+
+}
+if($order_array['test']=='true'){
+    $istest=1;
+
+}
+if(!empty($order_array['shipping_lines'])){
+
+  $ship=$order_array['shipping_lines'];
+  foreach ($ship as $one) {
      
-        $create = date('Y-m-d', strtotime($order_array['created_at']));
-        $stmt = $this->conn->prepare("INSERT INTO `sp_order`(`fk_AID`, `order_id`, `total_amount`,`status`, `created_at`) VALUES (?,?,?,?,?)");
-        $stmt->bind_param("iiiis",
+      $total_ship=$one['price']-$one['discounted_price'];
+
+
+}
+} 
+        $create = date('Y-m-d H:i:s', strtotime($order_array['created_at']));
+        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`, `has_refund`, `tax_included`, `test`,`status`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("iidddddiiiis",
         $_SESSION['AID'],
         $order_array['id'],
+        $order_array['total_line_items_price'],
+        $order_array['total_discounts'],
+        $order_array['total_tax'],
+        $total_ship,
         $order_array['total_price'],
+        $has_refund,
+        $include_tax,
+        $istest,
         $status,
         $create
         );
         
         $result = $stmt->execute();
+        $last_id=$stmt->insert_id;
         $stmt->close();
         
         if ($result) {
               
-            return  true;
+            return  $last_id;
         
         } else {
           
         
-            return false;
+            return 0;
         }
         
+
+    }
+
+
+    
+    /**
+     * get_mix_attr: get all orders Canceled, pending, and unpaid orders are included. Test and deleted orders are not included.
+     *
+     * @param  int $month
+     * @return array orders
+     */
+    public function get_mix_attr($month){
+
+    $stmt = $this->conn->prepare("SELECT `OID`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`, `has_refund`, `tax_included` FROM `sp_order` WHERE fk_AID = ?  AND MONTH(created_at) = ? AND status != '4' AND status != '5' AND test='0' ");
+    $stmt->bind_param("ii", $_SESSION['AID'],$month);
+if ($stmt->execute()) {			
+    $orders = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+
+    return $orders; 
+} else {
+    return NULL;
+}
+
+
+
+
 
     }
 public function order_month($year){

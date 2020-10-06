@@ -28,14 +28,14 @@ class SP_Product{
 
 
     // init : get aid from session where for webhook must inserted in the args 
-    public function init_insert_product($name,$pid,$count){
+    public function init_insert_product($oid,$pid,$vid,$qty){
 
-        $stmt = $this->conn->prepare("INSERT INTO `sp_product`(`fk_AID`, `product_name`,`product_id`, `count`) VALUES (?,?,?,?)");
-        $stmt->bind_param("isii",
-        $this->aid,
-        $name,
+        $stmt = $this->conn->prepare("INSERT INTO `sp_product`(`fk_OID`,  `product_id`,`variant_id`, `qty`) VALUES (?,?,?,?)");
+        $stmt->bind_param("iiii",
+        $oid,
         $pid,
-        $count
+        $vid,
+        $qty
         );
         
         $result = $stmt->execute();
@@ -110,7 +110,7 @@ class SP_Product{
 
 
         public function get_top_five(){
-            $stmt = $this->conn->prepare("SELECT product_name,count from sp_product where fk_AID = ? GROUP BY sp_product.count DESC limit 5");
+            $stmt = $this->conn->prepare("SELECT product_id,sum(qty) as counts from sp_product INNER JOIN sp_order ON sp_product.fk_OID=sp_order.OID AND sp_order.fk_AID=? GROUP by product_id ORDER BY SUM(qty) DESC LIMIT 5");
             $stmt->bind_param("i",$this->aid);
         if ($stmt->execute()) {			
             $prs = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -123,6 +123,34 @@ class SP_Product{
         }
 
   
+
+        public function get_product_order($oid){
+
+
+  $stmt = $this->conn->prepare("
+  SELECT variant_id,qty 
+  
+  from sp_product 
+  
+  INNER JOIN sp_order
+
+  ON sp_product.fk_OID=sp_order.OID
+
+  WHERE sp_product.fk_OID = ? 
+
+  
+    ");
+            $stmt->bind_param("i",$oid);
+        if ($stmt->execute()) {			
+            $prs = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+        
+            return $prs; 
+        } else {
+            return NULL;
+        }
+
+        }
 }
 
 ?>

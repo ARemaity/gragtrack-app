@@ -11,13 +11,31 @@ require_once (dirname(__FILE__,2)).'/base.php';
 require_once (dirname(__FILE__,2)).'/'.DIR_INC.'/API_Order.php';
 require_once  (dirname(__FILE__,2)).'/'.DIR_INC.'SP_Order.php';
 require_once  (dirname(__FILE__,2)).'/'.DIR_INC.'SP_Product.php';
+require_once (dirname(__FILE__,2)).'/'.DIR_INC.'/API_Product.php';
 $neworder=new SP_Order();
 $newpr=new SP_Product();
 $months=$neworder->order_month($this_year);
 $data=$neworder->get_all_month();
 $DAYS=$neworder->order_day();
 $data_day=$neworder->get_all_days();
+$newinv=new API_Product();
+// 
 $tops=$newpr->get_top_five();
+$top_pr=array();
+$handler=array();
+$name="";
+foreach($tops as $top){
+$name=$newinv->get_pr_prp($top['product_id'])['title'];
+ $handler=array(
+'name'=>$name,
+'counts'=>$top['counts'],
+
+
+    );
+    array_push($top_pr,$handler);
+}
+
+// 
 
 $qs=$neworder->order_q($this_year);
 $data_q=array();
@@ -2256,30 +2274,30 @@ $api_order = new API_Order();
                         </div>
                         <!--end::Header-->
                         <!--begin::Body-->
-                        <div class="card-body p-0 d-flex flex-column" style="position: relative;">
+                        <div id="blockui_mix_sales"  class="card-body p-0 d-flex flex-column" style="position: relative;">
                             <!--begin::Stats-->
                             <div class="card-spacer pt-5 bg-white flex-grow-1">
                                 <!--begin::Row-->
                                 <div class="row row-paddingless">
                                     <div class="col mr-8">
-                                        <div class="font-size-sm text-muted font-weight-bold">Average Sale</div>
-                                        <div class="font-size-h4 font-weight-bolder">$650</div>
+                                        <div class="font-size-sm text-muted font-weight-bold">Gross Sales</div>
+                                        <div id="gross_sales" class="font-size-h4 font-weight-bolder">$650</div>
                                     </div>
                                     <div class="col">
-                                        <div class="font-size-sm text-muted font-weight-bold">Commission</div>
-                                        <div class="font-size-h4 font-weight-bolder">$233,600</div>
+                                        <div class="font-size-sm text-muted font-weight-bold">Net Sales</div>
+                                        <div id="net_sales" class="font-size-h4 font-weight-bolder">$233,600</div>
                                     </div>
                                 </div>
                                 <!--end::Row-->
                                 <!--begin::Row-->
                                 <div class="row row-paddingless mt-8">
                                     <div class="col mr-8">
-                                        <div class="font-size-sm text-muted font-weight-bold">Annual Taxes 2019</div>
-                                        <div class="font-size-h4 font-weight-bolder">$29,004</div>
+                                        <div class="font-size-sm text-muted font-weight-bold">Total Sales</div>
+                                        <div id="total_sales" class="font-size-h4 font-weight-bolder">$29,004</div>
                                     </div>
                                     <div class="col">
-                                        <div class="font-size-sm text-muted font-weight-bold">Annual Income</div>
-                                        <div class="font-size-h4 font-weight-bolder">$1,480,00</div>
+                                        <div class="font-size-sm text-muted font-weight-bold">Net Quantity</div>
+                                        <div id="net_quantity" class="font-size-h4 font-weight-bolder">$1,480,00</div>
                                     </div>
                                 </div>
                                 <!--end::Row-->
@@ -4565,13 +4583,13 @@ var KTApexChartsDemo = function () {
 
    $series="[";
    $pr_names="[";
-   $last_index=count($tops);
+   $last_index=count($top_pr);
    $counter=0;
-foreach ($tops as $top) {
+foreach ($top_pr as $top) {
 $counter=$counter+1;
 
     foreach ($top as $key => $value) {
-        if($key=='product_name'){
+        if($key=='name'){
             if($counter==$last_index){
              $final=str_replace('\'', '', $value); 
              $final=str_replace('"', '', $final); 
@@ -4589,7 +4607,7 @@ $counter=$counter+1;
                 $pr_names.="'".$final."',";
                }
         }
-       if($key=='count'){
+       if($key=='counts'){
            if($counter==$last_index){
             $series.=$value;
         

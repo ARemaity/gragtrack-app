@@ -55,26 +55,11 @@ foreach ($get_order as $order){
 $line=$order['line_items'];
 foreach($line as $product){
 $pid=$product['product_id'];
+$vid=$product['variant_id'];
 $name=$product["title"];
 $qty=$product['quantity'];
-if($sproduct->init_check($pid)){
-
-
-    $old=$sproduct->init_get_count($pid)['count'];
-    $count=$old+$qty;
-    if($sproduct->init_update_count($pid,$count)){
-
-
-
-    }else{
-
-        
-    }
-
-}else{
-
-
-    if($sproduct->init_insert_product($name,$pid,$qty)){
+$oid=$order['id'];
+if($sproduct->init_insert_product($oid,$pid,$vid,$qty)){
         
     }else{
     
@@ -88,7 +73,7 @@ if($sproduct->init_check($pid)){
 
 
   
-}
+
 
 if($sporder->insert_order($order,$status)){
  $counter+=1;

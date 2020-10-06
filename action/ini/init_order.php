@@ -48,23 +48,34 @@ foreach ($get_order as $order){
        $status=0;
            break;
    }
+   $insert_order=$sporder->insert_order($order,$status); 
+ 
+if($insert_order>0){
+
+    $counter+=1;
    if($status==3){
 
 
-   
+    
 $line=$order['line_items'];
 foreach($line as $product){
 $pid=$product['product_id'];
 $vid=$product['variant_id'];
 $name=$product["title"];
 $qty=$product['quantity'];
-$oid=$order['id'];
-if($sproduct->init_insert_product($oid,$pid,$vid,$qty)){
+
+
+
+
+    if($sproduct->init_insert_product($insert_order,$pid,$vid,$qty)){
         
     }else{
-    
-
+ 
     }
+   
+
+
+
 }
 
 
@@ -72,14 +83,10 @@ if($sproduct->init_insert_product($oid,$pid,$vid,$qty)){
    }
 
 
-  
-
-
-if($sporder->insert_order($order,$status)){
- $counter+=1;
 }else{
+
     $counter-=1;
-    
+
 }
 
 }

@@ -1,56 +1,93 @@
 
-
 <?php
-   if (session_status() == PHP_SESSION_NONE) {
+ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
-$_SESSION['submitted']=0;
-require("../base.php");
-require "../".DIR_INC."DB_webhook.php";
-require "../".DIR_INC."WH_CRUD.php";
-
-if(isset($_POST['register'])){
+require_once (dirname(__FILE__,2)).'/base.php';
+require_once  (dirname(__FILE__,2)).'/'.DIR_INC.'DB_webhook.php';
+require_once (dirname(__FILE__,2)).'/'.DIR_INC."WH_CRUD.php";
 $wh=new WH_CRUD();
-$db_wh=new DB_webhook();
-$result=array();
-$message="";
-$hook_msg="";
-$app_uninstalled=$wh->register_wh("app/uninstalled","https://42fa47623411.ngrok.io/gragtrack2/webhook/receiver/app_uninstalled.php");
-if($db_wh->create_weebhook($app_uninstalled)){
-    $shop_update=$wh->register_wh("shop/update"," https://42fa47623411.ngrok.io/gragtrack2/webhook/receiver/shop_update.php");
-    if($db_wh->create_weebhook($shop_update)){
-        $domain_create=$wh->register_wh("domains/create","https://42fa47623411.ngrok.io/gragtrack2/webhook/receiver/domains_create.php");
-        if($db_wh->create_weebhook($domain_create)){
-            $domain_update=$wh->register_wh("domains/update","https://42fa47623411.ngrok.io/gragtrack2/webhook/receiver/domains_update.php");
-            if($db_wh->create_weebhook($domain_update)){
-                $domain_destroy=$wh->register_wh("domains/destroy","https://42fa47623411.ngrok.io/gragtrack2/webhook/receiver/domains_destroy.php");
-                   if($db_wh->create_weebhook($domain_destroy)){
-                       echo "1";
-                                }else{
-                   $message.=$domain_destroy;
-                   echo  $message;
-                                }
-            }else{
+$newwh=new DB_webhook();
+$wh_files=array();
+$handler=array(
 
-                $message.=$domain_update; 
+    'name'=>'app_uninstalled'
+);
+array_push($wh_files,$handler);
+$name='';
+$message='';
+$PATH2=$_SESSION['AID'].'/receiver/';
+
+
+if (!file_exists($PATH2)) {
+    mkdir($PATH2, 0777, true);
+}
+
+
+
+foreach($wh_files as $sfile){
+
+
+    $php_source = 'receiver-template/'.$sfile['name'].'.php';  
+
+    $php_des = $PATH2.$sfile['name'].'.php'; 
+
+
+    $json_source = 'receiver-template/'.$sfile['name'].'.json'; 
+
+    $json_de = $PATH2.$sfile['name'].'.json'; 
+
+
+    $text_source = 'receiver-template/'.$sfile['name'].'.txt';  
+
+    $text_des = $PATH2.$sfile['name'].'.txt'; 
+
+
+    if( !copy($php_source, $php_des) ) {  
+    $message.='0';
+    }  
+    else {  
+        $path=DIR_NGROK.'webhook/'.$PATH2.$sfile['name'].'.php'; 
+        $message.='1';
+        $regsiter=$wh->register_wh("app/uninstalled",$path);
+        $insert_wh=$newwh->create_weebhook($regsiter);
+        if($insert_wh){
+            if( !copy($json_source, $json_de) ) {  
+                $message.='0';
+            }  
+            else { 
+                $message.='1';
+                if( !copy($text_source, $text_des) ) {  
+                    $message.='0';
+                }  
+                else { 
+                    $message.='1';
+                }
             }
-        }else{
-            $message.=$domain_create; 
-
         }
-    }else{
 
-        $message.=$shop_update; 
-    }
-}else{
-    $message.=$app_uninstalled;
+
+    }  
+      
+    
+      
+
+
 }
 
 
+$src = 'receiver-template/verify.php';  
+$dest = $PATH2.'verify.php'; 
+if( !copy($src, $dest) ) {  
+    $message.='0';
+}  else{
+
+    $message.='1';    
 }
+
+echo $message;
+
 
 
 ?>
-
 

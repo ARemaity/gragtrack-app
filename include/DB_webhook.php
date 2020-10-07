@@ -72,7 +72,19 @@ public function delete_weebhook(){
 }
 
 
-public function show_weebhook_shop(){
+public function show_weebhook_shop($aid){
+
+    $stmt = $this->conn->prepare("SELECT `id`, `topic` FROM `webhook` WHERE fk_AID = ? order by created_at DESC");
+    $stmt->bind_param("i", $_SESSION['AID']);
+if ($stmt->execute()) {			
+    $orders = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+
+    return $orders; 
+} else {
+    return NULL;
+}
+
 
 
     

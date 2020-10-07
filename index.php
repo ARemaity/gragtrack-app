@@ -57,10 +57,11 @@ if(!$check_exist){
 
     // TODO: insert to login 
     // echo __DIR__; //should be '/main_web_folder/';
-    // // header("Location:webhook/app_uninstalled.php");
+ header("Location:webhook/startup_hooks.php");
     // header("Location:webhook/show_all.php");
     // header("Location:webhook/delete_single.php?id=931096199328");
-     header("Location:action/ini/init_order.php");
+    //  header("Location:action/ini/init_order.php");
+    //   header("Location:action/ini/init_webhook.php");
     //  header("Location:action/m/index/get_order_month.php");
     //  header("Location:action/m/index/get_order_day.php");
     //   header("Location:action/m/index/get_order_q.php");
@@ -121,11 +122,11 @@ if setup level 2 store_prp/account tbl   is inserted go to index dashboard
 //         echo "error:index.php:117";
 //     }
 // }
-// // TODO :check is capable : 0 to memeber 1 | to advance
+
 
 
 // }else{
-//     //header("Location:".DIR_ROOT."error.php");
+ 
 // echo "error:index.php:122   ";
 // }
    

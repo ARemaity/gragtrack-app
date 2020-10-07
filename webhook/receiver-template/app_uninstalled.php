@@ -2,8 +2,8 @@
 
 require_once "verify.php";
 
-require(dirname(__FILE__,3)."/base.php");
-require dirname(__FILE__,3)."/".DIR_INC."DB_init.php";
+require(dirname(__FILE__,4)."/base.php");
+require dirname(__FILE__,4)."/".DIR_INC."DB_init.php";
 
 
 $init=new DB_init();
@@ -22,8 +22,9 @@ fclose($webhook);
 
 // Decode Shopify POST
 $webhook_content = json_decode($webhook_content, TRUE);
-$get_aid=$init->get_access_ID($webhook_content['domain']);
-$disable=$init->disable_status($get_aid['AID']);
+
+$get_aid=basename(dirname( dirname(__FILE__) ));
+$disable=$init->disable_status($get_aid);
 if($disable){
 
   // TODO: send email return 

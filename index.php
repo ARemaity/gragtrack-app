@@ -57,7 +57,7 @@ if(!$check_exist){
 
     // TODO: insert to login 
     // echo __DIR__; //should be '/main_web_folder/';
- header("Location:webhook/startup_hooks.php");
+//  header("Location:webhook/startup_hooks.php");
     // header("Location:webhook/show_all.php");
     // header("Location:webhook/delete_single.php?id=931096199328");
     //  header("Location:action/ini/init_order.php");
@@ -75,60 +75,60 @@ if setup level 2 store_prp/account tbl   is inserted go to index dashboard
 
 */
 
-// if($get_setup==1){
-//     header("Location:".DIR_ROOT."init.php");
-// }elseif($get_setup==2){
+if($get_setup==1){
+    header("Location:".DIR_ROOT."init.php");
+}elseif($get_setup==2){
 
 
-//     // TODO: CHECK expired date 
-//     $account_attr=$db->get_account_att($_SESSION['AID']);
-//     $created=$account_attr['created_at'];
-//     $expired=$account_attr['expired_date'];
+    // TODO: CHECK expired date 
+    $account_attr=$db->get_account_att($_SESSION['AID']);
+    $created=$account_attr['created_at'];
+    $expired=$account_attr['expired_date'];
     
-//     if($db->get_difference($created,$expired)<=0){
-//         header("Location:".DIR_ROOT."expire.php");
+    if($db->get_difference($created,$expired)<=0){
+        header("Location:".DIR_ROOT."expire.php");
       
-//     }else{
+    }else{
 
 
-//     // these to get country var from ip 
-//     $country="";
-//     if($ip=="::1"){
+    // these to get country var from ip 
+    $country="";
+    if($ip=="::1"){
  
-//      $country="localhost";
+     $country="localhost";
  
-//     }else{
+    }else{
  
-//       $country=geoip_country_name_by_addr($gi, $ip);
-//     }
+      $country=geoip_country_name_by_addr($gi, $ip);
+    }
 
-//     if($db->insert__login_log($_SESSION['AID'],$ip,$country)){
-//     switch ($db->get_shop_plan_type($_SESSION['AID'])) {
-//         case "1":
-//             header("Location:".DIR_ROOT."member/");
-//           break;
-//         case "2":
-//             header("Location:".DIR_ROOT."advance/");
-//           break;
-//         case "3":
-//             header("Location:".DIR_ROOT."enterprise/");
-//           break;
-//         default:
-//         header("Location:".DIR_ROOT."member/");
-//       }
+    if($db->insert__login_log($_SESSION['AID'],$ip,$country)){
+    switch ($db->get_shop_plan_type($_SESSION['AID'])) {
+        case "1":
+            header("Location:".DIR_ROOT."member/");
+          break;
+        case "2":
+            header("Location:".DIR_ROOT."advance/");
+          break;
+        case "3":
+            header("Location:".DIR_ROOT."enterprise/");
+          break;
+        default:
+        header("Location:".DIR_ROOT."member/");
+      }
 
-//     }else{
+    }else{
 
-//         echo "error:index.php:117";
-//     }
-// }
+        echo "error:index.php:117";
+    }
+}
 
 
 
-// }else{
+}else{
  
-// echo "error:index.php:122   ";
-// }
+echo "error:index.php:122   ";
+}
    
  
 

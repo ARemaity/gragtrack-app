@@ -1,4 +1,6 @@
 <?php
+
+// FOR TEST "implemneted in index.php directly"///
 $this_year=date("Y");
 //Get base class
 require_once (dirname(__FILE__,4)).'/base.php';

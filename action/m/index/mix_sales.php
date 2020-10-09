@@ -17,6 +17,7 @@ $api_inve=new API_inverntoryitem();
 $response = array();
 // only get order (get all status except(4,5))
 $morder=$neworder->get_mix_attr($month);
+
 $gross_sales=0;
 $discounts=0;
 $ship=0;
@@ -27,7 +28,7 @@ $net_sales=0;
 $trefund=0;
 $qtys=0;
 $costs=0;
-
+if(!empty($morder)){
 // if canceled or test dont process crafted by the qery no need to recheck 
 foreach ($morder as $order) {
 
@@ -65,7 +66,7 @@ $costs=$cost+$get_cost['cost'];
 
 
 }
-
+}
 $gross_sales=$line;
 $net_sales=$gross_sales-$discounts;
 $total_sales=($gross_sales-$discounts)+($taxes+$ship);
@@ -82,7 +83,7 @@ $response=array(
 
 );
 
-
+header('Content-Type: application/json');
 echo json_encode($response);
 
 

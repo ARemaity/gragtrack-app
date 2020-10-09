@@ -56,7 +56,7 @@ if(isset($_SESSION['AID'])):
     <!--end::Head-->
 
     <!--begin::Body-->
-    <body  id="kt_body" style="background-color: #000"  class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading"  >
+    <body id="kt_blockui_body" id="kt_body" style="background-color: #000"  class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading"  >
         
     	<!--begin::Main-->
 	<div class="d-flex flex-column flex-root">
@@ -213,7 +213,25 @@ if($booln){
             <!--end: Pricing-->
         </div>
     </div>
+    <div class="modal fade" id="fetch_order_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Fetch All Order</h5>
+                </div>
+                <div class="modal-body">
+                    <p>We Need to fetch the Store's Order </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success font-weight-bold" id="fetch_choice1" value="0">Later</button>
+                    <button type="button" class="btn btn-primary font-weight-bold" id="fetch_choice2" value="1">Fetch Now</button>
+            
+                </div>
+            </div>
+        </div>
 </div>
+
         <!--begin::Global Config(global config for global JS scripts)-->
         <script>
             var KTAppSettings = {

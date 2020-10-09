@@ -3,6 +3,8 @@
  if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+$final_st=1;
 require_once (dirname(__FILE__,2)).'/base.php';
 require_once  (dirname(__FILE__,2)).'/'.DIR_INC.'DB_webhook.php';
 require_once (dirname(__FILE__,2)).'/'.DIR_INC."WH_CRUD.php";
@@ -15,7 +17,6 @@ $handler=array(
 );
 array_push($wh_files,$handler);
 $name='';
-$message='';
 $PATH2=$_SESSION['AID'].'/receiver/';
 
 
@@ -44,25 +45,23 @@ foreach($wh_files as $sfile){
 
 
     if( !copy($php_source, $php_des) ) {  
-    $message.='0';
+        $final_st=0;
     }  
     else {  
         $path=DIR_NGROK.'webhook/'.$PATH2.$sfile['name'].'.php'; 
-        $message.='1';
+      
         $regsiter=$wh->register_wh("app/uninstalled",$path);
         $insert_wh=$newwh->create_weebhook($regsiter);
         if($insert_wh){
             if( !copy($json_source, $json_de) ) {  
-                $message.='0';
+                $final_st=0;
             }  
             else { 
-                $message.='1';
+            
                 if( !copy($text_source, $text_des) ) {  
-                    $message.='0';
+                    $final_st=0;
                 }  
-                else { 
-                    $message.='1';
-                }
+                
             }
         }
 
@@ -79,13 +78,9 @@ foreach($wh_files as $sfile){
 $src = 'receiver-template/verify.php';  
 $dest = $PATH2.'verify.php'; 
 if( !copy($src, $dest) ) {  
-    $message.='0';
-}  else{
-
-    $message.='1';    
-}
-
-echo $message;
+    $final_st=0;
+} 
+echo $final_st;
 
 
 

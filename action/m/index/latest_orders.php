@@ -20,7 +20,7 @@ $fname = 'null';
 $lname = 'null';
 $ccountry='null';
 $length=0;
-
+if(!empty($latest_order)){
 foreach ($latest_order as $order)
 {
     $api_result = $api->get_single_order($order['order_id']);
@@ -88,7 +88,7 @@ echo 'empty';
    
       $counter=$counter+1;
     }
-
+}
 
     header('Content-Type: application/json');
     echo json_encode($order_array);

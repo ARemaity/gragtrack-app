@@ -88,10 +88,7 @@ $.ajax({
     dataType: 'JSON',
     data: { get_mix: 1 },
     success: function(response){
-       
-
         console.log(response);
-         
             gross_sales=response.grosale;
             net_sales=response.net_sales;
             total_sales=response.total_sales;
@@ -100,7 +97,6 @@ $.ajax({
  $('#net_sales').html(net_sales);
  $('#total_sales').html(total_sales);
  $('#net_quantity').html(Net_quantity);
-
         KTApp.unblock("#blockui_mix_sales");
 
     }

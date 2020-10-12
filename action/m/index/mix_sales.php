@@ -20,6 +20,7 @@ $morder=$neworder->get_mix_attr($month);
 
 $gross_sales=0;
 $discounts=0;
+$total_sales=0;
 $ship=0;
 $line=0;
 $total=0;
@@ -28,6 +29,7 @@ $net_sales=0;
 $trefund=0;
 $qtys=0;
 $costs=0;
+
 if(!empty($morder)){
 // if canceled or test dont process crafted by the qery no need to recheck 
 foreach ($morder as $order) {
@@ -66,11 +68,12 @@ $costs=$cost+$get_cost['cost'];
 
 
 }
-}
 $gross_sales=$line;
 $net_sales=$gross_sales-$discounts;
 $total_sales=($gross_sales-$discounts)+($taxes+$ship);
 $gross_margin=($net_sales-$costs/$net_sales)*100;
+}
+
 
 $response=array(
 
@@ -83,7 +86,6 @@ $response=array(
 
 );
 
-header('Content-Type: application/json');
 echo json_encode($response);
 
 

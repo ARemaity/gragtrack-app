@@ -5,15 +5,16 @@ require (dirname(__FILE__,2)).'/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-class Amqp
+class AMPQ
 {
     private $connection;
     private $queueName;
     private $channel;
     private $callback;
     private $exchange;
+    private $consumer_tag;
 
-    public function __construct($host, $port, $login, $password, $queueName,$exchange)
+    public function __construct($host, $port, $login, $password, $queueName,$exchange,$ctag)
     {
         $this->connection = new AMQPStreamConnection($host, $port, $login, $password);
         $this->queueName = $queueName;
@@ -22,6 +23,7 @@ class Amqp
         $this->channel->queue_declare($queueName, false, true, false, false);
         $this->channel->exchange_declare($exchange,'direct',false,true,false);
         $this->channel->queue_bind($queueName,$exchange);
+        $this->consumer_tag=$ctag;
         
     }
 
@@ -85,8 +87,10 @@ class Amqp
         $this->callback = $callback;
 
         $this->channel->basic_qos(null, 1, null);
-
-        $this->channel->basic_consume($this->queueName, '', false, false, false, false, array($this, 'callback'));
+        
+      
+        
+        $this->channel->basic_consume($this->queueName, $this->consumer_tag, false, false, false, false, array($this, 'callback'));
 
         while (count($this->channel->callbacks)) {
             $this->channel->wait();

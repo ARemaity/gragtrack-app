@@ -51,3 +51,15 @@ register_shutdown_function('shutdown', $channel, $connection);
 while ($channel ->is_consuming()) {
     $channel->wait();
 }
+
+
+// This will work on PhpAmqpLib 2.9.2
+function send_heartbeat()
+{
+    $pkt = new PhpAmqpLib\Wire\AMQPWriter();
+    $pkt->write_octet(8);
+    $pkt->write_short(0);
+    $pkt->write_long(0);
+    $pkt->write_octet(0xCE);
+    $connection->getIO()->write($pkt->getvalue());
+}

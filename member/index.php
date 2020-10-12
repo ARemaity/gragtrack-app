@@ -16,28 +16,43 @@ $neworder=new SP_Order();
 $newpr=new SP_Product();
 $months=$neworder->order_month($this_year);
 $data=$neworder->get_all_month();
-$DAYS=$neworder->order_day();
 $data_day=$neworder->get_all_days();
+
+// order_day for UC7 DAY part 
+$DAYS=$neworder->order_day();
+
 $newinv=new API_Product();
 // 
 $tops=$newpr->get_top_five();
 $top_pr=array();
 $handler=array();
 $name="";
-foreach($tops as $top){
-$name=$newinv->get_pr_prp($top['product_id'])['title'];
- $handler=array(
-'name'=>$name,
-'counts'=>$top['counts'],
+if(!is_null($tops)){
+    foreach($tops as $top){
+        $name=$newinv->get_pr_prp($top['product_id'])['title'];
+         $handler=array(
+        'name'=>$name,
+        'counts'=>$top['counts'],
+        
+        
+            );
+            array_push($top_pr,$handler);
+        }
+        
+}else{
+// empty insert no product to $top_p 
+    $top_pr=array(
+        'name'=>'NO Product',
+        'counts'=>'100',
+    
+            );
 
-
-    );
-    array_push($top_pr,$handler);
 }
 
-// 
 
+// quarter for the UC7 
 $qs=$neworder->order_q($this_year);
+
 $data_q=array();
 $api_order = new API_Order();
 ?>
@@ -3482,16 +3497,20 @@ var KTWidgets = function() {
     var _initmonthorder = function() {
 
         <?php
-// init the data of the month order 
+// init the data of the month order UC7 
+if(!is_null($months)){
 
-foreach ($months as $month) {
+    foreach ($months as $month) {
 
-    $monthName = date('M', mktime(0, 0, 0,$month['M'], 10));
-$data[$monthName]=$month['S'];
-
-
+        $monthName = date('M', mktime(0, 0, 0,$month['M'], 10));
+    $data[$monthName]=$month['S'];
+    
+    
+    
+    }
 
 }
+
 $month_value=" [";
 foreach($data as $key=> $value){
 
@@ -3635,9 +3654,13 @@ foreach ($data as $key => $value) {
         <?php
 // init the data of the month order 
 
-
-   
 $q_value=" [";
+$first_q=$qs[0];
+if(is_null($first_q['q1'])){
+
+
+    $q_value.='0,0,0,0]';
+}else{
 foreach($qs[0] as $key=> $value){
 
 
@@ -3650,7 +3673,7 @@ foreach($qs[0] as $key=> $value){
 }
 
 
-
+}
 ?>
         var element = document.getElementById("kt_charts_week_order");
 
@@ -3769,15 +3792,21 @@ foreach($qs[0] as $key=> $value){
     var _initdayorder = function() {
 
         <?php
-foreach ($DAYS as $day) {
+
+        if(!empty($DAYS)){
+            foreach ($DAYS as $day) {
 
  
-    $data_day[$day['D']]=$day['T'];
-    
-    
-    
-    }
-   
+                $data_day[$day['D']]=$day['T'];
+                
+                
+                
+                }
+               
+
+
+        }
+
     
     $day_value=" [";
 foreach($data_day as $key=> $value){
@@ -3925,7 +3954,7 @@ foreach ($data_day as $key => $value) {
         var options = {
             series: [{
                 name: 'Net Profit',
-                data: [30, 25, 45, 30, 55, 55]
+                data: [0, 0,0, 0, 0, 0]
             }],
             chart: {
                 type: 'area',

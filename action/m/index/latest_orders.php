@@ -20,7 +20,7 @@ $fname = 'null';
 $lname = 'null';
 $ccountry='null';
 $length=0;
-if(!empty($latest_order)){
+if(!is_null($latest_order)){
 foreach ($latest_order as $order)
 {
     $api_result = $api->get_single_order($order['order_id']);

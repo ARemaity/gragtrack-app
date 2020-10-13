@@ -19,7 +19,7 @@ array( 'name'=>'orders_updated')
 // array( 'name'=>'orders_updated')
 );
 $name='';
-$PATH2=$_SESSION['AID'].'/receiver/';
+$PATH2='user/'.$_SESSION['AID'].'/receiver/';
 
 
 if (!file_exists($PATH2)) {

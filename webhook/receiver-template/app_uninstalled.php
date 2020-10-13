@@ -2,8 +2,8 @@
 
 require_once "verify.php";
 
-require(dirname(__FILE__,4)."/base.php");
-require dirname(__FILE__,4)."/".DIR_INC."DB_init.php";
+require(dirname(__FILE__,5)."/base.php");
+require dirname(__FILE__,5)."/".DIR_INC."DB_init.php";
 
 
 $init=new DB_init();

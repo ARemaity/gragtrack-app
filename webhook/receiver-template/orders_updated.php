@@ -2,8 +2,8 @@
 
 require_once "verify.php";
 
-require(dirname(__FILE__,4)."/base.php");
-require dirname(__FILE__,4)."/".DIR_INC."DB_init.php";
+require(dirname(__FILE__,5)."/base.php");
+require dirname(__FILE__,5)."/".DIR_INC."DB_init.php";
 
 
 $init=new DB_init();
@@ -31,10 +31,10 @@ $get_aid=basename(dirname( dirname(__FILE__) ));
 
 */
 //Get base class
-require_once (dirname(__FILE__,4)) . '/' . DIR_INC . 'API_Product_variant.php';
-require_once (dirname(__FILE__, 4)) . '/' . DIR_INC . 'API_inverntoryitem.php';
-require_once  (dirname(__FILE__,4)).'/'.DIR_INC.'SP_Order.php';
-require_once  (dirname(__FILE__,4)).'/'.DIR_INC.'SP_Product.php';
+require_once (dirname(__FILE__,5)) . '/' . DIR_INC . 'API_Product_variant.php';
+require_once (dirname(__FILE__, 5)) . '/' . DIR_INC . 'API_inverntoryitem.php';
+require_once  (dirname(__FILE__,5)).'/'.DIR_INC.'SP_Order.php';
+require_once  (dirname(__FILE__,5)).'/'.DIR_INC.'SP_Product.php';
 $sporder=new SP_Order();
 $sproduct=new SP_Product();
 $api_inve=new API_inverntoryitem();

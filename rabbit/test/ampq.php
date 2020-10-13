@@ -1,7 +1,7 @@
 <?php
 
 
-require (dirname(__FILE__,2)).'/autoload.php';
+require (dirname(__FILE__,3)).'/vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
@@ -14,9 +14,9 @@ class AMPQ
     private $exchange;
     private $consumer_tag;
 
-    public function __construct($host, $port, $login, $password, $queueName,$exchange,$ctag)
+    public function __construct($host, $port, $login, $password,$vhost, $queueName,$exchange,$ctag)
     {
-        $this->connection = new AMQPStreamConnection($host, $port, $login, $password);
+        $this->connection = new AMQPStreamConnection($host, $port, $login, $password,$vhost);
         $this->queueName = $queueName;
         $this->delayedQueueName = null;
         $this->channel = $this->connection->channel();
@@ -83,7 +83,7 @@ class AMPQ
     }
 
     public function consume($callback)
-    {
+    {  
         $this->callback = $callback;
 
         $this->channel->basic_qos(null, 1, null);

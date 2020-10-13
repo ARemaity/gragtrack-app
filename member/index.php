@@ -1948,7 +1948,7 @@ $api_order = new API_Order();
                         <div class="card-body my-1">
                             <a href="#"
                                 class="card-title font-weight-bolder text-success text-hover-state-dark font-size-h6 mb-4 d-block">abandoned
-                                Carts <i class="fa fa-info-circle " data-html="true" data-toggle="tooltip" data-placement="right"
+                                Checkouts  <i class="fa fa-info-circle " data-html="true" data-toggle="tooltip" data-placement="right"
                                 title=""
                                 data-original-title="UC5"
                                 style="margin-left: 10px;"></i></a>

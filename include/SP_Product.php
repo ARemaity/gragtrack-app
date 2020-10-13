@@ -28,14 +28,15 @@ class SP_Product{
 
 
     // init : get aid from session where for webhook must inserted in the args 
-    public function init_insert_product($oid,$pid,$vid,$qty){
+    public function init_insert_product($oid,$pid,$vid,$qty,$cost){
 
-        $stmt = $this->conn->prepare("INSERT INTO `sp_product`(`fk_OID`,  `product_id`,`variant_id`, `qty`) VALUES (?,?,?,?)");
-        $stmt->bind_param("iiii",
+        $stmt = $this->conn->prepare("INSERT INTO `sp_product`(`fk_OID`,  `product_id`,`variant_id`, `qty`,`single_cost`) VALUES (?,?,?,?,?)");
+        $stmt->bind_param("iiiii",
         $oid,
         $pid,
         $vid,
-        $qty
+        $qty,
+        $cost
         );
         
         $result = $stmt->execute();
@@ -128,7 +129,7 @@ class SP_Product{
 
 
   $stmt = $this->conn->prepare("
-  SELECT variant_id,qty 
+  SELECT variant_id,qty,single_cost 
   
   from sp_product 
   

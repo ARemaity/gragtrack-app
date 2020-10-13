@@ -9,6 +9,6 @@ define("APP_Name", "grag_app");
 define("Parents","../");
 define("Grand_Parents"," ../../");
 define("parent_Grand_Parents","../../../");
-define("DIR_NGROK",'https://4942104ea499.ngrok.io/gragtrack2/');
+define("DIR_NGROK",' https://90342810a157.ngrok.io/gragtrack2/');
 
 ?>

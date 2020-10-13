@@ -5,15 +5,20 @@
 //Get base class
 require_once (dirname(__FILE__,3)).'/base.php';
 require_once  (dirname(__FILE__,3)).'/'.DIR_INC.'API_Order.php';
+require_once (dirname(__FILE__, 3)) . '/' . DIR_INC . 'API_Product_variant.php';
+require_once (dirname(__FILE__, 3)) . '/' . DIR_INC . 'API_inverntoryitem.php';
 require_once  (dirname(__FILE__,3)).'/'.DIR_INC.'SP_Order.php';
 require_once  (dirname(__FILE__,3)).'/'.DIR_INC.'SP_Product.php';
 $sporder=new SP_Order();
 $sproduct=new SP_Product();
 $neworder=new API_Order();
+$api_inve=new API_inverntoryitem();
+$api_product=new API_Product_variant();
 $get_order=$neworder->get_all_order('any');
 $result='int: ';
 $status=0;
 $counter=0;
+$invet_id=0;
 $line=array();
 $size_order=sizeof($get_order);
 foreach ($get_order as $order){
@@ -63,14 +68,20 @@ $pid=$product['product_id'];
 $vid=$product['variant_id'];
 $name=$product["title"];
 $qty=$product['quantity'];
+$invet_id=$api_product->get_invent_id($vid);
 
 
 
+$cost=$api_inve->get_inv_prp($invet_id['inventory_item_id'])['cost'];
+if(is_null($cost)){
 
-    if($sproduct->init_insert_product($insert_order,$pid,$vid,$qty)){
+    $cost=0;
+}
+
+    if($sproduct->init_insert_product($insert_order,$pid,$vid,$qty,$cost)){
         
     }else{
- 
+
     }
    
 

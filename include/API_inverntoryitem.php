@@ -33,7 +33,7 @@ private $shop_url;
 
     public function get_inv_prp($variant_id){
 
-        $api_url="/admin/api/2020-07/inventory_items/".$variant_id.".json";
+        $api_url="/admin/api/2020-10/inventory_items/".$variant_id.".json";
         $inventory=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
         $inventory=json_decode($inventory['response'],true);
        if(array_key_exists('errors',$inventory)){

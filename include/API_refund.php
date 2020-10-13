@@ -33,7 +33,7 @@ private $shop_url;
 
     public function get_single_refund($order_id){
 
-        $api_url="/admin/api/2020-07/orders/".$order_id."./refunds.json";
+        $api_url="/admin/api/2020-10/orders/".$order_id."./refunds.json";
         $refunds=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
         $refunds=json_decode($refunds['response'],true);
         return $refunds['order'];

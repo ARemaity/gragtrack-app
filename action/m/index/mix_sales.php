@@ -10,14 +10,12 @@ require_once (dirname(__FILE__, 4)) . '/base.php';
 require_once (dirname(__FILE__, 4)) . '/' . DIR_INC . 'SP_Order.php';
 require_once (dirname(__FILE__, 4)) . '/' . DIR_INC . 'SP_product.php';
 require_once (dirname(__FILE__, 4)) . '/' . DIR_INC . 'API_inverntoryitem.php';
-
 $neworder=new SP_Order();
 $newproduct=new SP_Product();
 $api_inve=new API_inverntoryitem();
 $response = array();
 // only get order (get all status except(4,5))
 $morder=$neworder->get_mix_attr($month);
-
 $gross_sales=0;
 $discounts=0;
 $total_sales=0;
@@ -54,16 +52,14 @@ $getpr=$newproduct->get_product_order($order['OID']);
 if(!empty($getpr)){
 
   foreach ($getpr as $product) {
-  
 
     $qtys=$qtys+$product['qty'];
-$get_cost=$api_inve->get_inv_prp($product['variant_id']);
-if(!is_null($api_inve->get_inv_prp($product['variant_id']))){
-$costs=$cost+$get_cost['cost'];
+
+$costs=$costs+$product['single_cost'];
 
 }
   }
-}
+
  
 
 

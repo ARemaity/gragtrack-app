@@ -33,7 +33,7 @@ function __destruct() {
 public function List_wh(){
 
 
-  $counts=shopify_call($this->private_tk, $this->store,'/admin/api/2020-07/webhooks.json',array(),'GET',array());
+  $counts=shopify_call($this->private_tk, $this->store,'/admin/api/2020-10/webhooks.json',array(),'GET',array());
 
   $counts=json_decode($counts['response'],true);
   
@@ -47,7 +47,7 @@ public function delete_wh($id){
 
 
 
-  $delete=shopify_call($this->private_tk, $this->store,'/admin/api/2020-07/webhooks/'.$id.'.json',array(),'DELETE',array());
+  $delete=shopify_call($this->private_tk, $this->store,'/admin/api/2020-10/webhooks/'.$id.'.json',array(),'DELETE',array());
 
   $delete=json_decode($delete['response'],true);
   
@@ -81,7 +81,7 @@ public function register_wh($topic,$address){
   
   
   // Run API call to modify the product
-  $order_create_webhook = shopify_call($this->private_tk, $this->store, "/admin/api/2020-07/webhooks.json", $webhook_data, 'POST',$query);
+  $order_create_webhook = shopify_call($this->private_tk, $this->store, "/admin/api/2020-10/webhooks.json", $webhook_data, 'POST',$query);
 
   $order_create_webhook=json_decode($order_create_webhook['response'],true);
   return $order_create_webhook['webhook'];
@@ -97,7 +97,7 @@ public function register_wh($topic,$address){
 public function get_single_wh($id){
 
 
-  $single=shopify_call($this->private_tk, $this->store,'/admin/api/2020-07/webhooks/'.$id.'.json',array(),'GET',array());
+  $single=shopify_call($this->private_tk, $this->store,'/admin/api/2020-10/webhooks/'.$id.'.json',array(),'GET',array());
 
   $single=json_decode($single['response'],true);
   
@@ -120,7 +120,7 @@ public function update_single_wh($id,$address){
     )
   );
 
-  $order_create_webhook = shopify_call($this->private_tk, $this->store, "/admin/api/2020-07/webhooks/".$id.".json", $webhook_data, 'PUT',$query);
+  $order_create_webhook = shopify_call($this->private_tk, $this->store, "/admin/api/2020-10/webhooks/".$id.".json", $webhook_data, 'PUT',$query);
 
   $order_create_webhook=json_decode($order_create_webhook['response'],true);
   

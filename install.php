@@ -4,7 +4,7 @@ require_once 'base.php';
 // Set variables for our request
 $shop = $_GET['shop'];
 $api_key = "63c2fe83585200119d5aed905e2580a0";
-$scopes = "read_orders,write_orders,read_all_orders,read_products";
+$scopes = "read_orders,write_orders,read_all_orders,read_products,read_inventory";
 $redirect_uri = DIR_ROOT."token.php";
 
 // Build install/approval URL to redirect to

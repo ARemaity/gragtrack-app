@@ -52,7 +52,8 @@ KTApp.unblock("#kt_blockui_card");
   var fetch_order = function () {
     $('#fetch_choice1, #fetch_choice2').on('click', function() {
       var id = $(this).attr('id');
-      $('#'+id).prop('disabled',true);
+      $('#fetch_choice1').prop('disabled',true);
+      $('#fetch_choice2').prop('disabled',true);
       var shop_name = $.cookie("shop_name");
       var val = $(this).val();
       if(val==0){

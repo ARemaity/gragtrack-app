@@ -3922,7 +3922,7 @@ foreach ($data_day as $key => $value) {
                 },
                 y: {
                     formatter: function(val) {
-                        return  val + " Orders in this Day"
+                        return  val + "$ in this Day"
                     }
                 }
             },

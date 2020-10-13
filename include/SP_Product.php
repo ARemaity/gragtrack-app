@@ -152,6 +152,20 @@ class SP_Product{
         }
 
         }
+
+
+        public function delete_order_products($oid) {
+            $stmt = $this->conn->prepare("DELETE FROM `sp_product` WHERE fk_OID = ? ");
+            $stmt->bind_param("i",$oid);
+            $result = $stmt->execute();
+            $stmt->close();
+            if ($result) {
+            return true;
+            } else {
+            return false;
+            }
+            }
+
 }
 
 ?>

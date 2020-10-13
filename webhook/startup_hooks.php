@@ -12,7 +12,8 @@ $wh=new WH_CRUD();
 $newwh=new DB_webhook();
 $wh_files=array(
 array( 'name'=>'app_uninstalled'),
-array( 'name'=>'orders_create')
+array( 'name'=>'orders_create'),
+array( 'name'=>'orders_updated')
 // array( 'name'=>'orders_paid'),
 // array( 'name'=>'orders_cancelled'),
 // array( 'name'=>'orders_updated')
@@ -53,17 +54,7 @@ foreach($wh_files as $sfile){
         $regsiter=$wh->register_wh(str_replace('_', '/', $sfile['name']),$path);
         $insert_wh=$newwh->create_weebhook($regsiter);
         if($insert_wh){
-            // if( !copy($json_source, $json_de) ) {  
-            //     $final_st=0;
-            // }  
-            // else { 
-            
-            //     if( !copy($text_source, $text_des) ) {  
-            //         $final_st=0;
-            //     }  
-                
-            // }
-
+    
             if(!is_file($json_de)){
               
                  file_put_contents($json_de,'',LOCK_EX);     

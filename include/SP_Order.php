@@ -95,7 +95,132 @@ if(!empty($order_array['shipping_lines'])){
     }
 
 
+
+    public function insert_webhook_order($order_array,$aid,$status){
+        $has_refund=0;
+        $istest=0;
+        $include_tax=0;
+        $total_ship=0;
+
+if(!empty($order_array['refunds'])){
+    $has_refund=1;
+
+
+}
+if($order_array['taxes_included']=='true'){
+    $include_tax=1;
+
+}
+if($order_array['test']=='true'){
+    $istest=1;
+
+}
+if(!empty($order_array['shipping_lines'])){
+
+  $ship=$order_array['shipping_lines'];
+  foreach ($ship as $one) {
+     
+      $total_ship=$one['price']-$one['discounted_price'];
+
+
+}
+} 
+        $create = date('Y-m-d H:i:s', strtotime($order_array['created_at']));
+        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`, `has_refund`, `tax_included`, `test`,`status`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("iidddddiiiis",
+        $aid,
+        $order_array['id'],
+        $order_array['total_line_items_price'],
+        $order_array['total_discounts'],
+        $order_array['total_tax'],
+        $total_ship,
+        $order_array['total_price'],
+        $has_refund,
+        $include_tax,
+        $istest,
+        $status,
+        $create
+        );
+        
+        $result = $stmt->execute();
+        $last_id=$stmt->insert_id;
+        $stmt->close();
+        
+        if ($result) {
+              
+            return  $last_id;
+        
+        } else {
+          
+        
+            return 0;
+        }
+        
+
+    }
+
+
     
+
+    public function update_webhook_order($order_array,$aid,$status) {
+
+        $has_refund=0;
+        $istest=0;
+        $include_tax=0;
+        $total_ship=0;
+
+if(!empty($order_array['refunds'])){
+    $has_refund=1;
+
+
+}
+if($order_array['taxes_included']=='true'){
+    $include_tax=1;
+
+}
+if($order_array['test']=='true'){
+    $istest=1;
+
+}
+if(!empty($order_array['shipping_lines'])){
+
+  $ship=$order_array['shipping_lines'];
+  foreach ($ship as $one) {
+     
+      $total_ship=$one['price']-$one['discounted_price'];
+
+
+}
+} 
+        $stmt = $this->conn->prepare("UPDATE `sp_order` SET `total_line`=?,`total_discount`=?,`total_tax`=?,`total_ship`=?,`total_amount`=?,`has_refund`=?,`tax_included`=?,`test`=?,`status`=? WHERE fk_AID=? AND order_id=?");
+        $stmt->bind_param("dddddiiiisii",
+        
+        $order_array['total_line_items_price'],
+        $order_array['total_discounts'],
+        $order_array['total_tax'],
+        $total_ship,
+        $order_array['total_price'],
+        $has_refund,
+        $include_tax,
+        $istest,
+        $status,
+        $create,
+        $aid,
+        $order_array['id']
+        );
+        
+        $result = $stmt->execute();
+        $result = $stmt->execute();
+        $stmt->close();
+        if ($result) {
+        return true;
+        } else {
+        return false;
+        }
+        }
+
+
+
     /**
      * get_mix_attr: get all orders Canceled, pending, and unpaid orders are included. Test and deleted orders are not included.
      *
@@ -243,7 +368,17 @@ public function get_all_days(){
      return  $dayNames;
 }
 
- 
+  
+    public function get_order_id($order_id,$aid) {
+        $stmt = $this->conn->prepare("SELECT  `OID` FROM sp_order WHERE `order_id`='$order_id' AND fk_AID='$aid' ");
+        if ($stmt->execute()) {			
+            $oid = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+			return $oid; 
+        } else {
+            return NULL;
+        }
+    } 
 
 
 }

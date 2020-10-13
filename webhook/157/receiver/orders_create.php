@@ -21,7 +21,7 @@ while (!feof($webhook)) {
 fclose($webhook);
 
 // Decode Shopify POST
-$order = json_decode($webhook_content, TRUE);
+$webhook_content = json_decode($webhook_content, TRUE);
 $current_name=basename(__FILE__, '.php'); 
 $get_aid=basename(dirname( dirname(__FILE__) ));
 /*
@@ -43,7 +43,7 @@ $status=0;
 $invet_id=0;
 $line=array();
 
-    switch ($order['financial_status']) {
+    switch ($webhook_content['financial_status']) {
        case 'pending':
            $status=0;
            break;
@@ -73,35 +73,61 @@ $line=array();
        $status=0;
            break;
    }
-   $update_order=$sporder->update_webhook_order($order,$get_aid,$status); 
+   $insert_order=$sporder->insert_order($webhook_content,$status); 
  
-if($update_order>0){
-    $fp = fopen($current_name.'.txt', 'w');
-    fwrite($fp,'done order ');
-    fclose($fp);
-    $get_oid=$sporder->get_order_id($order['id'],$get_aid);
-    if($sproduct->delete_order_products($get_oid)){
-        $fp = fopen($current_name.'.txt', 'w');
-        fwrite($fp,'done delete ');
-        fclose($fp);
-    }else{
+if($insert_order>0){
 
-        $fp = fopen($current_name.'.txt', 'w');
-        fwrite($fp,'errror  delete ');
-        fclose($fp);
+    $counter+=1;
+   if($status==3){
 
-    }
+
     
-// TODO: get OID ,then delete all product of this order then insert all order 
-}else{
-    $fp = fopen($current_name.'.txt', 'w');
-    fwrite($fp,'error order'.$order['id'].'///'.
-    $order['total_line_items_price'].'///'.
-    $order['total_discounts'].'///'.
-    $order['total_tax']);
-    fclose($fp);
+$line=$webhook_content['line_items'];
+foreach($line as $product){
+$pid=$product['product_id'];
+$vid=$product['variant_id'];
+$name=$product["title"];
+$qty=$product['quantity'];
+$invet_id=$api_product->get_invent_id($vid);
+$cost=$api_inve->get_inv_prp($invet_id['inventory_item_id'])['cost'];
+if(is_null($cost)){
+
+    $cost=0;
 }
 
+    if($sproduct->init_insert_product($insert_order,$pid,$vid,$qty,$cost)){
+        
+    }else{
+
+    }
+   
+
+
+
+}
+
+
+    
+   }
+
+
+}else{
+
+    error_log('Webhook verified: '.var_export($verified, true) ,3, $current_name.'txt');
+}
+
+
+
+
+/*
+
+
+
+
+*/
+// $fp = fopen($current_name.'.json', 'w');
+// fwrite($fp, json_encode($webhook_content));
+// fclose($fp);
 
 }else{
 

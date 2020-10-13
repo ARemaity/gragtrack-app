@@ -10,12 +10,13 @@ require_once  (dirname(__FILE__,2)).'/'.DIR_INC.'DB_webhook.php';
 require_once (dirname(__FILE__,2)).'/'.DIR_INC."WH_CRUD.php";
 $wh=new WH_CRUD();
 $newwh=new DB_webhook();
-$wh_files=array();
-$handler=array(
-
-    'name'=>'app_uninstalled'
+$wh_files=array(
+array( 'name'=>'app_uninstalled'),
+array( 'name'=>'orders_create')
+// array( 'name'=>'orders_paid'),
+// array( 'name'=>'orders_cancelled'),
+// array( 'name'=>'orders_updated')
 );
-array_push($wh_files,$handler);
 $name='';
 $PATH2=$_SESSION['AID'].'/receiver/';
 
@@ -49,20 +50,31 @@ foreach($wh_files as $sfile){
     }  
     else {  
         $path=DIR_NGROK.'webhook/'.$PATH2.$sfile['name'].'.php'; 
-      
-        $regsiter=$wh->register_wh("app/uninstalled",$path);
+        $regsiter=$wh->register_wh(str_replace('_', '/', $sfile['name']),$path);
         $insert_wh=$newwh->create_weebhook($regsiter);
         if($insert_wh){
-            if( !copy($json_source, $json_de) ) {  
-                $final_st=0;
-            }  
-            else { 
+            // if( !copy($json_source, $json_de) ) {  
+            //     $final_st=0;
+            // }  
+            // else { 
             
-                if( !copy($text_source, $text_des) ) {  
-                    $final_st=0;
-                }  
+            //     if( !copy($text_source, $text_des) ) {  
+            //         $final_st=0;
+            //     }  
                 
+            // }
+
+            if(!is_file($json_de)){
+              
+                 file_put_contents($json_de,'',LOCK_EX);     
             }
+
+            if(!is_file($text_des)){
+         
+                file_put_contents($text_des,'',LOCK_EX);    
+    }
+
+
         }
 
 

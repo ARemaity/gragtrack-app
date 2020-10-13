@@ -22,22 +22,15 @@ fclose($webhook);
 
 // Decode Shopify POST
 $webhook_content = json_decode($webhook_content, TRUE);
-
+$current_name=basename(__FILE__, '.php'); 
 $get_aid=basename(dirname( dirname(__FILE__) ));
-$disable=$init->disable_status($get_aid);
-if($disable){
-
-  // TODO: send email return 
-  
-}
-$fp = fopen('app_uninstalled.json', 'w');
+$fp = fopen($current_name.'.json', 'w');
 fwrite($fp, json_encode($webhook_content));
 fclose($fp);
 
-
 }else{
 
-  error_log('Webhook verified: '.var_export($verified, true) ,3, "app_uninstalled.txt");
+  error_log('Webhook verified: '.var_export($verified, true) ,3, $current_name.'txt');
 }
 
 

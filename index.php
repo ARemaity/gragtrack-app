@@ -22,8 +22,9 @@ exit();
 
 require_once DIR_INC.'functions.php';
 require_once DIR_INC.'DB_init.php';
-
+require_once DIR_INC.'DB_logger.php';
 $db = new DB_init();
+$logger = new DB_logger();
 $ip =$db-> getIPAddress();  
  // save shop name to session
 $_SESSION['shop_name']=$_GET['shop'];
@@ -54,7 +55,7 @@ if(!$check_exist){
     $get_setup=$db->get_setup($_SESSION['AID'])['setup_level'];
     $store_prp=$db->get_shop_plan($_SESSION['AID']);
     $_SESSION['currency']=$store_prp['currency'];
-
+    $loggers=$logger->insert_webhook_log($get_aid,'index','test',0,5);
 
     // TODO: insert to login 
     // echo __DIR__; //should be '/main_web_folder/';

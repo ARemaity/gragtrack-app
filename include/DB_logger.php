@@ -28,10 +28,10 @@ class DB_logger{
     }
     public function insert_webhook_log($aid,$tag,$sub_tag,$id,$type){
 
-            
+            // TODO: ERROR: 
+//Fatal error: Uncaught Error: Call to a member function bind_param() on bool in C:\xampp\htdocs\gragtrack2\include\DB_logger.php:33 Stack trace: #0 C:\xampp\htdocs\gragtrack2\index.php(58): DB_logger->insert_webhook_log(166, 'index', 'test', 0, 5) #1 {main} thrown in C:\xampp\htdocs\gragtrack2\include\DB_logger.php on line 33
                 $stmt = $this->conn->prepare("INSERT INTO `webhook_log`( `fk_AID`, `tag`, `sub_tag`, `Identifier`, `type`) VALUES (?,?,?,?,?)");
-                $stmt->bind_param("i,s,s,i,i",$aid,$tag,$sub_tag,$id,$type);
-                $result = $stmt->execute();
+                $bind_it=$stmt->bind_param("sssss",$aid,$tag,$sub_tag,$id,$type);
                 $stmt->close();
                 
                         if ($result) {
@@ -41,7 +41,7 @@ class DB_logger{
                        } else {
                   
                 
-                              return false;
+                              return  $stmt->error;
                       }
                         
                  }

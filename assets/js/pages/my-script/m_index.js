@@ -96,7 +96,7 @@ $.ajax({
  $('#gross_sales').html(gross_sales+" "+currency);
  $('#net_sales').html(net_sales+" "+currency);
  $('#total_sales').html(total_sales+" "+currency);
- $('#net_quantity').html(Net_quantity+" "+currency);
+ $('#net_quantity').html(Net_quantity+" product");
         KTApp.unblock("#blockui_mix_sales");
 
     }

@@ -149,7 +149,7 @@ class DB_init{
      * @return array array['plan']
      */
     public function get_shop_plan($aid) {
-        $stmt = $this->conn->prepare("SELECT  `shop_plan_name` as plan  FROM store_prp WHERE `FK_AID`='$aid' ");
+        $stmt = $this->conn->prepare("SELECT  `shop_plan_name` as plan,`shop_currency` as currency  FROM store_prp WHERE `FK_AID`='$aid' ");
         if ($stmt->execute()) {			
             $plan = $stmt->get_result()->fetch_assoc();
             $stmt->close();
@@ -190,9 +190,9 @@ class DB_init{
      * @param  array $get_store_prp
      * @return boolean
      */
-    public function insert_store_prp($get_store_prp){
-$stmt = $this->conn->prepare("INSERT INTO `store_prp`(`FK_AID`, `shop_id`, `shop_name`, `shop_city`, `shop_domain`, `shop_address`, `shop_country`, `shop_source`, `shop_created_at`, `shop_plan_name`, `shop_setup_required`, `shop_timezone`, `owner_email`, `owner_phone`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-$stmt->bind_param("iissssssssisss",
+public function insert_store_prp($get_store_prp){
+$stmt = $this->conn->prepare("INSERT INTO `store_prp`(`FK_AID`, `shop_id`, `shop_name`, `shop_city`, `shop_domain`, `shop_address`, `shop_country`,  `shop_currency`, `shop_money_format`, `shop_created_at`, `shop_plan_name`, `shop_setup_required`, `shop_timezone`, `owner_email`, `owner_phone`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+$stmt->bind_param("iissssssssissss",
 $_SESSION["AID"],
 $get_store_prp['id'],
 $get_store_prp['name'],
@@ -200,7 +200,8 @@ $get_store_prp['city'],
 $get_store_prp['domain'],
 $get_store_prp['address1'],
 $get_store_prp['country'],
-$get_store_prp['source'],
+$get_store_prp['currency'],
+$get_store_prp['money_format'],
 $get_store_prp['created_at'],
 $get_store_prp['plan_name'],
 $get_store_prp['setup_required'],

@@ -53,7 +53,7 @@ $.ajax({
 "<span class='text-success font-size-h5 font-weight-bolder ml-1'>"+nbitem+"</span>"+
             "</td>"+
             "<td class='text-right align-middle pb-6'>"+
-                "<div class='font-size-lg font-weight-bolder text-dark-75'>$"+total+"</div>"+
+                "<div class='font-size-lg font-weight-bolder text-dark-75'>"+currency+" "+total+"</div>"+
             "</td>"+
         "</tr>";
 
@@ -93,10 +93,10 @@ $.ajax({
     net_sales=response.net_sales;
     total_sales=response.total_sales;
     Net_quantity=response.net_qty;
- $('#gross_sales').html(gross_sales+"$");
- $('#net_sales').html(net_sales+"$");
- $('#total_sales').html(total_sales+"$");
- $('#net_quantity').html(Net_quantity+"$");
+ $('#gross_sales').html(gross_sales+" "+currency);
+ $('#net_sales').html(net_sales+" "+currency);
+ $('#total_sales').html(total_sales+" "+currency);
+ $('#net_quantity').html(Net_quantity+" "+currency);
         KTApp.unblock("#blockui_mix_sales");
 
     }

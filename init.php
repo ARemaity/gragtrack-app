@@ -16,8 +16,8 @@ if(isset($_SESSION['AID'])):
     $db = new DB_init();
     $bool='False';
     $booln=False;
-    $plan_name=$db->get_shop_plan($_SESSION['AID'])['plan'];
-		if($plan_name=='unlimited'|| $plan_name=='enterprise'){
+    $store_prp=$db->get_shop_plan($_SESSION['AID']);
+		if($store_prp['plan']=='unlimited'|| $store_prp['plan']=='enterprise'){
             $bool='TRUE';
             $booln=TRUE;
             

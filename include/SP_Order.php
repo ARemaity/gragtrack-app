@@ -193,8 +193,8 @@ if(!empty($order_array['shipping_lines'])){
 }
 } 
         $stmt = $this->conn->prepare("UPDATE `sp_order` SET `total_line`=?,`total_discount`=?,`total_tax`=?,`total_ship`=?,`total_amount`=?,`has_refund`=?,`tax_included`=?,`test`=?,`status`=? WHERE fk_AID=? AND order_id=?");
-        $stmt->bind_param("dddddiiiisii",
-        
+        $stmt->bind_param("dddddiiiiii",
+
         $order_array['total_line_items_price'],
         $order_array['total_discounts'],
         $order_array['total_tax'],
@@ -204,18 +204,17 @@ if(!empty($order_array['shipping_lines'])){
         $include_tax,
         $istest,
         $status,
-        $create,
         $aid,
         $order_array['id']
         );
         
         $result = $stmt->execute();
-        $result = $stmt->execute();
+
         $stmt->close();
         if ($result) {
         return true;
         } else {
-        return false;
+        return var_dump($result);
         }
         }
 

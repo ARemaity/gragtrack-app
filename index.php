@@ -52,7 +52,8 @@ if(!$check_exist){
     $get_aid=$db->get_access_ID($_GET['shop'])['AID'];
     $_SESSION['AID']=$get_aid;
     $get_setup=$db->get_setup($_SESSION['AID'])['setup_level'];
-
+    $store_prp=$db->get_shop_plan($_SESSION['AID']);
+    $_SESSION['currency']=$store_prp['currency'];
 
 
     // TODO: insert to login 

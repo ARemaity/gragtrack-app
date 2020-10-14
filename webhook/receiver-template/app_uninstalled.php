@@ -4,10 +4,10 @@ require_once "verify.php";
 
 require(dirname(__FILE__,5)."/base.php");
 require dirname(__FILE__,5)."/".DIR_INC."DB_init.php";
-
+require dirname(__FILE__,5)."/".DIR_INC."DB_logger.php";
 
 $init=new DB_init();
-
+$logger=new DB_logger();
 if($verified=='true'){
 
 // Load variables
@@ -24,6 +24,8 @@ fclose($webhook);
 $webhook_content = json_decode($webhook_content, TRUE);
 
 $get_aid=basename(dirname( dirname(__FILE__) ));
+$loggers=$logger->insert_webhook_log($get_aid,'shop',$current_name,0,5);
+
 $disable=$init->disable_status($get_aid);
 if($disable){
 

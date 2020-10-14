@@ -87,6 +87,10 @@ $api_order = new API_Order();
     <!--end::Layout Themes-->
 
     <link rel="shortcut icon" href="../assets/media/logos/favicon.ico" />
+    <script type="text/javascript">
+
+var currency="<?php echo $_SESSION['currency']; ?>";
+</script>
 
 </head>
 <!--end::Head-->
@@ -1546,82 +1550,8 @@ $api_order = new API_Order();
                             </div>
                             <!--end::Quick panel-->
 
-                            <!--begin::Languages-->
-                            <div class="dropdown">
-                                <!--begin::Toggle-->
-                                <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
-                                    <div class="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1">
-                                        <img class="h-20px w-20px rounded-sm"
-                                            src="../assets/media/svg/flags/226-united-states.svg" alt="" />
-                                    </div>
-                                </div>
-                                <!--end::Toggle-->
-
-                                <!--begin::Dropdown-->
-                                <div
-                                    class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right">
-                                    <!--begin::Nav-->
-                                    <ul class="navi navi-hover py-4">
-                                        <!--begin::Item-->
-                                        <li class="navi-item">
-                                            <a href="#" class="navi-link">
-                                                <span class="symbol symbol-20 mr-3">
-                                                    <img src="../assets/media/svg/flags/226-united-states.svg" alt="" />
-                                                </span>
-                                                <span class="navi-text">English</span>
-                                            </a>
-                                        </li>
-                                        <!--end::Item-->
-
-                                        <!--begin::Item-->
-                                        <li class="navi-item active">
-                                            <a href="#" class="navi-link">
-                                                <span class="symbol symbol-20 mr-3">
-                                                    <img src="../assets/media/svg/flags/128-spain.svg" alt="" />
-                                                </span>
-                                                <span class="navi-text">Spanish</span>
-                                            </a>
-                                        </li>
-                                        <!--end::Item-->
-
-                                        <!--begin::Item-->
-                                        <li class="navi-item">
-                                            <a href="#" class="navi-link">
-                                                <span class="symbol symbol-20 mr-3">
-                                                    <img src="../assets/media/svg/flags/162-germany.svg" alt="" />
-                                                </span>
-                                                <span class="navi-text">German</span>
-                                            </a>
-                                        </li>
-                                        <!--end::Item-->
-
-                                        <!--begin::Item-->
-                                        <li class="navi-item">
-                                            <a href="#" class="navi-link">
-                                                <span class="symbol symbol-20 mr-3">
-                                                    <img src="../assets/media/svg/flags/063-japan.svg" alt="" />
-                                                </span>
-                                                <span class="navi-text">Japanese</span>
-                                            </a>
-                                        </li>
-                                        <!--end::Item-->
-
-                                        <!--begin::Item-->
-                                        <li class="navi-item">
-                                            <a href="#" class="navi-link">
-                                                <span class="symbol symbol-20 mr-3">
-                                                    <img src="../assets/media/svg/flags/195-france.svg" alt="" />
-                                                </span>
-                                                <span class="navi-text">French</span>
-                                            </a>
-                                        </li>
-                                        <!--end::Item-->
-                                    </ul>
-                                    <!--end::Nav-->
-                                </div>
-                                <!--end::Dropdown-->
-                            </div>
-                            <!--end::Languages-->
+                           
+                        
 
                             <!--begin::User-->
                             <div class="dropdown">
@@ -2269,55 +2199,14 @@ $api_order = new API_Order();
                         <!--begin::Body-->
                         <div class="card-body pt-0">
                             <!--begin::Item-->
-                            <div class="mb-6">
-                                <!--begin::Content-->
-                                <div class="d-flex align-items-center flex-grow-1">
-                                    <!--begin::Checkbox-->
-                                    <label class="checkbox checkbox-lg checkbox-lg flex-shrink-0 mr-4">
-                                        <input type="checkbox" value="1" />
-                                        <span></span>
-                                    </label>
-                                    <!--end::Checkbox-->
-
-                                    <!--begin::Section-->
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
-                                        <!--begin::Info-->
-                                        <div class="d-flex flex-column align-items-cente py-2 w-75">
-                                            <!--begin::Title-->
-                                            <a href="#"
-                                                class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">
-                                                Daily Standup Meeting
-                                            </a>
-                                            <!--end::Title-->
-
-                                            <!--begin::Data-->
-                                            <span class="text-muted font-weight-bold">
-                                                Due in 2 Days
-                                            </span>
-                                            <!--end::Data-->
-                                        </div>
-                                        <!--end::Info-->
-
-                                        <!--begin::Label-->
-                                        <span
-                                            class="label label-lg label-light-primary label-inline font-weight-bold py-4">Approved</span>
-                                        <!--end::Label-->
-                                    </div>
-                                    <!--end::Section-->
-                                </div>
-                                <!--end::Content-->
-                            </div>
-                            <!--end::Item-->
+                     
 
                             <!--begin::Item-->
                             <div class="mb-6">
                                 <!--begin::Content-->
                                 <div class="d-flex align-items-center flex-grow-1">
                                     <!--begin::Checkbox-->
-                                    <label class="checkbox checkbox-lg checkbox-lg flex-shrink-0 mr-4">
-                                        <input type="checkbox" value="1" />
-                                        <span></span>
-                                    </label>
+                                   
                                     <!--end::Checkbox-->
 
                                     <!--begin::Section-->
@@ -2351,129 +2240,10 @@ $api_order = new API_Order();
                             </div>
                             <!--end::Item-->
 
-                            <!--begin::Item-->
-                            <div class="mb-6">
-                                <!--begin::Content-->
-                                <div class="d-flex align-items-center flex-grow-1">
-                                    <!--begin::Checkbox-->
-                                    <label class="checkbox checkbox-lg checkbox-lg flex-shrink-0 mr-4">
-                                        <input type="checkbox" value="1" />
-                                        <span></span>
-                                    </label>
-                                    <!--end::Checkbox-->
+                        
 
-                                    <!--begin::Section-->
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
-                                        <!--begin::Info-->
-                                        <div class="d-flex flex-column align-items-cente py-2 w-75">
-                                            <!--begin::Title-->
-                                            <a href="#"
-                                                class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">
-                                                Next sprint planning and estimations
-                                            </a>
-                                            <!--end::Title-->
-
-                                            <!--begin::Data-->
-                                            <span class="text-muted font-weight-bold">
-                                                Due in 2 Days
-                                            </span>
-                                            <!--end::Data-->
-                                        </div>
-                                        <!--end::Info-->
-
-                                        <!--begin::Label-->
-                                        <span
-                                            class="label label-lg label-light-success label-inline font-weight-bold py-4">Success</span>
-                                        <!--end::Label-->
-                                    </div>
-                                    <!--end::Section-->
-                                </div>
-                                <!--end::Content-->
-                            </div>
-                            <!--end::Item-->
-
-                            <!--begin::Item-->
-                            <div class="mb-6">
-                                <!--begin::Content-->
-                                <div class="d-flex align-items-center flex-grow-1">
-                                    <!--begin::Checkbox-->
-                                    <label class="checkbox checkbox-lg checkbox-lg flex-shrink-0 mr-4">
-                                        <input type="checkbox" value="1" />
-                                        <span></span>
-                                    </label>
-                                    <!--end::Checkbox-->
-
-                                    <!--begin::Section-->
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
-                                        <!--begin::Info-->
-                                        <div class="d-flex flex-column align-items-cente py-2 w-75">
-                                            <!--begin::Title-->
-                                            <a href="#"
-                                                class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">
-                                                Sprint delivery and project deployment
-                                            </a>
-                                            <!--end::Title-->
-
-                                            <!--begin::Data-->
-                                            <span class="text-muted font-weight-bold">
-                                                Due in 2 Days
-                                            </span>
-                                            <!--end::Data-->
-                                        </div>
-                                        <!--end::Info-->
-
-                                        <!--begin::Label-->
-                                        <span
-                                            class="label label-lg label-light-danger label-inline font-weight-bold py-4">Rejected</span>
-                                        <!--end::Label-->
-                                    </div>
-                                    <!--end::Section-->
-                                </div>
-                                <!--end::Content-->
-                            </div>
-                            <!--end: Item-->
-
-                            <!--begin: Item-->
-                            <div class="">
-                                <!--begin::Content-->
-                                <div class="d-flex align-items-center flex-grow-1">
-                                    <!--begin::Checkbox-->
-                                    <label class="checkbox checkbox-lg checkbox-lg flex-shrink-0 mr-4">
-                                        <input type="checkbox" value="1" />
-                                        <span></span>
-                                    </label>
-                                    <!--end::Checkbox-->
-
-                                    <!--begin::Section-->
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
-                                        <!--begin::Info-->
-                                        <div class="d-flex flex-column align-items-cente py-2 w-75">
-                                            <!--begin::Title-->
-                                            <a href="#"
-                                                class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">
-                                                Data analytics research showcase
-                                            </a>
-                                            <!--end::Title-->
-
-                                            <!--begin::Data-->
-                                            <span class="text-muted font-weight-bold">
-                                                Due in 2 Days
-                                            </span>
-                                            <!--end::Data-->
-                                        </div>
-                                        <!--end::Info-->
-
-                                        <!--begin::Label-->
-                                        <span
-                                            class="label label-lg label-light-warning label-inline font-weight-bold py-4">In
-                                            Progress</span>
-                                        <!--end::Label-->
-                                    </div>
-                                    <!--end::Section-->
-                                </div>
-                                <!--end::Content-->
-                            </div>
-                            <!--end: Item-->
+                           
+                           
                         </div>
                         <!--end: Card Body-->
                     </div>
@@ -3626,7 +3396,7 @@ foreach ($data as $key => $value) {
                 },
                 y: {
                     formatter: function(val) {
-                        return  val + " Orders in this Month"
+                        return  val + " "+ currency+" in this Month"
                     }
                 }
             },
@@ -3767,7 +3537,7 @@ foreach($qs[0] as $key=> $value){
                 },
                 y: {
                     formatter: function(val) {
-                        return  val + " Orders in this Quarter"
+                        return  val +  " "+ currency+" in this Quarter"
                     }
                 }
             },
@@ -3922,7 +3692,7 @@ foreach ($data_day as $key => $value) {
                 },
                 y: {
                     formatter: function(val) {
-                        return  val + "$ in this Day"
+                        return  val +  " "+ currency+" in this Day"
                     }
                 }
             },
@@ -4061,7 +3831,7 @@ foreach ($data_day as $key => $value) {
                 },
                 y: {
                     formatter: function(val) {
-                        return "$" + val + " thousands"
+                        return   currency+" "+ val
                     }
                 }
             },
@@ -4265,7 +4035,7 @@ foreach ($data_day as $key => $value) {
                 },
                 y: {
                     formatter: function(val) {
-                        return "$" + val + " thousands"
+                        return currency+" " + val
                     }
                 }
             },

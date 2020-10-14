@@ -4,10 +4,10 @@ require_once "verify.php";
 
 require(dirname(__FILE__,5)."/base.php");
 require dirname(__FILE__,5)."/".DIR_INC."DB_init.php";
-
+require dirname(__FILE__,5)."/".DIR_INC."DB_logger.php";
 
 $init=new DB_init();
-
+$logger=new DB_logger();
 if($verified=='true'){
 
 // Load variables
@@ -24,6 +24,8 @@ fclose($webhook);
 $order = json_decode($webhook_content, TRUE);
 $current_name=basename(__FILE__, '.php'); 
 $get_aid=basename(dirname( dirname(__FILE__) ));
+
+$loggers=$logger->insert_webhook_log($get_aid,'order',$current_name,$order['id'],1);
 /*
 
 
@@ -117,10 +119,7 @@ if(is_null($cost)){
 
 }else{
     $fp = fopen($current_name.'.txt', 'w');
-    fwrite($fp,'error order'.$order['id'].'///'.
-    $order['total_line_items_price'].'///'.
-    $order['total_discounts'].'///'.
-    $order['total_tax']);
+    fwrite($fp,'error order'.$order['id']);
     fclose($fp);
 }
 

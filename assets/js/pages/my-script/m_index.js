@@ -67,6 +67,19 @@ var m_index_page = (function () {
               total +
               "</div>" +
               "</td>" +
+              "<td class='text-right align-middle pb-6'>" +
+              "<div class='font-size-lg font-weight-bolder text-dark-75'>" +
+              "<div class='dropdown dropdown-inline'>"+
+              "<button type='button' class='btn btn-light-primary btn-icon btn-sm' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+
+                  "<i class='ki ki-bold-more-ver'></i>"+
+              "</button>"+
+             " <div class='dropdown-menu'>"+
+             "<a class='dropdown-item' href='#'>View Order</a>"+
+             "<a class='dropdown-item' href='#'>View Customer</a>"+
+             " </div>"+
+          "</div>"+
+              "</div>" +
+              "</td>" +
               "</tr>";
 
             $("#latest_order tbody").append(tr_str);
@@ -192,12 +205,83 @@ var m_index_page = (function () {
     });
   };
 
+  var event_log = function () {
+    $(document).ready(function () {
+      KTApp.block("#kt_event_logs_card", {
+          overlayColor: "#000000",
+          state: "secondary",
+          message: "Processing...",
+        });
+      // get the latest order [current all] TODO: add filter paid , cancel
+      $.ajax({
+        url: "../action/m/index/log_event.php",
+        type: "post",
+        // dataType: 'JSON',
+        data: { get_log: 1 },
+        success: function (response) {
+          console.log(response);
+          var logs_js = JSON.parse(response);
+          if (logs_js.isdata == 0) {
+              console.log('no data');
+           var logs_no=
+                  '<div class="d-flex flex-center text-center text-muted min-h-200px">'+
+                                                    'All caught up!'+
+                                                    '<br>'+
+                                                    'No new notifications.'+
+                                                '</div>';
+
+                                                $("#event_log_card").append(logs_no);
+                                                KTApp.unblock("#kt_event_logs_card");
+          } else {
+     
+            $.each(logs_js.logs, function (i, log) {
+              var type = "";
+              var color="";
+              switch (log.type) {
+                case 1:
+                    color="primary";
+                    
+                  break;
+                case 2:
+                    color="success";
+                  break;
+                case 3:
+                    color="warning";
+                  break;
+                case 4:
+                    color="danger";
+                  break;
+                  
+                  
+                default:
+                  break;
+              }
+              var output_logs =
+              "<div class='timeline-item'>"+
+              "<div class='timeline-badge'></div>"+
+              "<div class='timeline-content d-flex align-items-center justify-content-between'>"+
+                 " <span class='mr-3'>"+
+                     " <a href='#'>12 new users registered and pending for activation</a> <span class='label label-light-success font-weight-bolder'>8</span>"+
+                  "</span>"+
+                  "<span class='text-muted text-right'>3 hrs ago</span>"+
+              "</div>"+
+          "</div>";
+                $("#event_log_card").append(output_logs);
+            });
+            KTApp.unblock("#kt_event_logs_card");
+          }
+        },
+      });
+    });
+  };
+
   return {
     // public functions
     init: function () {
       latest_order();
       mix_sales();
       webhook_log();
+      event_log();
     },
   };
 })();

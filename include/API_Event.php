@@ -37,9 +37,9 @@ private $shop_url;
  
 
 
-  public function get_all_event($status){
+  public function get_all_event(){
 
-    $api_url="/admin/api/2020-10/events.json?filter=".$status;
+    $api_url="/admin/api/2020-10/events.json?filter=Product,Order&limit=15";
     $events=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
   
     $events=json_decode($events['response'],true);

@@ -254,6 +254,29 @@ if ($stmt->execute()) {
 
 
 
+    }    
+    /**
+     * sales_month only status PAID order are fetched as SALES 
+     *
+     * @param  int $year
+     * @return array assoc
+     */
+    public function sales_month($year){
+        // select MONTH(created_at) as mcreate ,sum(total_amount) from sp_order where created_at >= NOW() - INTERVAL 1 YEAR group by MONTH(created_at)
+        $stmt = $this->conn->prepare("select MONTH(created_at) AS M,sum(total_amount) AS S from sp_order where YEAR(created_at)=? AND fk_AID = ? AND status=3 group by MONTH(created_at)");
+        $stmt->bind_param("ii", $year,$this->aid);
+    if ($stmt->execute()) {			
+        $sales = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+    
+        return $sales; 
+    } else {
+        return NULL;
+    }
+    
+    
+    
+    
     }
 public function order_month($year){
     // select MONTH(created_at) as mcreate ,sum(total_amount) from sp_order where created_at >= NOW() - INTERVAL 1 YEAR group by MONTH(created_at)

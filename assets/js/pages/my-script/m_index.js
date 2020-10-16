@@ -23,19 +23,19 @@ var m_index_page = (function () {
           var ccountry;
           for (var i = 0; i < len; i++) {
             if (response[i].fname == "null") {
-              fname = "--";
+              fname = "NUll";
             } else {
               fname = response[i].fname;
             }
 
             if (response[i].lname == "null") {
-              lname = "--";
+              lname = "Name";
             } else {
               lname = response[i].lname;
             }
 
             if (response[i].ccountry == "null") {
-              ccountry = "--";
+              ccountry = "Null";
             } else {
               ccountry = response[i].cn;
             }
@@ -113,11 +113,11 @@ var m_index_page = (function () {
   // card blocking
   var webhook_log = function () {
     $(document).ready(function () {
-      // KTApp.block("#kt_blockui_card", {
-      //     overlayColor: "#000000",
-      //     state: "secondary",
-      //     message: "Processing...",
-      //   });
+      KTApp.block("#kt_wh_logs_card", {
+          overlayColor: "#000000",
+          state: "secondary",
+          message: "Processing...",
+        });
       // get the latest order [current all] TODO: add filter paid , cancel
       $.ajax({
         url: "../action/m/index/log_webhook.php",
@@ -126,12 +126,20 @@ var m_index_page = (function () {
         data: { get_log: 1 },
         success: function (response) {
           console.log(response);
-          var isdata = response.isdata;
+          var logs_js = JSON.parse(response);
+          if (logs_js.isdata == 0) {
+              console.log('no data');
+           var logs_no=
+                  '<div class="d-flex flex-center text-center text-muted min-h-200px">'+
+                                                    'All caught up!'+
+                                                    '<br>'+
+                                                    'No new notifications.'+
+                                                '</div>';
 
-          if (isdata == 0) {
-            console.log("no data");
+                                                $("#m_wh_logs").append(logs_no);
+                                                KTApp.unblock("#kt_wh_logs_card");
           } else {
-            var logs_js = JSON.parse(response);
+     
             $.each(logs_js.logs, function (i, log) {
               var type = "";
               var color="";
@@ -177,6 +185,7 @@ var m_index_page = (function () {
                 "</div>";
                 $("#m_wh_logs").append(output_logs);
             });
+            KTApp.unblock("#kt_wh_logs_card");
           }
         },
       });

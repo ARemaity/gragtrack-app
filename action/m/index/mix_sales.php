@@ -4,7 +4,7 @@
   #total discounts,total refund........
 if(isset($_POST)&&$_POST['get_mix']==1){
 @ob_end_clean();
-$month=date("M");
+$month=date("m");
 require_once (dirname(__FILE__, 4)) . '/base.php';
 require_once (dirname(__FILE__, 4)) . '/' . DIR_INC . 'SP_Order.php';
 require_once (dirname(__FILE__, 4)) . '/' . DIR_INC . 'SP_product.php';
@@ -13,6 +13,7 @@ $neworder=new SP_Order();
 $newproduct=new SP_Product();
 $api_inve=new API_inverntoryitem();
 $response = array();
+$response['nb_sales']=array();
 // only get order (get all status except(4,5))
 $morder=$neworder->get_mix_attr($month);
 $gross_sales=0;

@@ -15,7 +15,9 @@ require_once (dirname(__FILE__,2)).'/'.DIR_INC.'/API_Product.php';
 $neworder=new SP_Order();
 $newpr=new SP_Product();
 $months=$neworder->order_month($this_year);
+$salesm=$neworder->sales_month($this_year);
 $data=$neworder->get_all_month();
+$datam=$neworder->get_all_month();
 $data_day=$neworder->get_all_days();
 
 // order_day for UC7 DAY part 
@@ -2085,6 +2087,9 @@ var currency="<?php echo $_SESSION['currency']; ?>";
                                     style="margin-left: 10px;"></i></span>
 
                             </h3>
+                            <div class="card-toolbar">
+                                <button type="button" class="btn btn-secondary">Veiw All</button>
+                            </div>
 
                         </div>
                         <!--end::Header-->
@@ -2185,7 +2190,7 @@ var currency="<?php echo $_SESSION['currency']; ?>";
             <div class="row">
                 <div class="col-lg-6">
                     <!--begin::List Widget 10-->
-                    <div class="card card-custom  card-stretch gutter-b">
+                    <div class="card card-custom  card-stretch gutter-b" id="kt_wh_logs_card">
                         <!--begin::Header-->
                         <div class="card-header border-0">
                             
@@ -3685,6 +3690,35 @@ foreach ($data_day as $key => $value) {
 
     // location at index.php
     var _mixedsales = function() {
+        <?php
+// init the data of the month order UC7 
+if(!is_null($salesm)){
+
+    foreach ($salesm as $sale) {
+
+        $monthNamem = date('M', mktime(0, 0, 0,$sale['M'], 10));
+    $datam[$monthNamem]=$sale['S'];
+    
+    
+    
+    }
+
+}
+
+$sales_value=" [";
+foreach($datam as $key=> $value){
+
+
+    if($key!='Dec'){
+
+        $sales_value.=$value.',';
+    }else{
+        $sales_value.=$value.']';
+    }
+}
+
+
+?>
         var element = document.getElementById("chart_sales_mixed");
         var height = parseInt(KTUtil.css(element, 'height'));
 
@@ -3694,8 +3728,8 @@ foreach ($data_day as $key => $value) {
 
         var options = {
             series: [{
-                name: 'Net Profit',
-                data: [0, 0,0, 0, 0, 0]
+                name: 'Total Sales',
+                data: <?php echo $sales_value; ?>
             }],
             chart: {
                 type: 'area',
@@ -3728,7 +3762,7 @@ foreach ($data_day as $key => $value) {
                 colors: [KTApp.getSettings()['colors']['theme']['base']['info']]
             },
             xaxis: {
-                categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                categories: <?php echo $month_name; ?>,
                 axisBorder: {
                     show: false,
                 },

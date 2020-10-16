@@ -41,14 +41,7 @@ $time=timeago($log['created_at']);
 echo json_encode($response);
 }else{
 
-    $message=array(
-    
-    
-        'msg'=>$isdata,
-    
-    
-    );
-    array_push($response['isdata'],$message);
+    $response['isdata']=$isdata;
     echo json_encode($response);
 }
 

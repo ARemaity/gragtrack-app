@@ -25,16 +25,13 @@ $webhook_content = json_decode($webhook_content, TRUE);
 
 $get_aid=basename(dirname( dirname(__FILE__) ));
 $loggers=$logger->insert_webhook_log($get_aid,'shop',$current_name,0,5);
-
 $disable=$init->disable_status($get_aid);
 if($disable){
 
   // TODO: send email return 
   
 }
-$fp = fopen('app_uninstalled.json', 'w');
-fwrite($fp, json_encode($webhook_content));
-fclose($fp);
+
 
 
 }else{

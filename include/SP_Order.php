@@ -36,6 +36,7 @@ public function insert_order($order_array,$status){
         $istest=0;
         $include_tax=0;
         $total_ship=0;
+        $customer_id=0;
 
 if(!empty($order_array['refunds'])){
     $has_refund=1;
@@ -60,11 +61,16 @@ if(!empty($order_array['shipping_lines'])){
 
 }
 } 
+if(!empty($order_array['customer'])){
+
+   $customer_id=$order_array['customer']['id'];
+  } 
         $create = date('Y-m-d H:i:s', strtotime($order_array['created_at']));
-        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`, `has_refund`, `tax_included`, `test`,`status`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("iidddddiiiis",
+        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`, `has_refund`, `tax_included`, `test`,`status`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("iiidddddiiiis",
         $_SESSION['AID'],
         $order_array['id'],
+        $customer_id,
         $order_array['total_line_items_price'],
         $order_array['total_discounts'],
         $order_array['total_tax'],
@@ -101,7 +107,7 @@ if(!empty($order_array['shipping_lines'])){
         $istest=0;
         $include_tax=0;
         $total_ship=0;
-
+$customer_id=0;
 if(!empty($order_array['refunds'])){
     $has_refund=1;
 
@@ -124,12 +130,16 @@ if(!empty($order_array['shipping_lines'])){
 
 
 }
-} 
+} if(!empty($order_array['customer'])){
+
+    $customer_id=$order_array['customer']['id'];
+   } 
         $create = date('Y-m-d H:i:s', strtotime($order_array['created_at']));
-        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`, `has_refund`, `tax_included`, `test`,`status`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("iidddddiiiis",
+        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`, `has_refund`, `tax_included`, `test`,`status`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("iiidddddiiiis",
         $aid,
         $order_array['id'],
+        $customer_id,
         $order_array['total_line_items_price'],
         $order_array['total_discounts'],
         $order_array['total_tax'],
@@ -163,7 +173,7 @@ if(!empty($order_array['shipping_lines'])){
     
 
     public function update_webhook_order($order_array,$aid,$status) {
-
+     
         $has_refund=0;
         $istest=0;
         $include_tax=0;
@@ -192,6 +202,7 @@ if(!empty($order_array['shipping_lines'])){
 
 }
 } 
+ 
         $stmt = $this->conn->prepare("UPDATE `sp_order` SET `total_line`=?,`total_discount`=?,`total_tax`=?,`total_ship`=?,`total_amount`=?,`has_refund`=?,`tax_included`=?,`test`=?,`status`=? WHERE fk_AID=? AND order_id=?");
         $stmt->bind_param("dddddiiiiii",
 
@@ -367,7 +378,14 @@ public function get_all_days(){
      return  $dayNames;
 }
 
-  
+      
+    /**
+     * get_order_id 
+     *
+     * @param  int $order_id
+     * @param  int $aid
+     * @return int OID OR NULL
+     */
     public function get_order_id($order_id,$aid) {
         $stmt = $this->conn->prepare("SELECT  `OID` FROM sp_order WHERE `order_id`='$order_id' AND fk_AID='$aid' ");
         if ($stmt->execute()) {			
@@ -378,7 +396,22 @@ public function get_all_days(){
             return NULL;
         }
     } 
-
+    public function check_order_exist($order_id) {
+        // check in case , they installed 
+           $stmt = $this->conn->prepare("SELECT * FROM `sp_order` WHERE order_id='$order_id'");
+         
+           $result = $stmt->execute();
+           $stmt->store_result(); //store_result() "binds" the last given answer to the statement-object for... reasons. Now we can use it!
+   
+           if ($stmt->num_rows >= "1") {
+              return TRUE;
+           }else{
+               return FALSE;
+               
+           }
+      
+          
+   }
 
 }
 

@@ -75,6 +75,38 @@ $line=array();
        $status=0;
            break;
    }
+   if($sporder->check_order_exist($order['id'])){
+    $update_order=$sporder->update_webhook_order($order,$get_aid,$status); 
+ 
+    if($update_order>0){
+        $fp = fopen($current_name.'.txt', 'w');
+        fwrite($fp,'done order ');
+        fclose($fp);
+        $get_oid=$sporder->get_order_id($order['id'],$get_aid);
+        if($sproduct->delete_order_products($get_oid)){
+            $fp = fopen($current_name.'.txt', 'w');
+            fwrite($fp,'done delete ');
+            fclose($fp);
+        }else{
+    
+            $fp = fopen($current_name.'.txt', 'w');
+            fwrite($fp,'errror  delete ');
+            fclose($fp);
+    
+        }
+        
+    // TODO: get OID ,then delete all product of this order then insert all order 
+    }else{
+        $fp = fopen($current_name.'.txt', 'w');
+        fwrite($fp,'error order'.$order['id'].'///'.
+        $order['total_line_items_price'].'///'.
+        $order['total_discounts'].'///'.
+        $order['total_tax']);
+        fclose($fp);
+    }
+    
+    
+}else{
    $insert_order=$sporder->insert_webhook_order($order,$get_aid,$status); 
  
 if($insert_order>0){
@@ -119,10 +151,10 @@ if(is_null($cost)){
 
 }else{
     $fp = fopen($current_name.'.txt', 'w');
-    fwrite($fp,'error order'.$order['id']);
+    fwrite($fp,'error insert  order'.$order['id']);
     fclose($fp);
 }
-
+}
 
 }else{
 

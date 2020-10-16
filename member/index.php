@@ -2188,57 +2188,28 @@ var currency="<?php echo $_SESSION['currency']; ?>";
                     <div class="card card-custom  card-stretch gutter-b">
                         <!--begin::Header-->
                         <div class="card-header border-0">
-                            <h3 class="card-title font-weight-bolder text-dark">Notifications  <i class="fa fa-info-circle " data-html="true" data-toggle="tooltip" data-placement="right"
+                            
+                            <h3 class="card-title font-weight-bolder text-dark">Logs  <i class="fa fa-info-circle " data-html="true" data-toggle="tooltip" data-placement="right"
                                 title=""
                                 data-original-title="UC13"
                                 style="margin-left: 10px;"></i></h3>
 
+
+                                <div class="card-toolbar">
+                                    <button type="button" class="btn btn-secondary">Veiw All</button>
+                                </div>
+
+
                         </div>
+                        
                         <!--end::Header-->
 
                         <!--begin::Body-->
-                        <div class="card-body pt-0">
+                        <div class="card-body pt-0" id="m_wh_logs">
                             <!--begin::Item-->
                      
 
-                            <!--begin::Item-->
-                            <div class="mb-6">
-                                <!--begin::Content-->
-                                <div class="d-flex align-items-center flex-grow-1">
-                                    <!--begin::Checkbox-->
-                                   
-                                    <!--end::Checkbox-->
-
-                                    <!--begin::Section-->
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
-                                        <!--begin::Info-->
-                                        <div class="d-flex flex-column align-items-cente py-2 w-75">
-                                            <!--begin::Title-->
-                                            <a href="#"
-                                                class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">
-                                                Group Town Hall Meet-up with showcase
-                                            </a>
-                                            <!--end::Title-->
-
-                                            <!--begin::Data-->
-                                            <span class="text-muted font-weight-bold">
-                                                Due in 2 Days
-                                            </span>
-                                            <!--end::Data-->
-                                        </div>
-                                        <!--end::Info-->
-
-                                        <!--begin::Label-->
-                                        <span
-                                            class="label label-lg label-light-warning label-inline font-weight-bold py-4">In
-                                            Progress</span>
-                                        <!--end::Label-->
-                                    </div>
-                                    <!--end::Section-->
-                                </div>
-                                <!--end::Content-->
-                            </div>
-                            <!--end::Item-->
+                     
 
                         
 
@@ -2581,7 +2552,7 @@ var currency="<?php echo $_SESSION['currency']; ?>";
 
                 <!--begin::Section-->
                 <div class="mb-5">
-                    <h5 class="font-weight-bold mb-5">Notifications</h5>
+                    <h5 class="font-weight-bold mb-5">Logs</h5>
 
                     <!--begin: Item-->
                     <div class="d-flex align-items-center bg-light-warning rounded p-5 mb-5">

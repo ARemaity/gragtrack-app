@@ -4,8 +4,7 @@
   #total discounts,total refund........
 if(isset($_POST)&&$_POST['get_mix']==1){
 @ob_end_clean();
-//$month=date("M");
-$month=9;
+$month=date("M");
 require_once (dirname(__FILE__, 4)) . '/base.php';
 require_once (dirname(__FILE__, 4)) . '/' . DIR_INC . 'SP_Order.php';
 require_once (dirname(__FILE__, 4)) . '/' . DIR_INC . 'SP_product.php';
@@ -73,9 +72,9 @@ $gross_margin=($net_sales-$costs/$net_sales)*100;
 
 $response=array(
 
-'grosale'=>$gross_sales,
-'net_sales'=>$net_sales,
-'total_sales'=>$total_sales,
+'grosale'=>round($gross_sales,3),
+'net_sales'=>round($net_sales,3),
+'total_sales'=>round($total_sales,3),
 'net_qty'=>$qtys,
 'costs'=>$costs
 

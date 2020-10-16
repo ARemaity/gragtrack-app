@@ -149,7 +149,7 @@ class DB_init{
      * @return array array['plan']
      */
     public function get_shop_plan($aid) {
-        $stmt = $this->conn->prepare("SELECT  `shop_plan_name` as plan,`shop_currency` as currency  FROM store_prp WHERE `FK_AID`='$aid' ");
+        $stmt = $this->conn->prepare("SELECT  `shop_plan_name` as plan,`shop_currency` as currency,`shop_timezone` as tmz  FROM store_prp WHERE `FK_AID`='$aid' ");
         if ($stmt->execute()) {			
             $plan = $stmt->get_result()->fetch_assoc();
             $stmt->close();

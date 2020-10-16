@@ -36,9 +36,9 @@ foreach($wh_files as $sfile){
     $php_des = $PATH2.$sfile['name'].'.php'; 
 
 
-    $json_source = 'receiver-template/'.$sfile['name'].'.json'; 
+    // $json_source = 'receiver-template/'.$sfile['name'].'.json'; 
 
-    $json_de = $PATH2.$sfile['name'].'.json'; 
+    // $json_de = $PATH2.$sfile['name'].'.json'; 
 
 
     $text_source = 'receiver-template/'.$sfile['name'].'.txt';  
@@ -55,10 +55,10 @@ foreach($wh_files as $sfile){
         $insert_wh=$newwh->create_weebhook($regsiter);
         if($insert_wh){
     
-            if(!is_file($json_de)){
+            // if(!is_file($json_de)){
               
-                 file_put_contents($json_de,'',LOCK_EX);     
-            }
+            //      file_put_contents($json_de,'',LOCK_EX);     
+            // }
 
             if(!is_file($text_des)){
          

@@ -32,6 +32,9 @@ if(!empty($morder)){
 // if canceled or test dont process crafted by the qery no need to recheck 
 foreach ($morder as $order) {
 
+  if($order['has_refund']==1){
+  $trefund=$order['total_refund'];
+  }
   // TODO:we must get the refunds later on;
 
 $line=$line+$order['total_line'];
@@ -65,8 +68,8 @@ $costs=$costs+$product['single_cost'];
 
 }
 $gross_sales=$line;
-$net_sales=$gross_sales-$discounts;
-$total_sales=($gross_sales-$discounts)+($taxes+$ship);
+$net_sales=$gross_sales-$discounts-$trefund;
+$total_sales=($gross_sales-$discounts-$trefund)+($taxes+$ship);
 $gross_margin=($net_sales-$costs/$net_sales)*100;
 }
 
@@ -76,6 +79,7 @@ $response=array(
 'grosale'=>round($gross_sales,3),
 'net_sales'=>round($net_sales,3),
 'total_sales'=>round($total_sales,3),
+'gromargin'=>round($gross_margin,3),
 'net_qty'=>$qtys,
 'costs'=>$costs
 

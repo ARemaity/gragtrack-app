@@ -37,11 +37,12 @@ public function insert_order($order_array,$status){
         $include_tax=0;
         $total_ship=0;
         $customer_id=0;
+        $total_refund=0;
 
 if(!empty($order_array['refunds'])){
     $has_refund=1;
 
-
+$total_refund=$order_array['refunds']['transactions']['amount'];
 }
 if($order_array['taxes_included']=='true'){
     $include_tax=1;
@@ -66,8 +67,8 @@ if(!empty($order_array['customer'])){
    $customer_id=$order_array['customer']['id'];
   } 
         $create = date('Y-m-d H:i:s', strtotime($order_array['created_at']));
-        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`, `has_refund`, `tax_included`, `test`,`status`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("iiidddddiiiis",
+        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("iiiddddddiiiis",
         $_SESSION['AID'],
         $order_array['id'],
         $customer_id,
@@ -76,6 +77,7 @@ if(!empty($order_array['customer'])){
         $order_array['total_tax'],
         $total_ship,
         $order_array['total_price'],
+        $total_refund,
         $has_refund,
         $include_tax,
         $istest,
@@ -108,10 +110,12 @@ if(!empty($order_array['customer'])){
         $include_tax=0;
         $total_ship=0;
 $customer_id=0;
+$total_refund=0;
+
 if(!empty($order_array['refunds'])){
     $has_refund=1;
 
-
+$total_refund=$order_array['refunds']['transactions']['amount'];
 }
 if($order_array['taxes_included']=='true'){
     $include_tax=1;
@@ -135,8 +139,8 @@ if(!empty($order_array['shipping_lines'])){
     $customer_id=$order_array['customer']['id'];
    } 
         $create = date('Y-m-d H:i:s', strtotime($order_array['created_at']));
-        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`, `has_refund`, `tax_included`, `test`,`status`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("iiidddddiiiis",
+        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("iiiddddddiiiis",
         $aid,
         $order_array['id'],
         $customer_id,
@@ -145,6 +149,7 @@ if(!empty($order_array['shipping_lines'])){
         $order_array['total_tax'],
         $total_ship,
         $order_array['total_price'],
+        $total_refund,
         $has_refund,
         $include_tax,
         $istest,
@@ -179,10 +184,12 @@ if(!empty($order_array['shipping_lines'])){
         $include_tax=0;
         $total_ship=0;
 
+        $total_refund=0;
+
 if(!empty($order_array['refunds'])){
     $has_refund=1;
 
-
+$total_refund=$order_array['refunds']['transactions']['amount'];
 }
 if($order_array['taxes_included']=='true'){
     $include_tax=1;
@@ -203,14 +210,15 @@ if(!empty($order_array['shipping_lines'])){
 }
 } 
  
-        $stmt = $this->conn->prepare("UPDATE `sp_order` SET `total_line`=?,`total_discount`=?,`total_tax`=?,`total_ship`=?,`total_amount`=?,`has_refund`=?,`tax_included`=?,`test`=?,`status`=? WHERE fk_AID=? AND order_id=?");
-        $stmt->bind_param("dddddiiiiii",
+        $stmt = $this->conn->prepare("UPDATE `sp_order` SET `total_line`=?,`total_discount`=?,`total_tax`=?,`total_ship`=?,`total_amount`=?,`total_refund`=?,`has_refund`=?,`tax_included`=?,`test`=?,`status`=? WHERE fk_AID=? AND order_id=?");
+        $stmt->bind_param("ddddddiiiiii",
 
         $order_array['total_line_items_price'],
         $order_array['total_discounts'],
         $order_array['total_tax'],
         $total_ship,
         $order_array['total_price'],
+        $total_refund,
         $has_refund,
         $include_tax,
         $istest,
@@ -239,7 +247,7 @@ if(!empty($order_array['shipping_lines'])){
      */
     public function get_mix_attr($month){
 
-    $stmt = $this->conn->prepare("SELECT `OID`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`, `has_refund`, `tax_included` FROM `sp_order` WHERE fk_AID = ?  AND MONTH(created_at) = ? AND status != '4' AND status != '5' AND test='0' ");
+    $stmt = $this->conn->prepare("SELECT `OID`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`, `total_refund`,`has_refund`, `tax_included` FROM `sp_order` WHERE fk_AID = ?  AND MONTH(created_at) = ? AND  test='0' ");
     $stmt->bind_param("ii", $_SESSION['AID'],$month);
 if ($stmt->execute()) {			
     $orders = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);

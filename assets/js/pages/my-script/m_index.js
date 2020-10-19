@@ -113,9 +113,11 @@ var m_index_page = (function () {
           net_sales = response.net_sales;
           total_sales = response.total_sales;
           Net_quantity = response.net_qty;
+          gross_margin=response.gromargin;
           $("#gross_sales").html(gross_sales + " " + currency);
           $("#net_sales").html(net_sales + " " + currency);
           $("#total_sales").html(total_sales + " " + currency);
+          $("#gross_margin").html(gross_margin + " " + currency);
           $("#net_quantity").html(Net_quantity + " product");
           KTApp.unblock("#blockui_mix_sales");
         },

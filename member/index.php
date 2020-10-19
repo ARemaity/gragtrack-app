@@ -1802,20 +1802,20 @@ var currency="<?php echo $_SESSION['currency']; ?>";
                         <!--begin::Body-->
                         <div class="card-body my-1">
                             <a href="#"
-                                class="card-title font-weight-bolder text-info font-size-h6 mb-4 text-hover-state-dark d-block">Profit<i
+                                class="card-title font-weight-bolder text-info font-size-h6 mb-4 text-hover-state-dark d-block">Total Sales<i
                                     class="fa fa-info-circle " data-html="true" data-toggle="tooltip"
                                     data-placement="right" title="" data-original-title="UC2"
                                     style="margin-left: 10px;"></i></a>
                             <div class="font-weight-bold text-muted font-size-sm">
-                                <span class="text-dark-50 font-weight-bolder font-size-h1 mr-2">20M</span></div>
-                            <div class="progress progress-xs mt-7 bg-info-o-60">
+                                <span class="text-dark-50 font-weight-bolder font-size-h1 mr-2" id="total_sales"></span></div>
+                            <!-- <div class="progress progress-xs mt-7 bg-info-o-60">
                                 <div class="progress-bar bg-info" role="progressbar" style="width: 67%;"
                                     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="percentage-container">
+                            </div> -->
+                            <!-- <div class="percentage-container">
                                 <span class="font-size-h4 mr-2" style="float: right;">20%</span>
                                 <span class="font-weight-bold text-muted font-size-sm">Change</span>
-                            </div>
+                            </div> -->
                         </div>
                         <!--end::Body-->
                     </div>
@@ -1834,14 +1834,14 @@ var currency="<?php echo $_SESSION['currency']; ?>";
                                 style="margin-left: 10px;"></i> </a>
                             <div class="font-weight-bold text-white font-size-sm">
                                 <span class="font-size-h2 mr-2">2324</span></div>
-                            <div class="progress progress-xs mt-7 bg-white-o-90" style="margin-bottom: 10px;">
+                            <!-- <div class="progress progress-xs mt-7 bg-white-o-90" style="margin-bottom: 10px;">
                                 <div class="progress-bar bg-white" role="progressbar" style="width: 53%;"
                                     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="percentage-container">
+                            </div> -->
+                            <!-- <div class="percentage-container">
                                 <span class="font-size-h4 mr-2 text-white" style="float: right;">53%</span>
                                 <span class="font-weight-bold text-white font-size-sm">Change</span>
-                            </div>
+                            </div> -->
                         </div>
                         <!--end::Body-->
                     </div>
@@ -1860,14 +1860,14 @@ var currency="<?php echo $_SESSION['currency']; ?>";
                                 style="margin-left: 10px;"></i></a>
                             <div class="font-weight-bold text-white font-size-sm">
                                 <span class="font-size-h2 mr-2"><?=$api_order->get_order_count('any')?></span></div>
-                            <div class="progress progress-xs mt-7 bg-white-o-90" style="margin-bottom: 10px;">
+                            <!-- <div class="progress progress-xs mt-7 bg-white-o-90" style="margin-bottom: 10px;">
                                 <div class="progress-bar bg-white" role="progressbar" style="width: 52%;"
                                     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="percentage-container">
+                            </div> -->
+                            <!-- <div class="percentage-container">
                                 <span class="font-size-h4 text-white mr-2" style="float: right;">52%</span>
                                 <span class="font-weight-bold text-muted font-size-sm">Change</span>
-                            </div>
+                            </div> -->
                         </div>
                         <!--end::Body-->
                     </div>
@@ -1886,14 +1886,14 @@ var currency="<?php echo $_SESSION['currency']; ?>";
                                 style="margin-left: 10px;"></i></a>
                             <div class="font-weight-bold text-muted font-size-sm">
                                 <span class="text-dark-75 font-size-h2 font-weight-bolder mr-2"><?=$api_order->get_checkout_count('open')?></span></div>
-                            <div class="progress progress-xs mt-7 bg-success-o-60" style="margin-bottom: 10px;">
+                            <!-- <div class="progress progress-xs mt-7 bg-success-o-60" style="margin-bottom: 10px;">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 90%;"
                                     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <div class="percentage-container">
                                 <span class="font-size-h4 mr-2" style="float: right;">90%</span>
                                 <span class="font-weight-bold text-muted font-size-sm">Change</span>
-                            </div>
+                            </div> -->
                         </div>
                         <!--end:: Body-->
                     </div>
@@ -2046,8 +2046,8 @@ var currency="<?php echo $_SESSION['currency']; ?>";
                                 <!--begin::Row-->
                                 <div class="row row-paddingless mt-8">
                                     <div class="col mr-8">
-                                        <div class="font-size-sm text-muted font-weight-bold">Total Sales</div>
-                                        <div id="total_sales" class="font-size-h4 font-weight-bolder">$29,004</div>
+                                        <div class="font-size-sm text-muted font-weight-bold">Gross Margin</div>
+                                        <div id="gross_margin" class="font-size-h4 font-weight-bolder">$29,004</div>
                                     </div>
                                     <div class="col">
                                         <div class="font-size-sm text-muted font-weight-bold">Net Quantity</div>

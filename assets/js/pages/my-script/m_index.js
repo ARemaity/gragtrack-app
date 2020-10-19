@@ -230,42 +230,90 @@ var m_index_page = (function () {
                                                     'No new notifications.'+
                                                 '</div>';
 
-                                                $("#event_log_card").append(logs_no);
+                                                $("#event_main_body").append(logs_no);
                                                 KTApp.unblock("#kt_event_logs_card");
           } else {
      
             $.each(logs_js.logs, function (i, log) {
-              var type = "";
-              var color="";
-              switch (log.type) {
-                case 1:
-                    color="primary";
-                    
-                  break;
-                case 2:
-                    color="success";
-                  break;
-                case 3:
-                    color="warning";
-                  break;
-                case 4:
-                    color="danger";
-                  break;
-                  
-                  
-                default:
-                  break;
-              }
+             var id=0;
+             var sub_id=0;
+             var sub_type='';
+             var verbs='';
+             var msg=log.message;
+             var labels='';
+             var icon='';
+switch (log.subject_type) {
+  case 'Product':
+    icon="<i class='flaticon2-box-1 text-primary'></i>";
+    switch (log.verb) {
+      case 'create':
+        labels="<span class='label label-inline label-success font-weight-bolder'>Create</span>";
+        break;
+        case 'destroy':
+          labels="<span class='label label-inline label-danger font-weight-bolder'>Destroy</span>";
+          break;
+
+          case 'published':
+            labels="<span class='label label-inline label-success font-weight-bolder'>Published</span>";
+            break;
+            case 'unpublished':
+              labels="<span class='label label-inline label-warning font-weight-bolder'>Unpublished</span>";
+              break;
+  
+      default:
+        labels="<span class='label label-inline label-secondary font-weight-bolder'>"+log.verb+"</span>";
+        break;
+    }
+    break;
+    case 'Order':
+      icon="<i class='flaticon2-shopping-cart text-primary'></i>";
+    switch (log.verb) {
+      case 'authorization_success':
+      case 'capture_success':
+      case 'confirmed':
+      case 'fulfillment_success':
+      case 'refund_success':
+      case 'sale_success':
+        labels="<span class='label label-inline label-success font-weight-bolder'>"+log.verb+"</span>";
+        break;
+      case 'authorization_failure':
+      case 'capture_failure':
+      case 'fulfillment_cancelled':
+      case 'refund_failure':
+      case 'sale_failure':
+      case 'void_failure':
+          labels="<span class='label label-inline label-danger font-weight-bolder'>"+log.verb+"</span>";
+          break;
+
+      default:
+        labels="<span class='label label-inline label-secondary font-weight-bolder'>"+log.verb+"</span>";
+        break;
+    }
+    break;
+
+  default:
+    break;
+}
+var href_index=msg.indexOf('<a');
+if(href_index>0){
+  msg=[msg.slice(0,href_index+2), " target='_blank'", msg.slice(href_index+2)].join('');
+  
+}
               var output_logs =
               "<div class='timeline-item'>"+
-              "<div class='timeline-badge'></div>"+
+              "<div class='timeline-badge'>"+
+
+           icon+"</div>"+
               "<div class='timeline-content d-flex align-items-center justify-content-between'>"+
                  " <span class='mr-3'>"+
-                     " <a href='#'>12 new users registered and pending for activation</a> <span class='label label-light-success font-weight-bolder'>8</span>"+
+                 msg+
+                "<span class='label label-inline label-primary font-weight-bolder'>"+log.subject_type+"</span>"+
+                labels+
                   "</span>"+
-                  "<span class='text-muted text-right'>3 hrs ago</span>"+
+                  "<span class='text-muted text-right'>"+log.time+"</span>"+
               "</div>"+
           "</div>";
+
                 $("#event_log_card").append(output_logs);
             });
             KTApp.unblock("#kt_event_logs_card");

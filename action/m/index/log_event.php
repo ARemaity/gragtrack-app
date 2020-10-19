@@ -26,7 +26,8 @@ $time=timeago($event['created_at']);
 'sub_id'=>$event['subject_id'],
 'subject_type'=>$event['subject_type'],
 'verb'=>$event['verb'],
-'message'=>$event['message']
+'message'=>$event['message'],
+'time'=>$time
     );
     array_push($response['logs'],$handler);
 

@@ -56,37 +56,6 @@ if(!$check_exist){
     $store_prp=$db->get_shop_plan($_SESSION['AID']);
     $_SESSION['currency']=$store_prp['currency'];
     $_SESSION['tmz']=$store_prp['tmz'];
-// $get_logger=$logger->get_webhook_log();
-// foreach($get_logger as $logger){
-
-//     $date = new DateTime($logger['created_at'], new DateTimeZone($_SESSION['tmz']));
-//     $now = new DateTime("now", new DateTimeZone($_SESSION['tmz']));
-//     $ago = $date->format('Y-m-d H:i:s');
-//     $diff = $now->diff($ago);
-
-//     $diff->w = floor($diff->d / 7);
-//     $diff->d -= $diff->w * 7;
-
-//     $string = array(
-//         'y' => 'year',
-//         'm' => 'month',
-//         'w' => 'week',
-//         'd' => 'day',
-//         'h' => 'hour',
-//         'i' => 'minute',
-//         's' => 'second',
-//     );
-//     foreach ($string as $k => &$v) {
-//         if ($diff->$k) {
-//             $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
-//         } else {
-//             unset($string[$k]);
-//         }
-//     }
-
-
-    
-// }
     // TODO: insert to login 
     // echo __DIR__; //should be '/main_web_folder/';
 //  header("Location:webhook/startup_hooks.php");

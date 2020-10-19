@@ -2243,18 +2243,12 @@ var currency="<?php echo $_SESSION['currency']; ?>";
                         </div>
                         <!--end::Header-->
                         <!--begin::Body-->
-                        <div class="card-body pt-4">
-                            <div class="timeline timeline-2" id="event_log_card">
+                        <div class="card-body pt-4" id="event_main_body">
+                           
+                            <div class="timeline timeline-1" id="event_log_card">
+           
                                 <div class="timeline-bar"></div>
-                                <div class="timeline-item">
-                                    <div class="timeline-badge"></div>
-                                    <div class="timeline-content d-flex align-items-center justify-content-between">
-                                        <span class="mr-3">
-                                            <a href="#">12 new users registered and pending for activation</a> <span class="label label-light-success font-weight-bolder">8</span>
-                                        </span>
-                                        <span class="text-muted text-right">3 hrs ago</span>
-                                    </div>
-                                </div>
+                              
                                
                                
                             </div>

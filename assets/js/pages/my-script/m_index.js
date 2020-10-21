@@ -42,6 +42,7 @@ var m_index_page = (function () {
             var cid = response[i].cid;
             var nbitem = response[i].nbitem;
             var total = response[i].total;
+            var oid =response[i].oid;
 
             var tr_str =
               "<tr>" +
@@ -74,7 +75,7 @@ var m_index_page = (function () {
                   "<i class='ki ki-bold-more-ver'></i>"+
               "</button>"+
              " <div class='dropdown-menu'>"+
-             "<a class='dropdown-item' href='#'>View Order</a>"+
+             "<a class='dropdown-item' href='"+path+"member/order/single.php?oid="+oid+"'>View Order</a>"+
              "<a class='dropdown-item' href='#'>View Customer</a>"+
              " </div>"+
           "</div>"+

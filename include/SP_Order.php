@@ -67,10 +67,11 @@ if(!empty($order_array['customer'])){
    $customer_id=$order_array['customer']['id'];
   } 
         $create = date('Y-m-d H:i:s', strtotime($order_array['created_at']));
-        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("iiiddddddiiiis",
+        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`order_name`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("iisiddddddiiiis",
         $_SESSION['AID'],
         $order_array['id'],
+        $order_array['name'],
         $customer_id,
         $order_array['total_line_items_price'],
         $order_array['total_discounts'],
@@ -139,10 +140,11 @@ if(!empty($order_array['shipping_lines'])){
     $customer_id=$order_array['customer']['id'];
    } 
         $create = date('Y-m-d H:i:s', strtotime($order_array['created_at']));
-        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`order_name`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
         $stmt->bind_param("iiiddddddiiiis",
         $aid,
         $order_array['id'],
+        $order_array['name'],
         $customer_id,
         $order_array['total_line_items_price'],
         $order_array['total_discounts'],
@@ -443,7 +445,44 @@ public function get_all_days(){
       
           
    }
+   public function check_order($order_id) {
+    // check in case , they installed 
 
+       $aid=$_SESSION['AID'];
+       $stmt = $this->conn->prepare("SELECT * FROM `sp_order` WHERE order_id='$order_id' AND fk_AID='$aid'");
+     
+       $result = $stmt->execute();
+       $stmt->store_result();
+
+       if ($stmt->num_rows >= "1") {
+          return TRUE;
+       }else{
+           return FALSE;
+           
+       }
+
+      
+}
+
+               /**
+             * get_plan_att
+             *
+             * @param  int $pid PID of plan tbl 
+             * @return array of plan attr
+             */
+            public function get_single_order($order_id){
+                
+                $stmt = $this->conn->prepare("SELECT * FROM `sp_order` WHERE order_id = ? AND fk_AID= ? ");
+                $stmt->bind_param("ii",$order_id,$_SESSION['AID']);
+                if ($stmt->execute()) {			
+                    $single_order = $stmt->get_result()->fetch_assoc();
+                    $stmt->close();
+                    return $single_order; 
+                } else {
+                    return NULL;
+                }
+
+            }
 }
 
 ?>

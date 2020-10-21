@@ -109,13 +109,21 @@ return $count;
   
   }
 
-/**
- * get_store_prp
- *
- * @return array store_prp
- */
-public function get_store_prp(){
 
+/**
+ * get_address_to_order
+ *
+ * @param  int $order_id
+ * @return void
+ */
+public function get_order_address($order_id){
+
+  $api_url="/admin/api/2020-10/orders/".$order_id.".json?fields=shipping_address,aa";
+  $orders=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
+  $orders=json_decode($orders['response'],true);
+  return $orders['order'];
+}
+  public function get_store_prp(){
   $api_url="/admin/api/2020-10/shop.json";
   $counts=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
   $store_prp=json_decode($counts['response'],true);

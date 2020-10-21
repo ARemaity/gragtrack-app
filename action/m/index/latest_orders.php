@@ -13,6 +13,7 @@ $response = array();
 $order_array = array();
 
 $counter = 0;
+$oid=0;
 $order_num = 0;
 $total=0;
 $cid = 0;
@@ -22,8 +23,9 @@ $ccountry='null';
 $length=0;
 if(!is_null($latest_order)){
 foreach ($latest_order as $order)
-{
-    $api_result = $api->get_single_order($order['order_id']);
+{$oid=$order['order_id'];
+    $api_result = $api->get_single_order($oid);
+
  
     if (empty($api_result))
     {
@@ -64,7 +66,7 @@ echo 'empty';
    
     $order_array[$counter]=array(
 
-
+'oid'=>$oid,
         'counter'=>$counter,
         'cid'=>$cid,
         'fname'=>$fname,
@@ -76,6 +78,7 @@ echo 'empty';
         
 
     );
+    $oid=0;
     $order_num = 0;
     $total=0;
     $cid = 0;

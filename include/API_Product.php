@@ -47,6 +47,21 @@ private $shop_url;
     } 
       
 
+    public function get_pr_image($product_id){
+
+        $api_url="/admin/api/2020-10/products/".$product_id."/images.json";
+        $product=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
+        $product=json_decode($product['response'],true);
+       if(array_key_exists('errors',$product)){
+
+        return null;
+       }else{
+
+        return $product['images'][0];
+       }
+      
+    } 
+      
       
 
 }

@@ -92,6 +92,7 @@ $api_order = new API_Order();
     <script type="text/javascript">
 
 var currency="<?php echo $_SESSION['currency']; ?>";
+var path="<?php echo DIR_ROOT ?>";
 </script>
 
 </head>

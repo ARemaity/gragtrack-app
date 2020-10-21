@@ -247,7 +247,7 @@ if ($result) {
     public function get_shop_prp(){
         $aid= $_SESSION["AID"];
  
-         $stmt = $this->conn->prepare("SELECT  `shop_address` as saddress,`shop_name` as sname  FROM store_prp WHERE `FK_AID`='$aid' ");
+         $stmt = $this->conn->prepare("SELECT  `shop_address` as saddress ,`shop_name` as sname  FROM store_prp WHERE `FK_AID`='$aid' ");
          if ($stmt->execute()) {			
              $tmz = $stmt->get_result()->fetch_assoc();
              $stmt->close();

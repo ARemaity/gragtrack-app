@@ -153,6 +153,34 @@ class SP_Product{
 
         }
 
+        public function get_product_order2($oid){
+
+
+            $stmt = $this->conn->prepare("
+            SELECT product_id,variant_id,qty 
+            
+            from sp_product 
+            
+            INNER JOIN sp_order
+          
+            ON sp_product.fk_OID=sp_order.OID
+          
+            WHERE sp_product.fk_OID = ? 
+          
+            
+              ");
+                      $stmt->bind_param("i",$oid);
+                  if ($stmt->execute()) {			
+                      $prs = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+                      $stmt->close();
+                  
+                      return $prs; 
+                  } else {
+                      return NULL;
+                  }
+          
+                  }
+          
 
         public function delete_order_products($oid) {
             $stmt = $this->conn->prepare("DELETE FROM `sp_product` WHERE fk_OID = ? ");

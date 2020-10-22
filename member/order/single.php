@@ -4964,7 +4964,8 @@ $products=$newpr->get_product_order2($neworder->get_order_id($oid,$aid)['OID']);
 										<div class="card-body p-0">
 											<!-- begin: Invoice-->
 											<!-- begin: Invoice header-->
-											<div class="row justify-content-center py-8 px-8 py-md-27 px-md-0">
+											<div class="order_all">
+											<div id="order_header" class="row justify-content-center py-8 px-8 py-md-27 px-md-0">
 												<div class="col-md-10">
 													<div
 														class="d-flex justify-content-between pb-10 pb-md-20 flex-column flex-md-row">
@@ -5007,7 +5008,7 @@ $products=$newpr->get_product_order2($neworder->get_order_id($oid,$aid)['OID']);
 											</div>
 											<!-- end: Invoice header-->
 											<!-- begin: Invoice body-->
-											<div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
+											<div id="order_body" class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
 												<div class="col-md-10">
 													<div class="table-responsive">
 														<table class="table">
@@ -5034,32 +5035,27 @@ $products=$newpr->get_product_order2($neworder->get_order_id($oid,$aid)['OID']);
                                                          $name='';
                                                          $pid=0;
                                                          $title='No Name';
-$qty=0;
-$price=0;
-$variant=null;
-$image_url='';
+                                                        $qty=0;
+                                                        $price=0;
+                                                        $variant=null;
+                                                        $image_url='';
 													$name=$apipr->get_pr_prp($product['product_id'])['title'];
 													$qty=$product['qty'];
 													$variant=$apiprvariant->get_variant_prp2($product['variant_id']);
                                                     if(!is_null($variant['price'])){
 														$price=$variant['price'];
 													}
-													// $image_url= $apipr->get_pr_image($product['product_id']);
-													// if(!is_null($image_url)){
-
-													// 	$image_url=$image_url['src'];
-													// 	var_dump($image_url);
+													
+													// if(!is_null($variant['title'])){
+													// 	$title=$variant['title'];
 													// }
-													if(!is_null($variant['title'])){
-														$title=$variant['title'];
-													}
 														$total=$price*$qty;
 													echo '
 													
 													         <tr class="font-weight-boldest border-bottom-0">
 																		<td class="border-top-0 pl-0 py-4 d-flex align-items-center">
 																		
-																		'.$name.'  | '.$title.'</td>
+																		'.$name.'  | </td>
 																		<td class="border-top-0 text-right py-4 align-middle">'.$qty.'</td>
 																		<td class="border-top-0 text-right py-4 align-middle">'.$price.'</td>
 																		<td class="text-primary border-top-0 pr-0 py-4 text-right align-middle">'.$total.'</td>
@@ -5077,16 +5073,16 @@ $image_url='';
 											</div>
 											<!-- end: Invoice body-->
 											<!-- begin: Invoice footer-->
-											<div
+											<div id="order_footer"
 												class="row justify-content-center bg-gray-100 py-8 px-8 py-md-10 px-md-0 mx-0">
 												<div class="col-md-10">
 													<div class="table-responsive">
 														<table class="table">
 															<thead>
 																<tr>
-																	<th
+																	<!-- <th
 																		class="font-weight-bold text-muted text-uppercase">
-																		PAYMENT TYPE</th>
+																		PAYMENT TYPE</th> -->
 																	<th
 																		class="font-weight-bold text-muted text-uppercase">
 																		PAYMENT STATUS</th>
@@ -5111,7 +5107,7 @@ $image_url='';
 															</thead>
 															<tbody>
 																<tr class="font-weight-bolder">
-																	<td>Credit Card</td>
+																	<!-- <td>Credit Card</td> -->
 																	<td>
 																		<?php
 																	if($get_s_order['test']!=0){
@@ -5155,23 +5151,32 @@ switch ($get_s_order['status']) {
 																	<td><?= $get_s_order['created_at']?></td>
 																	<td
 																		class="text-primary font-size-h3 font-weight-boldest text-right">
-																		$789.00</td>
+																		<?= $get_s_order['total_line']?></td>
+																		<td
+																		class="text-primary font-size-h3 font-weight-boldest text-right">
+																		<?=   $get_s_order['total_discount']  ?></td>
+																		<td
+																		class="text-primary font-size-h3 font-weight-boldest text-right">
+																		<?= $get_s_order['total_tax']  ?></td>
+																		<td
+																		class="text-primary font-size-h3 font-weight-boldest text-right">
+																		<?=   $get_s_order['total_amount']  ?></td>
 																</tr>
 															</tbody>
 														</table>
 													</div>
 												</div>
 											</div>
+										</div>
 											<!-- end: Invoice footer-->
 											<!-- begin: Invoice action-->
 											<div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
 												<div class="col-md-10">
 													<div class="d-flex justify-content-between">
-														<button type="button"
+														<!-- <button type="button"
 															class="btn btn-light-primary font-weight-bold"
-															onclick="window.print();">Download Order Details</button>
-														<button type="button" class="btn btn-primary font-weight-bold"
-															onclick="window.print();">Print Order Details</button>
+															onclick="window.print();">Download Order Details</button> -->
+														<button 	onclick="window.print();" type="button" id="print_this" class="btn btn-primary font-weight-bold">Print Order Details</button>
 													</div>
 												</div>
 											</div>
@@ -6453,7 +6458,28 @@ switch ($get_s_order['status']) {
 	<script src="assets/plugins/global/plugins.bundle.js?v=7.1.2"></script>
 	<script src="assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.1.2"></script>
 	<script src="assets/js/scripts.bundle.js?v=7.1.2"></script>
-	<!--end::Global Theme Bundle-->
+	<!-- <script src="assets/js/custom/printThis.js"></script> -->
+  <!-- demo -->
+  <script>
+
+//     $('#print_this').on("click", function () {
+//       $('.order_all').printThis({
+//                      // show the iframe for debugging
+//   importCSS: true,            // import page CSS
+//   importStyle: false,         // import style tags
+//   printContainer: true,       // grab outer container as well as the contents of the selector
+//   loadCSS: "assets/plugins/global/plugins.bundle.css?v=7.1.2",  // path to additional css file - use an array [] for multiple
+//   removeInline: false,        // remove all inline styles from print elements
+//   header: null,               // prefix to html
+//   formValues: true,           // preserve input/form values
+//   canvas: true,              // copy canvas elements (experimental)
+//   doctypeString: "...",       // enter a different doctype for older markup
+//   removeScripts: false,       // remove script tags from print content
+//   copyTagClasses: false       // copy classes from the html & body tag
+//       });
+//     });
+  </script>
+  
 </body>
 <!--end::Body-->
 

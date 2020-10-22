@@ -137,11 +137,11 @@ class SP_Product{
 
   ON sp_product.fk_OID=sp_order.OID
 
-  WHERE sp_product.fk_OID = ? 
+  WHERE sp_product.fk_OID = ? AND sp_order.fk_AID = ?
 
   
     ");
-            $stmt->bind_param("i",$oid);
+            $stmt->bind_param("ii",$oid,$this->aid);
         if ($stmt->execute()) {			
             $prs = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
             $stmt->close();
@@ -157,7 +157,7 @@ class SP_Product{
 
 
             $stmt = $this->conn->prepare("
-            SELECT product_id,variant_id,qty 
+            SELECT product_id,variant_id,count(qty) as qty 
             
             from sp_product 
             
@@ -165,11 +165,12 @@ class SP_Product{
           
             ON sp_product.fk_OID=sp_order.OID
           
-            WHERE sp_product.fk_OID = ? 
-          
+            WHERE sp_product.fk_OID = ? AND sp_order.fk_AID = ?
+
+          group by `product_id`
             
               ");
-                      $stmt->bind_param("i",$oid);
+              $stmt->bind_param("ii",$oid,$this->aid);
                   if ($stmt->execute()) {			
                       $prs = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                       $stmt->close();
@@ -193,6 +194,42 @@ class SP_Product{
             return false;
             }
             }
+
+          
+        public function get_all_order($oid){
+
+
+            $stmt = $this->conn->prepare("
+            SELECT `OID`,`order_id`, `order_name`, `customer_id`,  `total_amount`, `test`, `status`, `created_at`,count(
+                SELECT  * 
+            
+            from sp_product 
+            
+            INNER JOIN sp_order
+          
+            ON sp_product.fk_OID=sp_order.OID
+          
+            WHERE sp_product.fk_OID = 11 
+
+         
+                )AS QTYS            
+            
+            WHERE sp_order.OID = 11
+
+           group by `OID`
+            
+              ");
+              $stmt->bind_param("ii",$oid,$this->aid);
+                  if ($stmt->execute()) {			
+                      $prs = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+                      $stmt->close();
+                  
+                      return $prs; 
+                  } else {
+                      return NULL;
+                  }
+          
+                  }  
 
 }
 

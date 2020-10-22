@@ -483,6 +483,34 @@ public function get_all_days(){
                 }
 
             }
+
+            
+        public function get_product_order(){
+
+
+            $stmt = $this->conn->prepare("
+            SELECT `OID`,`order_id`, `order_name`, `customer_id`,  `total_amount`, `test`, `status`, `created_at`         
+             FROM sp_order
+            WHERE  fk_AID= ? 
+
+           group by `OID`
+            
+           order by `created_at`
+            
+              ");
+
+              $stmt->bind_param("i",$_SESSION['AID']);
+                  if ($stmt->execute()) {			
+                      $sorder = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+                      $stmt->close();
+                  
+                      return $sorder; 
+                  } else {
+                      return NULL;
+                  }
+          
+                  }
+          
 }
 
 ?>

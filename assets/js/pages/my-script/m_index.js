@@ -339,4 +339,9 @@ if(href_index>0){
 
 jQuery(document).ready(function () {
   m_index_page.init();
+
+  $('#order_list_btn').on("click", function () {
+
+    window.location.replace(path+"member/order/list.php");
+  });
 });

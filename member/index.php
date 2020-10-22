@@ -2,9 +2,9 @@
 
 <?php
 
-
-
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 $this_year=date("Y");
 //Get base class
 require_once (dirname(__FILE__,2)).'/base.php';
@@ -2089,7 +2089,7 @@ var path="<?php echo DIR_ROOT ?>";
 
                             </h3>
                             <div class="card-toolbar">
-                                <button type="button" class="btn btn-secondary">Veiw All</button>
+                                <button id="order_list_btn" type="button" class="btn btn-secondary">Veiw All</button>
                             </div>
 
                         </div>

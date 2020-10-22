@@ -27,6 +27,7 @@ $db = new DB_init();
 $logger = new DB_logger();
 $ip =$db-> getIPAddress();  
  // save shop name to session
+ if(isset($_GET['shop'])){
 $_SESSION['shop_name']=$_GET['shop'];
    
 $check_exist=$db->check_if_store_exsit($_SESSION['shop_name']);
@@ -142,3 +143,10 @@ echo "error:index.php:122   ";
     
  
 }
+
+ }else{
+
+    header( "refresh:2; url=error.php" ); 
+    echo "You will be redirected to gragtrack error page (debug phase)";
+    
+ }

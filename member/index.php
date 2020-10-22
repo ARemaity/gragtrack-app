@@ -170,7 +170,7 @@ var path="<?php echo DIR_ROOT ?>";
                                     <ul class="menu-nav ">
                                         <li class="menu-item  menu-item-here  menu-item-rel "
                                             data-menu-toggle="click" aria-haspopup="true"><a href="."
-                                                class="menu-link menu-toggle"><span
+                                                class="menu-link"><span
                                                     class="menu-text">Dashboard</span></a>
 
                                         </li>
@@ -183,7 +183,7 @@ var path="<?php echo DIR_ROOT ?>";
                                                 <ul class="menu-subnav">
                                                     <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
                                                         aria-haspopup="true"><a href="sales-orders.php"
-                                                            class="menu-link menu-toggle"><span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/../src/media/svg/icons/Shopping/Bag1.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                            class="menu-link"><span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/../src/media/svg/icons/Shopping/Bag1.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                                     <rect x="0" y="0" width="24" height="24"/>
                                                                     <path d="M14,9 L14,8 C14,6.8954305 13.1045695,6 12,6 C10.8954305,6 10,6.8954305 10,8 L10,9 L8,9 L8,8 C8,5.790861 9.790861,4 12,4 C14.209139,4 16,5.790861 16,8 L16,9 L14,9 Z M14,9 L14,8 C14,6.8954305 13.1045695,6 12,6 C10.8954305,6 10,6.8954305 10,8 L10,9 L8,9 L8,8 C8,5.790861 9.790861,4 12,4 C14.209139,4 16,5.790861 16,8 L16,9 L14,9 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
@@ -194,8 +194,8 @@ var path="<?php echo DIR_ROOT ?>";
                                                     
                                                     </li>
                                                     <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
-                                                    aria-haspopup="true"><a href="javascript:;"
-                                                        class="menu-link menu-toggle"><span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/../src/media/svg/icons/Shopping/Cart3.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                    aria-haspopup="true"><a href="cart-activities.php"
+                                                        class="menu-link"><span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/../src/media/svg/icons/Shopping/Cart3.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                                 <rect x="0" y="0" width="24" height="24"/>
                                                                 <path d="M12,4.56204994 L7.76822128,9.6401844 C7.4146572,10.0644613 6.7840925,10.1217854 6.3598156,9.76822128 C5.9355387,9.4146572 5.87821464,8.7840925 6.23177872,8.3598156 L11.2317787,2.3598156 C11.6315738,1.88006147 12.3684262,1.88006147 12.7682213,2.3598156 L17.7682213,8.3598156 C18.1217854,8.7840925 18.0644613,9.4146572 17.6401844,9.76822128 C17.2159075,10.1217854 16.5853428,10.0644613 16.2317787,9.6401844 L12,4.56204994 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
@@ -243,7 +243,7 @@ var path="<?php echo DIR_ROOT ?>";
                                                             <ul class="menu-subnav">
                                                                 <li class="menu-item " aria-haspopup="true"><a
                                                                         href="features/bootstrap/typography.html"
-                                                                        class="menu-link "><i
+                                                                        class="menu-link"><i
                                                                             class="menu-bullet menu-bullet-dot"><span></span></i><span
                                                                             class="menu-text">Overview </span></a></li>
                                                                 <li class="menu-item " aria-haspopup="true"><a

@@ -1,18 +1,18 @@
 "use strict";
 // Class definition
 
-var KTDatatableLocalSortDemo = function() {
+var m_order_list = function() {
     // Private functions
 
     // basic demo
-    var demo = function() {
+    var order_list = function() {
         var datatable = $('#kt_datatable').KTDatatable({
             // datasource definition
             data: {
                 type: 'remote',
                 source: {
                     read: {
-                        url: path + '/api/datatables/demos/default.php',
+                        url: path + '/action/m/order/list.php',
                     },
                 },
                 pageSize: 10,
@@ -43,7 +43,7 @@ var KTDatatableLocalSortDemo = function() {
 
             // columns definition
             columns: [{
-                field: 'oid',
+                field: 'Oid',
                 title: '#',
                 sortable: 'asc',
                 width: 30,
@@ -52,15 +52,20 @@ var KTDatatableLocalSortDemo = function() {
                 textAlign: 'center',
             }, 
             {
-                field: 'order_name',
-                title: 'Order ID',
-            },{
-                field: 'created_at',
+                field: 'Order_name',
+                title: 'Order Name',
+            },
+            {
+                field: 'Created_at',
                 title: 'Created At',
                 type: 'date',
                 format: 'MM/DD/YYYY',
+            },{
+                field: 'Total_amount',
+                title: 'Total Amount',
+                type: 'number',
             }, {
-                field: 'status',
+                field: 'Status',
                 title: 'Status',
                 // callback function support for column rendering
                 template: function (row) {
@@ -98,23 +103,27 @@ var KTDatatableLocalSortDemo = function() {
                     return '<span class="label font-weight-bold label-lg ' + status[row.Status].class + ' label-inline">' + status[row.Status].title + '</span>';
                 },
             }, {
-                field: 'test',
+                field: 'Test',
                 title: 'Type',
                 autoHide: false,
                 // callback function support for column rendering
                 template: function (row) {
                     var status = {
-                        2: {
-                            'title': 'Online',
+                        0: {
+                            'title': 'Unshipped',
                             'state': 'danger'
                         },
                         1: {
-                            'title': 'Retail',
-                            'state': 'primary'
-                        },
-                        0: {
-                            'title': 'Direct',
+                            'title': 'Shipped',
                             'state': 'success'
+                        },
+                        2 : {
+                            'title': 'Partially',
+                            'state': 'warning'
+                        },
+                        3 : {
+                            'title': 'Restocked',
+                            'state': 'primary'
                         },
                     };
                     return '<span class="label label-' + status[row.Type].state + ' label-dot mr-2"></span><span class="font-weight-bold text-' + status[row.Type].state + '">' +
@@ -219,11 +228,11 @@ var KTDatatableLocalSortDemo = function() {
     return {
         // public functions
         init: function() {
-            demo();
+            order_list();
         },
     };
 }();
 
 jQuery(document).ready(function() {
-    KTDatatableLocalSortDemo.init();
+    m_order_list.init();
 });

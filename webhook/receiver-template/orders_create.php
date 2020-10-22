@@ -42,6 +42,7 @@ $sproduct=new SP_Product();
 $api_inve=new API_inverntoryitem();
 $api_product=new API_Product_variant();
 $status=0;
+$type=0;
 $invet_id=0;
 $line=array();
 
@@ -75,8 +76,26 @@ $line=array();
        $status=0;
            break;
    }
+   switch ($order['fulfillment_status']) {
+    case 'null':
+        $type=0;
+        break;
+    case 'fulfilled':
+        $type=1;
+        break;
+    case 'partial':
+        $type=2;
+        break;
+    case 'restocked':
+        $type=3;
+        break;
+
+    default:
+    $type=0;
+        break;
+}
    if($sporder->check_order_exist($order['id'])){
-    $update_order=$sporder->update_webhook_order($order,$get_aid,$status); 
+    $update_order=$sporder->update_webhook_order($order,$get_aid,$status,$type); 
  
     if($update_order>0){
         $fp = fopen($current_name.'.txt', 'w');
@@ -107,7 +126,7 @@ $line=array();
     
     
 }else{
-   $insert_order=$sporder->insert_webhook_order($order,$get_aid,$status); 
+   $insert_order=$sporder->insert_webhook_order($order,$get_aid,$status,$type); 
  
 if($insert_order>0){
     $fp = fopen($current_name.'.txt', 'w');

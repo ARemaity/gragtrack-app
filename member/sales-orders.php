@@ -105,7 +105,7 @@
                                     <ul class="menu-nav ">
                                         <li class="menu-item  menu-item-submenu menu-item-rel"
                                             data-menu-toggle="click" aria-haspopup="true"><a href="."
-                                                class="menu-link menu-toggle"><span
+                                                class="menu-link"><span
                                                     class="menu-text">Dashboard</span></a>
 
                                         </li>
@@ -118,7 +118,7 @@
                                                 <ul class="menu-subnav">
                                                     <li class="menu-item menu-item-here menu-item-submenu" data-menu-toggle="hover"
                                                         aria-haspopup="true"><a href="sales-orders.php"
-                                                            class="menu-link menu-toggle"><span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/../src/media/svg/icons/Shopping/Bag1.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                            class="menu-link"><span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/../src/media/svg/icons/Shopping/Bag1.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                                     <rect x="0" y="0" width="24" height="24"/>
                                                                     <path d="M14,9 L14,8 C14,6.8954305 13.1045695,6 12,6 C10.8954305,6 10,6.8954305 10,8 L10,9 L8,9 L8,8 C8,5.790861 9.790861,4 12,4 C14.209139,4 16,5.790861 16,8 L16,9 L14,9 Z M14,9 L14,8 C14,6.8954305 13.1045695,6 12,6 C10.8954305,6 10,6.8954305 10,8 L10,9 L8,9 L8,8 C8,5.790861 9.790861,4 12,4 C14.209139,4 16,5.790861 16,8 L16,9 L14,9 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
@@ -129,8 +129,8 @@
                                                     
                                                     </li>
                                                     <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
-                                                    aria-haspopup="true"><a href="javascript:;"
-                                                        class="menu-link menu-toggle"><span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/../src/media/svg/icons/Shopping/Cart3.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                    aria-haspopup="true"><a href="cart-activities.php"
+                                                        class="menu-link"><span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/../src/media/svg/icons/Shopping/Cart3.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                                 <rect x="0" y="0" width="24" height="24"/>
                                                                 <path d="M12,4.56204994 L7.76822128,9.6401844 C7.4146572,10.0644613 6.7840925,10.1217854 6.3598156,9.76822128 C5.9355387,9.4146572 5.87821464,8.7840925 6.23177872,8.3598156 L11.2317787,2.3598156 C11.6315738,1.88006147 12.3684262,1.88006147 12.7682213,2.3598156 L17.7682213,8.3598156 C18.1217854,8.7840925 18.0644613,9.4146572 17.6401844,9.76822128 C17.2159075,10.1217854 16.5853428,10.0644613 16.2317787,9.6401844 L12,4.56204994 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
@@ -1920,7 +1920,7 @@
                         <!--end::Item-->
                         <!--begin::Item-->
                         <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                        <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                        <a href="." class="text-white text-hover-white opacity-75 hover-opacity-100">
                             Dashboard </a>
                         <!--end::Item-->
                         <!--begin::Item-->
@@ -1969,7 +1969,7 @@
                             <a href="#"
                                 class="card-title font-weight-bolder font-size-h6 mb-4 text-dark-75 d-block">Product
                                 Sales<i class="fa fa-info-circle " data-toggle="tooltip" data-placement="right" title=""
-                                    data-original-title="Total Sales By Products" style="margin-left: 10px;"></i></a>
+                                    data-original-title="UC1" style="margin-left: 10px;"></i></a>
                             <div class="font-weight-bold text-muted font-size-lg">
                                 <span class="text-dark-75 font-weight-bolder mr-5">$237,650</span>
 
@@ -2066,7 +2066,10 @@
                     <div class="card card-custom gutter-b">
                         <div class="card-header">
                             <div class="card-title">
-                                <h3 class="card-label">Top Sales</h3>
+                                <h3 class="card-label">
+                                   Top Sales <i class="fa fa-info-circle " data-html="true" data-toggle="tooltip" data-placement="right"
+                                   title=""
+                                   data-original-title="UC2"    style="margin-left: 10px;"></i></h3>
                             </div>
                         </div>
                         <div class="card-body">
@@ -2081,7 +2084,10 @@
                         <!--begin::Header-->
                         <div class="card-header border-0 pt-5">
                             <h3 class="card-title align-items-start flex-column mb-5">
-                                <span class="card-label font-weight-bolder text-dark mb-1">Best Seller</span>
+                               
+                                <span class="card-label font-weight-bolder text-dark mb-1">Best Seller  <i class="fa fa-info-circle " data-html="true" data-toggle="tooltip" data-placement="right"
+                                    title=""
+                                    data-original-title="UC3"    style="margin-left: 10px;"></i></span>
 
                             </h3>
 
@@ -2180,7 +2186,10 @@
                         <!--begin::Header-->
                         <div class="card-header border-0 py-5">
                             <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label font-weight-bolder text-dark">Traffic Sources</span>
+                                
+                                <span class="card-label font-weight-bolder text-dark">Traffic Sources <i class="fa fa-info-circle " data-html="true" data-toggle="tooltip" data-placement="right"
+                                    title=""
+                                    data-original-title="UC4"    style="margin-left: 10px;"></i></span>
 
                             </h3>
 
@@ -2202,8 +2211,11 @@
                         <!--begin::Header-->
                         <div class="card-header h-auto border-0">
                             <div class="card-title py-5">
-                                <h3 class="card-label">
-                                    <span class="d-block text-dark font-weight-bolder">Sales</span>
+                                <h3 class="card-label"  >
+                                  
+                                    <span class="d-block text-dark font-weight-bolder">Sales  <i class="fa fa-info-circle " data-html="true" data-toggle="tooltip" data-placement="right"
+                                        title=""
+                                        data-original-title="UC5"    style="margin-left: 10px;"></i></span>
 
                                 </h3>
                             </div>
@@ -2232,7 +2244,7 @@
                                     class="card-title font-weight-bolder font-size-h6 mb-4 text-dark-75 d-block">Sales
                                     States<i class="fa fa-info-circle " data-html="true" data-toggle="tooltip" data-placement="right"
                                         title=""
-                                        data-original-title="Total Sales By ProductsThis widget is a daily stats only:<br>Status 1(0-5)<br> Status 2(5-20)<br> Status 3(20-40)<br> Status 4(>50)"
+                                        data-original-title="UC6 Total Sales By ProductsThis widget is a daily stats only:<br>Status 1(0-5)<br> Status 2(5-20)<br> Status 3(20-40)<br> Status 4(>50)"
                                         style="margin-left: 10px;"></i></a>
                                 <img src="../assets/media/bg/sunny.gif" style="width: 250px;">
                                 <div class="card-body py-0">

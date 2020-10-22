@@ -31,18 +31,34 @@ class SP_Order{
      * @param  int $status
      * @return int last id 
      */
-public function insert_order($order_array,$status){
+public function insert_order($order_array,$status,$type){
         $has_refund=0;
         $istest=0;
         $include_tax=0;
         $total_ship=0;
         $customer_id=0;
         $total_refund=0;
+        $trans=array();
 
-if(!empty($order_array['refunds'])){
+        if(sizeof($order_array['refunds'])!= 0){ 
     $has_refund=1;
 
-$total_refund=$order_array['refunds']['transactions']['amount'];
+
+foreach($order_array['refunds'] as $refund){
+
+    $trans=$refund['transactions'];
+
+   
+    
+    }
+    if(!is_null($trans)&&!empty($trans)){
+
+        foreach($trans as $single){
+            $total_refund=$single['amount'];
+        }
+        $trans=array();
+    }
+    
 }
 if($order_array['taxes_included']=='true'){
     $include_tax=1;
@@ -67,8 +83,8 @@ if(!empty($order_array['customer'])){
    $customer_id=$order_array['customer']['id'];
   } 
         $create = date('Y-m-d H:i:s', strtotime($order_array['created_at']));
-        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`order_name`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("iisiddddddiiiis",
+        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`order_name`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`,`type`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("iisiddddddiiiiis",
         $_SESSION['AID'],
         $order_array['id'],
         $order_array['name'],
@@ -83,6 +99,7 @@ if(!empty($order_array['customer'])){
         $include_tax,
         $istest,
         $status,
+        $type,
         $create
         );
         
@@ -105,18 +122,26 @@ if(!empty($order_array['customer'])){
 
 
 
-    public function insert_webhook_order($order_array,$aid,$status){
+    public function insert_webhook_order($order_array,$aid,$status,$type){
         $has_refund=0;
         $istest=0;
         $include_tax=0;
         $total_ship=0;
 $customer_id=0;
 $total_refund=0;
+$trans=array();
 
-if(!empty($order_array['refunds'])){
+if( sizeof($order_array['refunds']) != 0 ){ 
     $has_refund=1;
 
-$total_refund=$order_array['refunds']['transactions']['amount'];
+
+foreach($order_array['refunds'] as $refund){
+
+    $trans=$refund['transactions'];
+    
+    
+    }
+    $total_refund=$trans[0]['amount'];
 }
 if($order_array['taxes_included']=='true'){
     $include_tax=1;
@@ -140,8 +165,8 @@ if(!empty($order_array['shipping_lines'])){
     $customer_id=$order_array['customer']['id'];
    } 
         $create = date('Y-m-d H:i:s', strtotime($order_array['created_at']));
-        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`order_name`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("iiiddddddiiiis",
+        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`order_name`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`,`type`,`created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("iiiddddddiiiiis",
         $aid,
         $order_array['id'],
         $order_array['name'],
@@ -179,20 +204,27 @@ if(!empty($order_array['shipping_lines'])){
 
     
 
-    public function update_webhook_order($order_array,$aid,$status) {
+    public function update_webhook_order($order_array,$aid,$status,$type) {
      
         $has_refund=0;
         $istest=0;
         $include_tax=0;
         $total_ship=0;
-
+$trans=array();
         $total_refund=0;
 
-if(!empty($order_array['refunds'])){
-    $has_refund=1;
-
-$total_refund=$order_array['refunds']['transactions']['amount'];
-}
+        if( sizeof($order_array['refunds']) != 0 ){ 
+            $has_refund=1;
+        
+        
+        foreach($order_array['refunds'] as $refund){
+        
+            $trans=$refund['transactions'];
+            
+            
+            }
+            $total_refund=$trans[0]['amount'];
+        }
 if($order_array['taxes_included']=='true'){
     $include_tax=1;
 
@@ -212,8 +244,8 @@ if(!empty($order_array['shipping_lines'])){
 }
 } 
  
-        $stmt = $this->conn->prepare("UPDATE `sp_order` SET `total_line`=?,`total_discount`=?,`total_tax`=?,`total_ship`=?,`total_amount`=?,`total_refund`=?,`has_refund`=?,`tax_included`=?,`test`=?,`status`=? WHERE fk_AID=? AND order_id=?");
-        $stmt->bind_param("ddddddiiiiii",
+        $stmt = $this->conn->prepare("UPDATE `sp_order` SET `total_line`=?,`total_discount`=?,`total_tax`=?,`total_ship`=?,`total_amount`=?,`total_refund`=?,`has_refund`=?,`tax_included`=?,`test`=?,`status`=?,`type`=? WHERE fk_AID=? AND order_id=?");
+        $stmt->bind_param("ddddddiiiiiii",
 
         $order_array['total_line_items_price'],
         $order_array['total_discounts'],
@@ -225,6 +257,7 @@ if(!empty($order_array['shipping_lines'])){
         $include_tax,
         $istest,
         $status,
+        $type,
         $aid,
         $order_array['id']
         );
@@ -485,11 +518,59 @@ public function get_all_days(){
             }
 
             
-        public function get_product_order(){
+        public function get_product_order($status,$type){
+
+if(!is_null($status)){
+    
+if(!is_null($type)){
+    $stmt = $this->conn->prepare("
+    SELECT `OID`,`order_id`, `order_name`, `customer_id`,  `total_amount`, `type`, `status`, `created_at`         
+     FROM sp_order
+    WHERE  fk_AID= ? AND status= ? AND test = ? 
+
+   group by `OID`
+    
+   order by `created_at`
+    
+      ");
+
+      $stmt->bind_param("iii",$_SESSION['AID'],$status,$type);
+
+}else{
+
+    $stmt = $this->conn->prepare("
+    SELECT `OID`,`order_id`, `order_name`, `customer_id`,  `total_amount`, `type`, `status`, `created_at`         
+     FROM sp_order
+    WHERE  fk_AID= ? AND status= ? 
+
+   group by `OID`
+    
+   order by `created_at`
+    
+      ");
+
+      $stmt->bind_param("ii",$_SESSION['AID'],$status);
+
+}
 
 
+}elseif(!is_null($type)){
+    $stmt = $this->conn->prepare("
+    SELECT `OID`,`order_id`, `order_name`, `customer_id`,  `total_amount`, `type`, `status`, `created_at`         
+     FROM sp_order
+    WHERE  fk_AID= ? AND  test = ? 
+
+   group by `OID`
+    
+   order by `created_at`
+    
+      ");
+
+      $stmt->bind_param("ii",$_SESSION['AID'],$type);
+
+}else{
             $stmt = $this->conn->prepare("
-            SELECT `OID`,`order_id`, `order_name`, `customer_id`,  `total_amount`, `test`, `status`, `created_at`         
+            SELECT `OID`,`order_id`, `order_name`, `customer_id`,  `total_amount`, `type`, `status`, `created_at`         
              FROM sp_order
             WHERE  fk_AID= ? 
 
@@ -500,6 +581,8 @@ public function get_all_days(){
               ");
 
               $stmt->bind_param("i",$_SESSION['AID']);
+
+}
                   if ($stmt->execute()) {			
                       $sorder = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                       $stmt->close();

@@ -17,6 +17,7 @@ $api_product=new API_Product_variant();
 $get_order=$neworder->get_all_order('any');
 $result='int: ';
 $status=0;
+$type=0;
 $counter=0;
 $invet_id=0;
 $line=array();
@@ -53,7 +54,22 @@ foreach ($get_order as $order){
        $status=0;
            break;
    }
-   $insert_order=$sporder->insert_order($order,$status); 
+   switch ($order['fulfillment_status']) {
+    case 'fulfilled':
+        $type=1;
+        break;
+    case 'partial':
+        $type=2;
+        break;
+    case 'restocked':
+        $type=3;
+        break;
+
+    default:
+    $type=0;
+        break;
+}
+   $insert_order=$sporder->insert_order($order,$status,$type); 
  
 if($insert_order>0){
 

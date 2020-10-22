@@ -91,7 +91,7 @@ var KTEcommerceMyOrders = function () {
             {
                 field: 'oid',
                 title: 'Order ID',
-            }
+            },
             {
                 field: 'order_name',
                 title: 'Order Name',

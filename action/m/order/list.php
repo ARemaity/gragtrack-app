@@ -63,8 +63,10 @@ $response['meta']=array(
     'field'	=>"Oid"
 
 );
-
     header('Content-Type: application/json');
+header( 'Access-Control-Allow-Origin: *' );
+header( 'Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS' );
+header( 'Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description' );
     echo json_encode($response);
 
 

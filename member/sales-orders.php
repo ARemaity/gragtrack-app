@@ -1,9 +1,22 @@
+
+
+<?php
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if(isset($_SESSION['AID'])){
+//Get base class
+require_once (dirname(__FILE__,2)).'/base.php';
+include(dirname(__FILE__,2).'/action/m/shopify/sales_order/get_total_sales.php');
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <!--begin::Head-->
 
 <head>
-    <base href="">
+    <base href="../">
     <meta charset="utf-8" />
     <title>Metronic | Dashboard</title>
     <meta name="description" content="Updates and statistics" />
@@ -14,36 +27,46 @@
     <!--end::Fonts-->
 
     <!--begin::Page Vendors Styles(used by this page)-->
-    <link href="../assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?v=7.0.6" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?v=7.0.6" rel="stylesheet" type="text/css" />
     <!--end::Page Vendors Styles-->
 
 
     <!--begin::Global Theme Styles(used by all pages)-->
-    <link href="../assets/plugins/global/plugins.bundle.css?v=7.0.6" rel="stylesheet" type="text/css" />
-    <link href="../assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6" rel="stylesheet" type="text/css" />
-    <link href="../assets/css/style.bundle.css?v=7.0.6" rel="stylesheet" type="text/css" />
-    <link href="../assets/css/my-style.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/global/plugins.bundle.css?v=7.0.6" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.bundle.css?v=7.0.6" rel="stylesheet" type="text/css" />
+    <link href="assets/css/my-style.css" rel="stylesheet" type="text/css" />
     <!--end::Global Theme Styles-->
 
     <!--begin::Layout Themes(used by all pages)-->
     <!--end::Layout Themes-->
 
-    <link rel="shortcut icon" href="../assets/media/logos/favicon.ico" />
-
+    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+<script type="text/javascript">
+var currency="<?php echo $_SESSION['currency']; ?>";
+var path="<?php echo DIR_ROOT ?>";
+</script>
 </head>
 <!--end::Head-->
 
 <!--begin::Body-->
 
-<body id="kt_body" style="background-image: url(../assets/media/bg/bg-10.jpg)"
-    class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-
+<body id="kt_body" style="background-image: url(assets/media/bg/bg-10.jpg)"
+    class="page-loading-enabled quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
+    <div class="page-loader page-loader-base">
+			<div class="blockui">
+				<span>Please wait...</span
+				<span>
+					<div class="spinner spinner-primary"></div>
+				</span>
+			</div>
+		</div>
     <!--begin::Main-->
     <!--begin::Header Mobile-->
     <div id="kt_header_mobile" class="header-mobile ">
         <!--begin::Logo-->
         <a href="index.html">
-            <img alt="Logo" src="../assets/media/logos/logo-letter-1.png" class="logo-default max-h-30px" />
+            <img alt="Logo" src="assets/media/logos/logo-letter-1.png" class="logo-default max-h-30px" />
         </a>
         <!--end::Logo-->
 
@@ -56,7 +79,7 @@
 
             <button class="btn btn-icon btn-hover-transparent-white p-0 ml-3" id="kt_header_mobile_topbar_toggle">
                 <span class="svg-icon svg-icon-xl">
-                    <!--begin::Svg Icon | path:../assets/media/svg/icons/General/User.svg--><svg
+                    <!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg--><svg
                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                         height="24px" viewBox="0 0 24 24" version="1.1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -88,9 +111,9 @@
                             <!--begin::Header Logo-->
                             <div class="header-logo">
                                 <a href="index.html">
-                                    <img alt="Logo" src="../assets/media/logos/logo-letter-9.png"
+                                    <img alt="Logo" src="assets/media/logos/logo-letter-9.png"
                                         class="logo-default max-h-40px" />
-                                    <img alt="Logo" src="../assets/media/logos/logo-letter-1.png"
+                                    <img alt="Logo" src="assets/media/logos/logo-letter-1.png"
                                         class="logo-sticky max-h-40px" />
                                 </a>
                             </div>
@@ -118,7 +141,7 @@
                                                 <ul class="menu-subnav">
                                                     <li class="menu-item menu-item-here menu-item-submenu" data-menu-toggle="hover"
                                                         aria-haspopup="true"><a href="sales-orders.php"
-                                                            class="menu-link"><span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/../src/media/svg/icons/Shopping/Bag1.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                            class="menu-link"><span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/src/media/svg/icons/Shopping/Bag1.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                                     <rect x="0" y="0" width="24" height="24"/>
                                                                     <path d="M14,9 L14,8 C14,6.8954305 13.1045695,6 12,6 C10.8954305,6 10,6.8954305 10,8 L10,9 L8,9 L8,8 C8,5.790861 9.790861,4 12,4 C14.209139,4 16,5.790861 16,8 L16,9 L14,9 Z M14,9 L14,8 C14,6.8954305 13.1045695,6 12,6 C10.8954305,6 10,6.8954305 10,8 L10,9 L8,9 L8,8 C8,5.790861 9.790861,4 12,4 C14.209139,4 16,5.790861 16,8 L16,9 L14,9 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
@@ -130,7 +153,7 @@
                                                     </li>
                                                     <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
                                                     aria-haspopup="true"><a href="cart-activities.php"
-                                                        class="menu-link"><span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/../src/media/svg/icons/Shopping/Cart3.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        class="menu-link"><span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/src/media/svg/icons/Shopping/Cart3.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                                 <rect x="0" y="0" width="24" height="24"/>
                                                                 <path d="M12,4.56204994 L7.76822128,9.6401844 C7.4146572,10.0644613 6.7840925,10.1217854 6.3598156,9.76822128 C5.9355387,9.4146572 5.87821464,8.7840925 6.23177872,8.3598156 L11.2317787,2.3598156 C11.6315738,1.88006147 12.3684262,1.88006147 12.7682213,2.3598156 L17.7682213,8.3598156 C18.1217854,8.7840925 18.0644613,9.4146572 17.6401844,9.76822128 C17.2159075,10.1217854 16.5853428,10.0644613 16.2317787,9.6401844 L12,4.56204994 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
@@ -153,7 +176,7 @@
                                                     aria-haspopup="true"><a href="javascript:;"
                                                         class="menu-link menu-toggle"><span
                                                             class="svg-icon menu-icon">
-                                                            <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                                 xmlns="http://www.w3.org/2000/svg"
                                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                 width="24px" height="24px" viewBox="0 0 24 24"
@@ -216,7 +239,7 @@
                                                     aria-haspopup="true"><a href="javascript:;"
                                                         class="menu-link menu-toggle"><span
                                                             class="svg-icon menu-icon">
-                                                            <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                                 xmlns="http://www.w3.org/2000/svg"
                                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                 width="24px" height="24px" viewBox="0 0 24 24"
@@ -283,7 +306,7 @@
                                                 aria-haspopup="true"><a href="javascript:;"
                                                     class="menu-link menu-toggle"><span
                                                         class="svg-icon menu-icon">
-                                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink"
                                                             width="24px" height="24px" viewBox="0 0 24 24"
@@ -337,7 +360,7 @@
                                             aria-haspopup="true"><a href="javascript:;"
                                                 class="menu-link menu-toggle"><span
                                                     class="svg-icon menu-icon">
-                                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
                                                         width="24px" height="24px" viewBox="0 0 24 24"
@@ -372,7 +395,7 @@
                                                 aria-haspopup="true"><a href="javascript:;"
                                                     class="menu-link menu-toggle"><span
                                                         class="svg-icon menu-icon">
-                                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink"
                                                             width="24px" height="24px" viewBox="0 0 24 24"
@@ -397,7 +420,7 @@
                                             aria-haspopup="true"><a href="javascript:;"
                                                 class="menu-link menu-toggle"><span
                                                     class="svg-icon menu-icon">
-                                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
                                                         width="24px" height="24px" viewBox="0 0 24 24"
@@ -422,7 +445,7 @@
                                         aria-haspopup="true"><a href="javascript:;"
                                             class="menu-link menu-toggle"><span
                                                 class="svg-icon menu-icon">
-                                                <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
                                                     width="24px" height="24px" viewBox="0 0 24 24"
@@ -464,7 +487,7 @@
                                         aria-haspopup="true"><a href="javascript:;"
                                             class="menu-link menu-toggle"><span
                                                 class="svg-icon menu-icon">
-                                                <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
                                                     width="24px" height="24px" viewBox="0 0 24 24"
@@ -489,7 +512,7 @@
                                         aria-haspopup="true"><a href="javascript:;"
                                             class="menu-link menu-toggle"><span
                                                 class="svg-icon menu-icon">
-                                                <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
                                                     width="24px" height="24px" viewBox="0 0 24 24"
@@ -514,7 +537,7 @@
                                     aria-haspopup="true"><a href="javascript:;"
                                         class="menu-link menu-toggle"><span
                                             class="svg-icon menu-icon">
-                                            <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
                                                 width="24px" height="24px" viewBox="0 0 24 24"
@@ -539,7 +562,7 @@
                                 aria-haspopup="true"><a href="javascript:;"
                                     class="menu-link menu-toggle"><span
                                         class="svg-icon menu-icon">
-                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink"
                                             width="24px" height="24px" viewBox="0 0 24 24"
@@ -564,7 +587,7 @@
                             aria-haspopup="true"><a href="javascript:;"
                                 class="menu-link menu-toggle"><span
                                     class="svg-icon menu-icon">
-                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink"
                                         width="24px" height="24px" viewBox="0 0 24 24"
@@ -606,7 +629,7 @@
                                 <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
                                     <div class="btn btn-icon btn-hover-transparent-white btn-lg btn-dropdown mr-1">
                                         <span class="svg-icon svg-icon-xl">
-                                            <!--begin::Svg Icon | path:../assets/media/svg/icons/General/Search.svg--><svg
+                                            <!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg--><svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
                                                 viewBox="0 0 24 24" version="1.1">
@@ -634,7 +657,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">
                                                         <span class="svg-icon svg-icon-lg">
-                                                            <!--begin::Svg Icon | path:../assets/media/svg/icons/General/Search.svg--><svg
+                                                            <!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg--><svg
                                                                 xmlns="http://www.w3.org/2000/svg"
                                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                                 height="24px" viewBox="0 0 24 24" version="1.1">
@@ -681,7 +704,7 @@
                                     <div
                                         class="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1 pulse pulse-primary">
                                         <span class="svg-icon svg-icon-xl">
-                                            <!--begin::Svg Icon | path:../assets/media/svg/icons/Code/Compiling.svg--><svg
+                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Code/Compiling.svg--><svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
                                                 viewBox="0 0 24 24" version="1.1">
@@ -706,7 +729,7 @@
                                     <form>
                                         <!--begin::Header-->
                                         <div class="d-flex flex-column pt-12 bgi-size-cover bgi-no-repeat rounded-top"
-                                            style="background-image: url(../assets/media/misc/bg-1.jpg)">
+                                            style="background-image: url(assets/media/misc/bg-1.jpg)">
                                             <!--begin::Title-->
                                             <h4 class="d-flex flex-center rounded-top">
                                                 <span class="text-white">User Notifications</span>
@@ -750,7 +773,7 @@
                                                         <div class="symbol symbol-40 symbol-light-primary mr-5">
                                                             <span class="symbol-label">
                                                                 <span class="svg-icon svg-icon-lg svg-icon-primary">
-                                                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/Home/Library.svg--><svg
+                                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg--><svg
                                                                         xmlns="http://www.w3.org/2000/svg"
                                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                         width="24px" height="24px" viewBox="0 0 24 24"
@@ -788,7 +811,7 @@
                                                         <div class="symbol symbol-40 symbol-light-warning mr-5">
                                                             <span class="symbol-label">
                                                                 <span class="svg-icon svg-icon-lg svg-icon-warning">
-                                                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Write.svg--><svg
+                                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg--><svg
                                                                         xmlns="http://www.w3.org/2000/svg"
                                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                         width="24px" height="24px" viewBox="0 0 24 24"
@@ -828,7 +851,7 @@
                                                         <div class="symbol symbol-40 symbol-light-success mr-5">
                                                             <span class="symbol-label">
                                                                 <span class="svg-icon svg-icon-lg svg-icon-success">
-                                                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Group-chat.svg--><svg
+                                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group-chat.svg--><svg
                                                                         xmlns="http://www.w3.org/2000/svg"
                                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                         width="24px" height="24px" viewBox="0 0 24 24"
@@ -865,7 +888,7 @@
                                                         <div class="symbol symbol-40 symbol-light-danger mr-5">
                                                             <span class="symbol-label">
                                                                 <span class="svg-icon svg-icon-lg svg-icon-danger">
-                                                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/General/Attachment2.svg--><svg
+                                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/General/Attachment2.svg--><svg
                                                                         xmlns="http://www.w3.org/2000/svg"
                                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                         width="24px" height="24px" viewBox="0 0 24 24"
@@ -913,7 +936,7 @@
                                                         <div class="symbol symbol-40 symbol-light-info mr-5">
                                                             <span class="symbol-label">
                                                                 <span class="svg-icon svg-icon-lg  svg-icon-info">
-                                                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Shield-user.svg--><svg
+                                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Shield-user.svg--><svg
                                                                         xmlns="http://www.w3.org/2000/svg"
                                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                         width="24px" height="24px" viewBox="0 0 24 24"
@@ -953,7 +976,7 @@
                                                         <div class="symbol symbol-40 symbol-light-danger mr-5">
                                                             <span class="symbol-label">
                                                                 <span class="svg-icon svg-icon-lg  svg-icon-danger">
-                                                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Mail-notification.svg--><svg
+                                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-notification.svg--><svg
                                                                         xmlns="http://www.w3.org/2000/svg"
                                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                         width="24px" height="24px" viewBox="0 0 24 24"
@@ -989,7 +1012,7 @@
                                                         <div class="symbol symbol-40 symbol-light-success mr-5">
                                                             <span class="symbol-label">
                                                                 <span class="svg-icon svg-icon-lg  svg-icon-success">
-                                                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/Design/Bucket.svg--><svg
+                                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Bucket.svg--><svg
                                                                         xmlns="http://www.w3.org/2000/svg"
                                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                         width="24px" height="24px" viewBox="0 0 24 24"
@@ -1319,7 +1342,7 @@
                                 <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
                                     <div class="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1">
                                         <span class="svg-icon svg-icon-xl">
-                                            <!--begin::Svg Icon | path:../assets/media/svg/icons/Media/Equalizer.svg--><svg
+                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg--><svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
                                                 viewBox="0 0 24 24" version="1.1">
@@ -1341,7 +1364,7 @@
                                     class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg">
                                     <!--begin:Header-->
                                     <div class="d-flex flex-column flex-center py-10 bgi-size-cover bgi-no-repeat rounded-top"
-                                        style="background-image: url(../assets/media/misc/bg-1.jpg)">
+                                        style="background-image: url(assets/media/misc/bg-1.jpg)">
                                         <h4 class="text-white font-weight-bold">
                                             Quick Actions
                                         </h4>
@@ -1357,7 +1380,7 @@
                                             <a href="#"
                                                 class="d-block py-10 px-5 text-center bg-hover-light border-right border-bottom">
                                                 <span class="svg-icon svg-icon-3x svg-icon-success">
-                                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/Shopping/Euro.svg--><svg
+                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Euro.svg--><svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                         height="24px" viewBox="0 0 24 24" version="1.1">
@@ -1384,7 +1407,7 @@
                                             <a href="#"
                                                 class="d-block py-10 px-5 text-center bg-hover-light border-bottom">
                                                 <span class="svg-icon svg-icon-3x svg-icon-success">
-                                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Mail-attachment.svg--><svg
+                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-attachment.svg--><svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                         height="24px" viewBox="0 0 24 24" version="1.1">
@@ -1411,7 +1434,7 @@
                                             <a href="#"
                                                 class="d-block py-10 px-5 text-center bg-hover-light border-right">
                                                 <span class="svg-icon svg-icon-3x svg-icon-success">
-                                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/Shopping/Box2.svg--><svg
+                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Box2.svg--><svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                         height="24px" viewBox="0 0 24 24" version="1.1">
@@ -1437,7 +1460,7 @@
                                         <div class="col-6">
                                             <a href="#" class="d-block py-10 px-5 text-center bg-hover-light">
                                                 <span class="svg-icon svg-icon-3x svg-icon-success">
-                                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Group.svg--><svg
+                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group.svg--><svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                         height="24px" viewBox="0 0 24 24" version="1.1">
@@ -1471,7 +1494,7 @@
                                 <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
                                     <div class="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1">
                                         <span class="svg-icon svg-icon-xl">
-                                            <!--begin::Svg Icon | path:../assets/media/svg/icons/Shopping/Cart3.svg--><svg
+                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Cart3.svg--><svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
                                                 viewBox="0 0 24 24" version="1.1">
@@ -1495,7 +1518,7 @@
                                     <form>
                                         <!--begin::Header-->
                                         <div class="d-flex align-items-center py-10 px-8 bgi-size-cover bgi-no-repeat rounded-top"
-                                            style="background-image: url(../assets/media/misc/bg-1.jpg)">
+                                            style="background-image: url(assets/media/misc/bg-1.jpg)">
                                             <span class="btn btn-md btn-icon bg-white-o-15 mr-4">
                                                 <i class="flaticon2-shopping-cart-1 text-success"></i>
                                             </span>
@@ -1531,7 +1554,7 @@
                                                     </div>
                                                 </div>
                                                 <a href="#" class="symbol symbol-70 flex-shrink-0">
-                                                    <img src="../assets/media/stock-600x400/img-1.jpg" title="" alt="" />
+                                                    <img src="assets/media/stock-600x400/img-1.jpg" title="" alt="" />
                                                 </a>
                                             </div>
                                             <!--end::Item-->
@@ -1564,7 +1587,7 @@
                                                     </div>
                                                 </div>
                                                 <a href="#" class="symbol symbol-70 flex-shrink-0">
-                                                    <img src="../assets/media/stock-600x400/img-2.jpg" title="" alt="" />
+                                                    <img src="assets/media/stock-600x400/img-2.jpg" title="" alt="" />
                                                 </a>
                                             </div>
                                             <!--end::Item-->
@@ -1598,7 +1621,7 @@
                                                     </div>
                                                 </div>
                                                 <a href="#" class="symbol symbol-70 flex-shrink-0">
-                                                    <img src="../assets/media/stock-600x400/img-3.jpg" title="" alt="" />
+                                                    <img src="assets/media/stock-600x400/img-3.jpg" title="" alt="" />
                                                 </a>
                                             </div>
                                             <!--end::Item-->
@@ -1630,7 +1653,7 @@
                                                     </div>
                                                 </div>
                                                 <a href="#" class="symbol symbol-70 flex-shrink-0">
-                                                    <img src="../assets/media/stock-600x400/img-4.jpg" title="" alt="" />
+                                                    <img src="assets/media/stock-600x400/img-4.jpg" title="" alt="" />
                                                 </a>
                                             </div>
                                             <!--end::Item-->
@@ -1665,7 +1688,7 @@
                                 <div class="btn btn-icon btn-hover-transparent-white btn-lg mr-1"
                                     id="kt_quick_panel_toggle">
                                     <span class="svg-icon svg-icon-xl">
-                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Layout/Layout-4-blocks.svg--><svg
+                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
                                             viewBox="0 0 24 24" version="1.1">
@@ -1687,7 +1710,7 @@
                                 <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
                                     <div class="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1">
                                         <img class="h-20px w-20px rounded-sm"
-                                            src="../assets/media/svg/flags/226-united-states.svg" alt="" />
+                                            src="assets/media/svg/flags/226-united-states.svg" alt="" />
                                     </div>
                                 </div>
                                 <!--end::Toggle-->
@@ -1701,7 +1724,7 @@
                                         <li class="navi-item">
                                             <a href="#" class="navi-link">
                                                 <span class="symbol symbol-20 mr-3">
-                                                    <img src="../assets/media/svg/flags/226-united-states.svg" alt="" />
+                                                    <img src="assets/media/svg/flags/226-united-states.svg" alt="" />
                                                 </span>
                                                 <span class="navi-text">English</span>
                                             </a>
@@ -1712,7 +1735,7 @@
                                         <li class="navi-item active">
                                             <a href="#" class="navi-link">
                                                 <span class="symbol symbol-20 mr-3">
-                                                    <img src="../assets/media/svg/flags/128-spain.svg" alt="" />
+                                                    <img src="assets/media/svg/flags/128-spain.svg" alt="" />
                                                 </span>
                                                 <span class="navi-text">Spanish</span>
                                             </a>
@@ -1723,7 +1746,7 @@
                                         <li class="navi-item">
                                             <a href="#" class="navi-link">
                                                 <span class="symbol symbol-20 mr-3">
-                                                    <img src="../assets/media/svg/flags/162-germany.svg" alt="" />
+                                                    <img src="assets/media/svg/flags/162-germany.svg" alt="" />
                                                 </span>
                                                 <span class="navi-text">German</span>
                                             </a>
@@ -1734,7 +1757,7 @@
                                         <li class="navi-item">
                                             <a href="#" class="navi-link">
                                                 <span class="symbol symbol-20 mr-3">
-                                                    <img src="../assets/media/svg/flags/063-japan.svg" alt="" />
+                                                    <img src="assets/media/svg/flags/063-japan.svg" alt="" />
                                                 </span>
                                                 <span class="navi-text">Japanese</span>
                                             </a>
@@ -1745,7 +1768,7 @@
                                         <li class="navi-item">
                                             <a href="#" class="navi-link">
                                                 <span class="symbol symbol-20 mr-3">
-                                                    <img src="../assets/media/svg/flags/195-france.svg" alt="" />
+                                                    <img src="assets/media/svg/flags/195-france.svg" alt="" />
                                                 </span>
                                                 <span class="navi-text">French</span>
                                             </a>
@@ -1783,7 +1806,7 @@
                                     <div class="d-flex align-items-center p-8 rounded-top">
                                         <!--begin::Symbol-->
                                         <div class="symbol symbol-md bg-light-primary mr-3 flex-shrink-0">
-                                            <img src="../assets/media/users/300_21.jpg" alt="" />
+                                            <img src="assets/media/users/300_21.jpg" alt="" />
                                         </div>
                                         <!--end::Symbol-->
 
@@ -1963,7 +1986,7 @@
                 <div class="col-xl-12">
                     <!--begin::Stats Widget 22-->
                     <div class="card card-custom bgi-no-repeat card-stretch gutter-b"
-                        style="background-position: right top; background-size: 30% auto; background-image: url(../assets/media/svg/shapes/abstract-4.svg)">
+                        style="background-position: right top; background-size: 30% auto; background-image: url(assets/media/svg/shapes/abstract-4.svg)">
                         <!--begin::Body-->
                         <div class="card-body my-1">
                             <a href="#"
@@ -1971,9 +1994,18 @@
                                 Sales<i class="fa fa-info-circle " data-toggle="tooltip" data-placement="right" title=""
                                     data-original-title="UC1" style="margin-left: 10px;"></i></a>
                             <div class="font-weight-bold text-muted font-size-lg">
-                                <span class="text-dark-75 font-weight-bolder mr-5">$237,650</span>
+                                <span class="text-dark-75 font-weight-bolder mr-5"><?php
+                                if(!is_null($total_sales)&&!empty($total_sales))
+                                {
 
-                                <span class="font-weight-bold text-muted font-size-lg"> Total Revenue</span></div>
+                                    echo $total_sales.' '.$_SESSION['currency'];
+                                }else{
+
+                                    echo "0".' '.$_SESSION['currency'];
+                                }
+                                ?></span>
+
+                                <span class="font-weight-bold text-muted font-size-lg"> Total sale</span></div>
 
                             <div class="percentage-container">
                                 <div class="row">
@@ -2101,7 +2133,7 @@
                                 <div class="symbol symbol-50 symbol-2by3 flex-shrink-0 mr-4">
                                     <div class="d-flex flex-column">
                                         <div class="symbol-label mb-3"
-                                            style="background-image: url('../assets/media/stock-600x400/img-23.jpg')">
+                                            style="background-image: url('assets/media/stock-600x400/img-23.jpg')">
                                         </div>
 
                                     </div>
@@ -2127,7 +2159,7 @@
                                 <div class="symbol symbol-50 symbol-2by3 flex-shrink-0 mr-4">
                                     <div class="d-flex flex-column">
                                         <div class="symbol-label mb-3"
-                                            style="background-image: url('../assets/media/stock-600x400/img-25.jpg')">
+                                            style="background-image: url('assets/media/stock-600x400/img-25.jpg')">
                                         </div>
 
                                     </div>
@@ -2152,7 +2184,7 @@
                                 <div class="symbol symbol-50 symbol-2by3 flex-shrink-0 mr-4">
                                     <div class="d-flex flex-column">
                                         <div class="symbol-label mb-3"
-                                            style="background-image: url('../assets/media/stock-600x400/img-24.jpg')">
+                                            style="background-image: url('assets/media/stock-600x400/img-24.jpg')">
                                         </div>
 
                                     </div>
@@ -2237,7 +2269,7 @@
                     <div class="col-xl-4">
                         <!--begin::Stats Widget 22-->
                         <div class="card card-custom bgi-no-repeat card-stretch gutter-b"
-                            style="background-position: right top; background-size: 30% auto; background-image: url(../assets/media/svg/shapes/abstract-3.svg)">
+                            style="background-position: right top; background-size: 30% auto; background-image: url(assets/media/svg/shapes/abstract-3.svg)">
                             <!--begin::Body-->
                             <div class="card-body my-1">
                                 <a href="#"
@@ -2246,7 +2278,7 @@
                                         title=""
                                         data-original-title="UC6 Total Sales By ProductsThis widget is a daily stats only:<br>Status 1(0-5)<br> Status 2(5-20)<br> Status 3(20-40)<br> Status 4(>50)"
                                         style="margin-left: 10px;"></i></a>
-                                <img src="../assets/media/bg/sunny.gif" style="width: 250px;">
+                                <img src="assets/media/bg/sunny.gif" style="width: 250px;">
                                 <div class="card-body py-0">
                                     <span class="font-weight-bold text-muted font-size-sm">We both Know you could do
                                         better.</span>
@@ -2347,7 +2379,7 @@
                     <div class="d-flex align-items-center flex-wrap mb-5">
                         <div class="symbol symbol-50 symbol-light mr-5">
                             <span class="symbol-label">
-                                <img src="../assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" alt="" />
+                                <img src="assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" alt="" />
                             </span>
                         </div>
                         <div class="d-flex flex-column flex-grow-1 mr-2">
@@ -2363,7 +2395,7 @@
                     <div class="d-flex align-items-center flex-wrap mb-5">
                         <div class="symbol symbol-50 symbol-light mr-5">
                             <span class="symbol-label">
-                                <img src="../assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center"
+                                <img src="assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center"
                                     alt="" />
                             </span>
                         </div>
@@ -2382,7 +2414,7 @@
                     <div class="d-flex align-items-center flex-wrap mb-5">
                         <div class="symbol symbol-50 symbol-light mr-5">
                             <span class="symbol-label">
-                                <img src="../assets/media/svg/misc/003-puzzle.svg" class="h-50 align-self-center" alt="" />
+                                <img src="assets/media/svg/misc/003-puzzle.svg" class="h-50 align-self-center" alt="" />
                             </span>
                         </div>
                         <div class="d-flex flex-column flex-grow-1 mr-2">
@@ -2399,7 +2431,7 @@
                     <div class="d-flex align-items-center flex-wrap mb-5">
                         <div class="symbol symbol-50 symbol-light mr-5">
                             <span class="symbol-label">
-                                <img src="../assets/media/svg/misc/005-bebo.svg" class="h-50 align-self-center" alt="" />
+                                <img src="assets/media/svg/misc/005-bebo.svg" class="h-50 align-self-center" alt="" />
                             </span>
                         </div>
                         <div class="d-flex flex-column flex-grow-1 mr-2">
@@ -2417,7 +2449,7 @@
                     <div class="d-flex align-items-center flex-wrap">
                         <div class="symbol symbol-50 symbol-light mr-5">
                             <span class="symbol-label">
-                                <img src="../assets/media/svg/misc/014-kickstarter.svg" class="h-50 align-self-center"
+                                <img src="assets/media/svg/misc/014-kickstarter.svg" class="h-50 align-self-center"
                                     alt="" />
                             </span>
                         </div>
@@ -2442,7 +2474,7 @@
                     <div class="d-flex align-items-center bg-light-warning rounded p-5 mb-5">
                         <span class="svg-icon svg-icon-warning mr-5">
                             <span class="svg-icon svg-icon-lg">
-                                <!--begin::Svg Icon | path:../assets/media/svg/icons/Home/Library.svg--><svg
+                                <!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg--><svg
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -2472,7 +2504,7 @@
                     <div class="d-flex align-items-center bg-light-success rounded p-5 mb-5">
                         <span class="svg-icon svg-icon-success mr-5">
                             <span class="svg-icon svg-icon-lg">
-                                <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Write.svg--><svg
+                                <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg--><svg
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -2502,7 +2534,7 @@
                     <div class="d-flex align-items-center bg-light-danger rounded p-5 mb-5">
                         <span class="svg-icon svg-icon-danger mr-5">
                             <span class="svg-icon svg-icon-lg">
-                                <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Group-chat.svg--><svg
+                                <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group-chat.svg--><svg
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -2531,7 +2563,7 @@
                     <div class="d-flex align-items-center bg-light-info rounded p-5">
                         <span class="svg-icon svg-icon-info mr-5">
                             <span class="svg-icon svg-icon-lg">
-                                <!--begin::Svg Icon | path:../assets/media/svg/icons/General/Attachment2.svg--><svg
+                                <!--begin::Svg Icon | path:assets/media/svg/icons/General/Attachment2.svg--><svg
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -2945,7 +2977,7 @@
 <!--begin::Scrolltop-->
 <div id="kt_scrolltop" class="scrolltop">
     <span class="svg-icon">
-        <!--begin::Svg Icon | path:../assets/media/svg/icons/Navigation/Up-2.svg--><svg xmlns="http://www.w3.org/2000/svg"
+        <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Up-2.svg--><svg xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <polygon points="0 0 24 0 24 24 0 24" />
@@ -3025,24 +3057,24 @@
 <!--end::Global Config-->
 
 <!--begin::Global Theme Bundle(used by all pages)-->
-<script src="../assets/plugins/global/plugins.bundle.js?v=7.0.6"></script>
-<script src="../assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6"></script>
-<script src="../assets/js/scripts.bundle.js?v=7.0.6"></script>
+<script src="assets/plugins/global/plugins.bundle.js?v=7.0.6"></script>
+<script src="assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6"></script>
+<script src="assets/js/scripts.bundle.js?v=7.0.6"></script>
 <!--end::Global Theme Bundle-->
 
 <!--begin::Page Vendors(used by this page)-->
-<script src="../assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.6"></script>
+<script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.6"></script>
 <!--end::Page Vendors-->
-<script src="../assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.7"></script>
+<script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.7"></script>
 <!--begin::Page Scripts(used by this page)-->
-<!-- <script src="../assets/js/pages/widgets.js?v=7.0.6"></script> -->
+<!-- <script src="assets/js/pages/widgets.js?v=7.0.6"></script> -->
 
 <!--end::Page Scripts-->
 
 <!--begin::Page Vendors(used by this page)-->
-<script src="../assets/plugins/custom/flot/flot.bundle.js?v=7.0.6"></script>
+<script src="assets/plugins/custom/flot/flot.bundle.js?v=7.0.6"></script>
 <!--end::Page Vendors-->
-<script src="../assets/js/pages/crud/forms/widgets/bootstrap-daterangepicker.js?"></script>
+<script src="assets/js/pages/crud/forms/widgets/bootstrap-daterangepicker.js?"></script>
 <!--begin::Page Scripts(used by this page)-->
 
 
@@ -3057,9 +3089,183 @@
 <!--end::Page Vendors-->
 
 <!-- begin:custom js  -->
-<script src="../assets/js/pages/my-script/my-script.js"></script>
+<script src="assets/js/pages/my-script/member/shopify/sales_order.js"></script>
+<script>
+    
+// Class definition
+var KTWidgets = function() {
+ var _initshopifysales = function() {
+    var element = document.getElementById("chart_shopify_mixed");
 
-<script src="../assets/js/pages/features/charts/live-user.js"></script>
+    if (!element) {
+        return;
+    }
+
+    var options = {
+        series: [{
+            name: 'Net Profit',
+            data: [30, 30, 50, 50, 35, 35]
+        }, {
+            name: 'Revenue',
+            data: [55, 20, 20, 20, 70, 70]
+        }, {
+            name: 'Expenses',
+            data: [60, 60, 40, 40, 30, 30]
+        }, ],
+        chart: {
+            type: 'area',
+            height: 300,
+            toolbar: {
+                show: false
+            },
+            zoom: {
+                enabled: false
+            },
+            sparkline: {
+                enabled: true
+            }
+        },
+        plotOptions: {},
+        legend: {
+            show: false
+        },
+        dataLabels: {
+            enabled: false
+        },
+        fill: {
+            type: 'solid',
+            opacity: 1
+        },
+        stroke: {
+            curve: 'smooth',
+            show: true,
+            width: 2,
+            colors: ['transparent', 'transparent', 'transparent']
+        },
+        xaxis: {
+            x: 0,
+            offsetX: 0,
+            offsetY: 0,
+            padding: {
+                left: 0,
+                right: 0,
+                top: 0,
+            },
+            categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+            axisBorder: {
+                show: false,
+            },
+            axisTicks: {
+                show: false
+            },
+            labels: {
+                show: false,
+                style: {
+                    colors: KTApp.getSettings()['colors']['gray']['gray-500'],
+                    fontSize: '12px',
+                    fontFamily: KTApp.getSettings()['font-family']
+                }
+            },
+            crosshairs: {
+                show: false,
+                position: 'front',
+                stroke: {
+                    color: KTApp.getSettings()['colors']['gray']['gray-300'],
+                    width: 1,
+                    dashArray: 3
+                }
+            },
+            tooltip: {
+                enabled: true,
+                formatter: undefined,
+                offsetY: 0,
+                style: {
+                    fontSize: '12px',
+                    fontFamily: KTApp.getSettings()['font-family']
+                }
+            }
+        },
+        yaxis: {
+            y: 0,
+            offsetX: 0,
+            offsetY: 0,
+            padding: {
+                left: 0,
+                right: 0
+            },
+            labels: {
+                show: false,
+                style: {
+                    colors: KTApp.getSettings()['colors']['gray']['gray-500'],
+                    fontSize: '12px',
+                    fontFamily: KTApp.getSettings()['font-family']
+                }
+            }
+        },
+        states: {
+            normal: {
+                filter: {
+                    type: 'none',
+                    value: 0
+                }
+            },
+            hover: {
+                filter: {
+                    type: 'none',
+                    value: 0
+                }
+            },
+            active: {
+                allowMultipleDataPointsSelection: false,
+                filter: {
+                    type: 'none',
+                    value: 0
+                }
+            }
+        },
+        tooltip: {
+            style: {
+                fontSize: '12px',
+                fontFamily: KTApp.getSettings()['font-family']
+            },
+            y: {
+                formatter: function(val) {
+                    return "$" + val + " thousands"
+                }
+            }
+        },
+        colors: [KTApp.getSettings()['colors']['theme']['light']['success'], KTApp.getSettings()['colors']['theme']['light']['danger'], KTApp.getSettings()['colors']['theme']['light']['info']],
+        grid: {
+            borderColor: KTApp.getSettings()['colors']['gray']['gray-200'],
+            strokeDashArray: 4,
+            padding: {
+                top: 0,
+                bottom: 0,
+                left: 0,
+                right: 0
+            }
+        },
+        markers: {
+            colors: [KTApp.getSettings()['colors']['theme']['light']['success'], KTApp.getSettings()['colors']['theme']['light']['danger'], KTApp.getSettings()['colors']['theme']['light']['info']],
+            strokeColor: [KTApp.getSettings()['colors']['theme']['base']['success'], KTApp.getSettings()['colors']['theme']['base']['danger'], KTApp.getSettings()['colors']['theme']['base']['info']],
+            strokeWidth: 3
+        }
+    };
+
+    var chart = new ApexCharts(element, options);
+    chart.render();
+}
+
+   // Public methods
+   return {
+    init: function() {
+        _initshopifysales();
+      
+    }
+}
+}();
+// apex chart
+</script>
 
 <!-- end:custom js -->
 <!--end::Page Scripts-->
@@ -3067,3 +3273,15 @@
 <!--end::Body-->
 
 </html>
+<?php
+
+}else{
+
+
+    header( "refresh:2; url=".dirname(__FILE__,2)."/error.php"); 
+    echo "You will be redirected to gragtrack error page (debug phase)";
+    
+ }
+
+
+?>

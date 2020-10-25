@@ -11,8 +11,8 @@ var KTEcommerceMyOrders = function () {
                 source: {
                     read: {
                         url: HOST_URL + '/api/datatables/demos/default.php',
-                        // sample custom headers
-                        // headers: {'x-my-custom-header': 'some value', 'x-test-header': 'the value'},
+                 
+                       
                         map: function (raw) {
                             // sample data mapping
                             var dataSet = raw;
@@ -45,49 +45,8 @@ var KTEcommerceMyOrders = function () {
                 key: 'generalSearch'
             },
 
-            // columns definition
             columns: [
-                
-                
-            //     {
-            //     field: 'Product',
-            //     title: 'Product',
-            //     sortable: 'asc',
-            //     width: 160,
-            //     template: function (row) {
-            //         var number = KTUtil.getRandomInt(1, 15);
-            //         var productName = [
-            //             "Smartwatch",
-            //             "Headphones",
-            //             "Sneakers",
-            //             "Mobile Device",
-            //             "Running Shoes",
-            //             "Bicycle",
-            //             "Fashion",
-            //             "Stylish Belt",
-            //             "Smartwatch",
-            //             "Headphones",
-            //             "Sneakers",
-            //             "Mobile Device",
-            //             "Running Shoes",
-            //             "Bicycle",
-            //             "Fashion",
-            //             "Mobile Device"
-            //         ]
-            //         var output = '<div class="d-flex align-items-center">\
-            //             <div class="symbol symbol-50 symbol-sm flex-shrink-0">\
-            //                 <div class="symbol-label">\
-            //                     <img class="h-75 align-self-end" src="assets/media/products/' + number + '.png" alt="photo"/>\
-            //                 </div>\
-            //             </div>\
-            //             <div class="ml-4">\
-            //                 <a href="#" class="text-dark-75 font-weight-bolder font-size-lg mb-0">' + productName[number] + '</a>\
-            //             </div>\
-            //         </div>';
-
-            //         return output;
-            //     }
-            // },
+          
             {
                 field: 'oid',
                 title: 'Order ID',

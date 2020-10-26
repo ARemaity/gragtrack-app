@@ -9,6 +9,201 @@ if(isset($_SESSION['AID'])){
 //Get base class
 require_once (dirname(__FILE__,2)).'/base.php';
 include(dirname(__FILE__,2).'/action/m/shopify/sales_order/get_total_sales.php');
+require_once (dirname(__FILE__, 2)) . '/' . DIR_INC . 'SP_order.php';
+
+
+$neworder=new SP_Order();
+$country_arr=array();
+$handler=array();
+$country_code=array();
+$country_output=$neworder->get_country_order();
+
+foreach($country_output as $country){
+array_push($country_code,$country['counts']);
+}
+
+
+$length=sizeof(array_unique($country_code));
+
+$partlength=0;
+$iter=0;
+
+foreach($country_output as $country){
+
+
+if($length%4==0){
+
+$partlength=intval($length/4);
+
+
+switch ($iter) {
+    case ($iter<=($partlength*4)-1):
+        $handler=array (
+           
+
+                "title"=> $country['country'],
+                "id"=>  $country['country_code'],
+                "color"=>  "#67b7dc",
+                "customData"=>  $country['counts']
+                ,"groupId"=>  '2040-4'
+               
+           
+        );
+    break;
+    case ($iter<=($partlength*3)-1):
+            $handler=array (
+           
+
+                "title"=> $country['country'],
+                "id"=>  $country['country_code'],
+                "color"=>  "#ebdb8b",
+                "customData"=>  $country['counts']
+                ,"groupId"=>  '2030-4'
+           
+           
+        );
+            break;
+            case ($iter<($partlength*2)-1):
+                $handler= array (
+               
+    
+                    "title"=> $country['country'],
+                    "id"=>  $country['country_code'],
+                    "color"=>  "#83c2ba",
+                    "customData"=>  $country['counts']
+                    ,"groupId"=>  '2020-4'
+               
+               
+            );
+                break;
+                case ($iter<($partlength*1)-1):
+                    $handler=array (
+                   
+        
+                        "title"=> $country['country'],
+                        "id"=>  $country['country_code'],
+                        "color"=>  "#db8383",
+                        "customData"=>  $country['counts']
+                        ,"groupId"=>  '2010-4'
+                );
+                    break;
+    default:
+        # code...
+        break;
+}
+
+
+}elseif($length%3==0){
+
+    $partlength=intval($length/3);
+    
+    
+    switch ($iter) {
+        case ($iter<($partlength*3)-1):
+            $handler=array (
+               
+    
+                    "title"=> $country['country'],
+                    "id"=>  $country['country_code'],
+                    "color"=>  "#67b7dc",
+                    "customData"=>  $country['counts']
+                    ,"groupId"=>  '2030-3'
+               
+               
+            );
+        break;
+                
+        case ($iter<($partlength*2)-1):
+                $handler=array (
+               
+    
+                    "title"=> $country['country'],
+                    "id"=>  $country['country_code'],
+                    "color"=>  "#ebdb8b",
+                    "customData"=>  $country['counts']
+                    ,"groupId"=>  '2020-3'
+               
+               
+            );
+                break;
+                
+                    case ($iter<($partlength*1)-1):
+                        $handler=array (
+                       
+            
+                            "title"=> $country['country'],
+                            "id"=>  $country['country_code'],
+                            "color"=>  "#db8383",
+                            "customData"=>  $country['counts']
+                            ,"groupId"=>  '2010-3'
+                    );
+                        break;
+        default:
+            # code...
+            break;
+    }
+    
+    
+    }elseif($length%2==0){
+
+        $partlength=intval($length/2);
+        
+        
+        switch ($iter) {
+            case ($iter<($partlength*2)-1):
+                $handler=array (
+                   
+        
+                        "title"=> $country['country'],
+                        "id"=>  $country['country_code'],
+                        "color"=>  "#67b7dc",
+                        "customData"=>  $country['counts']
+                      ,   "groupId"=>  '2020-2'
+                   
+                   
+                );
+                    
+                    break;
+                    
+                        case ($iter<($partlength*1)-1):
+                            $handler=array (
+                           
+                
+                                "title"=> $country['country'],
+                                "id"=>  $country['country_code'],
+                                "color"=>  "#db8383",
+                                "customData"=>  $country['counts'],
+                                "groupId"=>  '2010-2'
+        
+                        );
+                            break;
+            default:
+                # code...
+                break;
+        }
+        
+        
+        }else{
+            $handler=array (
+                   
+        
+                "title"=> $country['country'],
+                "id"=>  $country['country_code'],
+                "color"=>  "#83c2ba",
+                "customData"=>  $country['counts'],
+            
+                "groupId"=>  '2040-1'
+           
+           
+        );
+        }
+        array_push($country_arr,$handler);
+
+$iter++;
+
+
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -45,6 +240,15 @@ include(dirname(__FILE__,2).'/action/m/shopify/sales_order/get_total_sales.php')
 <script type="text/javascript">
 var currency="<?php echo $_SESSION['currency']; ?>";
 var path="<?php echo DIR_ROOT ?>";
+
+
+var countriesArr=
+    <?php
+echo json_encode($country_arr);
+
+?>
+;
+console.log(countriesArr);
 </script>
 </head>
 <!--end::Head-->
@@ -2219,7 +2423,7 @@ var path="<?php echo DIR_ROOT ?>";
                         <div class="card-header border-0 py-5">
                             <h3 class="card-title align-items-start flex-column">
                                 
-                                <span class="card-label font-weight-bolder text-dark">Traffic Sources <i class="fa fa-info-circle " data-html="true" data-toggle="tooltip" data-placement="right"
+                                <span class="card-label font-weight-bolder text-dark">Source Name <i class="fa fa-info-circle " data-html="true" data-toggle="tooltip" data-placement="right"
                                     title=""
                                     data-original-title="UC4"    style="margin-left: 10px;"></i></span>
 
@@ -3090,182 +3294,7 @@ var path="<?php echo DIR_ROOT ?>";
 
 <!-- begin:custom js  -->
 <script src="assets/js/pages/my-script/member/shopify/sales_order.js"></script>
-<script>
-    
-// Class definition
-var KTWidgets = function() {
- var _initshopifysales = function() {
-    var element = document.getElementById("chart_shopify_mixed");
 
-    if (!element) {
-        return;
-    }
-
-    var options = {
-        series: [{
-            name: 'Net Profit',
-            data: [30, 30, 50, 50, 35, 35]
-        }, {
-            name: 'Revenue',
-            data: [55, 20, 20, 20, 70, 70]
-        }, {
-            name: 'Expenses',
-            data: [60, 60, 40, 40, 30, 30]
-        }, ],
-        chart: {
-            type: 'area',
-            height: 300,
-            toolbar: {
-                show: false
-            },
-            zoom: {
-                enabled: false
-            },
-            sparkline: {
-                enabled: true
-            }
-        },
-        plotOptions: {},
-        legend: {
-            show: false
-        },
-        dataLabels: {
-            enabled: false
-        },
-        fill: {
-            type: 'solid',
-            opacity: 1
-        },
-        stroke: {
-            curve: 'smooth',
-            show: true,
-            width: 2,
-            colors: ['transparent', 'transparent', 'transparent']
-        },
-        xaxis: {
-            x: 0,
-            offsetX: 0,
-            offsetY: 0,
-            padding: {
-                left: 0,
-                right: 0,
-                top: 0,
-            },
-            categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-            axisBorder: {
-                show: false,
-            },
-            axisTicks: {
-                show: false
-            },
-            labels: {
-                show: false,
-                style: {
-                    colors: KTApp.getSettings()['colors']['gray']['gray-500'],
-                    fontSize: '12px',
-                    fontFamily: KTApp.getSettings()['font-family']
-                }
-            },
-            crosshairs: {
-                show: false,
-                position: 'front',
-                stroke: {
-                    color: KTApp.getSettings()['colors']['gray']['gray-300'],
-                    width: 1,
-                    dashArray: 3
-                }
-            },
-            tooltip: {
-                enabled: true,
-                formatter: undefined,
-                offsetY: 0,
-                style: {
-                    fontSize: '12px',
-                    fontFamily: KTApp.getSettings()['font-family']
-                }
-            }
-        },
-        yaxis: {
-            y: 0,
-            offsetX: 0,
-            offsetY: 0,
-            padding: {
-                left: 0,
-                right: 0
-            },
-            labels: {
-                show: false,
-                style: {
-                    colors: KTApp.getSettings()['colors']['gray']['gray-500'],
-                    fontSize: '12px',
-                    fontFamily: KTApp.getSettings()['font-family']
-                }
-            }
-        },
-        states: {
-            normal: {
-                filter: {
-                    type: 'none',
-                    value: 0
-                }
-            },
-            hover: {
-                filter: {
-                    type: 'none',
-                    value: 0
-                }
-            },
-            active: {
-                allowMultipleDataPointsSelection: false,
-                filter: {
-                    type: 'none',
-                    value: 0
-                }
-            }
-        },
-        tooltip: {
-            style: {
-                fontSize: '12px',
-                fontFamily: KTApp.getSettings()['font-family']
-            },
-            y: {
-                formatter: function(val) {
-                    return "$" + val + " thousands"
-                }
-            }
-        },
-        colors: [KTApp.getSettings()['colors']['theme']['light']['success'], KTApp.getSettings()['colors']['theme']['light']['danger'], KTApp.getSettings()['colors']['theme']['light']['info']],
-        grid: {
-            borderColor: KTApp.getSettings()['colors']['gray']['gray-200'],
-            strokeDashArray: 4,
-            padding: {
-                top: 0,
-                bottom: 0,
-                left: 0,
-                right: 0
-            }
-        },
-        markers: {
-            colors: [KTApp.getSettings()['colors']['theme']['light']['success'], KTApp.getSettings()['colors']['theme']['light']['danger'], KTApp.getSettings()['colors']['theme']['light']['info']],
-            strokeColor: [KTApp.getSettings()['colors']['theme']['base']['success'], KTApp.getSettings()['colors']['theme']['base']['danger'], KTApp.getSettings()['colors']['theme']['base']['info']],
-            strokeWidth: 3
-        }
-    };
-
-    var chart = new ApexCharts(element, options);
-    chart.render();
-}
-
-   // Public methods
-   return {
-    init: function() {
-        _initshopifysales();
-      
-    }
-}
-}();
-// apex chart
-</script>
 
 <!-- end:custom js -->
 <!--end::Page Scripts-->

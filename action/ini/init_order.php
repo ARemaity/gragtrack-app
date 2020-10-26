@@ -20,9 +20,28 @@ $status=0;
 $type=0;
 $counter=0;
 $invet_id=0;
+$address=array();
+$iscountry=false;
 $line=array();
 $size_order=sizeof($get_order);
 foreach ($get_order as $order){
+    if(array_key_exists('billing_address',$order)){
+        $address=$order['billing_address'];     
+if(!empty($address['country_code'])){
+
+$iscountry=true;
+
+}else{
+
+    $iscountry=false;
+}
+    }else{
+       
+        $iscountry=false;
+    }
+
+ 
+
 
     switch ($order['financial_status']) {
        case 'pending':
@@ -77,7 +96,14 @@ if($insert_order>0){
    if($status==3){
 
 
+    if($iscountry==true){
+       
+        if($sporder->insert_order_address($address,$insert_order)){
     
+    
+         
+        }
+    }
 $line=$order['line_items'];
 foreach($line as $product){
 $pid=$product['product_id'];
@@ -95,11 +121,10 @@ if(is_null($cost)){
 }
 
     if($sproduct->init_insert_product($insert_order,$pid,$vid,$qty,$cost)){
-        
-    }else{
 
+        
+        
     }
-   
 
 
 

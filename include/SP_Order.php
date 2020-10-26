@@ -593,6 +593,55 @@ if(!is_null($type)){
                   }
           
                   }
+
+
+
+
+ public function insert_order_address($address_array,$oid){
+                   
+                    $stmt = $this->conn->prepare("INSERT INTO `sp_order_address`(`fk_OID`, `latitude`, `longitude`, `country`, `country_code`, `province`) VALUES (?,?,?,?,?,?)");
+                    $stmt->bind_param("iddsss",
+                   $oid,
+                   $address_array['latitude'],
+                   $address_array['longitude'],
+                   $address_array['country'],
+                   $address_array['country_code'],
+                   $address_array['province'],
+                   
+                    );
+                    
+                    $result = $stmt->execute();
+                 
+          
+                    
+                    if ($result) {
+                          
+                        return  true;
+                        $stmt->close();
+                    
+                    } else {
+                      
+                    
+                        die("Adding record failed: " .$stmt->error); 
+                        $stmt->close();
+                    }
+                    
+            
+                }
+            
+              
+                public function get_country_order(){
+                    $stmt = $this->conn->prepare("SELECT COUNT(country_code) as counts ,country_code,country from sp_order_address INNER JOIN sp_order ON sp_order_address.fk_OID=sp_order.OID AND sp_order.fk_AID=?  GROUP BY country_code ORDER by COUNT(country_code)  ASC ");
+                    $stmt->bind_param("i",$this->aid);
+                if ($stmt->execute()) {			
+                    $prs = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+                    $stmt->close();
+                
+                    return $prs; 
+                } else {
+                    return NULL;
+                }
+                }     
           
 }
 

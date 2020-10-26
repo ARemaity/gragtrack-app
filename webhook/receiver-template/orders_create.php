@@ -44,8 +44,23 @@ $api_product=new API_Product_variant();
 $status=0;
 $type=0;
 $invet_id=0;
+$iscountry=false;
+$address=array();
 $line=array();
+if(array_key_exists('billing_address',$order)){
+    $address=$order['billing_address'];     
+if(!empty($address['country_code'])){
 
+$iscountry=true;
+
+}else{
+
+$iscountry=false;
+}
+}else{
+   
+    $iscountry=false;
+}
     switch ($order['financial_status']) {
        case 'pending':
            $status=0;
@@ -133,6 +148,14 @@ if($insert_order>0){
     fwrite($fp,'done order ');
     fclose($fp);
     
+    if($iscountry==true){
+       
+        if($sporder->insert_order_address($address,$insert_order)){
+    
+
+         
+        }
+    }
    if($status==3){
 $line=$order['line_items'];
 foreach($line as $product){

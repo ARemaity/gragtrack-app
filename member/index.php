@@ -1,4 +1,4 @@
-
+<!-- TODO: USE implode rather than foreach to extract string from array  -->
 
 <?php
 

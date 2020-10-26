@@ -27,7 +27,7 @@ foreach ($morder as $order) {
   if($order['has_refund']==1){
   $trefund=$order['total_refund'];
   }
-  // TODO:we must get the refunds later on;
+  // TODO:we must get the refunds later on;(DONE)
 
 $line=$line+$order['total_line'];
 

@@ -33,7 +33,7 @@ private $shop_url;
 
     public function get_pr_prp($product_id){
 
-        $api_url="/admin/api/2020-10/products/".$product_id.".json?fields=title,aa";
+        $api_url="/admin/api/2020-10/products/".$product_id.".json?fields=title,aa,";
         $product=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
         $product=json_decode($product['response'],true);
        if(array_key_exists('errors',$product)){
@@ -61,7 +61,21 @@ private $shop_url;
        }
       
     } 
+    public function get_vr_image($product_id,$image_id){
+
+        $api_url="/admin/api/2020-10/products/".$product_id."//images/" .$image_id.".json";
+        $product=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
+        $product=json_decode($product['response'],true);
+       if(array_key_exists('errors',$product)){
+
+        return null;
+       }else{
+
+        return $product['image'];
+       }
       
+    } 
+       
       
 
 }

@@ -6459,25 +6459,7 @@ switch ($get_s_order['status']) {
 	<script src="assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.1.2"></script>
 	<script src="assets/js/scripts.bundle.js?v=7.1.2"></script>
 	<!-- <script src="assets/js/custom/printThis.js"></script> -->
-  <!-- demo -->
-  <script>
 
-//     $('#print_this').on("click", function () {
-//       $('.order_all').printThis({
-//                      // show the iframe for debugging
-//   importCSS: true,            // import page CSS
-//   importStyle: false,         // import style tags
-//   printContainer: true,       // grab outer container as well as the contents of the selector
-//   loadCSS: "assets/plugins/global/plugins.bundle.css?v=7.1.2",  // path to additional css file - use an array [] for multiple
-//   removeInline: false,        // remove all inline styles from print elements
-//   header: null,               // prefix to html
-//   formValues: true,           // preserve input/form values
-//   canvas: true,              // copy canvas elements (experimental)
-//   doctypeString: "...",       // enter a different doctype for older markup
-//   removeScripts: false,       // remove script tags from print content
-//   copyTagClasses: false       // copy classes from the html & body tag
-//       });
-//     });
   </script>
   
 </body>

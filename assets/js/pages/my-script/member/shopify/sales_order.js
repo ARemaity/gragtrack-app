@@ -419,9 +419,6 @@ var jsons={
         }, {
             "title": "Normal",
             "color": "#83c2ba"
-        }, {
-            "title": "Other",
-            "color": "#db8383"
         }]
     },
     "export": {

@@ -5,14 +5,18 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-if(isset($_SESSION['AID'])){
+// if(isset($_SESSION['AID'])){
 //Get base class
 require_once (dirname(__FILE__,2)).'/base.php';
 include(dirname(__FILE__,2).'/action/m/shopify/sales_order/get_total_sales.php');
+include(dirname(__FILE__,2).'/action/m/shopify/sales_order/best_seller.php');
 require_once (dirname(__FILE__, 2)) . '/' . DIR_INC . 'SP_order.php';
+require_once (dirname(__FILE__, 2)) . '/' . DIR_INC . 'API_Product.php';
+require_once (dirname(__FILE__, 2)) . '/' . DIR_INC . 'API_Product_variant.php';
 
-
+$apipr=new API_Product();
 $neworder=new SP_Order();
+$apiprvr=new API_Product_variant();
 $country_arr=array();
 $handler=array();
 $country_code=array();
@@ -23,7 +27,7 @@ array_push($country_code,$country['counts']);
 }
 
 
-$length=sizeof(array_unique($country_code));
+$length=sizeof($country_code);
 
 $partlength=0;
 $iter=0;
@@ -31,173 +35,221 @@ $iter=0;
 foreach($country_output as $country){
 
 
-if($length%4==0){
+// if($length%4==0){
 
-$partlength=intval($length/4);
+// $partlength=intval($length/4);
 
 
-switch ($iter) {
-    case ($iter<=($partlength*4)-1):
-        $handler=array (
+// switch ($iter) {
+//     case ($iter<=($partlength*4)-1):
+//         $handler=array (
            
 
-                "title"=> $country['country'],
-                "id"=>  $country['country_code'],
-                "color"=>  "#67b7dc",
-                "customData"=>  $country['counts']
-                ,"groupId"=>  '2040-4'
+//                 "title"=> $country['country'],
+//                 "id"=>  $country['country_code'],
+//                 "color"=>  "#67b7dc",
+//                 "customData"=>  $country['counts']
+//                 ,"groupId"=>  '2040-4'
                
            
-        );
-    break;
-    case ($iter<=($partlength*3)-1):
-            $handler=array (
+//         );
+//     break;
+//     case ($iter<=($partlength*3)-1):
+//             $handler=array (
            
 
-                "title"=> $country['country'],
-                "id"=>  $country['country_code'],
-                "color"=>  "#ebdb8b",
-                "customData"=>  $country['counts']
-                ,"groupId"=>  '2030-4'
+//                 "title"=> $country['country'],
+//                 "id"=>  $country['country_code'],
+//                 "color"=>  "#ebdb8b",
+//                 "customData"=>  $country['counts']
+//                 ,"groupId"=>  '2030-4'
            
            
-        );
-            break;
-            case ($iter<($partlength*2)-1):
-                $handler= array (
+//         );
+//             break;
+//             case ($iter<($partlength*2)-1):
+//                 $handler= array (
                
     
-                    "title"=> $country['country'],
-                    "id"=>  $country['country_code'],
-                    "color"=>  "#83c2ba",
-                    "customData"=>  $country['counts']
-                    ,"groupId"=>  '2020-4'
+//                     "title"=> $country['country'],
+//                     "id"=>  $country['country_code'],
+//                     "color"=>  "#83c2ba",
+//                     "customData"=>  $country['counts']
+//                     ,"groupId"=>  '2020-4'
                
                
-            );
-                break;
-                case ($iter<($partlength*1)-1):
-                    $handler=array (
+//             );
+//                 break;
+//                 case ($iter<($partlength*1)-1):
+//                     $handler=array (
                    
         
-                        "title"=> $country['country'],
-                        "id"=>  $country['country_code'],
-                        "color"=>  "#db8383",
-                        "customData"=>  $country['counts']
-                        ,"groupId"=>  '2010-4'
-                );
-                    break;
-    default:
-        # code...
-        break;
-}
+//                         "title"=> $country['country'],
+//                         "id"=>  $country['country_code'],
+//                         "color"=>  "#db8383",
+//                         "customData"=>  $country['counts']
+//                         ,"groupId"=>  '2010-4'
+//                 );
+//                     break;
+//     default:
+//         # code...
+//         break;
+// }
 
 
-}elseif($length%3==0){
+// }elseif($length%3==0){
 
-    $partlength=intval($length/3);
+//     $partlength=intval($length/3);
     
     
-    switch ($iter) {
-        case ($iter<($partlength*3)-1):
-            $handler=array (
+//     switch ($iter) {
+//         case ($iter<($partlength*3)-1):
+//             $handler=array (
                
     
-                    "title"=> $country['country'],
-                    "id"=>  $country['country_code'],
-                    "color"=>  "#67b7dc",
-                    "customData"=>  $country['counts']
-                    ,"groupId"=>  '2030-3'
+//                     "title"=> $country['country'],
+//                     "id"=>  $country['country_code'],
+//                     "color"=>  "#67b7dc",
+//                     "customData"=>  $country['counts']
+//                     ,"groupId"=>  '2030-3'
                
                
-            );
-        break;
+//             );
+//         break;
                 
-        case ($iter<($partlength*2)-1):
-                $handler=array (
+//         case ($iter<($partlength*2)-1):
+//                 $handler=array (
                
     
-                    "title"=> $country['country'],
-                    "id"=>  $country['country_code'],
-                    "color"=>  "#ebdb8b",
-                    "customData"=>  $country['counts']
-                    ,"groupId"=>  '2020-3'
+//                     "title"=> $country['country'],
+//                     "id"=>  $country['country_code'],
+//                     "color"=>  "#ebdb8b",
+//                     "customData"=>  $country['counts']
+//                     ,"groupId"=>  '2020-3'
                
                
-            );
-                break;
+//             );
+//                 break;
                 
-                    case ($iter<($partlength*1)-1):
-                        $handler=array (
+//                     case ($iter<($partlength*1)-1):
+//                         $handler=array (
                        
             
-                            "title"=> $country['country'],
-                            "id"=>  $country['country_code'],
-                            "color"=>  "#db8383",
-                            "customData"=>  $country['counts']
-                            ,"groupId"=>  '2010-3'
-                    );
-                        break;
-        default:
-            # code...
-            break;
-    }
+//                             "title"=> $country['country'],
+//                             "id"=>  $country['country_code'],
+//                             "color"=>  "#db8383",
+//                             "customData"=>  $country['counts']
+//                             ,"groupId"=>  '2010-3'
+//                     );
+//                         break;
+//         default:
+//             # code...
+//             break;
+//     }
     
     
-    }elseif($length%2==0){
+//     }elseif($length%2==0){
 
-        $partlength=intval($length/2);
+//         $partlength=intval($length/2);
         
         
-        switch ($iter) {
-            case ($iter<($partlength*2)-1):
-                $handler=array (
+//         switch ($iter) {
+//             case ($iter<($partlength*2)-1):
+//                 $handler=array (
                    
         
-                        "title"=> $country['country'],
-                        "id"=>  $country['country_code'],
-                        "color"=>  "#67b7dc",
-                        "customData"=>  $country['counts']
-                      ,   "groupId"=>  '2020-2'
+//                         "title"=> $country['country'],
+//                         "id"=>  $country['country_code'],
+//                         "color"=>  "#67b7dc",
+//                         "customData"=>  $country['counts']
+//                       ,   "groupId"=>  '2020-2'
                    
                    
-                );
+//                 );
                     
-                    break;
+//                     break;
                     
-                        case ($iter<($partlength*1)-1):
-                            $handler=array (
+//                         case ($iter<($partlength*1)-1):
+//                             $handler=array (
                            
                 
-                                "title"=> $country['country'],
-                                "id"=>  $country['country_code'],
-                                "color"=>  "#db8383",
-                                "customData"=>  $country['counts'],
-                                "groupId"=>  '2010-2'
+//                                 "title"=> $country['country'],
+//                                 "id"=>  $country['country_code'],
+//                                 "color"=>  "#db8383",
+//                                 "customData"=>  $country['counts'],
+//                                 "groupId"=>  '2010-2'
         
-                        );
-                            break;
-            default:
-                # code...
-                break;
-        }
+//                         );
+//                             break;
+//             default:
+//                 # code...
+//                 break;
+//         }
         
         
-        }else{
-            $handler=array (
+//         }else{
+//             $handler=array (
                    
         
-                "title"=> $country['country'],
-                "id"=>  $country['country_code'],
-                "color"=>  "#83c2ba",
-                "customData"=>  $country['counts'],
+//                 "title"=> $country['country'],
+//                 "id"=>  $country['country_code'],
+//                 "color"=>  "#83c2ba",
+//                 "customData"=>  $country['counts'],
             
-                "groupId"=>  '2040-1'
+//                 "groupId"=>  '2040-1'
            
            
-        );
-        }
-        array_push($country_arr,$handler);
+//         );
+//         }
+
+// TODO: the idea to split the array to 4 or 3 or 2 part since its sorted array rather than give fixed range to (strong,good,normal) label 
+
+if($country['counts']>100){
+    $handler=array (
+                   
+        
+        "title"=> $country['country'],
+        "id"=>  $country['country_code'],
+        "color"=>  "#67b7dc",
+        "customData"=>  $country['counts'],
+    
+        "groupId"=>  '2040-1'
+   
+   
+);
+
+
+
+}elseif($country['counts']>50){
+    $handler=array (
+                   
+        
+        "title"=> $country['country'],
+        "id"=>  $country['country_code'],
+        "color"=>  "#ebdb8b",
+        "customData"=>  $country['counts'],
+    
+        "groupId"=>  '2040-1'
+   
+   
+    );}else{
+    $handler=array (
+                   
+        
+        "title"=> $country['country'],
+        "id"=>  $country['country_code'],
+        "color"=>  "#83c2ba",
+        "customData"=>  $country['counts'],
+    
+        "groupId"=>  '2040-1'
+   
+   
+    );
+}
+array_push($country_arr,$handler);
+
+
+
 
 $iter++;
 
@@ -264,7 +316,7 @@ console.log(countriesArr);
 					<div class="spinner spinner-primary"></div>
 				</span>
 			</div>
-		</div>
+		</div>array_count_values
     <!--begin::Main-->
     <!--begin::Header Mobile-->
     <div id="kt_header_mobile" class="header-mobile ">
@@ -2331,81 +2383,62 @@ console.log(countriesArr);
                         <!--end::Header-->
                         <!--begin::Body-->
                         <div class="card-body pt-2">
-                            <!--begin::Item-->
+                            <?php
+    if(!is_null($best_seller)):
+    foreach($best_seller as $seller):
+$getpr=$apipr->get_pr_prp($seller['product_id']);
+     $name=$getpr['title'];
+     $variant_prp=$apiprvr->get_variant_prp2($seller['product_id']);
+$price=0;
+
+     if(!is_null($variant_prp)){
+         if(!empty($variant_prp['name'])){
+             $name=$name.' '.$variant_prp['name'];
+         }
+         if(!empty($variant_prp['price'])){
+            $price=$variant_prp['price'];
+        }
+        
+     }
+     $imageURL=$apipr->get_pr_image($seller['product_id'])['src'];
+
+
+       
+?>
                             <div class="d-flex mb-8">
-                                <!--begin::Symbol-->
+                       
                                 <div class="symbol symbol-50 symbol-2by3 flex-shrink-0 mr-4">
                                     <div class="d-flex flex-column">
                                         <div class="symbol-label mb-3"
-                                            style="background-image: url('assets/media/stock-600x400/img-23.jpg')">
+                                            style="background-image: url('<?= $imageURL ?>')">
                                         </div>
 
                                     </div>
                                 </div>
-                                <!--end::Symbol-->
-                                <!--begin::Title-->
+                             
                                 <div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3">
                                     <a href="#"
-                                        class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg mb-2">Darius
-                                        the Great</a>
+                                        class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg mb-2"><?= $name?></a>
 
                                     <span class="text-muted font-weight-bold font-size-lg">Price:
-                                        <span class="text-dark-75 font-weight-bolder">99.00$</span></span>
+                                        <span class="text-dark-75 font-weight-bolder"><?= $price?></span></span>
                                     <span class="text-muted font-weight-bold font-size-lg">Sales:
-                                        <span class="text-dark-75 font-weight-bolder">1241</span></span>
+                                        <span class="text-dark-75 font-weight-bolder"><?= $seller['counts']?></span></span>
                                 </div>
-                                <!--end::Title-->
+                                
                             </div>
+
+                           <?php 
+      endforeach;
+        
+ else:
+    echo '<div class="d-flex flex-center text-center text-muted min-h-200px">NO RECORDS</div>';
+    
+ endif;
+    ?>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <div class="d-flex mb-8">
-                                <!--begin::Symbol-->
-                                <div class="symbol symbol-50 symbol-2by3 flex-shrink-0 mr-4">
-                                    <div class="d-flex flex-column">
-                                        <div class="symbol-label mb-3"
-                                            style="background-image: url('assets/media/stock-600x400/img-25.jpg')">
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!--end::Symbol-->
-                                <!--begin::Title-->
-                                <div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3">
-                                    <a href="#"
-                                        class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg mb-2">Nike
-                                        Airmax</a>
-
-                                    <span class="text-muted font-weight-bold font-size-lg">Price:
-                                        <span class="text-dark-75 font-weight-bolder">184$</span></span>
-                                    <span class="text-muted font-weight-bold font-size-lg">Sales:
-                                        <span class="text-dark-75 font-weight-bolder">1132</span></span>
-                                </div>
-                                <!--end::Title-->
-                            </div>
-
-                            <div class="d-flex mb-8">
-                                <!--begin::Symbol-->
-                                <div class="symbol symbol-50 symbol-2by3 flex-shrink-0 mr-4">
-                                    <div class="d-flex flex-column">
-                                        <div class="symbol-label mb-3"
-                                            style="background-image: url('assets/media/stock-600x400/img-24.jpg')">
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!--end::Symbol-->
-                                <!--begin::Title-->
-                                <div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3">
-                                    <a href="#"
-                                        class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg mb-2">sketcher</a>
-
-                                    <span class="text-muted font-weight-bold font-size-lg">Price:
-                                        <span class="text-dark-75 font-weight-bolder">150$</span></span>
-                                    <span class="text-muted font-weight-bold font-size-lg">Sales:
-                                        <span class="text-dark-75 font-weight-bolder">124</span></span>
-                                </div>
-                                <!--end::Title-->
-                            </div>
+                      
                             <!--end::Item-->
                         </div>
                         <!--end::Body-->
@@ -3304,13 +3337,13 @@ console.log(countriesArr);
 </html>
 <?php
 
-}else{
+// }else{
 
 
-    header( "refresh:2; url=".dirname(__FILE__,2)."/error.php"); 
-    echo "You will be redirected to gragtrack error page (debug phase)";
+//     header( "refresh:2; url=../error.php"); 
+//     echo "You will be redirected to gragtrack error page (debug phase)";
     
- }
+//  }
 
 
 ?>

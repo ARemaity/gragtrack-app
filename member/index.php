@@ -5,6 +5,8 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+// if(isset($_SESSION['AID'])){
 $this_year=date("Y");
 //Get base class
 require_once (dirname(__FILE__,2)).'/base.php';
@@ -4168,3 +4170,13 @@ KTApexChartsDemo.init();
 <!--end::Body-->
 
 </html>
+<?php
+//  }else{
+
+//     header( "refresh:2; url=../error.php" ); 
+//     echo "You will be redirected to gragtrack error page (debug phase)";
+    
+//  }
+
+
+?>

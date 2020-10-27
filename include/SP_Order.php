@@ -83,8 +83,8 @@ if(!empty($order_array['customer'])){
    $customer_id=$order_array['customer']['id'];
   } 
         $create = date('Y-m-d H:i:s', strtotime($order_array['created_at']));
-        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`order_name`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`,`type`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("iisiddddddiiiiis",
+        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`order_name`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`,`type`,`source_name`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("iisiddddddiiiiiss",
         $_SESSION['AID'],
         $order_array['id'],
         $order_array['name'],
@@ -100,6 +100,7 @@ if(!empty($order_array['customer'])){
         $istest,
         $status,
         $type,
+        $order_array['source_name'],
         $create
         );
         
@@ -282,7 +283,7 @@ if(!empty($order_array['shipping_lines'])){
      */
     public function get_mix_attr($month){
 
-    $stmt = $this->conn->prepare("SELECT `OID`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`, `total_refund`,`has_refund`, `tax_included` FROM `sp_order` WHERE fk_AID = ?  AND MONTH(created_at) = ? AND  test='0' ");
+    $stmt = $this->conn->prepare("SELECT `OID`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`, `total_refund`,`has_refund`, `tax_included` FROM `sp_order` WHERE fk_AID = ?  AND MONTH(created_at) = ? AND  test!='0' ");
     $stmt->bind_param("ii", $_SESSION['AID'],$month);
 if ($stmt->execute()) {			
     $orders = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -642,6 +643,26 @@ if(!is_null($type)){
                     return NULL;
                 }
                 }     
+
+
+                public function get_source_order(){
+
+                    $stmt = $this->conn->prepare("SELECT count(source_name) as counts ,source_name FROM `sp_order` WHERE fk_AID = ?  AND   test!='0' group by source_name order by count(source_name) DESC");
+                    $stmt->bind_param("i", $_SESSION['AID']);
+                if ($stmt->execute()) {			
+                    $orders = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+                    $stmt->close();
+                
+                    return $orders; 
+                } else {
+                    return NULL;
+                }
+                
+                
+                
+                
+                
+                    } 
           
 }
 

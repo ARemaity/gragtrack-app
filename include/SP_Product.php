@@ -111,7 +111,20 @@ class SP_Product{
 
 
         public function get_top_five(){
-            $stmt = $this->conn->prepare("SELECT product_id,sum(qty) as counts from sp_product INNER JOIN sp_order ON sp_product.fk_OID=sp_order.OID AND sp_order.fk_AID=? GROUP by product_id ORDER BY SUM(qty) DESC LIMIT 5");
+            $stmt = $this->conn->prepare("SELECT product_id,variant_id,sum(qty) as counts from sp_product INNER JOIN sp_order ON sp_product.fk_OID=sp_order.OID AND sp_order.fk_AID=? GROUP by product_id ORDER BY SUM(qty) DESC LIMIT 5");
+            $stmt->bind_param("i",$this->aid);
+        if ($stmt->execute()) {			
+            $prs = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+        
+            return $prs; 
+        } else {
+            return NULL;
+        }
+        }
+
+        public function best_seller(){
+            $stmt = $this->conn->prepare("SELECT product_id,variant_id,sum(qty) as counts from sp_product INNER JOIN sp_order ON sp_product.fk_OID=sp_order.OID AND sp_order.fk_AID=? GROUP by variant_id ORDER BY SUM(qty) DESC LIMIT 5");
             $stmt->bind_param("i",$this->aid);
         if ($stmt->execute()) {			
             $prs = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -124,6 +137,7 @@ class SP_Product{
         }
 
   
+
 
         public function get_product_order($oid){
 

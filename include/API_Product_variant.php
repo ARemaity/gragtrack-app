@@ -68,7 +68,7 @@ private $shop_url;
     } 
     public function get_invent_id($variant_id){
 
-        $api_url="//admin/api/2020-10/variants/".$variant_id.".json?fields=inventory_item_id,aa";
+        $api_url="/admin/api/2020-10/variants/".$variant_id.".json?fields=inventory_item_id,aa,price,aa";
         $variant=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
         $variant=json_decode($variant['response'],true);
        if(array_key_exists('errors',$variant)){

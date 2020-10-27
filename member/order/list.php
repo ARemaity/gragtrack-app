@@ -3924,7 +3924,7 @@ var path="<?php echo DIR_ROOT ?>";
 											<!--begin::Header-->
 											<div class="card-header flex-wrap border-0 pt-6 pb-0">
 												<h3 class="card-title align-items-start flex-column">
-													<span class="card-label font-weight-bolder font-size-h3 text-dark">My Orders</span>
+													<span class="card-label font-weight-bolder font-size-h3 text-dark">Order List</span>
 												</h3>
 												<div class="card-toolbar">
 												

@@ -294,89 +294,44 @@ var KTWidgets = function() {
         var chart = new ApexCharts(element, options);
         chart.render();
     }
-   // Public methods
-   return {
-    init: function() {
-      
-        _initDaterangepicker();
-        _initshopifysales();
-        
-    }
-}
-}();
-
-// Webpack support
-if (typeof module !== 'undefined') {
-module.exports = KTWidgets;
-}
-
-jQuery(document).ready(function() {
-KTWidgets.init();
-});
-
-
-
-
-
-
-var KTApexChartsDemo = function () {
-
-    var _shopify_chart_source = function () {
-		const apexChart = "#chart_source";
-        var options = {
-            series: [44, 55, 67, 83],
-            chart: {
-            height: 350,
-            type: 'radialBar',
-          },
-          plotOptions: {
-            radialBar: {
-              dataLabels: {
-                name: {
-                  fontSize: '22px',
-                },
-                value: {
-                  fontSize: '16px',
-                },
-                total: {
-                  show: true,
-                  label: 'Total',
-                  formatter: function (w) {
-                    // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                    return 249
-                  }
-                }
-              }
-            }
-          },
-          labels: ['Web', 'Android', 'Iphone', 'Other'],
-          };
+    // var _shopify_chart_source = function () {
+	// 	const apexChart = "#chart_source";
+    //     var options = {
+    //         series: [44, 55, 67, 83],
+    //         chart: {
+    //         height: 350,
+    //         type: 'radialBar',
+    //       },
+    //       plotOptions: {
+    //         radialBar: {
+    //           dataLabels: {
+    //             name: {
+    //               fontSize: '22px',
+    //             },
+    //             value: {
+    //               fontSize: '16px',
+    //             },
+    //             total: {
+    //               show: true,
+    //               label: 'Total',
+    //               formatter: function (w) {
+    //                 // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+    //                 return 249
+    //               }
+    //             }
+    //           }
+    //         }
+    //       },
+    //       labels: ['Web', 'Android', 'Iphone', 'Other'],
+    //       };
   
-          var chart = new ApexCharts(document.querySelector(apexChart), options);
-          chart.render();
+    //       var chart = new ApexCharts(document.querySelector(apexChart), options);
+    //       chart.render();
 
-	}
-	// Private functions
-return {
-    // public functions
-    init: function () {
-     
-        _shopify_chart_source();
-    }
-};
-}();
+    // }
+    
 
-jQuery(document).ready(function () {
-KTApexChartsDemo.init();
-});
-
-
-
-var KTamChartsMapsDemo = function() {
-// AMChart script//
-
-
-
+    
 var jsons={
     "type": "map",
     "theme": "light",
@@ -438,19 +393,127 @@ countriesArr.map(function(item){
     
     });
   }  );
-  console.log(jsons);
+
   var _initlocationMap = function() {
     var map = AmCharts.makeChart("map_location",jsons);
 }
+var _source_order = function () {
+    $(document).ready(function () {
+        var sourcename=[];
+        var sourcedata=[];
+      var sumorder=0;
+      KTApp.block("#blockui_source_order", {
+        overlayColor: "#000000",
+        state: "secondary",
+        message: "Processing...",
+      });
+      // get the latest order [current all] TODO: add filter paid , cancel
+      $.ajax({
+        url: path+"action/m/shopify/sales_order/order_source.php",
+        type: "POST",
+        dataType: "JSON",
+        data: { get_mix: 1 },
+        success: function (response) {
+  
+            console.log(response);
+    
+          if (response.isdata == 0) {
+              console.log('no data');
+           var output=
+                  '<div class="d-flex flex-center text-center text-muted min-h-200px">'+
+                                    
+                                                    '<br>'+
+                                                    'No Records'+
+                                                '</div>';
 
-return {
-    // public functions
+                                                $("#order_source_body").append(output);
+                                                KTApp.unblock("#blockui_source_order");
+          } else {
+     
+            $.each(response.source, function (i, log) {
+
+                sourcedata.push(log.nb);
+                if(log.name=='shopify_draft_order'){
+                sourcename.push('Draft Order');
+
+                }else{
+                    sourcename.push(log.name);
+                }
+                
+            sumorder+= parseInt(log.nb);
+            });
+
+// 
+            const apexChart = "#chart_source";
+            var options = {
+                series: sourcedata,
+                chart: {
+                height: 350,
+                type: 'radialBar',
+              },
+              plotOptions: {
+                radialBar: {
+                  dataLabels: {
+                    name: {
+                      fontSize: '22px',
+                    },
+                    value: {
+                      fontSize: '16px',
+                    },
+                    total: {
+                      show: true,
+                      label: 'Total',
+                      formatter: function (w) {
+                        // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                        return sumorder
+                      }
+                    }
+                  }
+                }
+              },
+              labels:sourcename,
+              };
+      
+              var chart = new ApexCharts(document.querySelector(apexChart), options);
+              chart.render();
+
+
+
+
+
+
+
+
+            KTApp.unblock("#blockui_source_order");
+          }
+        },
+      });
+    });
+  };
+
+   // Public methods
+   return {
     init: function() {
+      
+        _initDaterangepicker();
+        _initshopifysales();
+        _initcartgraph();
+        // _shopify_chart_source();
         _initlocationMap();
+        _source_order();
+        
     }
-};
+}
 }();
 
+// Webpack support
+if (typeof module !== 'undefined') {
+module.exports = KTWidgets;
+}
+
 jQuery(document).ready(function() {
-KTamChartsMapsDemo.init();
+KTWidgets.init();
 });
+
+
+

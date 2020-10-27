@@ -647,7 +647,7 @@ if(!is_null($type)){
 
                 public function get_source_order(){
 
-                    $stmt = $this->conn->prepare("SELECT count(source_name) as counts ,source_name FROM `sp_order` WHERE fk_AID = ?  AND   test!='0' group by source_name order by count(source_name) DESC");
+                    $stmt = $this->conn->prepare("SELECT source_name,COUNT(source_name) as counts FROM `sp_order` WHERE fk_AID=? GROUP by source_name order by COUNT(source_name) DESC");
                     $stmt->bind_param("i", $_SESSION['AID']);
                 if ($stmt->execute()) {			
                     $orders = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);

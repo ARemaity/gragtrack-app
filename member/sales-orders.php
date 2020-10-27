@@ -316,7 +316,7 @@ console.log(countriesArr);
 					<div class="spinner spinner-primary"></div>
 				</span>
 			</div>
-		</div>array_count_values
+		</div>
     <!--begin::Main-->
     <!--begin::Header Mobile-->
     <div id="kt_header_mobile" class="header-mobile ">
@@ -2388,8 +2388,9 @@ console.log(countriesArr);
     foreach($best_seller as $seller):
 $getpr=$apipr->get_pr_prp($seller['product_id']);
      $name=$getpr['title'];
-     $variant_prp=$apiprvr->get_variant_prp2($seller['product_id']);
-$price=0;
+     $variant_prp=$apiprvr->get_variant_prp2($seller['variant_id']);
+ 
+   $price=0;
 
      if(!is_null($variant_prp)){
          if(!empty($variant_prp['name'])){
@@ -2451,7 +2452,7 @@ $price=0;
 
                 <div class="col-xl-4">
                     <!--begin::Advance Table Widget 1-->
-                    <div class="card card-custom card-stretch gutter-b">
+                    <div class="card card-custom card-stretch gutter-b" id="blockui_source_order">
                         <!--begin::Header-->
                         <div class="card-header border-0 py-5">
                             <h3 class="card-title align-items-start flex-column">
@@ -2466,7 +2467,7 @@ $price=0;
                         <!--end::Header-->
 
                         <!--begin::Body-->
-                        <div class="card-body py-0">
+                        <div class="card-body py-0" id="order_source_body">
                             <div id="chart_source"></div>
                             <!--end::Table-->
                         </div>

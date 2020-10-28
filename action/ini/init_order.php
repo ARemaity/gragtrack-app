@@ -93,7 +93,7 @@ $iscountry=true;
 if($insert_order>0){
 
     $counter+=1;
-   if($status==3){
+//    if($status==3){ removed to insert all product order 
 
 
     if($iscountry==true){
@@ -132,7 +132,7 @@ if(is_null($cost)){
 
 
     
-   }
+//    }
 
 
 }else{

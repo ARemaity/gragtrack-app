@@ -2509,23 +2509,24 @@ $getpr=$apipr->get_pr_prp($seller['product_id']);
                         <div class="card card-custom bgi-no-repeat card-stretch gutter-b"
                             style="background-position: right top; background-size: 30% auto; background-image: url(assets/media/svg/shapes/abstract-3.svg)">
                             <!--begin::Body-->
-                            <div class="card-body my-1">
+                            <div class="card-body my-1" id="sales_st_container">
                                 <a href="#"
                                     class="card-title font-weight-bolder font-size-h6 mb-4 text-dark-75 d-block">Sales
                                     States<i class="fa fa-info-circle " data-html="true" data-toggle="tooltip" data-placement="right"
                                         title=""
-                                        data-original-title="UC6 Total Sales By ProductsThis widget is a daily stats only:<br>Status 1(0-5)<br> Status 2(5-20)<br> Status 3(20-40)<br> Status 4(>50)"
+                                        data-original-title="UC6 This widget is a daily stats only:<br>Status 1(0-5)<br> Status 2(5-20)<br> Status 3(20-40)<br> Status 4(>50)"
                                         style="margin-left: 10px;"></i></a>
-                                <img src="assets/media/bg/sunny.gif" style="width: 250px;">
+                                        
+                                <img src="assets/media/bg/sunny.gif" style="width: 250px;" id="sales_st_img">
                                 <div class="card-body py-0">
-                                    <span class="font-weight-bold text-muted font-size-sm">We both Know you could do
+                                    <span class="font-weight-bold text-muted font-size-sm" id="sales_st_txt">We both Know you could do
                                         better.</span>
                                     </br>
 
 
 
                                     <s<span class="label label-xl label-info label-inline mr-2 ont-size-xl"
-                                        style="margin-top: 10px;">20 Sales</span>
+                                        style="margin-top: 10px;" id="sales_st_count">20 Sales</span>
 
 
                                 </div>

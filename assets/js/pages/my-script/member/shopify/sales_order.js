@@ -1,407 +1,440 @@
 "use strict";
 
 // Class definition
-var KTWidgets = function() {
-    // Private properties
-    var _initDaterangepicker = function() {
-        if ($('#kt_dashboard_daterangepicker').length == 0) {
-            return;
-        }
-
-        var picker = $('#kt_dashboard_daterangepicker');
-        var start = moment();
-        var end = moment();
-
-        function cb(start, end, label) {
-            var title = '';
-            var range = '';
-
-            if ((end - start) < 100 || label == 'Today') {
-                title = 'Today:';
-                range = start.format('MMM D');
-            } else if (label == 'Yesterday') {
-                title = 'Yesterday:';
-                range = start.format('MMM D');
-            } else {
-                range = start.format('MMM D') + ' - ' + end.format('MMM D');
-            }
-
-            $('#kt_dashboard_daterangepicker_date').html(range);
-            $('#kt_dashboard_daterangepicker_title').html(title);
-        }
-
-        picker.daterangepicker({
-            direction: KTUtil.isRTL(),
-            startDate: start,
-            endDate: end,
-            opens: 'left',
-            applyClass: 'btn-primary',
-            cancelClass: 'btn-light-primary',
-            ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            }
-        }, cb);
-
-        cb(start, end, '');
+var KTWidgets = (function () {
+  // Private properties
+  var _initDaterangepicker = function () {
+    if ($("#kt_dashboard_daterangepicker").length == 0) {
+      return;
     }
 
-    var _initshopifysales = function() {
-        var element = document.getElementById("chart_shopify_mixed");
+    var picker = $("#kt_dashboard_daterangepicker");
+    var start = moment();
+    var end = moment();
 
-        if (!element) {
-            return;
-        }
+    function cb(start, end, label) {
+      var title = "";
+      var range = "";
 
-        var options = {
-            series: [{
-                name: 'Net Profit',
-                data: [30, 30, 50, 50, 35, 35]
-            }, {
-                name: 'Revenue',
-                data: [55, 20, 20, 20, 70, 70]
-            }, {
-                name: 'Expenses',
-                data: [60, 60, 40, 40, 30, 30]
-            }, ],
-            chart: {
-                type: 'area',
-                height: 300,
-                toolbar: {
-                    show: false
-                },
-                zoom: {
-                    enabled: false
-                },
-                sparkline: {
-                    enabled: true
-                }
-            },
-            plotOptions: {},
-            legend: {
-                show: false
-            },
-            dataLabels: {
-                enabled: false
-            },
-            fill: {
-                type: 'solid',
-                opacity: 1
-            },
-            stroke: {
-                curve: 'smooth',
-                show: true,
-                width: 2,
-                colors: ['transparent', 'transparent', 'transparent']
-            },
-            xaxis: {
-                x: 0,
-                offsetX: 0,
-                offsetY: 0,
-                padding: {
-                    left: 0,
-                    right: 0,
-                    top: 0,
-                },
-                categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-                axisBorder: {
-                    show: false,
-                },
-                axisTicks: {
-                    show: false
-                },
-                labels: {
-                    show: false,
-                    style: {
-                        colors: KTApp.getSettings()['colors']['gray']['gray-500'],
-                        fontSize: '12px',
-                        fontFamily: KTApp.getSettings()['font-family']
-                    }
-                },
-                crosshairs: {
-                    show: false,
-                    position: 'front',
-                    stroke: {
-                        color: KTApp.getSettings()['colors']['gray']['gray-300'],
-                        width: 1,
-                        dashArray: 3
-                    }
-                },
-                tooltip: {
-                    enabled: true,
-                    formatter: undefined,
-                    offsetY: 0,
-                    style: {
-                        fontSize: '12px',
-                        fontFamily: KTApp.getSettings()['font-family']
-                    }
-                }
-            },
-            yaxis: {
-                y: 0,
-                offsetX: 0,
-                offsetY: 0,
-                padding: {
-                    left: 0,
-                    right: 0
-                },
-                labels: {
-                    show: false,
-                    style: {
-                        colors: KTApp.getSettings()['colors']['gray']['gray-500'],
-                        fontSize: '12px',
-                        fontFamily: KTApp.getSettings()['font-family']
-                    }
-                }
-            },
-            states: {
-                normal: {
-                    filter: {
-                        type: 'none',
-                        value: 0
-                    }
-                },
-                hover: {
-                    filter: {
-                        type: 'none',
-                        value: 0
-                    }
-                },
-                active: {
-                    allowMultipleDataPointsSelection: false,
-                    filter: {
-                        type: 'none',
-                        value: 0
-                    }
-                }
-            },
-            tooltip: {
-                style: {
-                    fontSize: '12px',
-                    fontFamily: KTApp.getSettings()['font-family']
-                },
-                y: {
-                    formatter: function(val) {
-                        return "$" + val + " thousands"
-                    }
-                }
-            },
-            colors: [KTApp.getSettings()['colors']['theme']['light']['success'], KTApp.getSettings()['colors']['theme']['light']['danger'], KTApp.getSettings()['colors']['theme']['light']['info']],
-            grid: {
-                borderColor: KTApp.getSettings()['colors']['gray']['gray-200'],
-                strokeDashArray: 4,
-                padding: {
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                    right: 0
-                }
-            },
-            markers: {
-                colors: [KTApp.getSettings()['colors']['theme']['light']['success'], KTApp.getSettings()['colors']['theme']['light']['danger'], KTApp.getSettings()['colors']['theme']['light']['info']],
-                strokeColor: [KTApp.getSettings()['colors']['theme']['base']['success'], KTApp.getSettings()['colors']['theme']['base']['danger'], KTApp.getSettings()['colors']['theme']['base']['info']],
-                strokeWidth: 3
-            }
-        };
+      if (end - start < 100 || label == "Today") {
+        title = "Today:";
+        range = start.format("MMM D");
+      } else if (label == "Yesterday") {
+        title = "Yesterday:";
+        range = start.format("MMM D");
+      } else {
+        range = start.format("MMM D") + " - " + end.format("MMM D");
+      }
 
-        var chart = new ApexCharts(element, options);
-        chart.render();
+      $("#kt_dashboard_daterangepicker_date").html(range);
+      $("#kt_dashboard_daterangepicker_title").html(title);
     }
 
-    
-    var _initcartgraph = function() {
-        var element = document.getElementById("graph_cart_mixed");
-
-        if (!element) {
-            return;
-        }
-
-        var options = {
-            series: [{
-            name: 'Sales',
-            type: 'column',
-            data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
-          }, {
-            name: 'Abandoned Cart',
-            type: 'area',
-            data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
-          }, {
-            name: 'Checkout Cart',
-            type: 'line',
-            data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
-          }],
-            chart: {
-            height: 350,
-            type: 'line',
-            stacked: false,
-          },
-          stroke: {
-            width: [0, 2, 5],
-            curve: 'smooth'
-          },
-          plotOptions: {
-            bar: {
-              columnWidth: '50%'
-            }
-          },
-          
-          fill: {
-            opacity: [0.85, 0.25, 1],
-            gradient: {
-              inverseColors: false,
-              shade: 'light',
-              type: "vertical",
-              opacityFrom: 0.85,
-              opacityTo: 0.55,
-              stops: [0, 100, 100, 100]
-            }
-          },
-          labels: ['01/01/2003', '02/01/2003', '03/01/2003', '04/01/2003', '05/01/2003', '06/01/2003', '07/01/2003',
-            '08/01/2003', '09/01/2003', '10/01/2003', '11/01/2003'
+    picker.daterangepicker(
+      {
+        direction: KTUtil.isRTL(),
+        startDate: start,
+        endDate: end,
+        opens: "left",
+        applyClass: "btn-primary",
+        cancelClass: "btn-light-primary",
+        ranges: {
+          Today: [moment(), moment()],
+          Yesterday: [
+            moment().subtract(1, "days"),
+            moment().subtract(1, "days"),
           ],
-          markers: {
-            size: 0
+          "Last 7 Days": [moment().subtract(6, "days"), moment()],
+          "Last 30 Days": [moment().subtract(29, "days"), moment()],
+          "This Month": [moment().startOf("month"), moment().endOf("month")],
+          "Last Month": [
+            moment().subtract(1, "month").startOf("month"),
+            moment().subtract(1, "month").endOf("month"),
+          ],
+        },
+      },
+      cb
+    );
+
+    cb(start, end, "");
+  };
+
+  var _initshopifysales = function () {
+    var element = document.getElementById("chart_shopify_mixed");
+
+    if (!element) {
+      return;
+    }
+
+    var options = {
+      series: [
+        {
+          name: "Net Profit",
+          data: [30, 30, 50, 50, 35, 35],
+        },
+        {
+          name: "Revenue",
+          data: [55, 20, 20, 20, 70, 70],
+        },
+        {
+          name: "Expenses",
+          data: [60, 60, 40, 40, 30, 30],
+        },
+      ],
+      chart: {
+        type: "area",
+        height: 300,
+        toolbar: {
+          show: false,
+        },
+        zoom: {
+          enabled: false,
+        },
+        sparkline: {
+          enabled: true,
+        },
+      },
+      plotOptions: {},
+      legend: {
+        show: false,
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      fill: {
+        type: "solid",
+        opacity: 1,
+      },
+      stroke: {
+        curve: "smooth",
+        show: true,
+        width: 2,
+        colors: ["transparent", "transparent", "transparent"],
+      },
+      xaxis: {
+        x: 0,
+        offsetX: 0,
+        offsetY: 0,
+        padding: {
+          left: 0,
+          right: 0,
+          top: 0,
+        },
+        categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+        axisBorder: {
+          show: false,
+        },
+        axisTicks: {
+          show: false,
+        },
+        labels: {
+          show: false,
+          style: {
+            colors: KTApp.getSettings()["colors"]["gray"]["gray-500"],
+            fontSize: "12px",
+            fontFamily: KTApp.getSettings()["font-family"],
           },
-          xaxis: {
-            type: 'datetime'
+        },
+        crosshairs: {
+          show: false,
+          position: "front",
+          stroke: {
+            color: KTApp.getSettings()["colors"]["gray"]["gray-300"],
+            width: 1,
+            dashArray: 3,
           },
-          yaxis: {
-            title: {
-              text: 'Points',
-            },
-            min: 0
+        },
+        tooltip: {
+          enabled: true,
+          formatter: undefined,
+          offsetY: 0,
+          style: {
+            fontSize: "12px",
+            fontFamily: KTApp.getSettings()["font-family"],
           },
-          tooltip: {
-            shared: true,
-            intersect: false,
-            y: {
-              formatter: function (y) {
-                if (typeof y !== "undefined") {
-                  return y.toFixed(0) + " points";
-                }
-                return y;
-          
-              }
+        },
+      },
+      yaxis: {
+        y: 0,
+        offsetX: 0,
+        offsetY: 0,
+        padding: {
+          left: 0,
+          right: 0,
+        },
+        labels: {
+          show: false,
+          style: {
+            colors: KTApp.getSettings()["colors"]["gray"]["gray-500"],
+            fontSize: "12px",
+            fontFamily: KTApp.getSettings()["font-family"],
+          },
+        },
+      },
+      states: {
+        normal: {
+          filter: {
+            type: "none",
+            value: 0,
+          },
+        },
+        hover: {
+          filter: {
+            type: "none",
+            value: 0,
+          },
+        },
+        active: {
+          allowMultipleDataPointsSelection: false,
+          filter: {
+            type: "none",
+            value: 0,
+          },
+        },
+      },
+      tooltip: {
+        style: {
+          fontSize: "12px",
+          fontFamily: KTApp.getSettings()["font-family"],
+        },
+        y: {
+          formatter: function (val) {
+            return "$" + val + " thousands";
+          },
+        },
+      },
+      colors: [
+        KTApp.getSettings()["colors"]["theme"]["light"]["success"],
+        KTApp.getSettings()["colors"]["theme"]["light"]["danger"],
+        KTApp.getSettings()["colors"]["theme"]["light"]["info"],
+      ],
+      grid: {
+        borderColor: KTApp.getSettings()["colors"]["gray"]["gray-200"],
+        strokeDashArray: 4,
+        padding: {
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
+        },
+      },
+      markers: {
+        colors: [
+          KTApp.getSettings()["colors"]["theme"]["light"]["success"],
+          KTApp.getSettings()["colors"]["theme"]["light"]["danger"],
+          KTApp.getSettings()["colors"]["theme"]["light"]["info"],
+        ],
+        strokeColor: [
+          KTApp.getSettings()["colors"]["theme"]["base"]["success"],
+          KTApp.getSettings()["colors"]["theme"]["base"]["danger"],
+          KTApp.getSettings()["colors"]["theme"]["base"]["info"],
+        ],
+        strokeWidth: 3,
+      },
+    };
+
+    var chart = new ApexCharts(element, options);
+    chart.render();
+  };
+
+  var _initcartgraph = function () {
+    var element = document.getElementById("graph_cart_mixed");
+
+    if (!element) {
+      return;
+    }
+
+    var options = {
+      series: [
+        {
+          name: "Sales",
+          type: "column",
+          data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
+        },
+        {
+          name: "Abandoned Cart",
+          type: "area",
+          data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
+        },
+        {
+          name: "Checkout Cart",
+          type: "line",
+          data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
+        },
+      ],
+      chart: {
+        height: 350,
+        type: "line",
+        stacked: false,
+      },
+      stroke: {
+        width: [0, 2, 5],
+        curve: "smooth",
+      },
+      plotOptions: {
+        bar: {
+          columnWidth: "50%",
+        },
+      },
+
+      fill: {
+        opacity: [0.85, 0.25, 1],
+        gradient: {
+          inverseColors: false,
+          shade: "light",
+          type: "vertical",
+          opacityFrom: 0.85,
+          opacityTo: 0.55,
+          stops: [0, 100, 100, 100],
+        },
+      },
+      labels: [
+        "01/01/2003",
+        "02/01/2003",
+        "03/01/2003",
+        "04/01/2003",
+        "05/01/2003",
+        "06/01/2003",
+        "07/01/2003",
+        "08/01/2003",
+        "09/01/2003",
+        "10/01/2003",
+        "11/01/2003",
+      ],
+      markers: {
+        size: 0,
+      },
+      xaxis: {
+        type: "datetime",
+      },
+      yaxis: {
+        title: {
+          text: "Points",
+        },
+        min: 0,
+      },
+      tooltip: {
+        shared: true,
+        intersect: false,
+        y: {
+          formatter: function (y) {
+            if (typeof y !== "undefined") {
+              return y.toFixed(0) + " points";
             }
-          }
-          };
-  
-       
-        var chart = new ApexCharts(element, options);
-        chart.render();
-    }
-    // var _shopify_chart_source = function () {
-	// 	const apexChart = "#chart_source";
-    //     var options = {
-    //         series: [44, 55, 67, 83],
-    //         chart: {
-    //         height: 350,
-    //         type: 'radialBar',
-    //       },
-    //       plotOptions: {
-    //         radialBar: {
-    //           dataLabels: {
-    //             name: {
-    //               fontSize: '22px',
-    //             },
-    //             value: {
-    //               fontSize: '16px',
-    //             },
-    //             total: {
-    //               show: true,
-    //               label: 'Total',
-    //               formatter: function (w) {
-    //                 // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-    //                 return 249
-    //               }
-    //             }
-    //           }
-    //         }
-    //       },
-    //       labels: ['Web', 'Android', 'Iphone', 'Other'],
-    //       };
-  
-    //       var chart = new ApexCharts(document.querySelector(apexChart), options);
-    //       chart.render();
+            return y;
+          },
+        },
+      },
+    };
 
-    // }
-    
+    var chart = new ApexCharts(element, options);
+    chart.render();
+  };
+  // var _shopify_chart_source = function () {
+  // 	const apexChart = "#chart_source";
+  //     var options = {
+  //         series: [44, 55, 67, 83],
+  //         chart: {
+  //         height: 350,
+  //         type: 'radialBar',
+  //       },
+  //       plotOptions: {
+  //         radialBar: {
+  //           dataLabels: {
+  //             name: {
+  //               fontSize: '22px',
+  //             },
+  //             value: {
+  //               fontSize: '16px',
+  //             },
+  //             total: {
+  //               show: true,
+  //               label: 'Total',
+  //               formatter: function (w) {
+  //                 // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+  //                 return 249
+  //               }
+  //             }
+  //           }
+  //         }
+  //       },
+  //       labels: ['Web', 'Android', 'Iphone', 'Other'],
+  //       };
 
-    
-var jsons={
-    "type": "map",
-    "theme": "light",
-    "dataProvider": {
-        "map": "worldHigh",
-        "zoomLevel": 1,
-        "zoomLongitude": 10,
-        "zoomLatitude": 52,
-        "areas": []
+  //       var chart = new ApexCharts(document.querySelector(apexChart), options);
+  //       chart.render();
+
+  // }
+
+  var jsons = {
+    type: "map",
+    theme: "light",
+    dataProvider: {
+      map: "worldHigh",
+      zoomLevel: 1,
+      zoomLongitude: 10,
+      zoomLatitude: 52,
+      areas: [],
     },
 
-    "areasSettings": {
-        "rollOverOutlineColor": "#FFFFFF",
-        "rollOverColor": "#CC0000",
-        "alpha": 0.8,
-        "unlistedAreasAlpha": 0.1,
-        "balloonText": "[[title]] has  [[customData]] orders"
-    
+    areasSettings: {
+      rollOverOutlineColor: "#FFFFFF",
+      rollOverColor: "#CC0000",
+      alpha: 0.8,
+      unlistedAreasAlpha: 0.1,
+      balloonText: "[[title]] has  [[customData]] orders",
     },
 
-
-    "legend": {
-        "width": "100%",
-        "marginRight": 27,
-        "marginLeft": 27,
-        "equalWidths": false,
-        "backgroundAlpha": 0.5,
-        "backgroundColor": "#FFFFFF",
-        "borderColor": "#ffffff",
-        "borderAlpha": 1,
-        "top": 450,
-        "left": 0,
-        "horizontalGap": 10,
-        "data": [{
-            "title": "Strong",
-            "color": "#67b7dc"
-        }, {
-            "title": "Good",
-            "color": "#ebdb8b"
-        }, {
-            "title": "Normal",
-            "color": "#83c2ba"
-        }]
+    legend: {
+      width: "100%",
+      marginRight: 27,
+      marginLeft: 27,
+      equalWidths: false,
+      backgroundAlpha: 0.5,
+      backgroundColor: "#FFFFFF",
+      borderColor: "#ffffff",
+      borderAlpha: 1,
+      top: 450,
+      left: 0,
+      horizontalGap: 10,
+      data: [
+        {
+          title: "Strong",
+          color: "#67b7dc",
+        },
+        {
+          title: "Good",
+          color: "#ebdb8b",
+        },
+        {
+          title: "Normal",
+          color: "#83c2ba",
+        },
+      ],
     },
-    "export": {
-        "enabled": false
-    }
+    export: {
+      enabled: false,
+    },
+  };
 
-};
-
-countriesArr.map(function(item){
-
-    jsons.dataProvider.areas.push({ 
-        "title": item.title,
-        "id":  item.id,
-        "color":  item.color,
-        "customData": item.customData,
-        "groupId": item.groupId
-    
+  countriesArr.map(function (item) {
+    jsons.dataProvider.areas.push({
+      title: item.title,
+      id: item.id,
+      color: item.color,
+      customData: item.customData,
+      groupId: item.groupId,
     });
-  }  );
+  });
 
-  var _initlocationMap = function() {
-    var map = AmCharts.makeChart("map_location",jsons);
-}
-var _source_order = function () {
+  var _initlocationMap = function () {
+    var map = AmCharts.makeChart("map_location", jsons);
+  };
+  var _source_order = function () {
     $(document).ready(function () {
-        var sourcename=[];
-        var sourcedata=[];
-      var sumorder=0;
+      var sourcename = [];
+      var sourcedata = [];
+      var sumorder = 0;
       KTApp.block("#blockui_source_order", {
         overlayColor: "#000000",
         state: "secondary",
@@ -409,80 +442,71 @@ var _source_order = function () {
       });
       // get the latest order [current all] TODO: add filter paid , cancel
       $.ajax({
-        url: path+"action/m/shopify/sales_order/order_source.php",
+        url: path + "action/m/shopify/sales_order/order_source.php",
         type: "POST",
         dataType: "JSON",
         data: { get_mix: 1 },
         success: function (response) {
-  
-            console.log(response);
-    
+          console.log(response);
+
           if (response.isdata == 0) {
-              console.log('no data');
-           var output=
-                  '<div class="d-flex flex-center text-center text-muted min-h-200px">'+
-                                    
-                                                    '<br>'+
-                                                    'No Records'+
-                                                '</div>';
+            console.log("no data");
+            var output =
+              '<div class="d-flex flex-center text-center text-muted min-h-200px">' +
+              "<br>" +
+              "No Records" +
+              "</div>";
 
-                                                $("#order_source_body").append(output);
-                                                KTApp.unblock("#blockui_source_order");
+            $("#order_source_body").append(output);
+            KTApp.unblock("#blockui_source_order");
           } else {
-     
             $.each(response.source, function (i, log) {
+              sourcedata.push(log.nb);
+              if (log.name == "shopify_draft_order") {
+                sourcename.push("Draft Order");
+              } else {
+                sourcename.push(log.name);
+              }
 
-                sourcedata.push(log.nb);
-                if(log.name=='shopify_draft_order'){
-                sourcename.push('Draft Order');
-
-                }else{
-                    sourcename.push(log.name);
-                }
-                
-            sumorder+= parseInt(log.nb);
+              sumorder += parseInt(log.nb);
             });
 
-// 
+            //
             const apexChart = "#chart_source";
             var options = {
-                series: sourcedata,
-                chart: {
+              series: sourcedata,
+              chart: {
                 height: 350,
-                type: 'radialBar',
+                type: "radialBar",
               },
               plotOptions: {
                 radialBar: {
                   dataLabels: {
                     name: {
-                      fontSize: '22px',
+                      fontSize: "22px",
                     },
                     value: {
-                      fontSize: '16px',
+                      fontSize: "16px",
                     },
                     total: {
                       show: true,
-                      label: 'Total',
+                      label: "Total",
                       formatter: function (w) {
                         // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                        return sumorder
-                      }
-                    }
-                  }
-                }
+                        return sumorder;
+                      },
+                    },
+                  },
+                },
               },
-              labels:sourcename,
-              };
-      
-              var chart = new ApexCharts(document.querySelector(apexChart), options);
-              chart.render();
+              labels: sourcename,
+            };
 
-
-
-
-
-
-
+            var chart = new ApexCharts(
+              document.querySelector(apexChart),
+              options
+            );
+            chart.render();
 
             KTApp.unblock("#blockui_source_order");
           }
@@ -490,30 +514,94 @@ var _source_order = function () {
       });
     });
   };
+  var _sales_status = function () {
+    $(document).ready(function () {
+      KTApp.block("#sales_st_container", {
+        overlayColor: "#000000",
+        state: "secondary",
+        message: "Processing...",
+      });
+      // get the latest order [current all] TODO: add filter paid , cancel
+      $.ajax({
+        url: path + "action/m/shopify/sales_order/sales_status.php",
+        type: "POST",
+        dataType: "JSON",
+        data: { get_st: 1 },
+        success: function (response) {
+            var st_img=$('#sales_st_img');
+            var st_txt=$('#sales_st_txt');
+            var st_counter=$('#sales_st_count');
+          console.log(response);
 
-   // Public methods
-   return {
-    init: function() {
-      
-        _initDaterangepicker();
-        _initshopifysales();
-        _initcartgraph();
-        // _shopify_chart_source();
-        _initlocationMap();
-        _source_order();
+          if (response.isdata == 0) {
+            console.log("no data");
+            var output =
+              '<div class="d-flex flex-center text-center text-muted min-h-200px">' +
+              "<br>" +
+              "No Records" +
+              "</div>";
+
+            $("#sales_st_container").append(output);
+            KTApp.unblock("#sales_st_container");
+          } else {
+            //
+            var st_data = response.data;
+            if(st_data > 50){
+             
+                st_img.attr("src","assets/media/bg/giphy.gif");
+                st_txt.html("NICE");
+                st_counter.html(st_data+" sales");
+            }
+             else if(st_data < 50 && st_data >= 20){
+              
+                st_img.attr("src","assets/media/bg/giphy.gif");
+                st_txt.html("good");
+                st_counter.html(st_data+" sales");
+             }
+              else if(st_data < 20 && st_data >= 5){
+                
+                st_img.attr("src","assets/media/bg/giphy.gif");
+                st_txt.html("normal");
+                st_counter.html(st_data+" sales");
+                  }
+             else if(st_data < 5){
+              
+                st_img.attr("src","assets/media/bg/giphy.gif");
+                st_txt.html("bad");
+                st_counter.html(st_data+" sales");
+              }else {
+                st_img.attr("src","assets/media/bg/giphy.gif");
+                st_txt.html("normal");
+                st_counter.html(st_data+" sales");
+              }
         
-    }
-}
-}();
+            
+
+            KTApp.unblock("#sales_st_container");
+          }
+        },
+      });
+    });
+  };
+
+  // Public methods
+  return {
+    init: function () {
+      _initDaterangepicker();
+      _initshopifysales();
+      _initcartgraph();
+      _sales_status();
+      _initlocationMap();
+      _source_order();
+    },
+  };
+})();
 
 // Webpack support
-if (typeof module !== 'undefined') {
-module.exports = KTWidgets;
+if (typeof module !== "undefined") {
+  module.exports = KTWidgets;
 }
 
-jQuery(document).ready(function() {
-KTWidgets.init();
+jQuery(document).ready(function () {
+  KTWidgets.init();
 });
-
-
-

@@ -156,7 +156,7 @@ if($insert_order>0){
          
         }
     }
-   if($status==3){
+
 $line=$order['line_items'];
 foreach($line as $product){
 $pid=$product['product_id'];
@@ -188,7 +188,6 @@ if(is_null($cost)){
 
 
     
-   }
 
 
 }else{

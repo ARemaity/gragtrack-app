@@ -166,8 +166,8 @@ if(!empty($order_array['shipping_lines'])){
     $customer_id=$order_array['customer']['id'];
    } 
         $create = date('Y-m-d H:i:s', strtotime($order_array['created_at']));
-        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`order_name`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`,`type`,`created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("iiiddddddiiiiis",
+        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`order_name`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`,`type`,`source_name`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("iisiddddddiiiiiss",
         $aid,
         $order_array['id'],
         $order_array['name'],
@@ -182,6 +182,8 @@ if(!empty($order_array['shipping_lines'])){
         $include_tax,
         $istest,
         $status,
+        $type,
+        $order_array['source_name'],
         $create
         );
         
@@ -211,7 +213,7 @@ if(!empty($order_array['shipping_lines'])){
         $istest=0;
         $include_tax=0;
         $total_ship=0;
-$trans=array();
+        $trans=array();
         $total_refund=0;
 
         if( sizeof($order_array['refunds']) != 0 ){ 
@@ -283,7 +285,7 @@ if(!empty($order_array['shipping_lines'])){
      */
     public function get_mix_attr($month){
 
-    $stmt = $this->conn->prepare("SELECT `OID`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`, `total_refund`,`has_refund`, `tax_included` FROM `sp_order` WHERE fk_AID = ?  AND MONTH(created_at) = ? AND  test!='0' ");
+    $stmt = $this->conn->prepare("SELECT `OID`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`, `total_refund`,`has_refund`, `tax_included` FROM `sp_order` WHERE fk_AID = ?  AND MONTH(created_at) = ? AND  test='0' ");
     $stmt->bind_param("ii", $_SESSION['AID'],$month);
 if ($stmt->execute()) {			
     $orders = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -663,6 +665,27 @@ if(!is_null($type)){
                 
                 
                     } 
+
+
+
+                    public function get_sales_today($date){
+
+                        $stmt = $this->conn->prepare("SELECT COUNT(OID) as counts from sp_order WHERE status=3 AND fk_AID=? and created_at=?");
+                        $stmt->bind_param("is", $_SESSION['AID'],$date);
+                    if ($stmt->execute()) {			
+                        $sales = $stmt->get_result()->fetch_assoc();
+                        $stmt->close();
+                    
+                        return $sales; 
+                    } else {
+                        return NULL;
+                    }
+                    
+                    
+                    
+                    
+                    
+                        } 
           
 }
 

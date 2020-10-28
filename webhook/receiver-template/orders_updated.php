@@ -81,9 +81,38 @@ if($update_order>0){
     fclose($fp);
     $get_oid=$sporder->get_order_id($order['id'],$get_aid);
     if($sproduct->delete_order_products($get_oid)){
-        $fp = fopen($current_name.'.txt', 'w');
-        fwrite($fp,'done delete ');
-        fclose($fp);
+    //   ///////////
+    $line=$order['line_items'];
+    foreach($line as $product){
+    $pid=$product['product_id'];
+    $vid=$product['variant_id'];
+    $name=$product["title"];
+    $qty=$product['quantity'];
+    $invet_id=$api_product->get_invent_id($vid);
+    $cost=$api_inve->get_inv_prp($invet_id['inventory_item_id'])['cost'];
+    if(is_null($cost)){
+    
+        $cost=0;
+    }
+    
+        if($sproduct->init_insert_product($insert_order,$pid,$vid,$qty,$cost)){
+            $fp = fopen($current_name.'.txt', 'w');
+            fwrite($fp,'done product');
+            fclose($fp);
+        }else{
+            $fp = fopen($current_name.'.txt', 'w');
+            fwrite($fp,'error product');
+            fclose($fp);
+    
+        }
+       
+    
+    
+    
+    }
+    
+
+    // ///////////////////
     }else{
 
         $fp = fopen($current_name.'.txt', 'w');

@@ -3,7 +3,7 @@
 <!--begin::Head-->
 
 <head>
-    <base href="">
+    <base href="../">
     <meta charset="utf-8" />
     <title>Metronic | Dashboard</title>
     <meta name="description" content="Updates and statistics" />
@@ -14,29 +14,29 @@
     <!--end::Fonts-->
 
     <!--begin::Page Vendors Styles(used by this page)-->
-    <link href="../assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?v=7.0.6" rel="stylesheet"
+    <link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?v=7.0.6" rel="stylesheet"
         type="text/css" />
     <!--end::Page Vendors Styles-->
 
 
     <!--begin::Global Theme Styles(used by all pages)-->
-    <link href="../assets/plugins/global/plugins.bundle.css?v=7.0.6" rel="stylesheet" type="text/css" />
-    <link href="../assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6" rel="stylesheet" type="text/css" />
-    <link href="../assets/css/style.bundle.css?v=7.0.6" rel="stylesheet" type="text/css" />
-    <link href="../assets/css/my-style.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/global/plugins.bundle.css?v=7.0.6" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.bundle.css?v=7.0.6" rel="stylesheet" type="text/css" />
+    <link href="assets/css/my-style.css" rel="stylesheet" type="text/css" />
     <!--end::Global Theme Styles-->
 
     <!--begin::Layout Themes(used by all pages)-->
     <!--end::Layout Themes-->
 
-    <link rel="shortcut icon" href="../assets/media/logos/favicon.ico" />
+    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
 
 </head>
 <!--end::Head-->
 
 <!--begin::Body-->
 
-<body id="kt_body" style="background-image: url(../assets/media/bg/bg-10.jpg)"
+<body id="kt_body" style="background-image: url(assets/media/bg/bg-10.jpg)"
     class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 
     <!--begin::Main-->
@@ -44,7 +44,7 @@
     <div id="kt_header_mobile" class="header-mobile ">
         <!--begin::Logo-->
         <a href="index.html">
-            <img alt="Logo" src="../assets/media/logos/logo-letter-1.png" class="logo-default max-h-30px" />
+            <img alt="Logo" src="assets/media/logos/logo-letter-1.png" class="logo-default max-h-30px" />
         </a>
         <!--end::Logo-->
 
@@ -57,7 +57,7 @@
 
             <button class="btn btn-icon btn-hover-transparent-white p-0 ml-3" id="kt_header_mobile_topbar_toggle">
                 <span class="svg-icon svg-icon-xl">
-                    <!--begin::Svg Icon | path:../assets/media/svg/icons/General/User.svg--><svg
+                    <!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg--><svg
                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                         height="24px" viewBox="0 0 24 24" version="1.1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -89,9 +89,9 @@
                             <!--begin::Header Logo-->
                             <div class="header-logo">
                                 <a href="index.html">
-                                    <img alt="Logo" src="../assets/media/logos/logo-letter-9.png"
+                                    <img alt="Logo" src="assets/media/logos/logo-letter-9.png"
                                         class="logo-default max-h-40px" />
-                                    <img alt="Logo" src="../assets/media/logos/logo-letter-1.png"
+                                    <img alt="Logo" src="assets/media/logos/logo-letter-1.png"
                                         class="logo-sticky max-h-40px" />
                                 </a>
                             </div>
@@ -119,7 +119,7 @@
                                                         <li class="menu-item  menu-item-submenu"
                                                             data-menu-toggle="hover" aria-haspopup="true"><span
                                                                 class="svg-icon svg-icon-primary svg-icon-2x">
-                                                                <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/../src/media/svg/icons/Shopping/Bag1.svg--><svg
+                                                                <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/src/media/svg/icons/Shopping/Bag1.svg--><svg
                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                     width="24px" height="24px" viewBox="0 0 24 24"
@@ -145,7 +145,7 @@
                                             aria-haspopup="true"><a href="cart-activities.php"
                                                 class="menu-link"><span
                                                     class="svg-icon svg-icon-primary svg-icon-2x">
-                                                    <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/../src/media/svg/icons/Shopping/Cart3.svg--><svg
+                                                    <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/src/media/svg/icons/Shopping/Cart3.svg--><svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                         height="24px" viewBox="0 0 24 24" version="1.1">
@@ -176,7 +176,7 @@
                                             <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
                                                 aria-haspopup="true"><a href="javascript:;"
                                                     class="menu-link menu-toggle"><span class="svg-icon menu-icon">
-                                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                             height="24px" viewBox="0 0 24 24" version="1.1">
@@ -234,7 +234,7 @@
                                             <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
                                                 aria-haspopup="true"><a href="javascript:;"
                                                     class="menu-link menu-toggle"><span class="svg-icon menu-icon">
-                                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                             height="24px" viewBox="0 0 24 24" version="1.1">
@@ -296,7 +296,7 @@
                                             <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
                                                 aria-haspopup="true"><a href="javascript:;"
                                                     class="menu-link menu-toggle"><span class="svg-icon menu-icon">
-                                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                             height="24px" viewBox="0 0 24 24" version="1.1">
@@ -345,7 +345,7 @@
                                             <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
                                                 aria-haspopup="true"><a href="javascript:;"
                                                     class="menu-link menu-toggle"><span class="svg-icon menu-icon">
-                                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                             height="24px" viewBox="0 0 24 24" version="1.1">
@@ -377,7 +377,7 @@
                                             <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
                                                 aria-haspopup="true"><a href="javascript:;"
                                                     class="menu-link menu-toggle"><span class="svg-icon menu-icon">
-                                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                             height="24px" viewBox="0 0 24 24" version="1.1">
@@ -399,7 +399,7 @@
                                             <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
                                                 aria-haspopup="true"><a href="javascript:;"
                                                     class="menu-link menu-toggle"><span class="svg-icon menu-icon">
-                                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                             height="24px" viewBox="0 0 24 24" version="1.1">
@@ -421,7 +421,7 @@
                                             <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
                                                 aria-haspopup="true"><a href="javascript:;"
                                                     class="menu-link menu-toggle"><span class="svg-icon menu-icon">
-                                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                             height="24px" viewBox="0 0 24 24" version="1.1">
@@ -460,7 +460,7 @@
                                             <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
                                                 aria-haspopup="true"><a href="javascript:;"
                                                     class="menu-link menu-toggle"><span class="svg-icon menu-icon">
-                                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                             height="24px" viewBox="0 0 24 24" version="1.1">
@@ -482,7 +482,7 @@
                                             <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
                                                 aria-haspopup="true"><a href="javascript:;"
                                                     class="menu-link menu-toggle"><span class="svg-icon menu-icon">
-                                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                             height="24px" viewBox="0 0 24 24" version="1.1">
@@ -504,7 +504,7 @@
                                             <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
                                                 aria-haspopup="true"><a href="javascript:;"
                                                     class="menu-link menu-toggle"><span class="svg-icon menu-icon">
-                                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                             height="24px" viewBox="0 0 24 24" version="1.1">
@@ -526,7 +526,7 @@
                                             <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
                                                 aria-haspopup="true"><a href="javascript:;"
                                                     class="menu-link menu-toggle"><span class="svg-icon menu-icon">
-                                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                             height="24px" viewBox="0 0 24 24" version="1.1">
@@ -548,7 +548,7 @@
                                             <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
                                                 aria-haspopup="true"><a href="javascript:;"
                                                     class="menu-link menu-toggle"><span class="svg-icon menu-icon">
-                                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Add-user.svg--><svg
+                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg--><svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                             height="24px" viewBox="0 0 24 24" version="1.1">
@@ -588,7 +588,7 @@
                             <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
                                 <div class="btn btn-icon btn-hover-transparent-white btn-lg btn-dropdown mr-1">
                                     <span class="svg-icon svg-icon-xl">
-                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/General/Search.svg--><svg
+                                        <!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
                                             viewBox="0 0 24 24" version="1.1">
@@ -616,7 +616,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
                                                     <span class="svg-icon svg-icon-lg">
-                                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/General/Search.svg--><svg
+                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg--><svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                             height="24px" viewBox="0 0 24 24" version="1.1">
@@ -661,7 +661,7 @@
                                 <div
                                     class="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1 pulse pulse-primary">
                                     <span class="svg-icon svg-icon-xl">
-                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Code/Compiling.svg--><svg
+                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Code/Compiling.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
                                             viewBox="0 0 24 24" version="1.1">
@@ -686,7 +686,7 @@
                                 <form>
                                     <!--begin::Header-->
                                     <div class="d-flex flex-column pt-12 bgi-size-cover bgi-no-repeat rounded-top"
-                                        style="background-image: url(../assets/media/misc/bg-1.jpg)">
+                                        style="background-image: url(assets/media/misc/bg-1.jpg)">
                                         <!--begin::Title-->
                                         <h4 class="d-flex flex-center rounded-top">
                                             <span class="text-white">User Notifications</span>
@@ -730,7 +730,7 @@
                                                     <div class="symbol symbol-40 symbol-light-primary mr-5">
                                                         <span class="symbol-label">
                                                             <span class="svg-icon svg-icon-lg svg-icon-primary">
-                                                                <!--begin::Svg Icon | path:../assets/media/svg/icons/Home/Library.svg--><svg
+                                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg--><svg
                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                     width="24px" height="24px" viewBox="0 0 24 24"
@@ -768,7 +768,7 @@
                                                     <div class="symbol symbol-40 symbol-light-warning mr-5">
                                                         <span class="symbol-label">
                                                             <span class="svg-icon svg-icon-lg svg-icon-warning">
-                                                                <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Write.svg--><svg
+                                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg--><svg
                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                     width="24px" height="24px" viewBox="0 0 24 24"
@@ -808,7 +808,7 @@
                                                     <div class="symbol symbol-40 symbol-light-success mr-5">
                                                         <span class="symbol-label">
                                                             <span class="svg-icon svg-icon-lg svg-icon-success">
-                                                                <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Group-chat.svg--><svg
+                                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group-chat.svg--><svg
                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                     width="24px" height="24px" viewBox="0 0 24 24"
@@ -845,7 +845,7 @@
                                                     <div class="symbol symbol-40 symbol-light-danger mr-5">
                                                         <span class="symbol-label">
                                                             <span class="svg-icon svg-icon-lg svg-icon-danger">
-                                                                <!--begin::Svg Icon | path:../assets/media/svg/icons/General/Attachment2.svg--><svg
+                                                                <!--begin::Svg Icon | path:assets/media/svg/icons/General/Attachment2.svg--><svg
                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                     width="24px" height="24px" viewBox="0 0 24 24"
@@ -893,7 +893,7 @@
                                                     <div class="symbol symbol-40 symbol-light-info mr-5">
                                                         <span class="symbol-label">
                                                             <span class="svg-icon svg-icon-lg  svg-icon-info">
-                                                                <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Shield-user.svg--><svg
+                                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Shield-user.svg--><svg
                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                     width="24px" height="24px" viewBox="0 0 24 24"
@@ -933,7 +933,7 @@
                                                     <div class="symbol symbol-40 symbol-light-danger mr-5">
                                                         <span class="symbol-label">
                                                             <span class="svg-icon svg-icon-lg  svg-icon-danger">
-                                                                <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Mail-notification.svg--><svg
+                                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-notification.svg--><svg
                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                     width="24px" height="24px" viewBox="0 0 24 24"
@@ -969,7 +969,7 @@
                                                     <div class="symbol symbol-40 symbol-light-success mr-5">
                                                         <span class="symbol-label">
                                                             <span class="svg-icon svg-icon-lg  svg-icon-success">
-                                                                <!--begin::Svg Icon | path:../assets/media/svg/icons/Design/Bucket.svg--><svg
+                                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Bucket.svg--><svg
                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                     width="24px" height="24px" viewBox="0 0 24 24"
@@ -1297,7 +1297,7 @@
                             <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
                                 <div class="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1">
                                     <span class="svg-icon svg-icon-xl">
-                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Media/Equalizer.svg--><svg
+                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
                                             viewBox="0 0 24 24" version="1.1">
@@ -1319,7 +1319,7 @@
                                 class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg">
                                 <!--begin:Header-->
                                 <div class="d-flex flex-column flex-center py-10 bgi-size-cover bgi-no-repeat rounded-top"
-                                    style="background-image: url(../assets/media/misc/bg-1.jpg)">
+                                    style="background-image: url(assets/media/misc/bg-1.jpg)">
                                     <h4 class="text-white font-weight-bold">
                                         Quick Actions
                                     </h4>
@@ -1335,7 +1335,7 @@
                                         <a href="#"
                                             class="d-block py-10 px-5 text-center bg-hover-light border-right border-bottom">
                                             <span class="svg-icon svg-icon-3x svg-icon-success">
-                                                <!--begin::Svg Icon | path:../assets/media/svg/icons/Shopping/Euro.svg--><svg
+                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Euro.svg--><svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                     height="24px" viewBox="0 0 24 24" version="1.1">
@@ -1360,7 +1360,7 @@
                                     <div class="col-6">
                                         <a href="#" class="d-block py-10 px-5 text-center bg-hover-light border-bottom">
                                             <span class="svg-icon svg-icon-3x svg-icon-success">
-                                                <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Mail-attachment.svg--><svg
+                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-attachment.svg--><svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                     height="24px" viewBox="0 0 24 24" version="1.1">
@@ -1385,7 +1385,7 @@
                                     <div class="col-6">
                                         <a href="#" class="d-block py-10 px-5 text-center bg-hover-light border-right">
                                             <span class="svg-icon svg-icon-3x svg-icon-success">
-                                                <!--begin::Svg Icon | path:../assets/media/svg/icons/Shopping/Box2.svg--><svg
+                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Box2.svg--><svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                     height="24px" viewBox="0 0 24 24" version="1.1">
@@ -1410,7 +1410,7 @@
                                     <div class="col-6">
                                         <a href="#" class="d-block py-10 px-5 text-center bg-hover-light">
                                             <span class="svg-icon svg-icon-3x svg-icon-success">
-                                                <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Group.svg--><svg
+                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group.svg--><svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                     height="24px" viewBox="0 0 24 24" version="1.1">
@@ -1443,7 +1443,7 @@
                             <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
                                 <div class="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1">
                                     <span class="svg-icon svg-icon-xl">
-                                        <!--begin::Svg Icon | path:../assets/media/svg/icons/Shopping/Cart3.svg--><svg
+                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Cart3.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
                                             viewBox="0 0 24 24" version="1.1">
@@ -1467,7 +1467,7 @@
                                 <form>
                                     <!--begin::Header-->
                                     <div class="d-flex align-items-center py-10 px-8 bgi-size-cover bgi-no-repeat rounded-top"
-                                        style="background-image: url(../assets/media/misc/bg-1.jpg)">
+                                        style="background-image: url(assets/media/misc/bg-1.jpg)">
                                         <span class="btn btn-md btn-icon bg-white-o-15 mr-4">
                                             <i class="flaticon2-shopping-cart-1 text-success"></i>
                                         </span>
@@ -1502,7 +1502,7 @@
                                                 </div>
                                             </div>
                                             <a href="#" class="symbol symbol-70 flex-shrink-0">
-                                                <img src="../assets/media/stock-600x400/img-1.jpg" title="" alt="" />
+                                                <img src="assets/media/stock-600x400/img-1.jpg" title="" alt="" />
                                             </a>
                                         </div>
                                         <!--end::Item-->
@@ -1534,7 +1534,7 @@
                                                 </div>
                                             </div>
                                             <a href="#" class="symbol symbol-70 flex-shrink-0">
-                                                <img src="../assets/media/stock-600x400/img-2.jpg" title="" alt="" />
+                                                <img src="assets/media/stock-600x400/img-2.jpg" title="" alt="" />
                                             </a>
                                         </div>
                                         <!--end::Item-->
@@ -1567,7 +1567,7 @@
                                                 </div>
                                             </div>
                                             <a href="#" class="symbol symbol-70 flex-shrink-0">
-                                                <img src="../assets/media/stock-600x400/img-3.jpg" title="" alt="" />
+                                                <img src="assets/media/stock-600x400/img-3.jpg" title="" alt="" />
                                             </a>
                                         </div>
                                         <!--end::Item-->
@@ -1598,7 +1598,7 @@
                                                 </div>
                                             </div>
                                             <a href="#" class="symbol symbol-70 flex-shrink-0">
-                                                <img src="../assets/media/stock-600x400/img-4.jpg" title="" alt="" />
+                                                <img src="assets/media/stock-600x400/img-4.jpg" title="" alt="" />
                                             </a>
                                         </div>
                                         <!--end::Item-->
@@ -1633,7 +1633,7 @@
                             <div class="btn btn-icon btn-hover-transparent-white btn-lg mr-1"
                                 id="kt_quick_panel_toggle">
                                 <span class="svg-icon svg-icon-xl">
-                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/Layout/Layout-4-blocks.svg--><svg
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg--><svg
                                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                         width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -1654,7 +1654,7 @@
                             <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
                                 <div class="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1">
                                     <img class="h-20px w-20px rounded-sm"
-                                        src="../assets/media/svg/flags/226-united-states.svg" alt="" />
+                                        src="assets/media/svg/flags/226-united-states.svg" alt="" />
                                 </div>
                             </div>
                             <!--end::Toggle-->
@@ -1668,7 +1668,7 @@
                                     <li class="navi-item">
                                         <a href="#" class="navi-link">
                                             <span class="symbol symbol-20 mr-3">
-                                                <img src="../assets/media/svg/flags/226-united-states.svg" alt="" />
+                                                <img src="assets/media/svg/flags/226-united-states.svg" alt="" />
                                             </span>
                                             <span class="navi-text">English</span>
                                         </a>
@@ -1679,7 +1679,7 @@
                                     <li class="navi-item active">
                                         <a href="#" class="navi-link">
                                             <span class="symbol symbol-20 mr-3">
-                                                <img src="../assets/media/svg/flags/128-spain.svg" alt="" />
+                                                <img src="assets/media/svg/flags/128-spain.svg" alt="" />
                                             </span>
                                             <span class="navi-text">Spanish</span>
                                         </a>
@@ -1690,7 +1690,7 @@
                                     <li class="navi-item">
                                         <a href="#" class="navi-link">
                                             <span class="symbol symbol-20 mr-3">
-                                                <img src="../assets/media/svg/flags/162-germany.svg" alt="" />
+                                                <img src="assets/media/svg/flags/162-germany.svg" alt="" />
                                             </span>
                                             <span class="navi-text">German</span>
                                         </a>
@@ -1701,7 +1701,7 @@
                                     <li class="navi-item">
                                         <a href="#" class="navi-link">
                                             <span class="symbol symbol-20 mr-3">
-                                                <img src="../assets/media/svg/flags/063-japan.svg" alt="" />
+                                                <img src="assets/media/svg/flags/063-japan.svg" alt="" />
                                             </span>
                                             <span class="navi-text">Japanese</span>
                                         </a>
@@ -1712,7 +1712,7 @@
                                     <li class="navi-item">
                                         <a href="#" class="navi-link">
                                             <span class="symbol symbol-20 mr-3">
-                                                <img src="../assets/media/svg/flags/195-france.svg" alt="" />
+                                                <img src="assets/media/svg/flags/195-france.svg" alt="" />
                                             </span>
                                             <span class="navi-text">French</span>
                                         </a>
@@ -1750,7 +1750,7 @@
                                 <div class="d-flex align-items-center p-8 rounded-top">
                                     <!--begin::Symbol-->
                                     <div class="symbol symbol-md bg-light-primary mr-3 flex-shrink-0">
-                                        <img src="../assets/media/users/300_21.jpg" alt="" />
+                                        <img src="assets/media/users/300_21.jpg" alt="" />
                                     </div>
                                     <!--end::Symbol-->
 
@@ -2039,7 +2039,7 @@
                                                                                     <div
                                                                                         class="symbol symbol-50 symbol-light mr-4">
                                                                                         <span class="symbol-label">
-                                                                                            <img src="/metronic/theme/html/demo7/dist/../assets/media/svg/avatars/001-boy.svg"
+                                                                                            <img src="/metronic/theme/html/demo7/dist/assets/media/svg/avatars/001-boy.svg"
                                                                                                 class="h-75 align-self-end"
                                                                                                 alt="">
                                                                                         </span>
@@ -2075,7 +2075,7 @@
                                                                                     UI/UX Design</span>
                                                                             </td>
                                                                             <td>
-                                                                                <img src="/metronic/theme/html/demo7/dist/../assets/media/logos/stars.png"
+                                                                                <img src="/metronic/theme/html/demo7/dist/assets/media/logos/stars.png"
                                                                                     alt="image" style="width: 5.5rem">
                                                                                 <span
                                                                                     class="text-muted font-weight-bold d-block font-size-sm">Best
@@ -2093,7 +2093,7 @@
                                                                                     <div
                                                                                         class="symbol symbol-50 symbol-light mr-4">
                                                                                         <span class="symbol-label">
-                                                                                            <img src="/metronic/theme/html/demo7/dist/../assets/media/svg/avatars/018-girl-9.svg"
+                                                                                            <img src="/metronic/theme/html/demo7/dist/assets/media/svg/avatars/018-girl-9.svg"
                                                                                                 class="h-75 align-self-end"
                                                                                                 alt="">
                                                                                         </span>
@@ -2128,7 +2128,7 @@
                                                                                     &amp; Hotels</span>
                                                                             </td>
                                                                             <td>
-                                                                                <img src="/metronic/theme/html/demo7/dist/../assets/media/logos/stars.png"
+                                                                                <img src="/metronic/theme/html/demo7/dist/assets/media/logos/stars.png"
                                                                                     alt="image" style="width: 5.5rem">
                                                                                 <span
                                                                                     class="text-muted font-weight-bold d-block font-size-sm">Above
@@ -2146,7 +2146,7 @@
                                                                                     <div
                                                                                         class="symbol symbol-50 symbol-light mr-4">
                                                                                         <span class="symbol-label">
-                                                                                            <img src="/metronic/theme/html/demo7/dist/../assets/media/svg/avatars/047-girl-25.svg"
+                                                                                            <img src="/metronic/theme/html/demo7/dist/assets/media/svg/avatars/047-girl-25.svg"
                                                                                                 class="h-75 align-self-end"
                                                                                                 alt="">
                                                                                         </span>
@@ -2180,7 +2180,7 @@
                                                                                     class="text-muted font-weight-bold">Paid</span>
                                                                             </td>
                                                                             <td>
-                                                                                <img src="/metronic/theme/html/demo7/dist/../assets/media/logos/stars.png"
+                                                                                <img src="/metronic/theme/html/demo7/dist/assets/media/logos/stars.png"
                                                                                     alt="image" style="width: 5.5rem">
                                                                                 <span
                                                                                     class="text-muted font-weight-bold d-block font-size-sm">Best
@@ -2198,7 +2198,7 @@
                                                                                     <div
                                                                                         class="symbol symbol-50 symbol-light mr-4">
                                                                                         <span class="symbol-label">
-                                                                                            <img src="/metronic/theme/html/demo7/dist/../assets/media/svg/avatars/014-girl-7.svg"
+                                                                                            <img src="/metronic/theme/html/demo7/dist/assets/media/svg/avatars/014-girl-7.svg"
                                                                                                 class="h-75 align-self-end"
                                                                                                 alt="">
                                                                                         </span>
@@ -2233,7 +2233,7 @@
                                                                                     class="text-muted font-weight-bold">Insurance</span>
                                                                             </td>
                                                                             <td>
-                                                                                <img src="/metronic/theme/html/demo7/dist/../assets/media/logos/stars.png"
+                                                                                <img src="/metronic/theme/html/demo7/dist/assets/media/logos/stars.png"
                                                                                     style="width: 5.5rem" alt="">
                                                                                 <span
                                                                                     class="text-muted font-weight-bold d-block font-size-sm">Avarage</span>
@@ -2299,7 +2299,7 @@
                                                                                     <div
                                                                                         class="symbol symbol-50 symbol-light mr-4">
                                                                                         <span class="symbol-label">
-                                                                                            <img src="/metronic/theme/html/demo7/dist/../assets/media/svg/avatars/001-boy.svg"
+                                                                                            <img src="/metronic/theme/html/demo7/dist/assets/media/svg/avatars/001-boy.svg"
                                                                                                 class="h-75 align-self-end"
                                                                                                 alt="">
                                                                                         </span>
@@ -2335,7 +2335,7 @@
                                                                                     UI/UX Design</span>
                                                                             </td>
                                                                             <td>
-                                                                                <img src="/metronic/theme/html/demo7/dist/../assets/media/logos/stars.png"
+                                                                                <img src="/metronic/theme/html/demo7/dist/assets/media/logos/stars.png"
                                                                                     alt="image" style="width: 5.5rem">
                                                                                 <span
                                                                                     class="text-muted font-weight-bold d-block font-size-sm">Best
@@ -2353,7 +2353,7 @@
                                                                                     <div
                                                                                         class="symbol symbol-50 symbol-light mr-4">
                                                                                         <span class="symbol-label">
-                                                                                            <img src="/metronic/theme/html/demo7/dist/../assets/media/svg/avatars/018-girl-9.svg"
+                                                                                            <img src="/metronic/theme/html/demo7/dist/assets/media/svg/avatars/018-girl-9.svg"
                                                                                                 class="h-75 align-self-end"
                                                                                                 alt="">
                                                                                         </span>
@@ -2388,7 +2388,7 @@
                                                                                     &amp; Hotels</span>
                                                                             </td>
                                                                             <td>
-                                                                                <img src="/metronic/theme/html/demo7/dist/../assets/media/logos/stars.png"
+                                                                                <img src="/metronic/theme/html/demo7/dist/assets/media/logos/stars.png"
                                                                                     alt="image" style="width: 5.5rem">
                                                                                 <span
                                                                                     class="text-muted font-weight-bold d-block font-size-sm">Above
@@ -2406,7 +2406,7 @@
                                                                                     <div
                                                                                         class="symbol symbol-50 symbol-light mr-4">
                                                                                         <span class="symbol-label">
-                                                                                            <img src="/metronic/theme/html/demo7/dist/../assets/media/svg/avatars/047-girl-25.svg"
+                                                                                            <img src="/metronic/theme/html/demo7/dist/assets/media/svg/avatars/047-girl-25.svg"
                                                                                                 class="h-75 align-self-end"
                                                                                                 alt="">
                                                                                         </span>
@@ -2440,7 +2440,7 @@
                                                                                     class="text-muted font-weight-bold">Paid</span>
                                                                             </td>
                                                                             <td>
-                                                                                <img src="/metronic/theme/html/demo7/dist/../assets/media/logos/stars.png"
+                                                                                <img src="/metronic/theme/html/demo7/dist/assets/media/logos/stars.png"
                                                                                     alt="image" style="width: 5.5rem">
                                                                                 <span
                                                                                     class="text-muted font-weight-bold d-block font-size-sm">Best
@@ -2458,7 +2458,7 @@
                                                                                     <div
                                                                                         class="symbol symbol-50 symbol-light mr-4">
                                                                                         <span class="symbol-label">
-                                                                                            <img src="/metronic/theme/html/demo7/dist/../assets/media/svg/avatars/014-girl-7.svg"
+                                                                                            <img src="/metronic/theme/html/demo7/dist/assets/media/svg/avatars/014-girl-7.svg"
                                                                                                 class="h-75 align-self-end"
                                                                                                 alt="">
                                                                                         </span>
@@ -2493,7 +2493,7 @@
                                                                                     class="text-muted font-weight-bold">Insurance</span>
                                                                             </td>
                                                                             <td>
-                                                                                <img src="/metronic/theme/html/demo7/dist/../assets/media/logos/stars.png"
+                                                                                <img src="/metronic/theme/html/demo7/dist/assets/media/logos/stars.png"
                                                                                     style="width: 5.5rem" alt="">
                                                                                 <span
                                                                                     class="text-muted font-weight-bold d-block font-size-sm">Avarage</span>
@@ -2609,7 +2609,7 @@
                         <div class="d-flex align-items-center flex-wrap mb-5">
                             <div class="symbol symbol-50 symbol-light mr-5">
                                 <span class="symbol-label">
-                                    <img src="../assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center"
+                                    <img src="assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center"
                                         alt="" />
                                 </span>
                             </div>
@@ -2628,7 +2628,7 @@
                         <div class="d-flex align-items-center flex-wrap mb-5">
                             <div class="symbol symbol-50 symbol-light mr-5">
                                 <span class="symbol-label">
-                                    <img src="../assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center"
+                                    <img src="assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center"
                                         alt="" />
                                 </span>
                             </div>
@@ -2647,7 +2647,7 @@
                         <div class="d-flex align-items-center flex-wrap mb-5">
                             <div class="symbol symbol-50 symbol-light mr-5">
                                 <span class="symbol-label">
-                                    <img src="../assets/media/svg/misc/003-puzzle.svg" class="h-50 align-self-center"
+                                    <img src="assets/media/svg/misc/003-puzzle.svg" class="h-50 align-self-center"
                                         alt="" />
                                 </span>
                             </div>
@@ -2666,7 +2666,7 @@
                         <div class="d-flex align-items-center flex-wrap mb-5">
                             <div class="symbol symbol-50 symbol-light mr-5">
                                 <span class="symbol-label">
-                                    <img src="../assets/media/svg/misc/005-bebo.svg" class="h-50 align-self-center"
+                                    <img src="assets/media/svg/misc/005-bebo.svg" class="h-50 align-self-center"
                                         alt="" />
                                 </span>
                             </div>
@@ -2685,7 +2685,7 @@
                         <div class="d-flex align-items-center flex-wrap">
                             <div class="symbol symbol-50 symbol-light mr-5">
                                 <span class="symbol-label">
-                                    <img src="../assets/media/svg/misc/014-kickstarter.svg"
+                                    <img src="assets/media/svg/misc/014-kickstarter.svg"
                                         class="h-50 align-self-center" alt="" />
                                 </span>
                             </div>
@@ -2710,7 +2710,7 @@
                         <div class="d-flex align-items-center bg-light-warning rounded p-5 mb-5">
                             <span class="svg-icon svg-icon-warning mr-5">
                                 <span class="svg-icon svg-icon-lg">
-                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/Home/Library.svg--><svg
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg--><svg
                                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                         width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -2740,7 +2740,7 @@
                         <div class="d-flex align-items-center bg-light-success rounded p-5 mb-5">
                             <span class="svg-icon svg-icon-success mr-5">
                                 <span class="svg-icon svg-icon-lg">
-                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Write.svg--><svg
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg--><svg
                                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                         width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -2770,7 +2770,7 @@
                         <div class="d-flex align-items-center bg-light-danger rounded p-5 mb-5">
                             <span class="svg-icon svg-icon-danger mr-5">
                                 <span class="svg-icon svg-icon-lg">
-                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/Communication/Group-chat.svg--><svg
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group-chat.svg--><svg
                                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                         width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -2799,7 +2799,7 @@
                         <div class="d-flex align-items-center bg-light-info rounded p-5">
                             <span class="svg-icon svg-icon-info mr-5">
                                 <span class="svg-icon svg-icon-lg">
-                                    <!--begin::Svg Icon | path:../assets/media/svg/icons/General/Attachment2.svg--><svg
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/General/Attachment2.svg--><svg
                                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                         width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -3216,7 +3216,7 @@
     <!--begin::Scrolltop-->
     <div id="kt_scrolltop" class="scrolltop">
         <span class="svg-icon">
-            <!--begin::Svg Icon | path:../assets/media/svg/icons/Navigation/Up-2.svg--><svg
+            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Up-2.svg--><svg
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
                 viewBox="0 0 24 24" version="1.1">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -3297,29 +3297,17 @@
     <!--end::Global Config-->
 
     <!--begin::Global Theme Bundle(used by all pages)-->
-    <script src="../assets/plugins/global/plugins.bundle.js?v=7.0.6"></script>
-    <script src="../assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6"></script>
-    <script src="../assets/js/scripts.bundle.js?v=7.0.6"></script>
+    <script src="assets/plugins/global/plugins.bundle.js?v=7.0.6"></script>
+    <script src="assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6"></script>
+    <script src="assets/js/scripts.bundle.js?v=7.0.6"></script>
     <!--end::Global Theme Bundle-->
+	<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
 
-    <!--begin::Page Vendors(used by this page)-->
-    <script src="../assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.6"></script>
     <!--end::Page Vendors-->
-    <script src="../assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.7"></script>
-    <!--begin::Page Scripts(used by this page)-->
-    <!-- <script src="../assets/js/pages/widgets.js?v=7.0.6"></script> -->
+    <script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.7"></script>
+  
+    <script src="assets/js/pages/crud/forms/widgets/bootstrap-daterangepicker.js?"></script>
 
-    <!--end::Page Scripts-->
-
-    <!--begin::Page Vendors(used by this page)-->
-    <script src="../assets/plugins/custom/flot/flot.bundle.js?v=7.0.6"></script>
-    <!--end::Page Vendors-->
-    <script src="../assets/js/pages/crud/forms/widgets/bootstrap-daterangepicker.js?"></script>
-    <!--begin::Page Scripts(used by this page)-->
-
-
-
-    <!--begin::Page Vendors(used by this page)-->
     <script src="//www.amcharts.com/lib/3/ammap.js?v=7.0.6"></script>
     <script src="//www.amcharts.com/lib/3/maps/js/usaLow.js?v=7.0.6"></script>
     <script src="//www.amcharts.com/lib/3/maps/js/worldLow.js?v=7.0.6"></script>
@@ -3328,10 +3316,7 @@
     <script src="//www.amcharts.com/lib/3/themes/light.js?v=7.0.6"></script>
     <!--end::Page Vendors-->
 
-    <!-- begin:custom js  -->
-    <script src="../assets/js/pages/my-script/my-script.js"></script>
 
-    <script src="../assets/js/pages/features/charts/live-user.js"></script>
 
     <!-- end:custom js -->
     <!--end::Page Scripts-->

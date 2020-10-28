@@ -396,7 +396,7 @@ console.log(countriesArr);
                                             <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                                                 <ul class="menu-subnav">
                                                     <li class="menu-item menu-item-here menu-item-submenu" data-menu-toggle="hover"
-                                                        aria-haspopup="true"><a href="sales-orders.php"
+                                                        aria-haspopup="true"><a href="member/sales-orders.php"
                                                             class="menu-link"><span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/src/media/svg/icons/Shopping/Bag1.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                                     <rect x="0" y="0" width="24" height="24"/>
@@ -408,7 +408,7 @@ console.log(countriesArr);
                                                     
                                                     </li>
                                                     <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
-                                                    aria-haspopup="true"><a href="cart-activities.php"
+                                                    aria-haspopup="true"><a href="member/cart-activities.php"
                                                         class="menu-link"><span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/src/media/svg/icons/Shopping/Cart3.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                                 <rect x="0" y="0" width="24" height="24"/>
@@ -2475,7 +2475,7 @@ $getpr=$apipr->get_pr_prp($seller['product_id']);
                     </div>
                     <!--end::Advance Table Widget 1-->
                 </div>
-                <div class="col-xl-4">
+                <div class="col-xl-5">
                     <!--begin::Advance Table Widget 1-->
                     <div class="card card-custom card-stretch gutter-b">
                         <!--begin::Header-->
@@ -2504,7 +2504,7 @@ $getpr=$apipr->get_pr_prp($seller['product_id']);
                   
                     </div>
                 </div>
-                    <div class="col-xl-4">
+                    <div class="col-xl-3">
                         <!--begin::Stats Widget 22-->
                         <div class="card card-custom bgi-no-repeat card-stretch gutter-b"
                             style="background-position: right top; background-size: 30% auto; background-image: url(assets/media/svg/shapes/abstract-3.svg)">

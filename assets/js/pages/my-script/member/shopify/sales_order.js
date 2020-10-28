@@ -66,305 +66,41 @@ var KTWidgets = (function () {
       return;
     }
 
-    var options = {
-      series: [
-        {
-          name: "Net Profit",
-          data: [30, 30, 50, 50, 35, 35],
+  var options = {
+          series: [{
+          name: 'Net Sales',
+          data: [31, 40, 28, 51, 42, 109, 100]
+        }, {
+          name: 'Gross Sales',
+          data: [11, 32, 45, 32, 34, 52, 41]
+        }],
+          chart: {
+          height: 350,
+          type: 'area'
         },
-        {
-          name: "Revenue",
-          data: [55, 20, 20, 20, 70, 70],
+        dataLabels: {
+          enabled: false
         },
-        {
-          name: "Expenses",
-          data: [60, 60, 40, 40, 30, 30],
+        stroke: {
+          curve: 'smooth'
         },
-      ],
-      chart: {
-        type: "area",
-        height: 300,
-        toolbar: {
-          show: false,
-        },
-        zoom: {
-          enabled: false,
-        },
-        sparkline: {
-          enabled: true,
-        },
-      },
-      plotOptions: {},
-      legend: {
-        show: false,
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      fill: {
-        type: "solid",
-        opacity: 1,
-      },
-      stroke: {
-        curve: "smooth",
-        show: true,
-        width: 2,
-        colors: ["transparent", "transparent", "transparent"],
-      },
-      xaxis: {
-        x: 0,
-        offsetX: 0,
-        offsetY: 0,
-        padding: {
-          left: 0,
-          right: 0,
-          top: 0,
-        },
-        categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-        axisBorder: {
-          show: false,
-        },
-        axisTicks: {
-          show: false,
-        },
-        labels: {
-          show: false,
-          style: {
-            colors: KTApp.getSettings()["colors"]["gray"]["gray-500"],
-            fontSize: "12px",
-            fontFamily: KTApp.getSettings()["font-family"],
-          },
-        },
-        crosshairs: {
-          show: false,
-          position: "front",
-          stroke: {
-            color: KTApp.getSettings()["colors"]["gray"]["gray-300"],
-            width: 1,
-            dashArray: 3,
-          },
+        xaxis: {
+          type: 'datetime',
+          categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
         },
         tooltip: {
-          enabled: true,
-          formatter: undefined,
-          offsetY: 0,
-          style: {
-            fontSize: "12px",
-            fontFamily: KTApp.getSettings()["font-family"],
+          x: {
+            format: 'dd/MM/yy'
           },
         },
-      },
-      yaxis: {
-        y: 0,
-        offsetX: 0,
-        offsetY: 0,
-        padding: {
-          left: 0,
-          right: 0,
-        },
-        labels: {
-          show: false,
-          style: {
-            colors: KTApp.getSettings()["colors"]["gray"]["gray-500"],
-            fontSize: "12px",
-            fontFamily: KTApp.getSettings()["font-family"],
-          },
-        },
-      },
-      states: {
-        normal: {
-          filter: {
-            type: "none",
-            value: 0,
-          },
-        },
-        hover: {
-          filter: {
-            type: "none",
-            value: 0,
-          },
-        },
-        active: {
-          allowMultipleDataPointsSelection: false,
-          filter: {
-            type: "none",
-            value: 0,
-          },
-        },
-      },
-      tooltip: {
-        style: {
-          fontSize: "12px",
-          fontFamily: KTApp.getSettings()["font-family"],
-        },
-        y: {
-          formatter: function (val) {
-            return "$" + val + " thousands";
-          },
-        },
-      },
-      colors: [
-        KTApp.getSettings()["colors"]["theme"]["light"]["success"],
-        KTApp.getSettings()["colors"]["theme"]["light"]["danger"],
-        KTApp.getSettings()["colors"]["theme"]["light"]["info"],
-      ],
-      grid: {
-        borderColor: KTApp.getSettings()["colors"]["gray"]["gray-200"],
-        strokeDashArray: 4,
-        padding: {
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-        },
-      },
-      markers: {
-        colors: [
-          KTApp.getSettings()["colors"]["theme"]["light"]["success"],
-          KTApp.getSettings()["colors"]["theme"]["light"]["danger"],
-          KTApp.getSettings()["colors"]["theme"]["light"]["info"],
-        ],
-        strokeColor: [
-          KTApp.getSettings()["colors"]["theme"]["base"]["success"],
-          KTApp.getSettings()["colors"]["theme"]["base"]["danger"],
-          KTApp.getSettings()["colors"]["theme"]["base"]["info"],
-        ],
-        strokeWidth: 3,
-      },
-    };
+        };
 
-    var chart = new ApexCharts(element, options);
-    chart.render();
+        var chart = new ApexCharts(element, options);
+        chart.render();
   };
 
-  var _initcartgraph = function () {
-    var element = document.getElementById("graph_cart_mixed");
 
-    if (!element) {
-      return;
-    }
-
-    var options = {
-      series: [
-        {
-          name: "Sales",
-          type: "column",
-          data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
-        },
-        {
-          name: "Abandoned Cart",
-          type: "area",
-          data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
-        },
-        {
-          name: "Checkout Cart",
-          type: "line",
-          data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
-        },
-      ],
-      chart: {
-        height: 350,
-        type: "line",
-        stacked: false,
-      },
-      stroke: {
-        width: [0, 2, 5],
-        curve: "smooth",
-      },
-      plotOptions: {
-        bar: {
-          columnWidth: "50%",
-        },
-      },
-
-      fill: {
-        opacity: [0.85, 0.25, 1],
-        gradient: {
-          inverseColors: false,
-          shade: "light",
-          type: "vertical",
-          opacityFrom: 0.85,
-          opacityTo: 0.55,
-          stops: [0, 100, 100, 100],
-        },
-      },
-      labels: [
-        "01/01/2003",
-        "02/01/2003",
-        "03/01/2003",
-        "04/01/2003",
-        "05/01/2003",
-        "06/01/2003",
-        "07/01/2003",
-        "08/01/2003",
-        "09/01/2003",
-        "10/01/2003",
-        "11/01/2003",
-      ],
-      markers: {
-        size: 0,
-      },
-      xaxis: {
-        type: "datetime",
-      },
-      yaxis: {
-        title: {
-          text: "Points",
-        },
-        min: 0,
-      },
-      tooltip: {
-        shared: true,
-        intersect: false,
-        y: {
-          formatter: function (y) {
-            if (typeof y !== "undefined") {
-              return y.toFixed(0) + " points";
-            }
-            return y;
-          },
-        },
-      },
-    };
-
-    var chart = new ApexCharts(element, options);
-    chart.render();
-  };
-  // var _shopify_chart_source = function () {
-  // 	const apexChart = "#chart_source";
-  //     var options = {
-  //         series: [44, 55, 67, 83],
-  //         chart: {
-  //         height: 350,
-  //         type: 'radialBar',
-  //       },
-  //       plotOptions: {
-  //         radialBar: {
-  //           dataLabels: {
-  //             name: {
-  //               fontSize: '22px',
-  //             },
-  //             value: {
-  //               fontSize: '16px',
-  //             },
-  //             total: {
-  //               show: true,
-  //               label: 'Total',
-  //               formatter: function (w) {
-  //                 // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-  //                 return 249
-  //               }
-  //             }
-  //           }
-  //         }
-  //       },
-  //       labels: ['Web', 'Android', 'Iphone', 'Other'],
-  //       };
-
-  //       var chart = new ApexCharts(document.querySelector(apexChart), options);
-  //       chart.render();
-
-  // }
+a
 
   var jsons = {
     type: "map",
@@ -589,7 +325,6 @@ var KTWidgets = (function () {
     init: function () {
       _initDaterangepicker();
       _initshopifysales();
-      _initcartgraph();
       _sales_status();
       _initlocationMap();
       _source_order();

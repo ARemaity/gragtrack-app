@@ -70,17 +70,30 @@ return $count;
   $counts=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
 
   $counts=json_decode($counts['response'],true);
-  foreach ($counts as $count) {
- 
-return $count;
- 
 
-  }
-
+  return $counts['count'];
 
 
 }
  
+
+ public function get_checkout_list(){
+
+  $api_url="/admin/api/2020-10/checkouts.json";
+  $checkout=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
+
+  $checkout=json_decode($checkout['response'],true);
+  if(array_key_exists('errors',$checkout)){
+
+    return null;
+   }else{
+
+    return $checkout['checkouts'];
+   }
+
+
+
+}
  
 
 

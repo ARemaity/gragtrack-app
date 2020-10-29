@@ -102,6 +102,9 @@ if($insert_order>0){
     
     
          
+        }else{
+
+            echo "0-country";
         }
     }
 $line=$order['line_items'];
@@ -122,8 +125,11 @@ if(is_null($cost)){
 
     if($sproduct->init_insert_product($insert_order,$pid,$vid,$qty,$cost)){
 
+    
         
-        
+    }else{
+
+        echo "0-product";
     }
 
 

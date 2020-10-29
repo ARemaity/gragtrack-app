@@ -100,7 +100,7 @@ var KTWidgets = (function () {
   };
 
 
-a
+
 
   var jsons = {
     type: "map",

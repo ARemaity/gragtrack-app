@@ -300,7 +300,7 @@ echo json_encode($country_arr);
 
 ?>
 ;
-console.log(countriesArr);
+
 </script>
 </head>
 <!--end::Head-->
@@ -3299,10 +3299,7 @@ $getpr=$apipr->get_pr_prp($seller['product_id']);
 <script src="assets/plugins/global/plugins.bundle.js?v=7.0.6"></script>
 <script src="assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6"></script>
 <script src="assets/js/scripts.bundle.js?v=7.0.6"></script>
-<!--end::Global Theme Bundle-->
 
-<!--begin::Page Vendors(used by this page)-->
-<script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.6"></script>
 <!--end::Page Vendors-->
 <script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.7"></script>
 <!--begin::Page Scripts(used by this page)-->
@@ -3310,8 +3307,7 @@ $getpr=$apipr->get_pr_prp($seller['product_id']);
 
 <!--end::Page Scripts-->
 
-<!--begin::Page Vendors(used by this page)-->
-<script src="assets/plugins/custom/flot/flot.bundle.js?v=7.0.6"></script>
+
 <!--end::Page Vendors-->
 <script src="assets/js/pages/crud/forms/widgets/bootstrap-daterangepicker.js?"></script>
 <!--begin::Page Scripts(used by this page)-->

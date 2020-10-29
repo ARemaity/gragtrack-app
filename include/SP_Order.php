@@ -667,7 +667,9 @@ if(!is_null($type)){
                     } 
 
 
-
+                    
+                    
+                
                     public function get_sales_today($date){
 
                         $stmt = $this->conn->prepare("SELECT COUNT(OID) as counts from sp_order WHERE status=3 AND fk_AID=? and created_at=?");
@@ -686,6 +688,26 @@ if(!is_null($type)){
                     
                     
                         } 
+
+
+                        public function get_order_count(){
+
+                            $stmt = $this->conn->prepare("SELECT COUNT(*) as counts FROM `sp_order` WHERE fk_AID=? GROUP by COUNT(*) order by COUNT(*) DESC");
+                            $stmt->bind_param("i", $_SESSION['AID']);
+                        if ($stmt->execute()) {			
+                            $corder = $stmt->get_result()->fetch_assoc();
+                            $stmt->close();
+                        
+                            return $corder; 
+                        } else {
+                            return NULL;
+                        }
+                        
+                        
+                        
+                        
+                        
+                            } 
           
 }
 

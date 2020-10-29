@@ -1,3 +1,11 @@
+
+<?php if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if(isset($_SESSION['AID'])):
+//Get base class
+require_once (dirname(__FILE__,2)).'/base.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <!--begin::Head-->
@@ -5,10 +13,10 @@
 <head>
     <base href="../">
     <meta charset="utf-8" />
-    <title>Metronic | Dashboard</title>
+    <title>Cart Activities| Dashboard</title>
     <meta name="description" content="Updates and statistics" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://localhost/">
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
@@ -17,6 +25,7 @@
     <link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?v=7.0.6" rel="stylesheet"
         type="text/css" />
     <!--end::Page Vendors Styles-->
+    <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
 
 
     <!--begin::Global Theme Styles(used by all pages)-->
@@ -30,7 +39,13 @@
     <!--end::Layout Themes-->
 
     <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <script type="text/javascript">
+var currency="<?php echo $_SESSION['currency']; ?>";
+var path="<?php echo DIR_ROOT ?>";
 
+
+
+</script>
 </head>
 <!--end::Head-->
 
@@ -1958,583 +1973,101 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-xl-12">
+   
                                 <!-- tabbed -->
-                                <div class="card card-custom bg-gray-100 card-stretch gutter-b">
-                                    <!--begin::Header-->
-                                    <div class="card-header h-auto border-0">
-                                        <!--begin::Title-->
-                                        <div class="card-title py-5">
-                                            <h3 class="card-label">
-                                                <span class="d-block text-dark font-weight-bolder"> Carts stats</span>
-
-                                            </h3>
-                                        </div>
-                                        <!--end::Title-->
-                                        <!--begin::Toolbar-->
-                                        <div class="card-toolbar">
-                                            <ul class="nav nav-pills nav-pills-sm nav-dark-75" role="tablist">
-                                                <li class="nav-item">
-                                                    <a class="nav-link py-2 px-4 active" data-toggle="tab"
-                                                        href="#kt_checkout_cart">
-                                                        <span class="nav-text font-size-sm">Checkout Cart</span>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link py-2 px-4" data-toggle="tab"
-                                                        href="#kt_abandoned_cart">
-                                                        <span class="nav-text font-size-sm">Abandoned Cart</span>
-                                                    </a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                        <!--end::Toolbar-->
-                                    </div>
-                                    <!--end::Header-->
-                                    <!--begin::Body-->
-                                    <div class="card-body" style="position: relative;">
-                                        <div class="tab-content">
-                                            <div class="tab-pane fade show active" id="kt_checkout_cart" role="tabpanel"
-                                                aria-labelledby="kt_checkout_cart">
-
-
-                                                <div class="card card-custom gutter-b">
-                                                    <!--begin::Header-->
-                                                    <div class="card-header border-0 py-5">
-                                                        <h3 class="card-title align-items-start flex-column">
-                                                            <span
-                                                                class="card-label font-weight-bolder text-dark">Checkout
-                                                                Cart</span>
-
-                                                        </h3>
-
-                                                    </div>
-                                                    <!--end::Header-->
-                                                    <!--begin::Body-->
-                                                    <div class="card-body pt-0 pb-3">
-                                                        <div class="tab-content">
-                                                            <!--begin::Table-->
-                                                            <div class="table-responsive">
-                                                                <table
-                                                                    class="table table-head-custom table-head-bg table-borderless table-vertical-center">
-                                                                    <thead>
-                                                                        <tr class="text-left text-uppercase">
-                                                                            <th style="min-width: 250px" class="pl-7">
-                                                                                <span
-                                                                                    class="text-dark-75">products</span>
-                                                                            </th>
-                                                                            <th style="min-width: 100px">earnings</th>
-                                                                            <th style="min-width: 100px">comission</th>
-                                                                            <th style="min-width: 100px">company</th>
-                                                                            <th style="min-width: 130px">rating</th>
-                                                                            <th style="min-width: 80px"></th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td class="pl-0 py-8">
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <div
-                                                                                        class="symbol symbol-50 symbol-light mr-4">
-                                                                                        <span class="symbol-label">
-                                                                                            <img src="/metronic/theme/html/demo7/dist/assets/media/svg/avatars/001-boy.svg"
-                                                                                                class="h-75 align-self-end"
-                                                                                                alt="">
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div>
-                                                                                        <a href="#"
-                                                                                            class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Brad
-                                                                                            Simmons</a>
-                                                                                        <span
-                                                                                            class="text-muted font-weight-bold d-block">HTML,
-                                                                                            JS, ReactJS</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">$8,000,000</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">In
-                                                                                    Proccess</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">$520</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Paid</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">Intertico</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Web,
-                                                                                    UI/UX Design</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <img src="/metronic/theme/html/demo7/dist/assets/media/logos/stars.png"
-                                                                                    alt="image" style="width: 5.5rem">
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold d-block font-size-sm">Best
-                                                                                    Rated</span>
-                                                                            </td>
-                                                                            <td class="pr-0 text-right">
-                                                                                <a href="#"
-                                                                                    class="btn btn-light-success font-weight-bolder font-size-sm">View
-                                                                                    Offer</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="pl-0 py-0">
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <div
-                                                                                        class="symbol symbol-50 symbol-light mr-4">
-                                                                                        <span class="symbol-label">
-                                                                                            <img src="/metronic/theme/html/demo7/dist/assets/media/svg/avatars/018-girl-9.svg"
-                                                                                                class="h-75 align-self-end"
-                                                                                                alt="">
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div>
-                                                                                        <a href="#"
-                                                                                            class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Jessie
-                                                                                            Clarcson</a>
-                                                                                        <span
-                                                                                            class="text-muted font-weight-bold d-block">C#,
-                                                                                            ASP.NET, MS SQL</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">$23,000,000</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Pending</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">$1,600</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Rejected</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">Agoda</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Houses
-                                                                                    &amp; Hotels</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <img src="/metronic/theme/html/demo7/dist/assets/media/logos/stars.png"
-                                                                                    alt="image" style="width: 5.5rem">
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold d-block font-size-sm">Above
-                                                                                    Avarage</span>
-                                                                            </td>
-                                                                            <td class="pr-0 text-right">
-                                                                                <a href="#"
-                                                                                    class="btn btn-light-success font-weight-bolder font-size-sm">View
-                                                                                    Offer</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="pl-0 py-8">
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <div
-                                                                                        class="symbol symbol-50 symbol-light mr-4">
-                                                                                        <span class="symbol-label">
-                                                                                            <img src="/metronic/theme/html/demo7/dist/assets/media/svg/avatars/047-girl-25.svg"
-                                                                                                class="h-75 align-self-end"
-                                                                                                alt="">
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div>
-                                                                                        <a href="#"
-                                                                                            class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Lebron
-                                                                                            Wayde</a>
-                                                                                        <span
-                                                                                            class="text-muted font-weight-bold d-block">PHP,
-                                                                                            Laravel, VueJS</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">$34,000,000</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Paid</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">$6,700</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Paid</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">RoadGee</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Paid</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <img src="/metronic/theme/html/demo7/dist/assets/media/logos/stars.png"
-                                                                                    alt="image" style="width: 5.5rem">
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold d-block font-size-sm">Best
-                                                                                    Rated</span>
-                                                                            </td>
-                                                                            <td class="pr-0 text-right">
-                                                                                <a href="#"
-                                                                                    class="btn btn-light-success font-weight-bolder font-size-sm">View
-                                                                                    Offer</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="pl-0 py-0">
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <div
-                                                                                        class="symbol symbol-50 symbol-light mr-4">
-                                                                                        <span class="symbol-label">
-                                                                                            <img src="/metronic/theme/html/demo7/dist/assets/media/svg/avatars/014-girl-7.svg"
-                                                                                                class="h-75 align-self-end"
-                                                                                                alt="">
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div>
-                                                                                        <a href="#"
-                                                                                            class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">Natali
-                                                                                            Trump</a>
-                                                                                        <span
-                                                                                            class="text-muted font-weight-bold d-block">Python,
-                                                                                            PostgreSQL, ReactJS</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td class="text-left pr-0">
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">$2,600,000</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Paid</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">$14,000</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Pending</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">The
-                                                                                    Hill</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Insurance</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <img src="/metronic/theme/html/demo7/dist/assets/media/logos/stars.png"
-                                                                                    style="width: 5.5rem" alt="">
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold d-block font-size-sm">Avarage</span>
-                                                                            </td>
-                                                                            <td class="pr-0 text-right">
-                                                                                <a href="#"
-                                                                                    class="btn btn-light-success font-weight-bolder font-size-sm"
-                                                                                    style="width: 7rem">View Offer</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                            <!--end::Table-->
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Body-->
-                                                </div>
-
-
-                                            </div>
-                                            <div class="tab-pane fade" id="kt_abandoned_cart" role="tabpanel"
-                                                aria-labelledby="kt_abandoned_cart">
-
-
-
-                                                <div class="card card-custom gutter-b">
-                                                    <!--begin::Header-->
-                                                    <div class="card-header border-0 py-5">
-                                                        <h3 class="card-title align-items-start flex-column">
-                                                            <span
-                                                                class="card-label font-weight-bolder text-dark">Checkout
-                                                                Cart</span>
-
-                                                        </h3>
-
-                                                    </div>
-                                                    <!--end::Header-->
-                                                    <!--begin::Body-->
-                                                    <div class="card-body pt-0 pb-3">
-                                                        <div class="tab-content">
-                                                            <!--begin::Table-->
-                                                            <div class="table-responsive">
-                                                                <table
-                                                                    class="table table-head-custom table-head-bg table-borderless table-vertical-center">
-                                                                    <thead>
-                                                                        <tr class="text-left text-uppercase">
-                                                                            <th style="min-width: 250px" class="pl-7">
-                                                                                <span
-                                                                                    class="text-dark-75">products</span>
-                                                                            </th>
-                                                                            <th style="min-width: 100px">earnings</th>
-                                                                            <th style="min-width: 100px">comission</th>
-                                                                            <th style="min-width: 100px">company</th>
-                                                                            <th style="min-width: 130px">rating</th>
-                                                                            <th style="min-width: 80px"></th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td class="pl-0 py-8">
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <div
-                                                                                        class="symbol symbol-50 symbol-light mr-4">
-                                                                                        <span class="symbol-label">
-                                                                                            <img src="/metronic/theme/html/demo7/dist/assets/media/svg/avatars/001-boy.svg"
-                                                                                                class="h-75 align-self-end"
-                                                                                                alt="">
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div>
-                                                                                        <a href="#"
-                                                                                            class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Brad
-                                                                                            Simmons</a>
-                                                                                        <span
-                                                                                            class="text-muted font-weight-bold d-block">HTML,
-                                                                                            JS, ReactJS</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">$8,000,000</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">In
-                                                                                    Proccess</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">$520</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Paid</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">Intertico</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Web,
-                                                                                    UI/UX Design</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <img src="/metronic/theme/html/demo7/dist/assets/media/logos/stars.png"
-                                                                                    alt="image" style="width: 5.5rem">
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold d-block font-size-sm">Best
-                                                                                    Rated</span>
-                                                                            </td>
-                                                                            <td class="pr-0 text-right">
-                                                                                <a href="#"
-                                                                                    class="btn btn-light-success font-weight-bolder font-size-sm">View
-                                                                                    Offer</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="pl-0 py-0">
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <div
-                                                                                        class="symbol symbol-50 symbol-light mr-4">
-                                                                                        <span class="symbol-label">
-                                                                                            <img src="/metronic/theme/html/demo7/dist/assets/media/svg/avatars/018-girl-9.svg"
-                                                                                                class="h-75 align-self-end"
-                                                                                                alt="">
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div>
-                                                                                        <a href="#"
-                                                                                            class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Jessie
-                                                                                            Clarcson</a>
-                                                                                        <span
-                                                                                            class="text-muted font-weight-bold d-block">C#,
-                                                                                            ASP.NET, MS SQL</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">$23,000,000</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Pending</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">$1,600</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Rejected</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">Agoda</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Houses
-                                                                                    &amp; Hotels</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <img src="/metronic/theme/html/demo7/dist/assets/media/logos/stars.png"
-                                                                                    alt="image" style="width: 5.5rem">
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold d-block font-size-sm">Above
-                                                                                    Avarage</span>
-                                                                            </td>
-                                                                            <td class="pr-0 text-right">
-                                                                                <a href="#"
-                                                                                    class="btn btn-light-success font-weight-bolder font-size-sm">View
-                                                                                    Offer</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="pl-0 py-8">
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <div
-                                                                                        class="symbol symbol-50 symbol-light mr-4">
-                                                                                        <span class="symbol-label">
-                                                                                            <img src="/metronic/theme/html/demo7/dist/assets/media/svg/avatars/047-girl-25.svg"
-                                                                                                class="h-75 align-self-end"
-                                                                                                alt="">
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div>
-                                                                                        <a href="#"
-                                                                                            class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Lebron
-                                                                                            Wayde</a>
-                                                                                        <span
-                                                                                            class="text-muted font-weight-bold d-block">PHP,
-                                                                                            Laravel, VueJS</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">$34,000,000</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Paid</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">$6,700</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Paid</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">RoadGee</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Paid</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <img src="/metronic/theme/html/demo7/dist/assets/media/logos/stars.png"
-                                                                                    alt="image" style="width: 5.5rem">
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold d-block font-size-sm">Best
-                                                                                    Rated</span>
-                                                                            </td>
-                                                                            <td class="pr-0 text-right">
-                                                                                <a href="#"
-                                                                                    class="btn btn-light-success font-weight-bolder font-size-sm">View
-                                                                                    Offer</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="pl-0 py-0">
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <div
-                                                                                        class="symbol symbol-50 symbol-light mr-4">
-                                                                                        <span class="symbol-label">
-                                                                                            <img src="/metronic/theme/html/demo7/dist/assets/media/svg/avatars/014-girl-7.svg"
-                                                                                                class="h-75 align-self-end"
-                                                                                                alt="">
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div>
-                                                                                        <a href="#"
-                                                                                            class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">Natali
-                                                                                            Trump</a>
-                                                                                        <span
-                                                                                            class="text-muted font-weight-bold d-block">Python,
-                                                                                            PostgreSQL, ReactJS</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td class="text-left pr-0">
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">$2,600,000</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Paid</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">$14,000</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Pending</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">The
-                                                                                    Hill</span>
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold">Insurance</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <img src="/metronic/theme/html/demo7/dist/assets/media/logos/stars.png"
-                                                                                    style="width: 5.5rem" alt="">
-                                                                                <span
-                                                                                    class="text-muted font-weight-bold d-block font-size-sm">Avarage</span>
-                                                                            </td>
-                                                                            <td class="pr-0 text-right">
-                                                                                <a href="#"
-                                                                                    class="btn btn-light-success font-weight-bolder font-size-sm"
-                                                                                    style="width: 7rem">View Offer</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                            <!--end::Table-->
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Body-->
-                                                </div>
-
-
-                                            </div>
-
-                                        </div>
-                                        <!--begin::Chart-->
-
-                                        <!--end::Chart-->
-
-                                    </div>
-                                    <!--end::Body-->
-                                </div>
+                                <div class="card card-custom card-custom gutter-t">
+									<div class="card-header py-3">
+										<div class="card-title">
+											<h3 class="card-label">Dropdown Export Tools</h3>
+										</div>
+										<div class="card-toolbar">
+											<div class="dropdown dropdown-inline">
+												<button type="button" class="btn btn-secondary btn-sm font-weight-bold" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<i class="la la-download"></i>Tools</button>
+												<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+													<ul class="navi flex-column navi-hover py-2">
+														<li class="navi-header font-weight-bolder text-uppercase font-size-xs text-primary pb-2">Export Tools</li>
+														<li class="navi-item">
+															<a href="#" class="navi-link" id="export_print">
+																<span class="navi-icon">
+																	<i class="la la-print"></i>
+																</span>
+																<span class="navi-text">Print</span>
+															</a>
+														</li>
+														<li class="navi-item">
+															<a href="#" class="navi-link" id="export_copy">
+																<span class="navi-icon">
+																	<i class="la la-copy"></i>
+																</span>
+																<span class="navi-text">Copy</span>
+															</a>
+														</li>
+														<li class="navi-item">
+															<a href="#" class="navi-link" id="export_excel">
+																<span class="navi-icon">
+																	<i class="la la-file-excel-o"></i>
+																</span>
+																<span class="navi-text">Excel</span>
+															</a>
+														</li>
+														<li class="navi-item">
+															<a href="#" class="navi-link" id="export_csv">
+																<span class="navi-icon">
+																	<i class="la la-file-text-o"></i>
+																</span>
+																<span class="navi-text">CSV</span>
+															</a>
+														</li>
+														<li class="navi-item">
+															<a href="#" class="navi-link" id="export_pdf">
+																<span class="navi-icon">
+																	<i class="la la-file-pdf-o"></i>
+																</span>
+																<span class="navi-text">PDF</span>
+															</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="card-body">
+										<!--begin: Datatable-->
+										<table class="table table-separate table-head-custom table-checkable" id="kt_abon_table">
+											<thead>
+												<tr>
+													<th>Cart ID</th>
+													<th>name</th>
+													<th>Created By</th>
+													<th>Email</th>
+													<th>created AT</th>
+													<th>Total Amount</th>
+                                                    <th>Customer ID</th>
+												
+                                                    
+                                                    
+												</tr>
+											</thead>
+										</table>
+										<!--end: Datatable-->
+									</div>
+								</div>
+								<!--end::Card-->
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Entry-->
+					</div>
                                 <!-- tabbed -->
                             </div>
                             <!--end::12-->
                         </div>
                         <!--end::row-->
 
-                    </div>
+                 
                     <!--end::Container-->
-                </div>
-                <!--end::Entry-->
-            </div>
+         
             <!--end::Content-->
             <!--begin::Footer-->
             <div class="footer bg-white py-4 d-flex flex-lg-column " id="kt_footer">
@@ -3303,6 +2836,7 @@
     <!--end::Global Theme Bundle-->
 	<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
 
+
     <!--end::Page Vendors-->
     <script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.7"></script>
   
@@ -3318,9 +2852,15 @@
 
 
 
-    <!-- end:custom js -->
+    <!-- start:custom js -->
+    <script src="assets/js/pages/my-script/member/shopify/cart_activity.js"></script>
+        <!-- end:custom js -->
     <!--end::Page Scripts-->
 </body>
 <!--end::Body-->
 
 </html>
+<?php
+endif;
+
+?>

@@ -42,7 +42,7 @@ require_once (dirname(__FILE__,2)).'/base.php';
     <script type="text/javascript">
 var currency="<?php echo $_SESSION['currency']; ?>";
 var path="<?php echo DIR_ROOT ?>";
-
+var shop='https://<?=$_SESSION['shop_name']?>/admin/';
 
 
 </script>
@@ -1978,12 +1978,12 @@ var path="<?php echo DIR_ROOT ?>";
                                 <div class="card card-custom card-custom gutter-t">
 									<div class="card-header py-3">
 										<div class="card-title">
-											<h3 class="card-label">Dropdown Export Tools</h3>
+											<h3 class="card-label">Abandoned checkouts</h3>
 										</div>
 										<div class="card-toolbar">
 											<div class="dropdown dropdown-inline">
 												<button type="button" class="btn btn-secondary btn-sm font-weight-bold" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												<i class="la la-download"></i>Tools</button>
+												<i class="la la-download"></i>Export</button>
 												<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
 													<ul class="navi flex-column navi-hover py-2">
 														<li class="navi-header font-weight-bolder text-uppercase font-size-xs text-primary pb-2">Export Tools</li>
@@ -2037,13 +2037,13 @@ var path="<?php echo DIR_ROOT ?>";
 										<table class="table table-separate table-head-custom table-checkable" id="kt_abon_table">
 											<thead>
 												<tr>
-													<th>Cart ID</th>
+                                                   <th>ID</th>
 													<th>name</th>
-													<th>Created By</th>
+													<th>Place By</th>
 													<th>Email</th>
 													<th>created AT</th>
 													<th>Total Amount</th>
-                                                    <th>Customer ID</th>
+                                                    <th>Actions</th>
 												
                                                     
                                                     

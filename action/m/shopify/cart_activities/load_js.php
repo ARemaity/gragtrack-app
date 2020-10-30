@@ -12,19 +12,27 @@ require_once  (dirname(__FILE__,5)).'/'.DIR_INC.'API_Order.php';
 
 $newapi=new API_Order();
 $get_checkout=$newapi->get_checkout_list();
+var_dump($get_checkout);
 $response=array();
+
+
 $response['isdata']=0;
 $response['data']=array();
 if(!is_null($get_checkout)){
     $response['isdata']=1;
     $customer=null;
     foreach($get_checkout as $checkout){
-        $customer_id=null;
-        $name=null;
+        $customer_id='null';
+        $name='no name';
+        $email='no email';
+
         if(!empty($checkout['customer'])){
 
 
             $customer_id=$checkout['customer']['id'];
+        }
+        if(!empty($checkout['email'])){
+            $email=$checkout['email'];
         }
         if(!empty($checkout['shipping_address'])){
 
@@ -35,7 +43,7 @@ $data=array(
 'id'=> $checkout['id'],
 'cart_name'=> $checkout['name'],
 'link'=> $checkout['abandoned_checkout_url'],
-'email'=> $checkout['email'],
+'email'=> $email,
 'total_price'=> $checkout['total_price'],
 'created_at'=> $checkout['created_at'],
 'name'=> $name,

@@ -186,9 +186,9 @@ echo json_encode( $result, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 */
 }else{
 	$result = [
-		'iTotalRecords'        => $totalRecords,
-		'iTotalDisplayRecords' => $totalDisplay,
-		'sEcho'                => $secho,
+		'iTotalRecords'        => 0,
+		'iTotalDisplayRecords' => 0,
+		'sEcho'                => 0,
 		'aaData'               => $data,
 	];
 	

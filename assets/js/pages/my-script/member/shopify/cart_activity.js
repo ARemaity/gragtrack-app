@@ -84,7 +84,7 @@ var KTCartActivities = (function () {
         chart.render();
     }
     var Abandonedcart = function() {
-
+var id_cart='';
       // begin first table
       var table = $('#kt_abon_table').DataTable({
         responsive: true,
@@ -126,28 +126,40 @@ var KTCartActivities = (function () {
         ],
         columnDefs: [
           {
-            targets: -1,
+            targets:0,
+            "visible": false,
+          },
+          {
+            targets:1,
+// TODO: currenlty il removw # from name to create String
+
+            render: function(data, type, full, meta) {
+              id_cart=data.substring(1);
+           console.log(full[1]);
+              return '\
+                <a href="'+shop+'checkouts/'+id_cart+'" target="_blank">\
+                '+data+'\
+                </a>\
+              ';
+            },
+          }, {
+            targets:5,
+
+       
+            render: function(data, type, full, meta) {
+           
+              return data+' '+currency;
+            },
+          },
+          {
+            targets:-1,
             title: 'Actions',
             orderable: false,
             render: function(data, type, full, meta) {
+         
               return '\
-                <div class="dropdown dropdown-inline">\
-                  <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">\
-                                    <i class="la la-cog"></i>\
-                                </a>\
-                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">\
-                    <ul class="nav nav-hoverable flex-column">\
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-edit"></i><span class="nav-text">Edit Details</span></a></li>\
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-leaf"></i><span class="nav-text">Update Status</span></a></li>\
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-print"></i><span class="nav-text">Print</span></a></li>\
-                    </ul>\
-                    </div>\
-                </div>\
-                <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details">\
-                  <i class="la la-edit"></i>\
-                </a>\
-                <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete">\
-                  <i class="la la-trash"></i>\
+                <a href="'+shop+'customers/'+data+'" class="btn btn-sm btn-clean btn-icon" target="_blank" title="View Customer">\
+                  <i class="la la-eye"></i>\
                 </a>\
               ';
             },

@@ -109,6 +109,20 @@ return $count;
   
   
   }
+  public function get_order_after($after_id){
+    $query = array(
+   'since_id'=>$after_id
+    );
+    $api_url="/admin/api/2020-10/orders.json";
+    $orders=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
+  
+    $orders=json_decode($orders['response'],true);
+ 
+    return $orders['orders'];
+  
+  
+  
+  }
 
   
   public function get_single_order($order_id){

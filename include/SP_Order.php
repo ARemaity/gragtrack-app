@@ -692,7 +692,7 @@ if(!is_null($type)){
 
                         public function get_order_count(){
 
-                            $stmt = $this->conn->prepare("SELECT COUNT(*) as counts FROM `sp_order` WHERE fk_AID=? GROUP by COUNT(*) order by COUNT(*) DESC");
+                            $stmt = $this->conn->prepare("SELECT COUNT(*) as counts FROM `sp_order` WHERE fk_AID = ?");
                             $stmt->bind_param("i", $_SESSION['AID']);
                         if ($stmt->execute()) {			
                             $corder = $stmt->get_result()->fetch_assoc();
@@ -708,6 +708,26 @@ if(!is_null($type)){
                         
                         
                             } 
+
+                            public function get_last_order_id(){
+
+                                $stmt = $this->conn->prepare("SELECT order_id as oid FROM `sp_order` WHERE fk_AID=? ORDER BY `sp_order`.`order_name` DESC LIMIT 1");
+                                $stmt->bind_param("i", $_SESSION['AID']);
+                            if ($stmt->execute()) {			
+                                $corder = $stmt->get_result()->fetch_assoc();
+                                $stmt->close();
+                            
+                                return $corder; 
+                            } else {
+                                return NULL;
+                            }
+                            
+                            
+                            
+                            
+                            
+                                } 
+              
           
 }
 

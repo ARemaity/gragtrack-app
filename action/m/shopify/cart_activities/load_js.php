@@ -45,7 +45,7 @@ $data=array(
 'link'=> $checkout['abandoned_checkout_url'],
 'email'=> $email,
 'total_price'=> $checkout['total_price'],
-'created_at'=> $checkout['created_at'],
+'created_at'=> date('Y-m-d H:i:s', strtotime($checkout['created_at'])),
 'name'=> $name,
 'customer_id'=>$customer_id
 

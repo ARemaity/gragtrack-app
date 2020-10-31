@@ -5,6 +5,7 @@
 //Get base class
 require_once (dirname(__FILE__,3)).'/base.php';
 require_once  (dirname(__FILE__,3)).'/'.DIR_INC.'API_Order.php';
+require_once  (dirname(__FILE__,3)).'/'.DIR_INC.'DB_init.php';
 require_once (dirname(__FILE__, 3)) . '/' . DIR_INC . 'API_Product_variant.php';
 require_once (dirname(__FILE__, 3)) . '/' . DIR_INC . 'API_inverntoryitem.php';
 require_once  (dirname(__FILE__,3)).'/'.DIR_INC.'SP_Order.php';
@@ -14,8 +15,10 @@ $sproduct=new SP_Product();
 $neworder=new API_Order();
 $api_inve=new API_inverntoryitem();
 $api_product=new API_Product_variant();
+$db_init=new DB_init();
 $get_order=$neworder->get_all_order('any');
-$result='int: ';
+$size_order=sizeof($get_order);
+foreach ($get_order as $order){
 $status=0;
 $type=0;
 $counter=0;
@@ -23,25 +26,18 @@ $invet_id=0;
 $address=array();
 $iscountry=false;
 $line=array();
-$size_order=sizeof($get_order);
-foreach ($get_order as $order){
-    if(array_key_exists('billing_address',$order)){
+if(array_key_exists('billing_address',$order)){
         $address=$order['billing_address'];     
 if(!empty($address['country_code'])){
 
 $iscountry=true;
 
-}else{
+}  
 
-    $iscountry=false;
 }
-    }else{
-       
-        $iscountry=false;
-    }
 
  
-
+// get status 
 
     switch ($order['financial_status']) {
        case 'pending':
@@ -73,6 +69,8 @@ $iscountry=true;
        $status=0;
            break;
    }
+
+   // get type 
    switch ($order['fulfillment_status']) {
     case 'fulfilled':
         $type=1;
@@ -89,22 +87,18 @@ $iscountry=true;
         break;
 }
    $insert_order=$sporder->insert_order($order,$status,$type); 
- 
+//  order inserted get OID pr key and insert it with product 
 if($insert_order>0){
 
     $counter+=1;
-//    if($status==3){ removed to insert all product order 
+//    if($status==3){
 
-
-    if($iscountry==true){
+    if($iscountry){
        
         if($sporder->insert_order_address($address,$insert_order)){
     
     
          
-        }else{
-
-            echo "0-country";
         }
     }
 $line=$order['line_items'];
@@ -113,32 +107,26 @@ $pid=$product['product_id'];
 $vid=$product['variant_id'];
 $name=$product["title"];
 $qty=$product['quantity'];
+// get invent id from variant id of the product 
+
 $invet_id=$api_product->get_invent_id($vid);
 
-
-
+//get the cost from the inventory prp 
 $cost=$api_inve->get_inv_prp($invet_id['inventory_item_id'])['cost'];
 if(is_null($cost)){
 
     $cost=0;
 }
-
+// insert product with oid pr key 
     if($sproduct->init_insert_product($insert_order,$pid,$vid,$qty,$cost)){
 
     
         
-    }else{
-
-        echo "0-product";
     }
-
-
 
 }
 
 
-    
-//    }
 
 
 }else{
@@ -151,7 +139,14 @@ if(is_null($cost)){
 
 if($size_order==$counter){
 
-echo "1";
+
+    if($db_init->update_setup(4)){
+
+        echo "1";
+    }else{
+        echo "0";
+    }
+
 }else{
 
     echo "0";

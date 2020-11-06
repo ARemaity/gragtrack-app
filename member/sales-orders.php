@@ -5,11 +5,9 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-// if(isset($_SESSION['AID'])){
+if(isset($_SESSION['AID'])){
 //Get base class
 require_once (dirname(__FILE__,2)).'/base.php';
-include(dirname(__FILE__,2).'/action/m/shopify/sales_order/get_total_sales.php');
-include(dirname(__FILE__,2).'/action/m/shopify/sales_order/best_seller.php');
 require_once (dirname(__FILE__, 2)) . '/' . DIR_INC . 'SP_order.php';
 require_once (dirname(__FILE__, 2)) . '/' . DIR_INC . 'API_Product.php';
 require_once (dirname(__FILE__, 2)) . '/' . DIR_INC . 'API_Product_variant.php';
@@ -26,181 +24,8 @@ foreach($country_output as $country){
 array_push($country_code,$country['counts']);
 }
 
-
-$length=sizeof($country_code);
-
-$partlength=0;
-$iter=0;
-
 foreach($country_output as $country){
-
-
-// if($length%4==0){
-
-// $partlength=intval($length/4);
-
-
-// switch ($iter) {
-//     case ($iter<=($partlength*4)-1):
-//         $handler=array (
-           
-
-//                 "title"=> $country['country'],
-//                 "id"=>  $country['country_code'],
-//                 "color"=>  "#67b7dc",
-//                 "customData"=>  $country['counts']
-//                 ,"groupId"=>  '2040-4'
-               
-           
-//         );
-//     break;
-//     case ($iter<=($partlength*3)-1):
-//             $handler=array (
-           
-
-//                 "title"=> $country['country'],
-//                 "id"=>  $country['country_code'],
-//                 "color"=>  "#ebdb8b",
-//                 "customData"=>  $country['counts']
-//                 ,"groupId"=>  '2030-4'
-           
-           
-//         );
-//             break;
-//             case ($iter<($partlength*2)-1):
-//                 $handler= array (
-               
-    
-//                     "title"=> $country['country'],
-//                     "id"=>  $country['country_code'],
-//                     "color"=>  "#83c2ba",
-//                     "customData"=>  $country['counts']
-//                     ,"groupId"=>  '2020-4'
-               
-               
-//             );
-//                 break;
-//                 case ($iter<($partlength*1)-1):
-//                     $handler=array (
-                   
-        
-//                         "title"=> $country['country'],
-//                         "id"=>  $country['country_code'],
-//                         "color"=>  "#db8383",
-//                         "customData"=>  $country['counts']
-//                         ,"groupId"=>  '2010-4'
-//                 );
-//                     break;
-//     default:
-//         # code...
-//         break;
-// }
-
-
-// }elseif($length%3==0){
-
-//     $partlength=intval($length/3);
-    
-    
-//     switch ($iter) {
-//         case ($iter<($partlength*3)-1):
-//             $handler=array (
-               
-    
-//                     "title"=> $country['country'],
-//                     "id"=>  $country['country_code'],
-//                     "color"=>  "#67b7dc",
-//                     "customData"=>  $country['counts']
-//                     ,"groupId"=>  '2030-3'
-               
-               
-//             );
-//         break;
-                
-//         case ($iter<($partlength*2)-1):
-//                 $handler=array (
-               
-    
-//                     "title"=> $country['country'],
-//                     "id"=>  $country['country_code'],
-//                     "color"=>  "#ebdb8b",
-//                     "customData"=>  $country['counts']
-//                     ,"groupId"=>  '2020-3'
-               
-               
-//             );
-//                 break;
-                
-//                     case ($iter<($partlength*1)-1):
-//                         $handler=array (
-                       
-            
-//                             "title"=> $country['country'],
-//                             "id"=>  $country['country_code'],
-//                             "color"=>  "#db8383",
-//                             "customData"=>  $country['counts']
-//                             ,"groupId"=>  '2010-3'
-//                     );
-//                         break;
-//         default:
-//             # code...
-//             break;
-//     }
-    
-    
-//     }elseif($length%2==0){
-
-//         $partlength=intval($length/2);
-        
-        
-//         switch ($iter) {
-//             case ($iter<($partlength*2)-1):
-//                 $handler=array (
-                   
-        
-//                         "title"=> $country['country'],
-//                         "id"=>  $country['country_code'],
-//                         "color"=>  "#67b7dc",
-//                         "customData"=>  $country['counts']
-//                       ,   "groupId"=>  '2020-2'
-                   
-                   
-//                 );
-                    
-//                     break;
-                    
-//                         case ($iter<($partlength*1)-1):
-//                             $handler=array (
-                           
-                
-//                                 "title"=> $country['country'],
-//                                 "id"=>  $country['country_code'],
-//                                 "color"=>  "#db8383",
-//                                 "customData"=>  $country['counts'],
-//                                 "groupId"=>  '2010-2'
-        
-//                         );
-//                             break;
-//             default:
-//                 # code...
-//                 break;
-//         }
-        
-        
-//         }else{
-//             $handler=array (
-                   
-        
-//                 "title"=> $country['country'],
-//                 "id"=>  $country['country_code'],
-//                 "color"=>  "#83c2ba",
-//                 "customData"=>  $country['counts'],
-            
-//                 "groupId"=>  '2040-1'
-           
-           
-//         );
-//         }
+      
 
 // TODO: the idea to split the array to 4 or 3 or 2 part since its sorted array rather than give fixed range to (strong,good,normal) label 
 
@@ -249,9 +74,6 @@ if($country['counts']>100){
 array_push($country_arr,$handler);
 
 
-
-
-$iter++;
 
 
 
@@ -311,7 +133,7 @@ echo json_encode($country_arr);
     class="page-loading-enabled quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
     <div class="page-loader page-loader-base">
 			<div class="blockui">
-				<span>Please wait...</span
+				<span>Please wait...</span>
 				<span>
 					<div class="spinner spinner-primary"></div>
 				</span>
@@ -383,7 +205,7 @@ echo json_encode($country_arr);
                                     <!--begin::Header Nav-->
                                     <ul class="menu-nav ">
                                         <li class="menu-item  menu-item-submenu menu-item-rel"
-                                            data-menu-toggle="click" aria-haspopup="true"><a href="."
+                                            data-menu-toggle="click" aria-haspopup="true"><a href="<?= DIR_USER ?>"
                                                 class="menu-link"><span
                                                     class="menu-text">Dashboard</span></a>
 
@@ -396,7 +218,7 @@ echo json_encode($country_arr);
                                             <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                                                 <ul class="menu-subnav">
                                                     <li class="menu-item menu-item-here menu-item-submenu" data-menu-toggle="hover"
-                                                        aria-haspopup="true"><a href="member/sales-orders.php"
+                                                        aria-haspopup="true"><a href="<?= DIR_USER ?>sales-orders.php"
                                                             class="menu-link"><span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/src/media/svg/icons/Shopping/Bag1.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                                     <rect x="0" y="0" width="24" height="24"/>
@@ -408,7 +230,7 @@ echo json_encode($country_arr);
                                                     
                                                     </li>
                                                     <li class="menu-item  menu-item-submenu" data-menu-toggle="hover"
-                                                    aria-haspopup="true"><a href="member/cart-activities.php"
+                                                    aria-haspopup="true"><a href="<?= DIR_USER ?>cart-activities.php"
                                                         class="menu-link"><span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/src/media/svg/icons/Shopping/Cart3.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                                 <rect x="0" y="0" width="24" height="24"/>
@@ -2250,16 +2072,7 @@ echo json_encode($country_arr);
                                 Sales<i class="fa fa-info-circle " data-toggle="tooltip" data-placement="right" title=""
                                     data-original-title="UC1" style="margin-left: 10px;"></i></a>
                             <div class="font-weight-bold text-muted font-size-lg">
-                                <span class="text-dark-75 font-weight-bolder mr-5"><?php
-                                if(!is_null($total_sales)&&!empty($total_sales))
-                                {
-
-                                    echo $total_sales.' '.$_SESSION['currency'];
-                                }else{
-
-                                    echo "0".' '.$_SESSION['currency'];
-                                }
-                                ?></span>
+                                <span class="text-dark-75 font-weight-bolder mr-5" id="total_sales">----</span>
 
                                 <span class="font-weight-bold text-muted font-size-lg"> Total sale</span></div>
 
@@ -2368,7 +2181,7 @@ echo json_encode($country_arr);
                 </div>
                 <div class="col-xl-4">
                     <!--begin::List Widget 21-->
-                    <div class="card card-custom card-stretch gutter-b">
+                    <div class="card card-custom card-stretch gutter-b" id="kt_best_seller">
                         <!--begin::Header-->
                         <div class="card-header border-0 pt-5">
                             <h3 class="card-title align-items-start flex-column mb-5">
@@ -2382,61 +2195,8 @@ echo json_encode($country_arr);
                         </div>
                         <!--end::Header-->
                         <!--begin::Body-->
-                        <div class="card-body pt-2">
-                            <?php
-    if(!is_null($best_seller)):
-    foreach($best_seller as $seller):
-$getpr=$apipr->get_pr_prp($seller['product_id']);
-     $name=$getpr['title'];
-     $variant_prp=$apiprvr->get_variant_prp2($seller['variant_id']);
- 
-   $price=0;
-
-     if(!is_null($variant_prp)){
-         if(!empty($variant_prp['name'])){
-             $name=$name.' '.$variant_prp['name'];
-         }
-         if(!empty($variant_prp['price'])){
-            $price=$variant_prp['price'];
-        }
-        
-     }
-     $imageURL=$apipr->get_pr_image($seller['product_id'])['src'];
-
-
-       
-?>
-                            <div class="d-flex mb-8">
-                       
-                                <div class="symbol symbol-50 symbol-2by3 flex-shrink-0 mr-4">
-                                    <div class="d-flex flex-column">
-                                        <div class="symbol-label mb-3"
-                                            style="background-image: url('<?= $imageURL ?>')">
-                                        </div>
-
-                                    </div>
-                                </div>
-                             
-                                <div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3">
-                                    <a href="#"
-                                        class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg mb-2"><?= $name?></a>
-
-                                    <span class="text-muted font-weight-bold font-size-lg">Price:
-                                        <span class="text-dark-75 font-weight-bolder"><?= $price?></span></span>
-                                    <span class="text-muted font-weight-bold font-size-lg">Sales:
-                                        <span class="text-dark-75 font-weight-bolder"><?= $seller['counts']?></span></span>
-                                </div>
-                                
-                            </div>
-
-                           <?php 
-      endforeach;
-        
- else:
-    echo '<div class="d-flex flex-center text-center text-muted min-h-200px">NO RECORDS</div>';
-    
- endif;
-    ?>
+                        <div class="card-body pt-2" id="best_seller_body">
+            
                             <!--end::Item-->
                             <!--begin::Item-->
                       
@@ -3335,13 +3095,13 @@ $getpr=$apipr->get_pr_prp($seller['product_id']);
 </html>
 <?php
 
-// }else{
+}else{
 
 
-//     header( "refresh:2; url=../error.php"); 
-//     echo "You will be redirected to gragtrack error page (debug phase)";
+    header( "refresh:2; url=../error.php"); 
+    echo "You will be redirected to gragtrack error page (debug phase)";
     
-//  }
+ }
 
 
 ?>

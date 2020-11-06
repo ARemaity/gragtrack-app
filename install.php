@@ -9,7 +9,6 @@ $redirect_uri = DIR_ROOT."token.php";
 
 // Build install/approval URL to redirect to
 $install_url = "https://" . $shop . "/admin/oauth/authorize?client_id=" . $api_key . "&scope=" . $scopes . "&redirect_uri=" . urlencode($redirect_uri);
-
 // Redirect
 header("Location: " . $install_url);
 die();

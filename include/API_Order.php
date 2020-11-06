@@ -154,8 +154,14 @@ public function get_order_address($order_id){
   $api_url="/admin/api/2020-10/shop.json";
   $counts=shopify_call($this->token_code,$this->shop_url,$api_url,array(),'GET',array());
   $store_prp=json_decode($counts['response'],true);
-  return $store_prp['shop'];
+  
+  if(array_key_exists('errors',$store_prp)){
 
+    return var_dump($store_prp);
+   }else{
+
+    return $store_prp['shop'];
+   }
 
 }
 

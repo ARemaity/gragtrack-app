@@ -1,15 +1,20 @@
 <?php
-$month=date("m");
-require_once (dirname(__FILE__, 5)) . '/base.php';
-require_once (dirname(__FILE__, 5)) . '/' . DIR_INC . 'SP_Order.php';
-require_once (dirname(__FILE__, 5)) . '/' . DIR_INC . 'SP_product.php';
+
+if(isset($_POST)&&isset($_POST['get_total'])):
+  if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+  if(isset($_SESSION['AID'])):
+    @require_once (dirname(__FILE__, 5)) . '/base.php';
+    @require_once (dirname(__FILE__, 5)) . '/' . DIR_INC . 'SP_Order.php';
+    @require_once (dirname(__FILE__, 5)) . '/' . DIR_INC . 'SP_product.php';
 
 $neworder=new SP_Order();
 $newproduct=new SP_Product();
 $response = array();
 $response['nb_sales']=array();
 // get all order except the test order (paid parti4ally refund all are calculated);
-$morder=$neworder->get_mix_attr($month);
+$morder=$neworder->get_mix_attr();
 $discounts=0;
 $total_sales=0;
 $ship=0;
@@ -64,4 +69,6 @@ $costs=$costs+$product['single_cost'];
 
 }
 
-
+echo $total_sales;
+endif;
+endif;

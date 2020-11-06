@@ -83,8 +83,9 @@ if(!empty($order_array['customer'])){
    $customer_id=$order_array['customer']['id'];
   } 
         $create = date('Y-m-d H:i:s', strtotime($order_array['created_at']));
-        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`order_name`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`,`type`,`source_name`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("iisiddddddiiiiiss",
+        $update = date('Y-m-d H:i:s', strtotime($order_array['updated_at']));
+        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`order_name`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`,`type`,`source_name`, `created_at`,`updated_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("iisiddddddiiiiisss",
         $_SESSION['AID'],
         $order_array['id'],
         $order_array['name'],
@@ -101,7 +102,8 @@ if(!empty($order_array['customer'])){
         $status,
         $type,
         $order_array['source_name'],
-        $create
+        $create,
+        $update
         );
         
         $result = $stmt->execute();
@@ -166,8 +168,9 @@ if(!empty($order_array['shipping_lines'])){
     $customer_id=$order_array['customer']['id'];
    } 
         $create = date('Y-m-d H:i:s', strtotime($order_array['created_at']));
-        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`order_name`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`,`type`,`source_name`, `created_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("iisiddddddiiiiiss",
+        $update = date('Y-m-d H:i:s', strtotime($order_array['updated_at']));
+        $stmt = $this->conn->prepare("INSERT INTO `sp_order`( `fk_AID`, `order_id`,`order_name`,`customer_id`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`,`total_refund`, `has_refund`, `tax_included`, `test`,`status`,`type`,`source_name`, `created_at`,`updated_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("iisiddddddiiiiisss",
         $aid,
         $order_array['id'],
         $order_array['name'],
@@ -184,7 +187,8 @@ if(!empty($order_array['shipping_lines'])){
         $status,
         $type,
         $order_array['source_name'],
-        $create
+        $create,
+        $update
         );
         
         $result = $stmt->execute();
@@ -246,8 +250,8 @@ if(!empty($order_array['shipping_lines'])){
 
 }
 } 
- 
-        $stmt = $this->conn->prepare("UPDATE `sp_order` SET `total_line`=?,`total_discount`=?,`total_tax`=?,`total_ship`=?,`total_amount`=?,`total_refund`=?,`has_refund`=?,`tax_included`=?,`test`=?,`status`=?,`type`=? WHERE fk_AID=? AND order_id=?");
+$update = date('Y-m-d H:i:s', strtotime($order_array['updated_at']));
+        $stmt = $this->conn->prepare("UPDATE `sp_order` SET `total_line`=?,`total_discount`=?,`total_tax`=?,`total_ship`=?,`total_amount`=?,`total_refund`=?,`has_refund`=?,`tax_included`=?,`test`=?,`status`=?,`type`=?,`updated_at`=? WHERE fk_AID=? AND order_id=?");
         $stmt->bind_param("ddddddiiiiiii",
 
         $order_array['total_line_items_price'],
@@ -261,6 +265,7 @@ if(!empty($order_array['shipping_lines'])){
         $istest,
         $status,
         $type,
+        $update,
         $aid,
         $order_array['id']
         );
@@ -283,10 +288,10 @@ if(!empty($order_array['shipping_lines'])){
      * @param  int $month
      * @return array orders
      */
-    public function get_mix_attr($month){
+    public function get_mix_attr(){
 
-    $stmt = $this->conn->prepare("SELECT `OID`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`, `total_refund`,`has_refund`, `tax_included` FROM `sp_order` WHERE fk_AID = ?  AND MONTH(created_at) = ? AND  test='0' ");
-    $stmt->bind_param("ii", $_SESSION['AID'],$month);
+    $stmt = $this->conn->prepare("SELECT `OID`, `total_line`, `total_discount`, `total_tax`, `total_ship`, `total_amount`, `total_refund`,`has_refund`, `tax_included` FROM `sp_order` WHERE fk_AID = ? AND  test='0' ");
+    $stmt->bind_param("i", $_SESSION['AID']);
 if ($stmt->execute()) {			
     $orders = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     $stmt->close();

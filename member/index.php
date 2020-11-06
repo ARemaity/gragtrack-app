@@ -6,7 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// if(isset($_SESSION['AID'])){
+if(isset($_SESSION['AID'])){
 $this_year=date("Y");
 //Get base class
 require_once (dirname(__FILE__,2)).'/base.php';
@@ -103,8 +103,16 @@ var path="<?php echo DIR_ROOT ?>";
 <!--begin::Body-->
 
 <body id="kt_body" style="background-image: url(../assets/media/bg/bg-10.jpg)"
-    class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-
+    class="page-loading-enabled quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
+    
+    <div class="page-loader page-loader-base">
+			<div class="blockui">
+				<span>Please wait...</span>
+				<span>
+					<div class="spinner spinner-primary"></div>
+				</span>
+			</div>
+		</div>
     <!--begin::Main-->
     <!--begin::Header Mobile-->
     <div id="kt_header_mobile" class="header-mobile ">
@@ -171,7 +179,7 @@ var path="<?php echo DIR_ROOT ?>";
                                     <!--begin::Header Nav-->
                                     <ul class="menu-nav ">
                                         <li class="menu-item  menu-item-here  menu-item-rel "
-                                            data-menu-toggle="click" aria-haspopup="true"><a href="."
+                                            data-menu-toggle="click" aria-haspopup="true"><a href="index.php"
                                                 class="menu-link"><span
                                                     class="menu-text">Dashboard</span></a>
 
@@ -3273,7 +3281,7 @@ foreach ($data as $key => $value) {
 
 
 
-    var _initweekorder = function() {
+    var _initquarter = function() {
 
 
         <?php
@@ -3783,261 +3791,18 @@ foreach($datam as $key=> $value){
         chart.render();
     }
 
-    var _initshopifysales = function() {
-        var element = document.getElementById("chart_shopify_mixed");
 
-        if (!element) {
-            return;
-        }
 
-        var options = {
-            series: [{
-                name: 'Net Profit',
-                data: [30, 30, 50, 50, 35, 35]
-            }, {
-                name: 'Revenue',
-                data: [55, 20, 20, 20, 70, 70]
-            }, {
-                name: 'Expenses',
-                data: [60, 60, 40, 40, 30, 30]
-            }, ],
-            chart: {
-                type: 'area',
-                height: 300,
-                toolbar: {
-                    show: false
-                },
-                zoom: {
-                    enabled: false
-                },
-                sparkline: {
-                    enabled: true
-                }
-            },
-            plotOptions: {},
-            legend: {
-                show: false
-            },
-            dataLabels: {
-                enabled: false
-            },
-            fill: {
-                type: 'solid',
-                opacity: 1
-            },
-            stroke: {
-                curve: 'smooth',
-                show: true,
-                width: 2,
-                colors: ['transparent', 'transparent', 'transparent']
-            },
-            xaxis: {
-                x: 0,
-                offsetX: 0,
-                offsetY: 0,
-                padding: {
-                    left: 0,
-                    right: 0,
-                    top: 0,
-                },
-                categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-                axisBorder: {
-                    show: false,
-                },
-                axisTicks: {
-                    show: false
-                },
-                labels: {
-                    show: false,
-                    style: {
-                        colors: KTApp.getSettings()['colors']['gray']['gray-500'],
-                        fontSize: '12px',
-                        fontFamily: KTApp.getSettings()['font-family']
-                    }
-                },
-                crosshairs: {
-                    show: false,
-                    position: 'front',
-                    stroke: {
-                        color: KTApp.getSettings()['colors']['gray']['gray-300'],
-                        width: 1,
-                        dashArray: 3
-                    }
-                },
-                tooltip: {
-                    enabled: true,
-                    formatter: undefined,
-                    offsetY: 0,
-                    style: {
-                        fontSize: '12px',
-                        fontFamily: KTApp.getSettings()['font-family']
-                    }
-                }
-            },
-            yaxis: {
-                y: 0,
-                offsetX: 0,
-                offsetY: 0,
-                padding: {
-                    left: 0,
-                    right: 0
-                },
-                labels: {
-                    show: false,
-                    style: {
-                        colors: KTApp.getSettings()['colors']['gray']['gray-500'],
-                        fontSize: '12px',
-                        fontFamily: KTApp.getSettings()['font-family']
-                    }
-                }
-            },
-            states: {
-                normal: {
-                    filter: {
-                        type: 'none',
-                        value: 0
-                    }
-                },
-                hover: {
-                    filter: {
-                        type: 'none',
-                        value: 0
-                    }
-                },
-                active: {
-                    allowMultipleDataPointsSelection: false,
-                    filter: {
-                        type: 'none',
-                        value: 0
-                    }
-                }
-            },
-            tooltip: {
-                style: {
-                    fontSize: '12px',
-                    fontFamily: KTApp.getSettings()['font-family']
-                },
-                y: {
-                    formatter: function(val) {
-                        return currency+" " + val
-                    }
-                }
-            },
-            colors: [KTApp.getSettings()['colors']['theme']['light']['success'], KTApp.getSettings()['colors']['theme']['light']['danger'], KTApp.getSettings()['colors']['theme']['light']['info']],
-            grid: {
-                borderColor: KTApp.getSettings()['colors']['gray']['gray-200'],
-                strokeDashArray: 4,
-                padding: {
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                    right: 0
-                }
-            },
-            markers: {
-                colors: [KTApp.getSettings()['colors']['theme']['light']['success'], KTApp.getSettings()['colors']['theme']['light']['danger'], KTApp.getSettings()['colors']['theme']['light']['info']],
-                strokeColor: [KTApp.getSettings()['colors']['theme']['base']['success'], KTApp.getSettings()['colors']['theme']['base']['danger'], KTApp.getSettings()['colors']['theme']['base']['info']],
-                strokeWidth: 3
-            }
-        };
-
-        var chart = new ApexCharts(element, options);
-        chart.render();
-    }
-
-    
-    var _initcartgraph = function() {
-        var element = document.getElementById("graph_cart_mixed");
-
-        if (!element) {
-            return;
-        }
-
-        var options = {
-            series: [{
-            name: 'Sales',
-            type: 'column',
-            data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
-          }, {
-            name: 'Abandoned Cart',
-            type: 'area',
-            data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
-          }, {
-            name: 'Checkout Cart',
-            type: 'line',
-            data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
-          }],
-            chart: {
-            height: 350,
-            type: 'line',
-            stacked: false,
-          },
-          stroke: {
-            width: [0, 2, 5],
-            curve: 'smooth'
-          },
-          plotOptions: {
-            bar: {
-              columnWidth: '50%'
-            }
-          },
-          
-          fill: {
-            opacity: [0.85, 0.25, 1],
-            gradient: {
-              inverseColors: false,
-              shade: 'light',
-              type: "vertical",
-              opacityFrom: 0.85,
-              opacityTo: 0.55,
-              stops: [0, 100, 100, 100]
-            }
-          },
-          labels: ['01/01/2003', '02/01/2003', '03/01/2003', '04/01/2003', '05/01/2003', '06/01/2003', '07/01/2003',
-            '08/01/2003', '09/01/2003', '10/01/2003', '11/01/2003'
-          ],
-          markers: {
-            size: 0
-          },
-          xaxis: {
-            type: 'datetime'
-          },
-          yaxis: {
-            title: {
-              text: 'Points',
-            },
-            min: 0
-          },
-          tooltip: {
-            shared: true,
-            intersect: false,
-            y: {
-              formatter: function (y) {
-                if (typeof y !== "undefined") {
-                  return y.toFixed(0) + " points";
-                }
-                return y;
-          
-              }
-            }
-          }
-          };
-  
-       
-        var chart = new ApexCharts(element, options);
-        chart.render();
-    }
-   // Public methods
    return {
     init: function() {
         _initmonthorder();
-        _initweekorder();
+        _initquarter();
         _initdayorder();
         _mixedsales();
         _initrecommandation();
         _initDaterangepicker();
-        _initshopifysales();
-        _initcartgraph();
+      
+      
     }
 }
 }();
@@ -4171,12 +3936,12 @@ KTApexChartsDemo.init();
 
 </html>
 <?php
-//  }else{
+ }else{
 
-//     header( "refresh:2; url=../error.php" ); 
-//     echo "You will be redirected to gragtrack error page (debug phase)";
+    header( "refresh:2; url=../error.php" ); 
+    echo "You will be redirected to gragtrack error page (debug phase)";
     
-//  }
+ }
 
 
 ?>

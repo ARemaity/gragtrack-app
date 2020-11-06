@@ -18,21 +18,21 @@ $api_product=new API_Product_variant();
 $db_init=new DB_init();
 $get_order=$neworder->get_all_order('any');
 $size_order=sizeof($get_order);
-foreach ($get_order as $order){
+$counter=0;
+foreach ($get_order as $order):
 $status=0;
 $type=0;
-$counter=0;
 $invet_id=0;
 $address=array();
 $iscountry=false;
 $line=array();
 if(array_key_exists('billing_address',$order)){
         $address=$order['billing_address'];     
-if(!empty($address['country_code'])){
+   if(!empty($address['country_code'])){
 
-$iscountry=true;
+     $iscountry=true;
 
-}  
+   }  
 
 }
 
@@ -66,7 +66,7 @@ $iscountry=true;
        
        break;
        default:
-       $status=0;
+       $status=7;
            break;
    }
 
@@ -86,7 +86,7 @@ $iscountry=true;
     $type=0;
         break;
 }
-   $insert_order=$sporder->insert_order($order,$status,$type); 
+$insert_order=$sporder->insert_order($order,$status,$type); 
 //  order inserted get OID pr key and insert it with product 
 if($insert_order>0){
 
@@ -135,11 +135,9 @@ if(is_null($cost)){
 
 }
 
-}
+endforeach;
 
 if($size_order==$counter){
-
-
     if($db_init->update_setup(4)){
 
         echo "1";

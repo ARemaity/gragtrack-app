@@ -339,4 +339,67 @@ if (typeof module !== "undefined") {
 
 jQuery(document).ready(function () {
   KTWidgets.init();
+  $.ajax({
+    url: path + "action/m/shopify/sales_order/get_total_sales.php",
+    type: "POST",
+    data: { get_total: 1 },
+    success: function (response) {
+      $('#total_sales').html(response+" "+currency);
+    },
+  });
+
+    KTApp.block("#kt_best_seller", {
+        overlayColor: "#000000",
+        state: "secondary",
+        message: "Processing...",
+      });
+    // get the latest order [current all] TODO: add filter paid , cancel
+    $.ajax({
+      url: "action/m/shopify/sales_order/best_seller.php",
+      type: "post",
+      // dataType: 'JSON',
+      data: { get_best: 1 },
+      success: function (response) {
+        console.log(response);
+        var seller = JSON.parse(response);
+        if (seller.isdata == 0) {
+            console.log('no data');
+         var no_data=
+                '<div class="d-flex flex-center text-center text-muted min-h-200px">NO RECORDS</div>';
+
+                                              $("#best_seller_body").append(no_data);
+                                              KTApp.unblock("#kt_best_seller");
+        } else {
+   
+          $.each(seller.data, function (i, data) {
+        
+          
+            var output_seller =
+            '<div class="d-flex mb-8">'+
+                                '<div class="symbol symbol-50 symbol-2by3 flex-shrink-0 mr-4">'+
+                                    '<div class="d-flex flex-column">'+
+                                        '<div class="symbol-label mb-3"'+
+                                            'style="background-image: url('+data.url+')">'+
+                                        '</div>'+
+
+                                    '</div>'+
+                                '</div>'+
+                             
+                                '<div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3">'+
+                                    '<a href="#"'+
+                                        'class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg mb-2">'+data.title+'</a>'+
+                                    '<span class="text-muted font-weight-bold font-size-lg">Price:'+
+                                      ' <span class="text-dark-75 font-weight-bolder">'+data.price+" "+currency+'</span></span>'+
+                                    '<span class="text-muted font-weight-bold font-size-lg">Sales:'+
+                                        '<span class="text-dark-75 font-weight-bolder">'+data.sales+'</span></span>'+
+                                '</div>'+
+                                
+                            '</div>';
+              $("#best_seller_body").append(output_seller);
+          });
+          KTApp.unblock("#kt_best_seller");
+        }
+      },
+    });
+
 });

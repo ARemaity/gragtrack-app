@@ -1,6 +1,8 @@
 <?php
 
-include('ds.php');
+require 'vendor/autoload.php';
+Sentry\init(['dsn' => 'https://f2ecff31c1454b4580e2e5b9fe19896c@o470315.ingest.sentry.io/5500784',
+'traces_sample_rate' => 1.0  ]);
 @ob_end_clean();
 include("src/geoip.inc");
 $gi = geoip_open("src/dbip4.dat", GEOIP_STANDARD);
@@ -11,7 +13,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 // TODO: in future we must get the the shop url and get data based on it 
-
 
 if(isset($_SESSION['fromtk'])&&$_SESSION['fromtk']==1){
     $_SESSION['fromtk']=0;
@@ -43,8 +44,8 @@ if(!$check_exist){
     if($isactive['isactive']==0){
 
 
-        header("Location:reinstall.php?shop=".$_SESSION['shop_name']);
-        // we must update token 
+    header("Location:reinstall.php?shop=".$_SESSION['shop_name']);
+    // we must update token 
 
     //    TODO: redirect to return_page
 
@@ -63,7 +64,7 @@ if(!$check_exist){
     // header("Location:webhook/show_all.php");
     // header("Location:webhook/delete_single.php?id=931096199328");
     //  header("Location:action/ini/init_order.php");
-         header("Location:action/ini/order_compare.php");
+        //  header("Location:action/ini/order_compare.php");
     //   header("Location:action/ini/init_webhook.php");
     //  header("Location:action/m/shopify/sales_order/sales_status.php");
     //  header("Location:action/m/index/get_order_day.php");
@@ -78,71 +79,72 @@ if setup level 2 store_prp/account tbl   is inserted go to index dashboard
 
 */
 
-// if($get_setup==1){
-//     header("Location:".DIR_ROOT."init.php");
-// }elseif($get_setup==2){
 
-
-//     // TODO: CHECK expired date 
-//     $account_attr=$db->get_account_att($_SESSION['AID']);
-//     $created=$account_attr['created_at'];
-//     $expired=$account_attr['expired_date'];
-    
-//     if($db->get_difference($created,$expired)<=0){
-//         header("Location:".DIR_ROOT."expire.php");
+switch ($get_setup) {
+    case 1:
+        header("Location:".DIR_ROOT."init.php");
+    break;
+    case 2:
+    case 3:
+    case 4:
       
-//     }else{
+    $account_attr=$db->get_account_att($_SESSION['AID']);
+    $created=$account_attr['created_at'];
+    $expired=$account_attr['expired_date'];
+    
+    if($db->get_difference($created,$expired)<=0){
+        header("Location:".DIR_ROOT."expire.php");
+      
+    }else{
 
-
-//     // these to get country var from ip 
-//     $country="";
-//     if($ip=="::1"){
+    $country="";
+    if($ip=="::1"){
  
-//      $country="localhost";
+     $country="localhost";
  
-//     }else{
+    }else{
  
-//       $country=geoip_country_name_by_addr($gi, $ip);
-//     }
+      $country=geoip_country_name_by_addr($gi, $ip);
+    }
 
-//     if($db->insert__login_log($_SESSION['AID'],$ip,$country)){
-//     switch ($db->get_shop_plan_type($_SESSION['AID'])) {
-//         case "1":
-//             header("Location:".DIR_ROOT."member/");
-//           break;
-//         case "2":
-//             header("Location:".DIR_ROOT."advance/");
-//           break;
-//         case "3":
-//             header("Location:".DIR_ROOT."enterprise/");
-//           break;
-//         default:
-//         header("Location:".DIR_ROOT."member/");
-//       }
+    if($db->insert__login_log($_SESSION['AID'],$ip,$country)){
+    switch ($db->get_shop_plan_type($_SESSION['AID'])) {
+        case "1":
+            header("Location:".DIR_ROOT."member/");
+          break;
+        case "2":
+            header("Location:".DIR_ROOT."advance/");
+          break;
+        case "3":
+            header("Location:".DIR_ROOT."enterprise/");
+          break;
+        default:
+        header("Location:".DIR_ROOT."member/");
+      }
 
-//     }else{
+    }else{
 
-//         echo "error:index.php:117";
-//     }
-// }
+        echo "error:index.php:117";
+    }
+}
+
+
+    break;
+    
+    default:
+     
+    header( "refresh:2; url=error.php" ); 
+    echo "You will be redirected to gragtrack error page (debug phase)";
+    break;
+}
 
 
 
-// }else{
- 
-// echo "error:index.php:122   ";
-// }
-   
  
 
     }
   
 
-   
-
- 
-    
- 
 }
 
  }else{

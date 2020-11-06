@@ -1,5 +1,5 @@
-/install.php
-/token.php
+install.php
+token.php
 /vendor
 /webhook/user
-/base.php
+base.php

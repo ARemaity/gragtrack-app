@@ -7,9 +7,11 @@
 $final_st=1;
 require_once (dirname(__FILE__,2)).'/base.php';
 require_once  (dirname(__FILE__,2)).'/'.DIR_INC.'DB_webhook.php';
+require_once  (dirname(__FILE__,2)).'/'.DIR_INC.'DB_init.php';
 require_once (dirname(__FILE__,2)).'/'.DIR_INC."WH_CRUD.php";
 $wh=new WH_CRUD();
 $newwh=new DB_webhook();
+$db_init=new DB_init();
 $wh_files=array(
 array( 'name'=>'app_uninstalled'),
 array( 'name'=>'orders_create'),
@@ -99,8 +101,19 @@ $src = 'receiver-template/verify.php';
 $dest = $PATH2_rec.'verify.php'; 
 if( !copy($src, $dest) ) {  
     $final_st=0;
+}else{
+    if($db_init->update_setup(3)){
+
+    }else{
+        $final_st=0;
+    }
+
 } 
+
+
 echo $final_st;
+
+
 
 
 

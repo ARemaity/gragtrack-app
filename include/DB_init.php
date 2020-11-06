@@ -41,6 +41,7 @@ class DB_init{
                                    
         $stmt = $this->conn->prepare("INSERT INTO `access_token`(`AID`, `shop_url`, `token_code`, `install_time`) VALUES (NULL,'$shop_url','$token_code',NULL)");
         $result = $stmt->execute();
+        
         $last_id=$stmt->insert_id;
         $stmt->close();
     // check for successful store

@@ -56,8 +56,16 @@ if(isset($_SESSION['AID'])):
     <!--end::Head-->
 
     <!--begin::Body-->
-    <body id="kt_blockui_body" id="kt_body" style="background-color: #000"  class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading"  >
-        
+    <body id="kt_blockui_body" id="kt_body" style="background-color: #000"  class="page-loading-enabled quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading"  >
+  
+    <div class="page-loader page-loader-base">
+			<div class="blockui">
+				<span>Please wait...</span>
+				<span>
+					<div class="spinner spinner-primary"></div>
+				</span>
+			</div>
+		</div>
     	<!--begin::Main-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Error-->

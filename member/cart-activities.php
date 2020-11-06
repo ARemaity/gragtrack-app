@@ -120,7 +120,7 @@ var shop='https://<?=$_SESSION['shop_name']?>/admin/';
                                     <!--begin::Header Nav-->
                                     <ul class="menu-nav ">
                                         <li class="menu-item  menu-item-submenu menu-item-rel" data-menu-toggle="click"
-                                            aria-haspopup="true"><a href="." class="menu-link"><span
+                                            aria-haspopup="true"><a href="<?= DIR_USER ?>" class="menu-link"><span
                                                     class="menu-text">Dashboard</span></a>
 
                                         </li>
@@ -130,7 +130,7 @@ var shop='https://<?=$_SESSION['shop_name']?>/admin/';
                                                 </span><span class="menu-desc"></span><i class="menu-arrow"></i></a>
                                             <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                                                 <ul class="menu-subnav">
-                                                    <a href="sales-orders.php" class="menu-link">
+                                                    <a href="<?= DIR_USER ?>sales-orders.php" class="menu-link">
                                                         <li class="menu-item  menu-item-submenu"
                                                             data-menu-toggle="hover" aria-haspopup="true"><span
                                                                 class="svg-icon svg-icon-primary svg-icon-2x">
@@ -157,7 +157,7 @@ var shop='https://<?=$_SESSION['shop_name']?>/admin/';
 
                                         </li>
                                         <li class="menu-item  menu-item-submenu menu-item-here" data-menu-toggle="hover"
-                                            aria-haspopup="true"><a href="cart-activities.php"
+                                            aria-haspopup="true"><a href="<?= DIR_USER ?>cart-activities.php"
                                                 class="menu-link"><span
                                                     class="svg-icon svg-icon-primary svg-icon-2x">
                                                     <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-03-114926/theme/html/demo7/dist/src/media/svg/icons/Shopping/Cart3.svg--><svg

@@ -1,7 +1,7 @@
 <?php
 
 @require_once (dirname(__FILE__, 5)) . '/base.php';
-@require_once (dirname(__FILE__, 5)) . '/' . DIR_INC . 'SP_product.php';
+@require_once (dirname(__FILE__, 5)) . '/' . DIR_INC . 'SP_Product.php';
 @require_once (dirname(__FILE__, 5)) . '/' . DIR_INC . 'API_Product.php';
 @require_once (dirname(__FILE__, 5)) . '/' . DIR_INC . 'API_Product_variant.php';
 

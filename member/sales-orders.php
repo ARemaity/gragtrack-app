@@ -8,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 if(isset($_SESSION['AID'])){
 //Get base class
 require_once (dirname(__FILE__,2)).'/base.php';
-require_once (dirname(__FILE__, 2)) . '/' . DIR_INC . 'SP_order.php';
+require_once (dirname(__FILE__, 2)) . '/' . DIR_INC . 'SP_Order.php';
 require_once (dirname(__FILE__, 2)) . '/' . DIR_INC . 'API_Product.php';
 require_once (dirname(__FILE__, 2)) . '/' . DIR_INC . 'API_Product_variant.php';
 

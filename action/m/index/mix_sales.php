@@ -7,7 +7,7 @@ if(isset($_POST)&&$_POST['get_mix']==1){
 $month=date("m");
 require_once (dirname(__FILE__, 4)) . '/base.php';
 require_once (dirname(__FILE__, 4)) . '/' . DIR_INC . 'SP_Order.php';
-require_once (dirname(__FILE__, 4)) . '/' . DIR_INC . 'SP_product.php';
+require_once (dirname(__FILE__, 4)) . '/' . DIR_INC . 'SP_Product.php';
 require_once (dirname(__FILE__, 4)) . '/' . DIR_INC . 'API_inverntoryitem.php';
 $neworder=new SP_Order();
 $newproduct=new SP_Product();

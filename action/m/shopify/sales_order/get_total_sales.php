@@ -7,7 +7,7 @@ if(isset($_POST)&&isset($_POST['get_total'])):
   if(isset($_SESSION['AID'])):
     @require_once (dirname(__FILE__, 5)) . '/base.php';
     @require_once (dirname(__FILE__, 5)) . '/' . DIR_INC . 'SP_Order.php';
-    @require_once (dirname(__FILE__, 5)) . '/' . DIR_INC . 'SP_product.php';
+    @require_once (dirname(__FILE__, 5)) . '/' . DIR_INC . 'SP_Product.php';
 
 $neworder=new SP_Order();
 $newproduct=new SP_Product();

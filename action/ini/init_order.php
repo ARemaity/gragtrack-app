@@ -88,9 +88,9 @@ if(array_key_exists('billing_address',$order)){
 }
 $insert_order=$sporder->insert_order($order,$status,$type); 
 //  order inserted get OID pr key and insert it with product 
-if($insert_order>0){
+if(is_int($insert_order)&&$insert_order>0){
 
-    $counter+=1;
+    $counter=$counter+1;
 //    if($status==3){
 
     if($iscountry){
@@ -133,6 +133,7 @@ if(is_null($cost)){
 
     $counter-=1;
 
+
 }
 
 endforeach;
@@ -147,6 +148,6 @@ if($size_order==$counter){
 
 }else{
 
-    echo "0";
+    echo '0';
 }
 

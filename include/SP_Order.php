@@ -107,17 +107,19 @@ if(!empty($order_array['customer'])){
         );
         
         $result = $stmt->execute();
+        
         $last_id=$stmt->insert_id;
-        $stmt->close();
+     
         
         if ($result) {
               
             return  $last_id;
-        
+            $stmt->close();
         } else {
           
         
-            return 0;
+           die("the error is ".$stmt->error);
+           $stmt->close();
         }
         
 

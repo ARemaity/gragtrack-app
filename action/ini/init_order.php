@@ -23,6 +23,7 @@ foreach ($get_order as $order):
 $status=0;
 $type=0;
 $invet_id=0;
+$total_cost=0;
 $address=array();
 $iscountry=false;
 $line=array();
@@ -118,6 +119,7 @@ if(is_null($cost)){
     $cost=0;
 }
 // insert product with oid pr key 
+$total_cost+=($qty*$cost);
     if($sproduct->init_insert_product($insert_order,$pid,$vid,$qty,$cost)){
 
     
@@ -126,6 +128,14 @@ if(is_null($cost)){
 
 }
 
+$insert_cost=$sporder->update_total_cost($total_cost,$insert_order);
+if(is_bool($insert_cost)&&$insert_order){
+
+}else{
+
+    Sentry\captureMessage(var_dump($insert_cost));
+    
+}
 
 
 

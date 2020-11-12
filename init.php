@@ -319,6 +319,12 @@ if($booln){
                 <script src="assets/js/pages/features/miscellaneous/blockui.js?v=7.0.6"></script>
 
                 <script src="assets/js/pages/my-script/ini/init-script.js" type="text/javascript" ></script>
+                <script type="text/javascript"> 
+        window.addEventListener('beforeunload', function (e) { 
+            e.preventDefault(); 
+            e.returnValue = ''; 
+        }); 
+    </script> 
             </body>
     <!--end::Body-->
 </html>

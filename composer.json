@@ -3,6 +3,7 @@
         "php-amqplib/php-amqplib": "^2.12",
         "pusher/pusher-php-server": "^4.1",
         "sentry/sdk": "^3.0",
-        "google/apiclient": "2.8.1"
+        "google/apiclient": "2.8.1",
+        "aws/aws-sdk-php": "^3.159"
     }
 }

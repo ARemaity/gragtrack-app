@@ -52,15 +52,16 @@ if(!$check_exist){
 
 
     }else{
-if(!isset($_SESSION)||!isset($_SESSION['AID'])||!isset($_SESSION['setup_level'])||!isset($_SESSION['currency'])||!isset($_SESSION['tmz'])){
+// if(!isset($_SESSION)||!isset($_SESSION['AID'])||!isset($_SESSION['setup_level'])||!isset($_SESSION['currency'])||!isset($_SESSION['tmz'])){
     $get_aid=$db->get_access_ID($_GET['shop'])['AID'];
     $_SESSION['AID']=$get_aid;
+
     $get_setup=$db->get_setup($_SESSION['AID'])['setup_level'];
     $_SESSION['setup_level']=$get_setup;
     $store_prp=$db->get_shop_plan($_SESSION['AID']);
     $_SESSION['currency']=$store_prp['currency'];
     $_SESSION['tmz']=$store_prp['tmz'];
-}
+// }
 
     // DONE: insert to login 
     // echo __DIR__; //should be '/main_web_folder/';

@@ -282,6 +282,57 @@ $update = date('Y-m-d H:i:s', strtotime($order_array['updated_at']));
         }
         }
 
+        
+        /**
+         * after finishing inserting to sp_product we sum up the (single cost*qty) for every order then insert it to the totol_cost
+         *
+         * @param  int $total_cost
+         * @param  int $oid
+         * @return bool true/false
+         */
+        public function update_total_cost($total_cost,$oid) {
+     
+            $stmt = $this->conn->prepare("UPDATE `sp_order` SET `total_cost`=? WHERE fk_AID=? AND OID=?");
+            $stmt->bind_param("dii",
+            $total_cost,
+            $_SESSION['AID'],
+            $oid
+            );
+            
+            $result = $stmt->execute();
+    
+    
+            if ($result) {
+            return true;
+            $stmt->close();
+            } else {
+                return $stmt->error;
+                $stmt->close();
+            }
+            }
+        
+
+            public function update_webhook_total_cost($total_cost,$aid,$oid) {
+     
+                $stmt = $this->conn->prepare("UPDATE `sp_order` SET  `total_cost`=? WHERE fk_AID=? AND OID=?");
+                $stmt->bind_param("dii",
+                $total_cost,
+                $aid,
+                $oid
+                );
+                
+                $result = $stmt->execute();
+        
+                $stmt->close();
+                if ($result) {
+                return true;
+                } else {
+                    return false;
+                }
+                }
+        
+    
+
 
 
     /**

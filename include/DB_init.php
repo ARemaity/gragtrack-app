@@ -463,6 +463,65 @@ if ($result) {
 
 
 }
+
+// /////////ga init part
+
+    /**
+     *  
+     *
+     *  new shop to access_token tbl.
+     * 
+     * 
+     * */
+    public function insert_into_ga_token($token_code) {
+                                   
+        $stmt = $this->conn->prepare("INSERT INTO `ga_token`(`GID`, `fk_AID`, `token_code`, `install_time`) VALUES (NULL,'1',?,NULL)");
+        // $stmt->bind_param("is",$_SESSION['AID'],$token_code);
+           $stmt->bind_param("s",$token_code);
+        $result = $stmt->execute();
+        
+        $last_id=$stmt->insert_id;
+        $stmt->close();
+    // check for successful store
+    if ($result) {
+        return $last_id;
+    } else {
+        return 0;
+    }
+}
+    /**
+     *  
+     * check if shop exist 
+     * */
+    public function check_if_ga_exist() {
+        // check in case , they installed 
+           $stmt = $this->conn->prepare("SELECT * FROM `ga_token` WHERE fk_AID='1'");
+        //    $stmt->bind_param("i",$_SESSION['AID']);
+           $result = $stmt->execute();
+           $stmt->store_result(); //store_result() "binds" the last given answer to the statement-object for... reasons. Now we can use it!
+   
+           if ($stmt->num_rows >= "1") {
+              return TRUE;
+           }else{
+               return FALSE;
+               
+           }
+      
+          
+   }
+   public function get_ga_token() {
+    $stmt = $this->conn->prepare("SELECT  `token_code` FROM ga_token WHERE fk_AID='1'");
+    // $stmt->bind_param("i",$_SESSION['AID']);
+    if ($stmt->execute()) {			
+        $url = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+        return $url; 
+    } else {
+        return NULL;
+    }
+} 
+
+
 }
 
 ?>

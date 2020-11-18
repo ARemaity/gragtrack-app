@@ -1,17 +1,25 @@
 <?php
-error_reporting(0);
-// Load the Google API PHP Client Library.
-require_once (dirname(__FILE__,2)) . '/vendor/autoload.php';
 
+require_once (dirname(__FILE__,2)).'/base.php';
+require_once (dirname(__FILE__,2)) . '/vendor/autoload.php';
+require_once (dirname(__FILE__,2)).'/'.DIR_INC.'DB_init.php';
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+
+$db = new DB_init();
 // Start a session to persist credentials.
-session_start();
 
 // Create the client object and set the authorization configuration
 // from the client_secretes.json you downloaded from the developer console.
 $client = new Google_Client();
 $client->setAuthConfig(__DIR__ . '/client_secrets.json');
 $client->addScope(Google_Service_Analytics::ANALYTICS_READONLY);
-
+$client->setAccessType('offline');
+$client->setApprovalPrompt("consent");
+$client->setIncludeGrantedScopes(true);
+$client->setLoginHint('elon@tesla.com');
+  // incremental auth
 // If the user has already authorized this app then get an access token
 // else redirect to ask the user to authorize access to Google Analytics.
 if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
@@ -21,23 +29,32 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
   // Create an authorized analytics service object.
   $analytics = new Google_Service_Analytics($client);
 
-  // Get the first view (profile) id for the authorized user.
   $profile = getFirstProfileId($analytics);
-
-  // Get the results from the Core Reporting API and print the results.
   $results = getResults($analytics, $profile);
-  printResults($results);
+  // printResults($results);
+
+  include('mngmnt_api.php');
 } else {
+  if($db->check_if_ga_exist()){
+    $token=$db->get_ga_token()['token_code'];
+    $client->setAccessToken(json_decode($token,TRUE));
+    $analytics = new Google_Service_Analytics($client);
+    // $profile = getFirstProfileId($analytics);
+    // $results = getResults($analytics, $profile);
+    // printResults($results);
+    include('mngmnt_api.php');
+  }else{
+
+ 
+    $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/gragtrack2/ga/callback.php';
+    header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+  }
   
-  $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/gracktrack2/ga/oauth2callback.php';
-  header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
 }
 
 
 function getFirstProfileId($analytics) {
-  // Get the user's first view (profile) ID.
 
-  // Get the list of accounts for the authorized user.
   $accounts = $analytics->management_accounts->listManagementAccounts();
 
   if (count($accounts->getItems()) > 0) {

@@ -60,8 +60,8 @@ function getReport($analytics) {
   $request->setMetrics(array($sessions));
 
   $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
-  $body->setReportRequests( array( $request) );
-  return $analytics->reports->batchGet( $body );
+  $body->setReportRequests( array( $request));
+  return $analytics->reports->batchGet( $body);
 }
 
 

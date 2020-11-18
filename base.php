@@ -1,13 +1,16 @@
 <?php
 error_reporting(0); 
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
 require  'vendor/autoload.php';
 Sentry\init(['dsn' => 'https://39d1d0eb85fe44398afacfc9b6b57230@o471153.ingest.sentry.io/5502794',
 'traces_sample_rate' => 1.0  ]);
-if(isset($_SESSION)&&isset($_SESSION['shop_name'])){
+
     Sentry\configureScope(function (Sentry\State\Scope $scope): void {
-        $scope->setUser(['username' => strval($_SESSION['shop_name'])]);
+        $scope->setUser(['username' =>'localhost']);
       });
-}
+
 define("DIR_ROOT", "https://localhost/gragtrack2/");
 define("DIR_INC", "include/");
 define("DIR_ADMIN", "admin/");

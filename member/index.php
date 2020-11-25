@@ -1,4 +1,4 @@
-<!-- TODO: USE implode rather than foreach to extract string from array  -->
+<!--TODO: USE implode rather than foreach to extract string from array  -->
 
 <?php
 
@@ -60,6 +60,8 @@ $qs=$neworder->order_q($this_year);
 $data_q=array();
 $api_order = new API_Order();
 ?>
+
+<?php   include  __DIR__ .'/header.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <!--begin::Head-->

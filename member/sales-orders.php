@@ -80,6 +80,7 @@ array_push($country_arr,$handler);
 }
 
 ?>
+<?php   include  __DIR__ .'/header.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <!--begin::Head-->

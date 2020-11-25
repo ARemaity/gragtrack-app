@@ -6,6 +6,7 @@ if(isset($_SESSION['AID'])):
 //Get base class
 require_once (dirname(__FILE__,2)).'/base.php';
 ?>
+<?php   include  __DIR__ .'/header.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <!--begin::Head-->

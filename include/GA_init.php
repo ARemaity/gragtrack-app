@@ -1,7 +1,7 @@
 <?php 
 
 
-class DB_Report{
+class GA_init{
      
 
 private $analytics;

@@ -5,6 +5,7 @@ class DB_init{
      
      private $new_order;
     private $conn;
+    private $conn2;
     private $store_prp;
     private $aid;
     // constructor
@@ -14,6 +15,7 @@ class DB_init{
         require_once 'DB_Connect.php';   
          $db = new DB_Connect();
          $this->conn = $db->connect();
+         $this->conn2 = $db->connect2();
          // in case session is not activated start it 
        if (session_status() == PHP_SESSION_NONE) {
         session_start();
@@ -473,20 +475,22 @@ if ($result) {
      * 
      * 
      * */
-    public function insert_into_ga_token($token_code) {
+    public function insert_into_ga_token($access_token,$refresh_token) {
                                    
-        $stmt = $this->conn->prepare("INSERT INTO `ga_token`(`GID`, `fk_AID`, `token_code`, `install_time`) VALUES (NULL,'1',?,NULL)");
-        // $stmt->bind_param("is",$_SESSION['AID'],$token_code);
-           $stmt->bind_param("s",$token_code);
+        $stmt = $this->conn2->prepare("INSERT INTO `ga_token`(`GID`, `fk_AID`, `access_code`, `refresh_token`, `install_time`) VALUES (NULL,'1',?,?,NULL)");
+           $stmt->bind_param("ss",$access_token,$refresh_token);
         $result = $stmt->execute();
-        
-        $last_id=$stmt->insert_id;
+
         $stmt->close();
     // check for successful store
     if ($result) {
-        return $last_id;
+        return true;
+        
+        $stmt->close();
     } else {
-        return 0;
+        return false;
+        
+        $stmt->close();
     }
 }
     /**
@@ -495,7 +499,7 @@ if ($result) {
      * */
     public function check_if_ga_exist() {
         // check in case , they installed 
-           $stmt = $this->conn->prepare("SELECT * FROM `ga_token` WHERE fk_AID='1'");
+           $stmt = $this->conn2->prepare("SELECT * FROM `ga_token` WHERE fk_AID='1'");
         //    $stmt->bind_param("i",$_SESSION['AID']);
            $result = $stmt->execute();
            $stmt->store_result(); //store_result() "binds" the last given answer to the statement-object for... reasons. Now we can use it!
@@ -510,8 +514,7 @@ if ($result) {
           
    }
    public function get_ga_token() {
-    $stmt = $this->conn->prepare("SELECT  `token_code` FROM ga_token WHERE fk_AID='1'");
-    // $stmt->bind_param("i",$_SESSION['AID']);
+    $stmt = $this->conn2->prepare("SELECT  `access_code`,`refresh_token` FROM ga_token WHERE fk_AID='1'");
     if ($stmt->execute()) {			
         $url = $stmt->get_result()->fetch_assoc();
         $stmt->close();
@@ -520,6 +523,7 @@ if ($result) {
         return NULL;
     }
 } 
+
 
 
 }

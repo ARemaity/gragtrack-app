@@ -785,6 +785,26 @@ if(!is_null($type)){
                             
                             
                                 } 
+
+
+                                public function get_sales_growth($month,$year){
+                                   
+                                    $stmt = $this->conn->prepare("SELECT sum(total_line) as lsum, sum(total_discount) as dsum, sum(total_refund) as rsum FROM sp_daily_order WHERE MONTH(date)=? AND YEAR(date)= ? AND  fk_AID=?");
+                                    $stmt->bind_param("iii", $month,$year,$_SESSION['AID']);
+                                if ($stmt->execute()) {			
+                                    $orders = $stmt->get_result()->fetch_assoc();
+                                    $stmt->close();
+                                
+                                    return $orders; 
+                                } else {
+                                    return NULL;
+                                }
+                                
+                                
+                                
+                                
+                                
+                                    } 
               
           
 }

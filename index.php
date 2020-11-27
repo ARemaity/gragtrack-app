@@ -68,10 +68,10 @@ if(!$check_exist){
 //  header("Location:webhook/startup_hooks.php");
     // header("Location:webhook/show_all.php");
     // header("Location:webhook/delete_single.php?id=931096199328");
-     header("Location:action/ini/init_order.php");
+    //  header("Location:action/ini/init_order.php");
         //  header("Location:action/ini/order_compare.php");
     //   header("Location:action/ini/init_webhook.php");
-    //  header("Location:action/m/shopify/sales_order/sales_status.php");
+     header("Location:action/m/shopify/sales_order/growth.php");
     //  header("Location:action/m/index/get_order_day.php");
     //   header("Location:action/m/index/get_order_q.php");
     //   header("Location:action/m/index/get_top_pr.php");
